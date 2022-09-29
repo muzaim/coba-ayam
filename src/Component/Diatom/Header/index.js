@@ -10,14 +10,24 @@ const Header = ({
   Egg,
   Pouch,
   Milk,
+  PanganTersedia,
   QuestBook,
   BackButton,
   Action1,
   Action2,
+  harta,
+  setHarta,
 }) => {
   const openPage6 = () => {
     Action1();
   };
+
+  const numberFormat = (value) =>
+    new Intl.NumberFormat("en-IN", {
+      style: "currency",
+      currency: "INR",
+    }).format(value);
+
   const DiamondDiv = () => {
     return (
       <div className="w-44 h-10 bg-[#f6f3e4] rounded-full items-center flex">
@@ -25,7 +35,9 @@ const Header = ({
           <img src={DiamondImg} alt="" className="w-10" />
         </div>
         <div className="w-full text-start ">
-          <span className="font-bold  text-sm text-[#782443]">2.115</span>
+          <span className="font-bold  text-sm text-[#782443]">
+            {harta.diamond.toLocaleString()}
+          </span>
         </div>
       </div>
     );
@@ -38,7 +50,9 @@ const Header = ({
           <img src={EggImg} alt="" className="w-8" />
         </div>
         <div className="w-full text-start ">
-          <span className="font-bold  text-sm text-[#782443]">120 Butir</span>
+          <span className="font-bold  text-sm text-[#782443]">
+            {harta.egg.toLocaleString()} Butir
+          </span>
         </div>
       </div>
     );
@@ -48,10 +62,12 @@ const Header = ({
     return (
       <div className="w-44 h-10 bg-[#f6f3e4] rounded-full items-center flex">
         <div className="w-20 flex items-center justify-center ">
-          <img src={MilkImg} alt="" className="w-8" />
+          <img src={PouchImg} alt="" className="w-8" />
         </div>
         <div className="w-full text-start ">
-          <span className="font-bold  text-sm text-[#782443]">251 Liter</span>
+          <span className="font-bold  text-sm text-[#782443]">
+            {harta.milk.toLocaleString()} Kg
+          </span>
         </div>
       </div>
     );
@@ -61,23 +77,28 @@ const Header = ({
     return (
       <div className="w-44 h-10 bg-[#f6f3e4] rounded-full items-center flex">
         <div className="w-20 flex items-center justify-center ">
-          <img src={PouchImg} alt="" className="w-8" />
+          <img src={MilkImg} alt="" className="w-8" />
         </div>
         <div className="w-full text-start ">
-          <span className="font-bold  text-sm text-[#782443]">56 Kg</span>
+          <span className="font-bold  text-sm text-[#782443]">
+            {harta.milk.toLocaleString()} Kg
+          </span>
         </div>
       </div>
     );
   };
 
-  const QuestBookDiv = () => {
+  const PanganTersediaDiv = () => {
     return (
-      <div className="" onClick={openPage6}>
-        <img src={QuestBookImg} alt="" className="w-16" />
+      <div className="w-44 h-10 bg-[#f6f3e4] rounded-full  flex items-center ">
+        <div className="w-full text-center">
+          <span className="font-bold  text-sm text-[#782443]">
+            Pangan Tersedia
+          </span>
+        </div>
       </div>
     );
   };
-
   const BackButtonDiv = () => {
     return (
       <div
@@ -89,6 +110,14 @@ const Header = ({
             Back
           </span>
         </div>
+      </div>
+    );
+  };
+
+  const QuestBookDiv = () => {
+    return (
+      <div className="" onClick={openPage6}>
+        <img src={QuestBookImg} alt="" className="w-16" />
       </div>
     );
   };
@@ -112,6 +141,10 @@ const Header = ({
           {/* MILK */}
           {Milk ? <MilkDiv /> : null}
           {/* MILK END */}
+
+          {/* PANGAN TERSEDIA */}
+          {PanganTersedia ? <PanganTersediaDiv /> : null}
+          {/* PANGAN TERSEDIA END*/}
 
           {/* QUEST BOOK */}
           {BackButton ? <BackButtonDiv /> : null}

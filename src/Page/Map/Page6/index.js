@@ -1,12 +1,14 @@
-import React from "react";
-import { useState } from "react";
+import React, { useContext } from "react";
 import Shop from "../../../img/common/shop.png";
 import Barn from "../../../img/common/barn.png";
 import ArrowDown from "../../../img/usage/down.png";
+import { UserContext } from "../../UserContext";
 
 import Header from "../../../Component/Diatom/Header";
 
 const Page6 = ({ Action1, Action2, Action3, Action4 }) => {
+  const { value, setValue } = useContext(UserContext);
+
   const goToPage5 = () => {
     Action1();
   };
@@ -25,54 +27,80 @@ const Page6 = ({ Action1, Action2, Action3, Action4 }) => {
       <div className="w-[90%] h-full mx-auto ">
         {/* HEADER */}
         <div class="h-[15%]">
-          <Header Diamond={true} />
+          <Header Diamond={true} harta={value} setHarta={setValue} />
         </div>
         {/* HEADER END */}
         {/* CONTENT */}
-        <div className="relative h-[50%]">
-          {/* KE BARN */}
+        <div className="relative h-[50%] ">
+          {/* KE Warung */}
           <div
-            className="top-[3rem] right-[10rem] absolute group animate-bounce"
-            onClick={goToPage7}
-          >
-            <img
-              src={ArrowDown}
-              alt=""
-              className="w-16 group-active:opacity-80"
-            />
-          </div>
-          {/* KE MARKET */}
-          <div
-            className="top-[1rem] right-[32rem] absolute group animate-bounce"
-            onClick={goToPage15}
-          >
-            <img
-              src={ArrowDown}
-              alt=""
-              className="w-16 group-active:opacity-80"
-            />
-          </div>
-          {/* KE NPC MENU */}
-          <div
-            className="top-[10rem] right-[18rem] absolute group animate-bounce"
-            onClick={goToPage5}
-          >
-            <img
-              src={ArrowDown}
-              alt=""
-              className="w-16 group-active:opacity-80"
-            />
-          </div>
-          {/* KE SHOP */}
-          <div
-            className="top-[5rem] right-[25rem] absolute group animate-bounce"
+            className="top-[6rem] left-[8.5rem] absolute group animate-bounce"
             onClick={goToPage13}
           >
-            <img
-              src={ArrowDown}
-              alt=""
-              className="w-16 group-active:opacity-80"
-            />
+            <div className=" flex flex-col justify-center items-center">
+              <p className="text-white tracking-wider">Warung</p>
+              <img
+                src={ArrowDown}
+                alt=""
+                className="w-10 group-active:opacity-80"
+              />
+            </div>
+          </div>
+          {/* KE BISNIS */}
+          <div
+            className="top-[0rem] left-[13.5rem] absolute group animate-bounce"
+            onClick={goToPage15}
+          >
+            <div className="flex flex-col justify-center items-center">
+              <p className="text-white tracking-wider">Bisnis</p>
+              <img
+                src={ArrowDown}
+                alt=""
+                className="w-10 group-active:opacity-80"
+              />
+            </div>
+          </div>
+          {/* KE KANDANGKU */}
+          <div
+            className="top-[1rem] right-[16rem] absolute group animate-bounce"
+            onClick={goToPage7}
+          >
+            <div className="flex flex-col justify-center items-center">
+              <p className="text-white tracking-wider">Kandangku</p>
+              <img
+                src={ArrowDown}
+                alt=""
+                className="w-10 group-active:opacity-80"
+              />
+            </div>
+          </div>
+          {/* KE TOP UP */}
+          <div
+            className="top-[4rem] right-[8rem] absolute group animate-bounce"
+            onClick={goToPage13}
+          >
+            <div className="flex flex-col justify-center items-center">
+              <p className="text-white tracking-wider">Top Up</p>
+              <img
+                src={ArrowDown}
+                alt=""
+                className="w-10 group-active:opacity-80"
+              />
+            </div>
+          </div>
+          {/* KE RUMAH*/}
+          <div
+            className="top-[6rem] right-[15rem] absolute group animate-bounce"
+            onClick={goToPage13}
+          >
+            <div className=" flex flex-col justify-center items-center">
+              <p className="text-white tracking-wider">Rumah</p>
+              <img
+                src={ArrowDown}
+                alt=""
+                className="w-10 group-active:opacity-80"
+              />
+            </div>
           </div>
         </div>
         {/* CONTENT END*/}

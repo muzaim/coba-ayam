@@ -1,12 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Chef1 from "../../../img/common/chef1.png";
 import Next from "../../../img/usage/play.png";
 import Typewriter from "typewriter-effect";
 import Header from "../../../Component/Diatom/Header";
+import { UserContext } from "../../UserContext";
 
 const Page14 = ({ Action1, Action2 }) => {
   const [skipDialog, setSkipDalog] = useState(false);
   const [nextButton, setNextButton] = useState(false);
+  const { value, setValue } = useContext(UserContext);
+
   const goToPage6 = () => {
     Action2();
   };
@@ -58,6 +61,8 @@ const Page14 = ({ Action1, Action2 }) => {
             Egg={true}
             QuestBook={true}
             Action1={goToPage6}
+            harta={value}
+            setHarta={setValue}
           />
         </div>
         {/* HEADER END */}

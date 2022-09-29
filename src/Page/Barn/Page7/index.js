@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useContext } from "react";
+import "./style.css";
 import Chicken2 from "../../../img/common/chicken2.png";
 import Pig from "../../../img/common/pig.png";
 import Domba from "../../../img/common/domba.png";
@@ -7,10 +8,13 @@ import RightArrow from "../../../img/usage/right-arrow.png";
 import LeftArrow from "../../../img/usage/left-arrow.png";
 import { useState } from "react";
 import Header from "../../../Component/Diatom/Header";
-import Button from "../../../Component/Atom/Button";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import { UserContext } from "../../UserContext";
 
 const Page7 = ({ Action1, Action2, Action3 }) => {
   const [index, setIndex] = useState(0);
+  const { value, setValue } = useContext(UserContext);
 
   const goToPage6 = () => {
     Action3();
@@ -45,9 +49,27 @@ const Page7 = ({ Action1, Action2, Action3 }) => {
     },
     {
       id: 4,
-      name: "Babi",
-      skill: "Max 10 Kg daging perhari",
-      image: Pig,
+      name: "Nyampek",
+      skill: "Max 25 Kg daging perhari",
+      image: Domba,
+    },
+    {
+      id: 5,
+      name: "Kuda",
+      skill: "Max 25 Kg daging perhari",
+      image: Domba,
+    },
+    {
+      id: 6,
+      name: "Anjing",
+      skill: "Max 25 Kg daging perhari",
+      image: Domba,
+    },
+    {
+      id: 7,
+      name: "Semut",
+      skill: "Max 25 Kg daging perhari",
+      image: Domba,
     },
   ];
 
@@ -75,7 +97,13 @@ const Page7 = ({ Action1, Action2, Action3 }) => {
     });
   };
   const { name, skill, image } = Hewan[index];
-
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 3,
+  };
   return (
     <div className="w-full h-screen overflow-hidden bg-barn bg-cover mx-auto lg:max-w-6xl lg:h-[70%]">
       <div className="w-[90%] h-full mx-auto">
@@ -87,6 +115,8 @@ const Page7 = ({ Action1, Action2, Action3 }) => {
             Pouch={true}
             QuestBook={true}
             Action1={goToPage6}
+            harta={value}
+            setHarta={setValue}
           />
         </div>
         {/* HEADER END */}
@@ -95,13 +125,14 @@ const Page7 = ({ Action1, Action2, Action3 }) => {
           <div class="w-full h-full justify-center flex items-start">
             <div className="w-full h-full flex flex-col">
               <div className="w-full h-10 flex justify-center items-center lg:h-20 ">
-                <span className="text-white text-xl">
-                  {name}, {skill}
+                <span className="text-white text-xl tracking-widest font-bold uppercase">
+                  ternakku
                 </span>
               </div>
               <div className="w-full h-full flex justify-center items-center">
-                <div
-                  className="flex h-full w-full justify-end items-center"
+                {/* LEFT ARROW */}
+                {/* <div
+                  className="flex h-full w-14  justify-end items-center"
                   onClick={previousHewan}
                 >
                   <img
@@ -109,16 +140,49 @@ const Page7 = ({ Action1, Action2, Action3 }) => {
                     alt=""
                     className="w-16 h-16 lg:w-24 lg:h-24"
                   />
+                </div> */}
+                {/* TENGAH */}
+                <div className="flex w-full h-full overflow-hidden">
+                  <Swiper
+                    spaceBetween={50}
+                    slidesPerView={3}
+                    onSlideChange={() => console.log("slide change")}
+                    onSwiper={(swiper) => console.log(swiper)}
+                  >
+                    {Hewan.map((item) => {
+                      return (
+                        <SwiperSlide>
+                          <div
+                            className="flex h-full w-full justify-center items-center bg-papan1 bg-[length:200px_160px] bg-center bg-no-repeat"
+                            onClick={goToPage8}
+                          >
+                            <div className="w-[80%] h-[80%] ">
+                              <div className="flex flex-col items-center my-3">
+                                <span className="text-sm mt-1 uppercase">
+                                  {item.name} - GRATIS
+                                </span>
+                                <img
+                                  src={image}
+                                  alt=""
+                                  className="w-[5rem] h-[5rem]  lg:w-60 lg:h-64"
+                                />
+                                <div class="w-32 bg-gray-200 h-5 rounded-full overflow-hidden lg:w-72 lg:h-10 mt-2">
+                                  <div
+                                    class="bg-[#7fa65a] h-5 rounded-full lg:h-10"
+                                    style={{ width: "27%" }}
+                                  ></div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </SwiperSlide>
+                      );
+                    })}
+                  </Swiper>
                 </div>
-                <div className="flex h-full w-full justify-center items-center">
-                  <img
-                    src={image}
-                    alt=""
-                    className="w-32 h-36 lg:w-60 lg:h-64"
-                  />
-                </div>
-                <div
-                  className="flex h-full w-full justify-start items-center"
+                {/* RIGT ARROW */}
+                {/* <div
+                  className="flex h-full w-14  justify-start items-center"
                   onClick={nextHewan}
                 >
                   <img
@@ -126,7 +190,7 @@ const Page7 = ({ Action1, Action2, Action3 }) => {
                     alt=""
                     className="w-16 h-16 lg:w-24 lg:h-24"
                   />
-                </div>
+                </div> */}
               </div>
             </div>
           </div>
@@ -135,23 +199,39 @@ const Page7 = ({ Action1, Action2, Action3 }) => {
         {/* FOOTER */}
         <div class="h-[20%]">
           <div className="grid grid-cols-3 gap-3">
-            <div className=""></div>
+            <div className="">
+              <div
+                className="w-full h-full bg-white rounded-full py-3 text-center active:bg-[#782443] group"
+                onClick={() => {
+                  setValue((prevState) => ({
+                    ...prevState,
+                    [value.diamond]: (value.diamond += 13),
+                    [value.egg]: (value.egg += 20),
+                    [value.milk]: (value.milk += 5),
+                  }));
+                }}
+              >
+                <span className="font-semibold capitalize text-lg tracking-wider text-[#782443] group-active:text-white">
+                  Coba tambah diamond
+                </span>
+              </div>
+            </div>
 
-            {/* <div
+            <div
               className="w-full h-full bg-white rounded-full py-3 text-center active:bg-[#782443] group"
               onClick={goToPage12}
             >
               <span className="font-semibold capitalize text-lg tracking-wider text-[#782443] group-active:text-white">
                 Tambah ternak
               </span>
-            </div> */}
-            <Button
+            </div>
+            {/* <Button
               action={goToPage6}
               text={"tambah ternak"}
               textColor={"#782443"}
               bgColor={"#ffffff"}
               activeColor={"#5e17eb"}
-            />
+            /> */}
 
             {/* <div
               className="w-full h-full bg-[#5e17eb] rounded-full py-3 text-center active:bg-[#ffffff] group"
@@ -161,13 +241,6 @@ const Page7 = ({ Action1, Action2, Action3 }) => {
                 proses pangan
               </span>
             </div> */}
-            <Button
-              action={goToPage8}
-              text={"proses pangan"}
-              textColor={"#ffffff"}
-              bgColor={"#5e17eb"}
-              activeColor={"#ffffff"}
-            />
           </div>
         </div>
         {/* FOOTER END*/}

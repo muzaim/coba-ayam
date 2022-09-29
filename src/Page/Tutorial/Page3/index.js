@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Farmer2 from "../../../img/common/farmer2.png";
+import Cewek from "../../../img/common/npcayam.png";
 import Next from "../../../img/usage/play.png";
 import Typewriter from "typewriter-effect";
 
@@ -51,7 +51,7 @@ const Page3 = ({ Action1 }) => {
         <div class="flex">
           <div class="w-fit h-screen">
             <div className="flex justify-center">
-              <img src={Farmer2} alt="" className="w-[12rem] mt-[2.5rem]" />
+              <img src={Cewek} alt="" className="w-[12rem] mt-[2.5rem]" />
             </div>
           </div>
           <div class="w-1/2 h-screen ">

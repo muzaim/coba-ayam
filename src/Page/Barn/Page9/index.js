@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import Pouch from "../../../img/common/pouch.png";
 import Button from "../../../Component/Atom/Button";
 import Header from "../../../Component/Diatom/Header";
+import { UserContext } from "../../UserContext";
 
 const Page9 = ({ Action1, Action2, Action3 }) => {
+  const { value, setValue } = useContext(UserContext);
   const Makanan = [
     {
       id: 1,
@@ -51,6 +53,8 @@ const Page9 = ({ Action1, Action2, Action3 }) => {
             Pouch={true}
             QuestBook={true}
             Action1={goToPage6}
+            harta={value}
+            setHarta={setValue}
           />
         </div>
         {/* HEADER END */}

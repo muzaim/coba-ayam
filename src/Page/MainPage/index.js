@@ -13,10 +13,11 @@ import {
   Page13,
   Page14,
   Page15,
+  Simple,
 } from "../index";
 
 const MainPage = () => {
-  const [step, setStep] = useState("Menu");
+  const [step, setStep] = useState("Page7");
 
   const goToPage2 = () => {
     setStep("Page2");
@@ -93,7 +94,7 @@ const MainPage = () => {
       );
     case "Page8":
       return (
-        <Page8 Action1={goToPage9} Action2={goToPage12} Action3={goToPage6} />
+        <Page8 Action1={goToPage7} Action2={goToPage12} Action3={goToPage6} />
       );
     case "Page9":
       return (
@@ -107,6 +108,8 @@ const MainPage = () => {
       return <Page14 Action1={goToPage15} Action2={goToPage6} />;
     case "Page15":
       return <Page15 Action1={goToPage6} Action2={goToPage13} />;
+    case "Simple":
+      return <Simple deviceType={"desktop"} />;
     default:
       break;
   }

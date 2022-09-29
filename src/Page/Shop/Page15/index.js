@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import Diamond from "../../../img/common/diamond.png";
 import Pouch from "../../../img/common/pouch.png";
 import Header from "../../../Component/Diatom/Header";
+import { UserContext } from "../../UserContext";
 
 const Page15 = ({ Action1, Action2 }) => {
+  const { value, setValue } = useContext(UserContext);
   const Makanan = [
     {
       id: 1,
@@ -64,21 +66,23 @@ const Page15 = ({ Action1, Action2 }) => {
       <div className="w-[90%] h-full mx-auto">
         {/* HEADER */}
         <div class="h-[15%]">
-          <Header
+          {/* <Header
             Diamond={true}
             Egg={true}
             Pouch={true}
             QuestBook={true}
             Action1={goToPage6}
-          />
+            harta={value}
+            setHarta={setValue}
+          /> */}
         </div>
         {/* HEADER END */}
         {/* CONTENT */}
         <div class="w-full">
           <div className="col-span-2 h-12 text-center flex justify-center">
-            <h1 className="text-lg font-semibold text-black tracking-wider ">
-              Belanja Stock Pangan
-            </h1>
+            <span className="text-white text-xl tracking-widest font-bold uppercase">
+              beri pakan ternakku!
+            </span>
           </div>
           <div className="grid grid-rows-3 grid-cols-3 grid-flow-col gap-3 ">
             {Makanan.map((item) => {

@@ -10,7 +10,7 @@ import { Page7, Page8, Page9, Page11, Page12 } from "./Barn";
 
 import { Page13, Page14 } from "./Market";
 
-import { Page15 } from "./Shop";
+import { Page15, Simple } from "./Shop";
 
 import Rotate from "./Rotate";
 
@@ -30,5 +30,6 @@ export {
   Page13,
   Page14,
   Page15,
+  Simple,
   Rotate,
 };

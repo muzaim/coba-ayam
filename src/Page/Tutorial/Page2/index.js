@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Kakek from "../../../img/common/kakek.png";
+import Cewek from "../../../img/common/npcayam.png";
 import Next from "../../../img/usage/play.png";
 import Typewriter from "typewriter-effect";
 
@@ -54,7 +54,7 @@ const Page2 = ({ Action1 }) => {
         <div class="h-[85%] flex">
           <div class="w-[35%]">
             <div className="w-full h-full items-end flex">
-              <img src={Kakek} alt="" className="w-48" />
+              <img src={Cewek} alt="" className="w-48" />
             </div>
           </div>
           <div class="w-full h-screen mt-10">

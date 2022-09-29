@@ -1,27 +1,36 @@
 import "./App.css";
 import { MainPage, Rotate } from "./Page";
-import React, { Component } from "react";
+import React, { useMemo } from "react";
 import DeviceOrientation, { Orientation } from "react-screen-orientation";
+import { UserContext } from "./Page/UserContext";
+import { useState } from "react";
 
-class App extends Component {
-  render() {
-    return (
-      <DeviceOrientation lockOrientation={"landscape"}>
-        {/* Will only be in DOM in landscape */}
-        <Orientation orientation="landscape" alwaysRender={false}>
-          <div className="noSelect h-screen">
-            <div className="w-full h-full flex items-center">
+const App = () => {
+  const [value, setValue] = useState({
+    diamond: 3162,
+    egg: 27,
+    milk: 12,
+  });
+  const providerValue = useMemo(() => ({ value, setValue }), [value, setValue]);
+
+  return (
+    <DeviceOrientation lockOrientation={"landscape"}>
+      {/* Will only be in DOM in landscape */}
+      <Orientation orientation="landscape" alwaysRender={false}>
+        <div className="noSelect h-screen">
+          <div className="w-full h-full flex items-center">
+            <UserContext.Provider value={providerValue}>
               <MainPage />
-            </div>
+            </UserContext.Provider>
           </div>
-        </Orientation>
-        {/* Will stay in DOM, but is only visible in portrait */}
-        <Orientation orientation="portrait" alwaysRender={false}>
-          <Rotate />
-        </Orientation>
-      </DeviceOrientation>
-    );
-  }
-}
+        </div>
+      </Orientation>
+      {/* Will stay in DOM, but is only visible in portrait */}
+      <Orientation orientation="portrait" alwaysRender={false}>
+        <Rotate />
+      </Orientation>
+    </DeviceOrientation>
+  );
+};
 
 export default App;
