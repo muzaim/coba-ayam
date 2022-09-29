@@ -16,7 +16,7 @@ import {
 } from "../index";
 
 const MainPage = () => {
-  const [step, setStep] = useState("Page12");
+  const [step, setStep] = useState("Menu");
 
   const goToPage2 = () => {
     setStep("Page2");
