@@ -77,7 +77,7 @@ const Page6 = ({ Action1, Action2, Action3, Action4 }) => {
           {/* KE TOP UP */}
           <div
             className="top-[4rem] right-[8rem] absolute group animate-bounce"
-            onClick={goToPage13}
+            onClick={goToPage15}
           >
             <div className="flex flex-col justify-center items-center">
               <p className="text-white tracking-wider">Top Up</p>
