@@ -56,8 +56,8 @@ const Menu = ({ Action1 }) => {
 
   return (
     <div className="w-full h-full overflow-hidden bg-farmBarn bg-cover mx-auto lg:max-w-6xl lg:h-[70%] ">
-      <div className="h-full border">
-        <div className="flex h-full items-end justify-center pb-5 border">
+      <div className="h-full">
+        <div className="flex h-full items-end justify-center pb-5 ">
           {loading ? <LoadingBar /> : <Display />}
         </div>
       </div>
