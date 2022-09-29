@@ -1,21 +1,23 @@
 import React, { useContext, useEffect } from "react";
 import Chicken2 from "../../../img/common/chicken2.png";
-import Pouch from "../../../img/common/pouch.png";
+import Babi from "../../../img/common/pig.png";
+import Domba from "../../../img/common/domba.png";
+import Cow2 from "../../../img/common/cow2.png";
+import AyamKecil from "../../../img/common/ayamkecil.png";
+import Kelinci from "../../../img/common/kelinci.png";
+import Keledai from "../../../img/common/keledai.png";
+import Kerbau from "../../../img/common/kerbau.png";
+import Kuda from "../../../img/common/kuda.png";
 import Header from "../../../Component/Diatom/Header";
 import { UserContext } from "../../UserContext";
+import { useState } from "react";
 
-const Page8 = ({ image = Chicken2, Action1, Action2, Action3 }) => {
-  const { value, setValue } = useContext(UserContext);
-  const goToPage6 = () => {
-    Action3();
-  };
+const Page8 = ({ image = Chicken2, Action1 }) => {
+  const { value, setValue, selectedAnimalID } = useContext(UserContext);
+  const [hewan, setHewan] = useState([]);
 
   const goToPage7 = () => {
     Action1();
-  };
-
-  const goToPage12 = () => {
-    Action2();
   };
 
   const Pakan = [
@@ -45,9 +47,69 @@ const Page8 = ({ image = Chicken2, Action1, Action2, Action3 }) => {
     },
   ];
 
+  const Hewan = [
+    {
+      id: 1,
+      name: "Ayam Eropa",
+      skill: "Max 1.020 telur perhari",
+      image: Chicken2,
+    },
+    {
+      id: 2,
+      name: "Sapi",
+      skill: "Max penghasil susu 1.010 liter perhari",
+      image: Cow2,
+    },
+    {
+      id: 3,
+      name: "Domba",
+      skill: "Max 25 Kg daging perhari",
+      image: Domba,
+    },
+    {
+      id: 4,
+      name: "Babi",
+      skill: "Max 25 Kg daging perhari",
+      image: Babi,
+    },
+    {
+      id: 5,
+      name: "Kuda",
+      skill: "Max 25 Kg daging perhari",
+      image: Kuda,
+    },
+    {
+      id: 6,
+      name: "Ayam Kecil",
+      skill: "Max 25 Kg daging perhari",
+      image: AyamKecil,
+    },
+    {
+      id: 7,
+      name: "Kelinci",
+      skill: "Max 25 Kg daging perhari",
+      image: Kelinci,
+    },
+    {
+      id: 8,
+      name: "Keledai",
+      skill: "Max 25 Kg daging perhari",
+      image: Keledai,
+    },
+    {
+      id: 9,
+      name: "Kerbau",
+      skill: "Max 25 Kg daging perhari",
+      image: Kerbau,
+    },
+  ];
+  const getHewan = () => {
+    const data = Hewan.find((x) => x.id === selectedAnimalID);
+    setHewan(data);
+  };
   useEffect(() => {
-    console.log(Action1.item);
-  });
+    getHewan();
+  }, []);
 
   return (
     <div className="w-full h-screen overflow-hidden bg-barn bg-cover mx-auto lg:max-w-6xl lg:h-[70%]">
@@ -70,11 +132,11 @@ const Page8 = ({ image = Chicken2, Action1, Action2, Action3 }) => {
               <div className="w-full h-full flex justify-center items-center ">
                 <div className="flex h-full w-full bg-papan2 bg-contain bg-no-repeat bg-center justify-center items-center ">
                   <div className="flex flex-col  h-full w-[60%] items-center ">
-                    <span className="mt-2 text-white text-lg">
-                      Ayam - 30 Hari
+                    <span className="mt-2 text-white text-md">
+                      {hewan.name} - 30 Hari
                     </span>
                     <img
-                      src={image}
+                      src={hewan.image}
                       alt=""
                       className="w-20 h-24 mt-5 lg:w-60 lg:h-64"
                     />
@@ -91,7 +153,10 @@ const Page8 = ({ image = Chicken2, Action1, Action2, Action3 }) => {
                     <div className="w-full h-[70%] grid grid-cols-2 gap-2 py-5">
                       {Pakan.map((item) => {
                         return (
-                          <div className="w-36 h-10 bg-[#30D5C8] rounded-full  flex items-center">
+                          <div
+                            key={item.id}
+                            className="w-36 h-10 bg-[#30D5C8] rounded-full  flex items-center"
+                          >
                             <div className="w-full text-center">
                               <span className="text-md text-white">
                                 {item.ukuran} Kg

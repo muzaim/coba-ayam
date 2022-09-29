@@ -11,7 +11,17 @@ const App = () => {
     egg: 27,
     milk: 12,
   });
-  const providerValue = useMemo(() => ({ value, setValue }), [value, setValue]);
+  const [selectedAnimalID, setSelectedAnimalID] = useState(0);
+
+  const providerValue = React.useMemo(
+    () => ({
+      value,
+      setValue,
+      selectedAnimalID,
+      setSelectedAnimalID,
+    }),
+    [value, selectedAnimalID]
+  );
 
   return (
     <DeviceOrientation lockOrientation={"landscape"}>

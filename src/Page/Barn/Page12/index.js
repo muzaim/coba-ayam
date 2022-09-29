@@ -1,7 +1,14 @@
 import React, { useContext } from "react";
-import Pig from "../../../img/common/pig.png";
+import Chicken2 from "../../../img/common/chicken2.png";
+import Babi from "../../../img/common/pig.png";
 import Domba from "../../../img/common/domba.png";
-import Diamond from "../../../img/common/diamond.png";
+import Cow2 from "../../../img/common/cow2.png";
+import AyamKecil from "../../../img/common/ayamkecil.png";
+import Kelinci from "../../../img/common/kelinci.png";
+import Keledai from "../../../img/common/keledai.png";
+import Kerbau from "../../../img/common/kerbau.png";
+import Kuda from "../../../img/common/kuda.png";
+import { Swiper, SwiperSlide } from "swiper/react";
 import Header from "../../../Component/Diatom/Header";
 import { UserContext } from "../../UserContext";
 
@@ -13,7 +20,7 @@ const Page12 = ({ Action1, Action2 }) => {
       id: 1,
       name: "Ayam",
       skill: "Max 25 Kg daging perhari",
-      image: Domba,
+      image: Chicken2,
       harga: 100,
       benefit: "101 - 5050 butir/hari",
       durasi: 30,
@@ -22,7 +29,7 @@ const Page12 = ({ Action1, Action2 }) => {
       id: 2,
       name: "Sapi",
       skill: "Max 10 Kg daging perhari",
-      image: Pig,
+      image: Cow2,
       harga: 600,
       benefit: "102 - 1020 liter susu/hari",
       durasi: 30,
@@ -31,7 +38,25 @@ const Page12 = ({ Action1, Action2 }) => {
       id: 3,
       name: "Domba",
       skill: "Max 10 Kg daging perhari",
-      image: Pig,
+      image: Domba,
+      harga: 300,
+      benefit: "102 - 1020 daging/hari",
+      durasi: 5,
+    },
+    {
+      id: 4,
+      name: "Kuda",
+      skill: "Max 10 Kg daging perhari",
+      image: Kuda,
+      harga: 300,
+      benefit: "102 - 1020 daging/hari",
+      durasi: 5,
+    },
+    {
+      id: 5,
+      name: "Kelinci",
+      skill: "Max 10 Kg daging perhari",
+      image: Kelinci,
       harga: 300,
       benefit: "102 - 1020 daging/hari",
       durasi: 5,
@@ -43,7 +68,7 @@ const Page12 = ({ Action1, Action2 }) => {
   const goToPage7 = () => {
     Action2();
   };
-  const { name, skill, image } = Hewan;
+
   return (
     <div className="w-full h-screen overflow-hidden bg-barn bg-cover mx-auto lg:max-w-6xl lg:h-[70%]">
       <div className="w-[90%] h-full mx-auto">
@@ -71,34 +96,38 @@ const Page12 = ({ Action1, Action2 }) => {
               <div className="w-full h-full flex justify-center items-center">
                 {/* TENGAH */}
                 <div className="flex w-full h-full">
-                  {Hewan.map((item) => {
-                    const { name, image, harga, benefit, durasi } = item;
-                    return (
-                      <div className="flex h-full w-full bg-papan2 bg-[length:220px_200px] bg-no-repeat bg-center  justify-center items-center">
-                        <div className="flex flex-col h-full w-[70%] items-center">
-                          <span className="mt-7 text-white text-sm">
-                            {name} - {durasi} hari
-                          </span>
-                          <img
-                            src={image}
-                            alt=""
-                            className="w-20 h-20 mt-5 lg:w-60 lg:h-64"
-                          />
-                          <p className="mt-4 text-center text-[10px] font-semibold ">
-                            Harga : {harga} D
-                          </p>
-                          <p className="text-center text-[10px] font-semibold ">
-                            Benefit : {benefit}
-                          </p>
-                          <div className="mt-2 w-28 py-2 bg-blue-600 text-center rounded-full">
-                            <span className="tracking-[0.3em] uppercase text-white">
-                              beli
-                            </span>
+                  <Swiper spaceBetween={50} slidesPerView={3}>
+                    {Hewan.map((item) => {
+                      const { name, image, harga, benefit, durasi } = item;
+                      return (
+                        <SwiperSlide>
+                          <div className="flex h-full w-full bg-papan2 bg-[length:220px_200px] bg-no-repeat bg-center  justify-center items-center">
+                            <div className="flex flex-col h-full w-[70%] items-center">
+                              <span className="mt-7 text-white text-sm">
+                                {name} - {durasi} hari
+                              </span>
+                              <img
+                                src={image}
+                                alt=""
+                                className="w-20 h-20 mt-5 lg:w-60 lg:h-64"
+                              />
+                              <p className="mt-4 text-center text-[10px] font-semibold ">
+                                Harga : {harga} D
+                              </p>
+                              <p className="text-center text-[10px] font-semibold ">
+                                Benefit : {benefit}
+                              </p>
+                              <div className="mt-2 w-28 py-2 bg-blue-600 text-center rounded-full">
+                                <span className="tracking-[0.3em] uppercase text-white">
+                                  beli
+                                </span>
+                              </div>
+                            </div>
                           </div>
-                        </div>
-                      </div>
-                    );
-                  })}
+                        </SwiperSlide>
+                      );
+                    })}
+                  </Swiper>
                 </div>
               </div>
             </div>

@@ -22,12 +22,6 @@ const Header = ({
     Action1();
   };
 
-  const numberFormat = (value) =>
-    new Intl.NumberFormat("en-IN", {
-      style: "currency",
-      currency: "INR",
-    }).format(value);
-
   const DiamondDiv = () => {
     return (
       <div className="w-40 h-10 bg-[#f6f3e4] rounded-full items-center flex">

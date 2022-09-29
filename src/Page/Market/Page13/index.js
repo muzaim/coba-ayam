@@ -6,9 +6,49 @@ import { UserContext } from "../../UserContext";
 
 const Page13 = ({ Action1, Action2 }) => {
   const { value, setValue } = useContext(UserContext);
+  const [index, setIndex] = useState(0);
 
   const goToPage6 = () => {
     Action2();
+  };
+
+  const Dialog = [
+    {
+      id: 1,
+      text: "Kamu ingin jual 100 telur?",
+    },
+    {
+      id: 2,
+      text: "Kamu ingin jual 200 daging?",
+    },
+    {
+      id: 3,
+      text: "Kamu ingin jual 300 susu?",
+    },
+    {
+      id: 4,
+      text: "Kamu ingin jual 400 bulu domba?",
+    },
+    {
+      id: 5,
+      text: "Kamu ingin jual 500 daging?",
+    },
+  ];
+
+  const checkNumber = (number) => {
+    if (number > Dialog.length - 1) {
+      return 0;
+    }
+    if (number < 0) {
+      return Dialog.length - 1;
+    }
+    return number;
+  };
+  const nextDialog = () => {
+    setIndex((index) => {
+      let newIndex = index + 1;
+      return checkNumber(newIndex);
+    });
   };
 
   return (
@@ -31,10 +71,12 @@ const Page13 = ({ Action1, Action2 }) => {
         <div class="h-full flex">
           <div className="w-full h-full z-10 ">
             <div className="relative">
-              <div className="absolute z-10 -mt-[8rem]">
+              {/* GEROBAK */}
+              <div className="absolute z-10 -top-12">
                 <img src={Jualan} alt="" className="" />
               </div>
-              <div className="absolute right-3 z-20">
+              {/* BUTTON */}
+              <div className="absolute right-3 z-20 top-[6.5rem]">
                 <div className="w-48 h-32 my-auto">
                   <div className="w-full h-full flex   items-center align-middle">
                     <div class="w-full flex flex-col gap-2">
@@ -45,7 +87,7 @@ const Page13 = ({ Action1, Action2 }) => {
                       </div>
                       <div
                         className="w-full h-full py-2 bg-green-500 rounded-full text-center"
-                        onClick={goToPage6}
+                        onClick={nextDialog}
                       >
                         <span className="uppercase text-xl text-white tracking-widest">
                           skip
@@ -55,17 +97,16 @@ const Page13 = ({ Action1, Action2 }) => {
                   </div>
                 </div>
               </div>
-              <div className="absolute z-10 right-[19rem] -top-16">
-                <div className="w-48 h-24 px-5 pb-5 bg-[#782443] rounded-xl ml-5 ring-offset-2 ring-4 ring-[#782443]">
-                  <div className="w-full h-full text-center  ">
-                    <span className="text-white">
-                      Kamu mau pesan telur 100 Butir?
-                    </span>
+              {/* DIALOG NPC */}
+              <div className="absolute z-10 right-[12rem] top-2">
+                <div className="w-48 h-24 p-3 bg-[#782443] rounded-xl ml-5 ring-offset-2 ring-4 ring-[#782443] ">
+                  <div className="w-32 h-full text-center items-center flex mx-auto">
+                    <span className="text-white">{Dialog[index].text}</span>
                   </div>
                 </div>
               </div>
-              <div className="absolute z-10 -bottom-[12rem] left-20">
-                {" "}
+              {/* BACK */}
+              <div className="absolute z-10 -bottom-[18.6rem] left-20">
                 <div
                   className="w-40 h-10 bg-[#329bd1] rounded-full items-center flex active:bg-[#51a9d5]"
                   onClick={goToPage6}
@@ -77,24 +118,25 @@ const Page13 = ({ Action1, Action2 }) => {
                   </div>
                 </div>
               </div>
-              <div className="w-full h-full bg-green-300 mt-20 relative">
+              {/* NPC */}
+              <div className="w-full h-full bg-green-300 top-[6.5rem] relative">
                 <div className="absolute">
-                  <img src={Chef1} alt="" className="w-24" />
+                  <img src={Chef1} alt="" className="w-24 bg-white" />
                 </div>
                 <div className="absolute left-20">
-                  <img src={Chef1} alt="" className="w-24" />
+                  <img src={Chef1} alt="" className="w-24 bg-red-300" />
                 </div>
                 <div className="absolute left-40">
-                  <img src={Chef1} alt="" className="w-24" />
+                  <img src={Chef1} alt="" className="w-24 bg-purple-300" />
                 </div>
                 <div className="absolute left-60">
-                  <img src={Chef1} alt="" className="w-24" />
+                  <img src={Chef1} alt="" className="w-24 bg-pink-300" />
                 </div>
                 <div className="absolute left-80">
-                  <img src={Chef1} alt="" className="w-24" />
+                  <img src={Chef1} alt="" className="w-24 bg-yellow-300" />
                 </div>
-                <div className="absolute left-[28rem]">
-                  <img src={Chef1} alt="" className="w-24" />
+                <div className="absolute left-[31rem]">
+                  <img src={Chef1} alt="" className="w-24 bg-slate-300" />
                 </div>
               </div>
             </div>

@@ -34,10 +34,10 @@ const Page6 = ({ Action1, Action2, Action3, Action4 }) => {
         <div className="relative h-[50%] ">
           {/* KE Warung */}
           <div
-            className="top-[6rem] left-[8.5rem] absolute group animate-bounce"
+            className="top-[8rem] left-[12.5rem] absolute group animate-bounce"
             onClick={goToPage13}
           >
-            <div className=" flex flex-col justify-center items-center">
+            <div className="flex flex-col justify-center items-center">
               <p className="text-white tracking-wider">Warung</p>
               <img
                 src={ArrowDown}
@@ -48,7 +48,7 @@ const Page6 = ({ Action1, Action2, Action3, Action4 }) => {
           </div>
           {/* KE BISNIS */}
           <div
-            className="top-[0rem] left-[13.5rem] absolute group animate-bounce"
+            className="top-[0rem] left-[14rem] absolute group animate-bounce"
             onClick={goToPage15}
           >
             <div className="flex flex-col justify-center items-center">
@@ -62,7 +62,7 @@ const Page6 = ({ Action1, Action2, Action3, Action4 }) => {
           </div>
           {/* KE KANDANGKU */}
           <div
-            className="top-[1rem] right-[16rem] absolute group animate-bounce"
+            className="top-[.5rem] right-[16rem] absolute group animate-bounce"
             onClick={goToPage7}
           >
             <div className="flex flex-col justify-center items-center">
@@ -90,10 +90,10 @@ const Page6 = ({ Action1, Action2, Action3, Action4 }) => {
           </div>
           {/* KE RUMAH*/}
           <div
-            className="top-[6rem] right-[15rem] absolute group animate-bounce"
+            className="top-[6rem] right-[15.5rem] absolute group animate-bounce"
             onClick={goToPage13}
           >
-            <div className=" flex flex-col justify-center items-center">
+            <div className="flex flex-col justify-center items-center">
               <p className="text-white tracking-wider">Rumah</p>
               <img
                 src={ArrowDown}
