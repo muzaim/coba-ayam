@@ -9,24 +9,20 @@ import Kelinci from "../../../img/common/kelinci.png";
 import Keledai from "../../../img/common/keledai.png";
 import Kerbau from "../../../img/common/kerbau.png";
 import Kuda from "../../../img/common/kuda.png";
-import RightArrow from "../../../img/usage/right-arrow.png";
-import LeftArrow from "../../../img/usage/left-arrow.png";
-import { useState } from "react";
 import Header from "../../../Component/Diatom/Header";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { UserContext } from "../../UserContext";
 
 const Page7 = ({ Action1, Action2, Action3 }) => {
-  const [index, setIndex] = useState(0);
   const { value, setValue } = useContext(UserContext);
 
   const goToPage6 = () => {
     Action3();
   };
 
-  const goToPage8 = () => {
-    Action1();
+  const goToPage8 = (item) => {
+    Action1(item);
   };
 
   const goToPage12 = () => {
@@ -90,37 +86,30 @@ const Page7 = ({ Action1, Action2, Action3 }) => {
     },
   ];
 
-  const checkNumber = (number) => {
-    if (number > Hewan.length - 1) {
-      return 0;
-    }
-    if (number < 0) {
-      return Hewan.length - 1;
-    }
-    return number;
-  };
+  // const checkNumber = (number) => {
+  //   if (number > Hewan.length - 1) {
+  //     return 0;
+  //   }
+  //   if (number < 0) {
+  //     return Hewan.length - 1;
+  //   }
+  //   return number;
+  // };
 
-  const nextHewan = () => {
-    setIndex((index) => {
-      let newIndex = index + 1;
-      return checkNumber(newIndex);
-    });
-  };
+  // const nextHewan = () => {
+  //   setIndex((index) => {
+  //     let newIndex = index + 1;
+  //     return checkNumber(newIndex);
+  //   });
+  // };
 
-  const previousHewan = () => {
-    setIndex((index) => {
-      let newIndex = index - 1;
-      return checkNumber(newIndex);
-    });
-  };
-  const { name, skill, image } = Hewan[index];
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 3,
-    slidesToScroll: 3,
-  };
+  // const previousHewan = () => {
+  //   setIndex((index) => {
+  //     let newIndex = index - 1;
+  //     return checkNumber(newIndex);
+  //   });
+  // };
+
   return (
     <div className="w-full h-screen overflow-hidden bg-barn bg-cover mx-auto lg:max-w-6xl lg:h-[70%]">
       <div className="w-[90%] h-full mx-auto">
@@ -160,18 +149,14 @@ const Page7 = ({ Action1, Action2, Action3 }) => {
                 </div> */}
                 {/* TENGAH */}
                 <div className="flex w-full h-full overflow-hidden">
-                  <Swiper
-                    spaceBetween={50}
-                    slidesPerView={3}
-                    onSlideChange={() => console.log("slide change")}
-                    onSwiper={(swiper) => console.log(swiper)}
-                  >
+                  <Swiper spaceBetween={50} slidesPerView={3}>
                     {Hewan.map((item) => {
                       return (
                         <SwiperSlide>
                           <div
-                            className="flex h-full w-full justify-center items-center bg-papan1 bg-[length:200px_160px] bg-center bg-no-repeat"
-                            onClick={goToPage8}
+                            key={item.id}
+                            className="flex h-full w-full justify-center items-center bg-papan1 bg-[length:200px_160px] bg-center bg-no-repeat cursor-pointer"
+                            onClick={() => goToPage8(item)}
                           >
                             <div className="w-[80%] h-[80%] ">
                               <div className="flex flex-col items-center my-3">

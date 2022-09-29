@@ -30,7 +30,7 @@ const Header = ({
 
   const DiamondDiv = () => {
     return (
-      <div className="w-44 h-10 bg-[#f6f3e4] rounded-full items-center flex">
+      <div className="w-40 h-10 bg-[#f6f3e4] rounded-full items-center flex">
         <div className="w-20 flex items-center justify-center ">
           <img src={DiamondImg} alt="" className="w-10" />
         </div>
@@ -45,7 +45,7 @@ const Header = ({
 
   const EggDiv = () => {
     return (
-      <div className="w-44 h-10 bg-[#f6f3e4] rounded-full items-center flex">
+      <div className="w-40 h-10 bg-[#f6f3e4] rounded-full items-center flex">
         <div className="w-20 flex items-center justify-center ">
           <img src={EggImg} alt="" className="w-8" />
         </div>
@@ -60,7 +60,7 @@ const Header = ({
 
   const PouchDiv = () => {
     return (
-      <div className="w-44 h-10 bg-[#f6f3e4] rounded-full items-center flex">
+      <div className="w-40 h-10 bg-[#f6f3e4] rounded-full items-center flex">
         <div className="w-20 flex items-center justify-center ">
           <img src={PouchImg} alt="" className="w-8" />
         </div>
@@ -75,7 +75,7 @@ const Header = ({
 
   const MilkDiv = () => {
     return (
-      <div className="w-44 h-10 bg-[#f6f3e4] rounded-full items-center flex">
+      <div className="w-40 h-10 bg-[#f6f3e4] rounded-full items-center flex">
         <div className="w-20 flex items-center justify-center ">
           <img src={MilkImg} alt="" className="w-8" />
         </div>
@@ -90,7 +90,7 @@ const Header = ({
 
   const PanganTersediaDiv = () => {
     return (
-      <div className="w-44 h-10 bg-[#f6f3e4] rounded-full  flex items-center ">
+      <div className="w-40 h-10 bg-[#f6f3e4] rounded-full  flex items-center ">
         <div className="w-full text-center">
           <span className="font-bold  text-sm text-[#782443]">
             Pangan Tersedia
@@ -102,7 +102,7 @@ const Header = ({
   const BackButtonDiv = () => {
     return (
       <div
-        className="w-44 h-10 bg-[#329bd1] rounded-full items-center flex active:bg-[#51a9d5]"
+        className="w-40 h-10 bg-[#329bd1] rounded-full items-center flex active:bg-[#51a9d5]"
         onClick={Action2}
       >
         <div className="w-full text-center ">

@@ -14,13 +14,7 @@ const Page3 = ({ Action1 }) => {
   const DialogComplete = () => {
     return (
       <div className="w-[30rem] min-h-[7rem] px-5 pb-5 pt-10 bg-[#782443] rounded-xl ml-5 ring-offset-2 ring-4 ring-[#782443] relative">
-        <div className="absolute -top-5 left-10">
-          <div className="w-40 py-2 bg-[#782443] ring-offset-2 ring-4 ring-[#782443] rounded-xl text-center">
-            <span className="text-white font-semibold text-justify text-md font-openSans">
-              Mr. Ducan
-            </span>
-          </div>
-        </div>
+        <div className="absolute -top-5 left-10"></div>
         <div className="h-full grid gap-2 ">
           <h1 className="text-white font-semibold text-justify text-xl font-openSans">
             Pilih Agenda, dan mulai membeli kandang untuk hewan ternak kamu,
@@ -46,15 +40,18 @@ const Page3 = ({ Action1 }) => {
 
   return (
     <div className="w-full h-screen overflow-hidden bg-page2 bg-cover mx-auto lg:max-w-6xl lg:h-[70%]">
-      <div className="w-[90%] h-full mx-auto relative">
-        <div class="h-16"></div>
-        <div class="flex">
-          <div class="w-fit h-screen">
-            <div className="flex justify-center">
-              <img src={Cewek} alt="" className="w-[12rem] mt-[2.5rem]" />
+      <div className="w-[90%] h-full mx-auto ">
+        {/* HEADER */}
+        <div class="h-[15%]"></div>
+        {/* HEADER END */}
+        {/* CONTENT */}
+        <div class="h-[85%] flex">
+          <div class="w-[35%]">
+            <div className="w-full h-full items-end flex">
+              <img src={Cewek} alt="" className="w-48" />
             </div>
           </div>
-          <div class="w-1/2 h-screen ">
+          <div class="w-full h-screen mt-10">
             {skipDialog ? (
               <DialogComplete />
             ) : (
@@ -62,13 +59,7 @@ const Page3 = ({ Action1 }) => {
                 className="w-[30rem] min-h-[7rem] px-5 pb-5 pt-10 bg-[#782443] rounded-xl ml-5 ring-offset-2 ring-4 ring-[#782443] relative"
                 onClick={skip}
               >
-                <div className="absolute -top-5 left-10">
-                  <div className="w-40 py-2 bg-[#782443] ring-offset-2 ring-4 ring-[#782443] rounded-xl text-center">
-                    <span className="text-white font-semibold text-justify text-md font-openSans">
-                      Mr. Ducan
-                    </span>
-                  </div>
-                </div>
+              
                 <div className="h-full grid gap-2 ">
                   <h1 className="text-white font-semibold text-justify text-xl font-openSans">
                     <Typewriter
@@ -79,7 +70,7 @@ const Page3 = ({ Action1 }) => {
                       onInit={(typewriter) => {
                         typewriter
                           .typeString(
-                            "Pilih Agenda, dan mulai membeli kandang untuk hewan ternak kamu, beri makan hewan ternak kamu dan hasilkan telur dan susu, lalu jual ke pasar, dan mulai menghasilkan diamond lebih banyak lagi!"
+                            " Pilih Agenda, dan mulai membeli kandang untuk hewan ternak kamu, beri makan hewan ternak kamu dan hasilkan telur dan susu, lalu jual ke pasar, dan mulai menghasilkan diamond lebih banyak lagi!"
                           )
                           .start()
                           .pauseFor(300)
@@ -100,6 +91,7 @@ const Page3 = ({ Action1 }) => {
             )}
           </div>
         </div>
+        {/* CONTENT END */}
       </div>
     </div>
   );

@@ -14,13 +14,6 @@ const Page2 = ({ Action1 }) => {
   const DialogComplete = () => {
     return (
       <div className="w-[30rem] min-h-[7rem] px-5 pb-5 pt-10 bg-[#782443] rounded-xl ml-5 ring-offset-2 ring-4 ring-[#782443] relative">
-        <div className="absolute -top-5 left-10">
-          <div className="w-40 py-2 bg-[#782443] ring-offset-2 ring-4 ring-[#782443] rounded-xl text-center">
-            <span className="text-white font-semibold text-justify text-md font-openSans">
-              Mr. Ducan
-            </span>
-          </div>
-        </div>
         <div className="h-full grid gap-2 ">
           <h1 className="text-white font-semibold text-justify text-xl font-openSans">
             Selamat datang di TAMAKOCHI, mulai dengan beternak hewan kesayangan
@@ -65,13 +58,6 @@ const Page2 = ({ Action1 }) => {
                 className="w-[30rem] min-h-[7rem] px-5 pb-5 pt-10 bg-[#782443] rounded-xl ml-5 ring-offset-2 ring-4 ring-[#782443] relative"
                 onClick={skip}
               >
-                <div className="absolute -top-5 left-10">
-                  <div className="w-40 py-2 bg-[#782443] ring-offset-2 ring-4 ring-[#782443] rounded-xl text-center">
-                    <span className="text-white font-semibold text-justify text-md font-openSans">
-                      Mrs. Lisa
-                    </span>
-                  </div>
-                </div>
                 <div className="h-full grid gap-2 ">
                   <h1 className="text-white font-semibold text-justify text-xl font-openSans">
                     <Typewriter

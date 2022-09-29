@@ -1,17 +1,10 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import Chicken2 from "../../../img/common/chicken2.png";
 import Pouch from "../../../img/common/pouch.png";
 import Header from "../../../Component/Diatom/Header";
 import { UserContext } from "../../UserContext";
 
-const Page8 = ({
-  name = "Ayam Eropa",
-  skill = "Max 1.020 telur perhari",
-  image = Chicken2,
-  Action1,
-  Action2,
-  Action3,
-}) => {
+const Page8 = ({ image = Chicken2, Action1, Action2, Action3 }) => {
   const { value, setValue } = useContext(UserContext);
   const goToPage6 = () => {
     Action3();
@@ -51,6 +44,10 @@ const Page8 = ({
       ukuran: 1000,
     },
   ];
+
+  useEffect(() => {
+    console.log(Action1.item);
+  });
 
   return (
     <div className="w-full h-screen overflow-hidden bg-barn bg-cover mx-auto lg:max-w-6xl lg:h-[70%]">
