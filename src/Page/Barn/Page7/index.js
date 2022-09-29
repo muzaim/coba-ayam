@@ -1,9 +1,14 @@
 import React, { useContext } from "react";
 import "./style.css";
 import Chicken2 from "../../../img/common/chicken2.png";
-import Pig from "../../../img/common/pig.png";
+import Babi from "../../../img/common/pig.png";
 import Domba from "../../../img/common/domba.png";
 import Cow2 from "../../../img/common/cow2.png";
+import AyamKecil from "../../../img/common/ayamkecil.png";
+import Kelinci from "../../../img/common/kelinci.png";
+import Keledai from "../../../img/common/keledai.png";
+import Kerbau from "../../../img/common/kerbau.png";
+import Kuda from "../../../img/common/kuda.png";
 import RightArrow from "../../../img/usage/right-arrow.png";
 import LeftArrow from "../../../img/usage/left-arrow.png";
 import { useState } from "react";
@@ -49,27 +54,39 @@ const Page7 = ({ Action1, Action2, Action3 }) => {
     },
     {
       id: 4,
-      name: "Nyampek",
+      name: "Babi",
       skill: "Max 25 Kg daging perhari",
-      image: Domba,
+      image: Babi,
     },
     {
       id: 5,
       name: "Kuda",
       skill: "Max 25 Kg daging perhari",
-      image: Domba,
+      image: Kuda,
     },
     {
       id: 6,
-      name: "Anjing",
+      name: "Ayam Kecil",
       skill: "Max 25 Kg daging perhari",
-      image: Domba,
+      image: AyamKecil,
     },
     {
       id: 7,
-      name: "Semut",
+      name: "Kelinci",
       skill: "Max 25 Kg daging perhari",
-      image: Domba,
+      image: Kelinci,
+    },
+    {
+      id: 8,
+      name: "Keledai",
+      skill: "Max 25 Kg daging perhari",
+      image: Keledai,
+    },
+    {
+      id: 9,
+      name: "Kerbau",
+      skill: "Max 25 Kg daging perhari",
+      image: Kerbau,
     },
   ];
 
@@ -162,7 +179,7 @@ const Page7 = ({ Action1, Action2, Action3 }) => {
                                   {item.name} - GRATIS
                                 </span>
                                 <img
-                                  src={image}
+                                  src={item.image}
                                   alt=""
                                   className="w-[5rem] h-[5rem]  lg:w-60 lg:h-64"
                                 />
