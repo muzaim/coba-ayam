@@ -69,11 +69,11 @@ const Page5 = ({ Action1 }) => {
               <DialogComplete />
             ) : (
               <div
-                className="w-[30rem] min-h-[7rem] px-5 pb-5 pt-10 bg-[#782443] rounded-xl ml-5 ring-offset-2 ring-4 ring-[#782443] relative"
+                className="w-[30rem] min-h-[7rem]  px-5 pb-5 pt-10 bg-[#782443] rounded-xl ml-5 ring-offset-2 ring-4 ring-[#782443] relative"
                 onClick={skip}
               >
-                <div className="h-full grid gap-2 ">
-                  <h1 className="text-white font-semibold text-justify text-xl font-openSans">
+                <div className="h-full grid gap-2">
+                  <span className="text-white font-semibold text-justify text-xl font-openSans">
                     <Typewriter
                       options={{
                         delay: 30,
@@ -91,7 +91,7 @@ const Page5 = ({ Action1 }) => {
                           });
                       }}
                     />
-                  </h1>
+                  </span>
 
                   <div className="flex justify-end h-6" onClick={goToPage6}>
                     {nextButton ? (

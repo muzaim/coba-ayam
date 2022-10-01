@@ -103,6 +103,7 @@ const Page8 = ({ Action1 }) => {
       image: Kerbau,
     },
   ];
+  
   const getHewan = () => {
     const data = Hewan.find((x) => x.id === selectedAnimalID);
     setHewan(data);
