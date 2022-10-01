@@ -1,12 +1,14 @@
 import React, { useState, useContext } from "react";
 import Chef1 from "../../../img/common/chef1.png";
 import Jualan from "../../../img/common/jualan.png";
+import Play from "../../../img/usage/play.png";
 import Header from "../../../Component/Diatom/Header";
 import { UserContext } from "../../UserContext";
 
 const Page13 = ({ Action1, Action2 }) => {
   const { value, setValue } = useContext(UserContext);
   const [index, setIndex] = useState(0);
+  const [backDialog, setBackDialog] = useState(false);
 
   const goToPage6 = () => {
     Action2();
@@ -44,11 +46,16 @@ const Page13 = ({ Action1, Action2 }) => {
     }
     return number;
   };
+
   const nextDialog = () => {
     setIndex((index) => {
       let newIndex = index + 1;
       return checkNumber(newIndex);
     });
+  };
+
+  const openBackDialog = () => {
+    setBackDialog((current) => !current);
   };
 
   return (
@@ -59,7 +66,7 @@ const Page13 = ({ Action1, Action2 }) => {
           <Header
             Diamond={true}
             Egg={true}
-            Pouch={true}
+            Meat={true}
             Milk={true}
             Action1={goToPage6}
             harta={value}
@@ -71,6 +78,28 @@ const Page13 = ({ Action1, Action2 }) => {
         <div class="h-full flex">
           <div className="w-full h-full z-10 ">
             <div className="relative">
+              {/* BACK DIALOG */}
+              {backDialog ? (
+                <div className="absolute z-20 right-[16rem] top-5">
+                  <div className="w-[22rem] h-36 p-5 bg-[#782443] rounded-xl ml-5 ring-offset-2 ring-4 ring-[#782443] flex items-center">
+                    <div className="w-full h-32 text-center items-center grid  mx-auto ">
+                      <span className="text-white font-semibold text-justify text-base font-openSans">
+                        Yahh sayang sekali toko anda ditutup, padahal banyak
+                        orderan daging susu dan telur. Ayo berikan makan hewan
+                        kamu lagi!
+                      </span>
+                      <div className="flex justify-end h-6">
+                        <img
+                          src={Play}
+                          alt=""
+                          className="w-6 animate-pulse"
+                          onClick={goToPage6}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ) : null}
               {/* GEROBAK */}
               <div className="absolute z-10 -top-12">
                 <img src={Jualan} alt="" className="" />
@@ -98,26 +127,30 @@ const Page13 = ({ Action1, Action2 }) => {
                 </div>
               </div>
               {/* DIALOG NPC */}
-              <div className="absolute z-10 right-[12rem] top-2">
-                <div className="w-48 h-24 p-3 bg-[#782443] rounded-xl ml-5 ring-offset-2 ring-4 ring-[#782443] ">
-                  <div className="w-32 h-full text-center items-center flex mx-auto">
-                    <span className="text-white">{Dialog[index].text}</span>
+              {backDialog ? null : (
+                <div className="absolute z-10 right-[12rem] top-2">
+                  <div className="w-48 h-24 p-3 bg-[#782443] rounded-xl ml-5 ring-offset-2 ring-4 ring-[#782443] ">
+                    <div className="w-32 h-full text-center items-center flex mx-auto">
+                      <span className="text-white">{Dialog[index].text}</span>
+                    </div>
                   </div>
                 </div>
-              </div>
+              )}
               {/* BACK */}
-              <div className="absolute z-10 -bottom-[18.6rem] left-20">
-                <div
-                  className="w-40 h-10 bg-[#329bd1] rounded-full items-center flex active:bg-[#51a9d5]"
-                  onClick={goToPage6}
-                >
-                  <div className="w-full text-center ">
-                    <span className="font-bold  text-sm text-white tracking-widest">
-                      Back
-                    </span>
+              {backDialog ? null : (
+                <div className="absolute z-10 -bottom-[18.6rem] left-20">
+                  <div
+                    className="w-40 h-10 bg-[#329bd1] rounded-full items-center flex active:bg-[#51a9d5]"
+                    onClick={openBackDialog}
+                  >
+                    <div className="w-full text-center ">
+                      <span className="font-bold  text-sm text-white tracking-widest">
+                        Tutup Toko
+                      </span>
+                    </div>
                   </div>
                 </div>
-              </div>
+              )}
               {/* NPC */}
               <div className="w-full h-full bg-green-300 top-[6.5rem] relative">
                 <div className="absolute">

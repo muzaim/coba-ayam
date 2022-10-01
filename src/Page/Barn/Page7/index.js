@@ -11,9 +11,18 @@ import Kerbau from "../../../img/common/kerbau.png";
 import Kuda from "../../../img/common/kuda.png";
 import Header from "../../../Component/Diatom/Header";
 import { Swiper, SwiperSlide } from "swiper/react";
+import SwiperCore, { Navigation, Pagination, EffectCoverflow } from "swiper";
 import "swiper/css";
+
 import { UserContext } from "../../UserContext";
 
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "swiper/css/scrollbar";
+
+SwiperCore.use([Navigation, Pagination, EffectCoverflow]);
 const Page7 = ({ Action1, Action2, Action3 }) => {
   const { value, setValue, setSelectedAnimalID } = useContext(UserContext);
 
@@ -104,7 +113,8 @@ const Page7 = ({ Action1, Action2, Action3 }) => {
           <Header
             Diamond={true}
             Egg={true}
-            Pouch={true}
+            Meat={true}
+            Milk={true}
             QuestBook={true}
             Action1={goToPage6}
             harta={value}
@@ -115,8 +125,8 @@ const Page7 = ({ Action1, Action2, Action3 }) => {
         {/* CONTENT */}
         <div class="w-full h-[65%]">
           <div class="w-full h-full justify-center flex items-start">
-            <div className="w-full h-full flex flex-col">
-              <div className="w-full h-10 flex justify-center items-center lg:h-20 ">
+            <div className="w-full h-full flex flex-col ">
+              <div className="w-full h-10 flex justify-center items-center lg:h-20">
                 <span className="text-white text-xl tracking-widest font-bold uppercase">
                   ternakku
                 </span>
@@ -124,19 +134,26 @@ const Page7 = ({ Action1, Action2, Action3 }) => {
               <div className="w-full h-full flex justify-center items-center">
                 {/* TENGAH */}
                 <div className="flex w-full h-full overflow-hidden">
-                  <Swiper spaceBetween={50} slidesPerView={3}>
+                  <Swiper
+                    spaceBetween={50}
+                    slidesPerView={3}
+                    pagination={{
+                      clickable: true,
+                      dynamicBullets: true,
+                    }}
+                  >
                     {Hewan.map((item) => {
                       const { id, name, image, kenyang } = item;
                       return (
                         <SwiperSlide>
                           <div
                             key={id}
-                            className="flex h-full w-full justify-center items-center bg-papan1 bg-[length:200px_160px] bg-center bg-no-repeat cursor-pointer"
+                            className="flex justify-center items-center bg-papan1 bg-[length:200px_160px] bg-center bg-no-repeat cursor-pointer mt-3"
                             onClick={() => goToPage8(item)}
                           >
-                            <div className="w-[80%] h-[80%] ">
-                              <div className="flex flex-col items-center my-3">
-                                <span className="text-sm mt-1 uppercase">
+                            <div className="w-[80%] h-[80%]">
+                              <div className="flex flex-col items-center my-5">
+                                <span className="text-sm  uppercase font-comic">
                                   {name} - GRATIS
                                 </span>
                                 <img
@@ -144,9 +161,9 @@ const Page7 = ({ Action1, Action2, Action3 }) => {
                                   alt=""
                                   className="w-[5rem] h-[5rem]  lg:w-60 lg:h-64"
                                 />
-                                <div class="w-32 bg-gray-200 h-5 rounded-full overflow-hidden lg:w-72 lg:h-10 mt-2">
+                                <div class="w-32 bg-gray-200 h-3 rounded-full overflow-hidden lg:w-72 lg:h-10 mt-3">
                                   <div
-                                    class="bg-[#7fa65a] h-5 rounded-full lg:h-10"
+                                    class="bg-[#7fa65a] h-3 rounded-full lg:h-10"
                                     style={{ width: `${kenyang}%` }}
                                   ></div>
                                 </div>

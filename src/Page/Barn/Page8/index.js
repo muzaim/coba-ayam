@@ -12,7 +12,7 @@ import Header from "../../../Component/Diatom/Header";
 import { UserContext } from "../../UserContext";
 import { useState } from "react";
 
-const Page8 = ({ image = Chicken2, Action1 }) => {
+const Page8 = ({ Action1 }) => {
   const { value, setValue, selectedAnimalID } = useContext(UserContext);
   const [hewan, setHewan] = useState([]);
 
@@ -107,6 +107,7 @@ const Page8 = ({ image = Chicken2, Action1 }) => {
     const data = Hewan.find((x) => x.id === selectedAnimalID);
     setHewan(data);
   };
+
   useEffect(() => {
     getHewan();
   }, []);
@@ -143,7 +144,7 @@ const Page8 = ({ image = Chicken2, Action1 }) => {
                     <p className="mt-4 text-center text-md font-semibold ">
                       10Kg Pangan
                     </p>
-                    <p className="text-center text-md font-semibold ">
+                    <p className="text-center text-sm font-semibold ">
                       Menghasilkan 101 telur per hari
                     </p>
                   </div>

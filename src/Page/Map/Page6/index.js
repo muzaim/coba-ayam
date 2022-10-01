@@ -38,7 +38,9 @@ const Page6 = ({ Action1, Action2, Action3, Action4 }) => {
             onClick={goToPage13}
           >
             <div className="flex flex-col justify-center items-center">
-              <p className="text-white tracking-wider">Warung</p>
+              <span className="text-2xl text-white tracking-wider font-comic">
+                Warung
+              </span>
               <img
                 src={ArrowDown}
                 alt=""
@@ -52,7 +54,9 @@ const Page6 = ({ Action1, Action2, Action3, Action4 }) => {
             onClick={goToPage15}
           >
             <div className="flex flex-col justify-center items-center">
-              <p className="text-white tracking-wider">Bisnis</p>
+              <span className="text-2xl text-white tracking-wider font-comic">
+                Bisnis
+              </span>
               <img
                 src={ArrowDown}
                 alt=""
@@ -66,7 +70,9 @@ const Page6 = ({ Action1, Action2, Action3, Action4 }) => {
             onClick={goToPage7}
           >
             <div className="flex flex-col justify-center items-center">
-              <p className="text-white tracking-wider">Kandangku</p>
+              <span className="text-2xl text-white tracking-wider font-comic">
+                Kandangku
+              </span>
               <img
                 src={ArrowDown}
                 alt=""
@@ -80,7 +86,9 @@ const Page6 = ({ Action1, Action2, Action3, Action4 }) => {
             onClick={goToPage15}
           >
             <div className="flex flex-col justify-center items-center">
-              <p className="text-white tracking-wider">Top Up</p>
+              <span className="text-2xl text-white tracking-wider font-comic">
+                Top Up
+              </span>
               <img
                 src={ArrowDown}
                 alt=""
@@ -94,7 +102,9 @@ const Page6 = ({ Action1, Action2, Action3, Action4 }) => {
             onClick={goToPage13}
           >
             <div className="flex flex-col justify-center items-center">
-              <p className="text-white tracking-wider">Rumah</p>
+              <span className="text-2xl text-white tracking-wider font-comic">
+                Rumah
+              </span>
               <img
                 src={ArrowDown}
                 alt=""
@@ -106,7 +116,12 @@ const Page6 = ({ Action1, Action2, Action3, Action4 }) => {
         {/* CONTENT END*/}
         {/* FOOTER */}
         <div class="h-[10%]">
-          <div class="flex flex-col relative gap-2 py-3">
+          <div class="w-[25%] flex flex-col relative gap-2 py-3 -mt-10">
+            <div className="w-44 py-2 bg-[#5e17eb] text-center rounded-full active:bg-[#ffffff] group">
+              <span className="text-white font-semibold group-active:text-[#5e17eb] ">
+                Daging 100 Kg
+              </span>
+            </div>
             <div className="w-44 py-2 bg-[#5e17eb] text-center rounded-full active:bg-[#ffffff] group">
               <span className="text-white font-semibold group-active:text-[#5e17eb] ">
                 Susu 100 Liter

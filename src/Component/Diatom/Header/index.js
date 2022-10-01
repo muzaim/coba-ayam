@@ -2,6 +2,7 @@ import React from "react";
 import DiamondImg from "../../../img/common/diamond.png";
 import EggImg from "../../../img/common/egg.png";
 import PouchImg from "../../../img/common/pouch.png";
+import MeatImg from "../../../img/common/meat.png";
 import MilkImg from "../../../img/common/milk.png";
 import QuestBookImg from "../../../img/common/questbook.png";
 
@@ -10,6 +11,7 @@ const Header = ({
   Egg,
   Pouch,
   Milk,
+  Meat,
   PanganTersedia,
   QuestBook,
   BackButton,
@@ -75,13 +77,27 @@ const Header = ({
         </div>
         <div className="w-full text-start ">
           <span className="font-bold  text-sm text-[#782443]">
-            {harta.milk.toLocaleString()} Kg
+            {harta.milk.toLocaleString()} Liter
           </span>
         </div>
       </div>
     );
   };
 
+  const MeatDiv = () => {
+    return (
+      <div className="w-40 h-10 bg-[#f6f3e4] rounded-full items-center flex">
+        <div className="w-20 flex items-center justify-center ">
+          <img src={MeatImg} alt="" className="w-8" />
+        </div>
+        <div className="w-full text-start ">
+          <span className="font-bold  text-sm text-[#782443]">
+            {harta.meat.toLocaleString()} Kilogram
+          </span>
+        </div>
+      </div>
+    );
+  };
   const PanganTersediaDiv = () => {
     return (
       <div className="w-40 h-10 bg-[#f6f3e4] rounded-full  flex items-center ">
@@ -93,6 +109,7 @@ const Header = ({
       </div>
     );
   };
+
   const BackButtonDiv = () => {
     return (
       <div
@@ -131,6 +148,10 @@ const Header = ({
           {/* POUCH */}
           {Pouch ? <PouchDiv /> : null}
           {/* POUCH END */}
+
+          {/* Meat */}
+          {Meat ? <MeatDiv /> : null}
+          {/* Meat END */}
 
           {/* MILK */}
           {Milk ? <MilkDiv /> : null}

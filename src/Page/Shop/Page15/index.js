@@ -121,7 +121,7 @@ const Page15 = ({ Action1, Action2 }) => {
               onClick={goToPage13}
             >
               <div className="font-semibold capitalize text-lg tracking-wider text-white">
-                beri pangan
+                beli pangan
               </div>
             </div>
           </div>

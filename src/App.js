@@ -10,6 +10,7 @@ const App = () => {
     diamond: 3162,
     egg: 27,
     milk: 12,
+    meat: 20,
   });
   const [selectedAnimalID, setSelectedAnimalID] = useState(0);
 

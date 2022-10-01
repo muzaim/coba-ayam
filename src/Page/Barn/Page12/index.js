@@ -9,8 +9,17 @@ import Keledai from "../../../img/common/keledai.png";
 import Kerbau from "../../../img/common/kerbau.png";
 import Kuda from "../../../img/common/kuda.png";
 import { Swiper, SwiperSlide } from "swiper/react";
+import SwiperCore, { Navigation, Pagination, EffectCoverflow } from "swiper";
+import "swiper/css";
 import Header from "../../../Component/Diatom/Header";
 import { UserContext } from "../../UserContext";
+
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "swiper/css/scrollbar";
+SwiperCore.use([Navigation, Pagination, EffectCoverflow]);
 
 const Page12 = ({ Action1, Action2 }) => {
   const { value, setValue } = useContext(UserContext);
@@ -43,24 +52,6 @@ const Page12 = ({ Action1, Action2 }) => {
       benefit: "102 - 1020 daging/hari",
       durasi: 5,
     },
-    {
-      id: 4,
-      name: "Kuda",
-      skill: "Max 10 Kg daging perhari",
-      image: Kuda,
-      harga: 300,
-      benefit: "102 - 1020 daging/hari",
-      durasi: 5,
-    },
-    {
-      id: 5,
-      name: "Kelinci",
-      skill: "Max 10 Kg daging perhari",
-      image: Kelinci,
-      harga: 300,
-      benefit: "102 - 1020 daging/hari",
-      durasi: 5,
-    },
   ];
   const goToPage6 = () => {
     Action1();
@@ -85,7 +76,7 @@ const Page12 = ({ Action1, Action2 }) => {
         </div>
         {/* HEADER END */}
         {/* CONTENT */}
-        <div class="w-full h-[65%]">
+        <div class="w-full h-[75%]">
           <div class="w-full h-full justify-center flex items-start">
             <div className="w-full h-full flex flex-col">
               <div className="w-full h-10 flex justify-center items-center lg:h-20 ">
@@ -93,41 +84,37 @@ const Page12 = ({ Action1, Action2 }) => {
                   beli ternak
                 </span>
               </div>
-              <div className="w-full h-full flex justify-center items-center">
+              <div className="w-full h-full flex justify-center items-center -mt-8">
                 {/* TENGAH */}
                 <div className="flex w-full h-full">
-                  <Swiper spaceBetween={50} slidesPerView={3}>
-                    {Hewan.map((item) => {
-                      const { name, image, harga, benefit, durasi } = item;
-                      return (
-                        <SwiperSlide>
-                          <div className="flex h-full w-full bg-papan2 bg-[length:220px_200px] bg-no-repeat bg-center  justify-center items-center">
-                            <div className="flex flex-col h-full w-[70%] items-center">
-                              <span className="mt-7 text-white text-sm">
-                                {name} - {durasi} hari
-                              </span>
-                              <img
-                                src={image}
-                                alt=""
-                                className="w-20 h-20 mt-5 lg:w-60 lg:h-64"
-                              />
-                              <p className="mt-4 text-center text-[10px] font-semibold ">
-                                Harga : {harga} D
-                              </p>
-                              <p className="text-center text-[10px] font-semibold ">
-                                Benefit : {benefit}
-                              </p>
-                              <div className="mt-2 w-28 py-2 bg-blue-600 text-center rounded-full">
-                                <span className="tracking-[0.3em] uppercase text-white">
-                                  beli
-                                </span>
-                              </div>
-                            </div>
+                  {Hewan.map((item) => {
+                    const { name, image, harga, benefit, durasi } = item;
+                    return (
+                      <div className="flex h-full w-full bg-papan2 bg-[length:220px_200px] bg-no-repeat bg-center  justify-center items-center">
+                        <div className="flex flex-col h-full w-[70%] items-center">
+                          <span className="mt-11 text-white text-sm">
+                            {name} - {durasi} hari
+                          </span>
+                          <img
+                            src={image}
+                            alt=""
+                            className="w-20 h-20 mt-5 lg:w-60 lg:h-64"
+                          />
+                          <p className="mt-4 text-center text-[10px] font-semibold ">
+                            Harga : {harga} D
+                          </p>
+                          <p className="text-center text-[10px] font-semibold ">
+                            Benefit : {benefit}
+                          </p>
+                          <div className="mt-2 w-28 py-2 bg-blue-600 text-center rounded-full">
+                            <span className="tracking-[0.3em] uppercase text-white">
+                              beli
+                            </span>
                           </div>
-                        </SwiperSlide>
-                      );
-                    })}
-                  </Swiper>
+                        </div>
+                      </div>
+                    );
+                  })}
                 </div>
               </div>
             </div>

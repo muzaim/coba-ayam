@@ -31,6 +31,7 @@ module.exports = {
       fontFamily: {
         bukhari: ["Bukhari Script"],
         openSans: ["Open Sans"],
+        comic: ["Sans Comic Sans"],
       },
       rotate: {
         17: "17deg",
