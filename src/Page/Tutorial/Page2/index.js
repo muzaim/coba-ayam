@@ -50,7 +50,7 @@ const Page2 = ({ Action1 }) => {
               <img src={Cewek} alt="" className="w-48" />
             </div>
           </div>
-          <div class="w-full h-screen mt-10">
+          <div class="w-full h-screen mt-3">
             {skipDialog ? (
               <DialogComplete />
             ) : (

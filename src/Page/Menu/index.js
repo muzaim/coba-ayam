@@ -16,7 +16,7 @@ const initialValue = {
 };
 const Menu = ({ Action1, Action2 }) => {
   const { setUserToken } = useContext(UserContext);
-  const dataLogin = useRef(initialValue);
+  const dataLogin = useRef(null);
   const [loading, setLoading] = useState(true);
   const [loginForm, setLoginForm] = useState(false);
   const [wrongPassword, setWrongPassword] = useState(false);
@@ -58,7 +58,8 @@ const Menu = ({ Action1, Action2 }) => {
     const formData = new FormData();
     formData.append("username", form["username"].value);
     formData.append("password", form["password"].value);
-    console.log(dataLogin.current.username.value);
+
+    // empty
     if (
       dataLogin.current.username.value === "" ||
       dataLogin.current.password.value === ""
@@ -67,6 +68,8 @@ const Menu = ({ Action1, Action2 }) => {
       setWrongPassword(false);
       return;
     }
+
+    // login
     try {
       let res = await axios.post(
         `${process.env.REACT_APP_BASE_URL}/login`,
@@ -75,8 +78,29 @@ const Menu = ({ Action1, Action2 }) => {
       let data = res.data;
       setUserToken(data.token);
 
-      if (data.status === 200) {
-        goToPage6();
+      console.log(data);
+      // is tutorial
+      try {
+        let isTutor = await axios.get(
+          `${process.env.REACT_APP_BASE_URL}/user-info`,
+          {
+            params: {
+              token: data.token,
+            },
+          }
+        );
+        let doneTutor = isTutor.data;
+
+        // navigate
+        // angka 2 belum tutor
+        // selain 2 sudah tutor
+        if (doneTutor.Data.user_active.id === 2) {
+          goToPage2();
+        } else {
+          goToPage6();
+        }
+      } catch (error) {
+        console.log(error);
       }
     } catch (error) {
       setWrongPassword(true);
@@ -86,7 +110,7 @@ const Menu = ({ Action1, Action2 }) => {
   const Display = () => {
     return (
       <div className="grid gap-2 mt-44 ">
-        <div className="block mx-auto py-4 px-16  rounded-3xl uppercase tracking-[0.15rem] font-extrabold text-white font-openSans active:bg-[#ffffff] group">
+        <div className="block mx-auto py-4 px-16  rounded-3xl uppercase tracking-[0.15rem] font-extrabold text-white font-openSans ">
           <img src={Tama} alt="" className="w-[26rem]" />
         </div>
         <div
@@ -95,7 +119,7 @@ const Menu = ({ Action1, Action2 }) => {
         >
           <span className="group-active:text-[#5e17eb] ">Masuk</span>
         </div>
-        <div className="block mx-auto py-2 px-16 rounded-3xl uppercase tracking-[0.15rem] font-extrabold text-white font-openSans active:bg-[#ffffff] group">
+        <div className="block mx-auto py-2 px-16 rounded-3xl uppercase tracking-[0.15rem] font-extrabold text-white font-openSans  group">
           <span className="group-active:text-[#5e17eb] uppercase">
             Belum punya akun? buat akun
           </span>
@@ -103,9 +127,6 @@ const Menu = ({ Action1, Action2 }) => {
       </div>
     );
   };
-  useEffect(() => {
-    console.log(`data login`, dataLogin);
-  }, [dataLogin]);
 
   const LoginForm = () => {
     return (
@@ -142,13 +163,13 @@ const Menu = ({ Action1, Action2 }) => {
               <input
                 ref={dataLogin.password}
                 name="password"
-                type={passwordShown ? "text" : "password"}
+                type="password"
                 placeholder="Password"
                 className="h-10 rounded-lg px-3 w-full  outline-pink-500 outline-offset-5 outline-5"
               />
-              <i className="text-[#00fcb6]" onClick={togglePasswordVisiblity}>
+              {/* <i className="text-[#00fcb6]" onClick={togglePasswordVisiblity}>
                 {eye}
-              </i>
+              </i> */}
             </div>
             <div className="w-full h-full flex">
               <div className="block mx-auto h-14 w-36 bg-gradient-to-r from-pink-400 to-red-500 rounded-full uppercase tracking-[0.15rem] font-extrabold text-white font-openSans active:bg-[#ffffff] group">
@@ -178,16 +199,19 @@ const Menu = ({ Action1, Action2 }) => {
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
-    }, 1);
+    }, 4000);
   }, []);
 
   return (
     <div className="w-full h-full overflow-hidden bg-farmBarn bg-cover mx-auto lg:max-w-6xl lg:h-[70%] ">
       <div className="h-full">
         <div className="flex h-full items-end justify-center pb-5 ">
-          {loginForm ? <LoginForm /> : <Display />}
+          {/* {loginForm ? <LoginForm /> : <Display />} */}
           {/* <LoginForm /> */}
           {/* {loading ? <LoadingBar /> : <Display />} */}
+          {(loading && <LoadingBar />) || (loginForm && <LoginForm />) || (
+            <Display />
+          )}
         </div>
       </div>
     </div>

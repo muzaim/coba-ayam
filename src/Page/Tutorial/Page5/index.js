@@ -13,9 +13,12 @@ const Page5 = ({ Action1 }) => {
 
   const DialogComplete = () => {
     return (
-      <div className="w-[30rem] h-[15rem] px-5 pb-10 pt-10 bg-[#782443] overflow-auto rounded-xl ml-5 ring-offset-2 ring-4 ring-[#782443] relative">
+      <div
+        className="w-[30rem] h-[12rem] px-5 py-5  bg-[#782443] overflow-auto rounded-xl ml-5 ring-offset-2 ring-4 ring-[#782443] relative"
+        onClick={setNextButton(true)}
+      >
         <div className="h-full grid gap-2 ">
-          <p className="text-white font-semibold text-justify text-xl font-openSans">
+          <div className="text-white font-semibold text-justify text-xl font-openSans">
             <p>1 telur ayam = 1 diamond</p>
             <p>1 liter susu = 100 diamond</p>
             <p>1 kg pangan = 10 diamond</p>
@@ -31,16 +34,8 @@ const Page5 = ({ Action1 }) => {
             <p>3.000kg pangan = 10.00 butir = 306 liter</p>
             <p>5.000kg pangan = 10.00 butir = 510 liter</p>
             <p>7.000kg pangan = 10.00 butir = 714 liter</p>
-            <p>10.000kg pangan = 10.00 butir = 1.020 liter</p>
+            <p className="mb-5">10.000kg pangan = 10.00 butir = 1.020 liter</p>
             {/* <p>Berbagai jenis pangan tersedia di sini!</p> */}
-          </p>
-          <div className="flex justify-end h-6">
-            <img
-              src={Next}
-              alt=""
-              className="w-6 animate-pulse"
-              onClick={goToPage6}
-            />
           </div>
         </div>
       </div>
@@ -49,6 +44,19 @@ const Page5 = ({ Action1 }) => {
 
   const goToPage6 = () => {
     Action1();
+  };
+
+  const NextButtonDiv = () => {
+    return (
+      <div className="absolute bottom-5 right-[2rem] w-40 h-12 z-10">
+        <div
+          className="flex rounded-full h-full w-full bg-[#f6f3e4] items-center justify-center ring-offset-2 ring-4 ring-[#782443]"
+          onClick={goToPage6}
+        >
+          <span className="text-[#782443] font-semibold">Masuk Agenda</span>
+        </div>
+      </div>
+    );
   };
 
   return (
@@ -64,16 +72,17 @@ const Page5 = ({ Action1 }) => {
               <img src={Cewek} alt="" className="w-48" />
             </div>
           </div>
-          <div class="w-full h-screen mt-10">
+          {nextButton ? <NextButtonDiv /> : null}
+          <div class="w-full h-screen mt-3">
             {skipDialog ? (
               <DialogComplete />
             ) : (
               <div
-                className="w-[30rem] min-h-[7rem]  px-5 pb-5 pt-10 bg-[#782443] rounded-xl ml-5 ring-offset-2 ring-4 ring-[#782443] relative"
+                className="w-[30rem] h-[12rem]  px-5 py-5 bg-[#782443] overflow-auto rounded-xl ml-5 ring-offset-2 ring-4 ring-[#782443] relative"
                 onClick={skip}
               >
                 <div className="h-full grid gap-2">
-                  <span className="text-white font-semibold text-justify text-xl font-openSans">
+                  <div className="text-white font-semibold text-justify text-xl font-openSans">
                     <Typewriter
                       options={{
                         delay: 30,
@@ -91,12 +100,6 @@ const Page5 = ({ Action1 }) => {
                           });
                       }}
                     />
-                  </span>
-
-                  <div className="flex justify-end h-6" onClick={goToPage6}>
-                    {nextButton ? (
-                      <img src={Next} alt="" className="w-6 animate-pulse" />
-                    ) : null}
                   </div>
                 </div>
               </div>
