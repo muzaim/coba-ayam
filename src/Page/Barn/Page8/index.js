@@ -11,9 +11,11 @@ import Kuda from "../../../img/common/kuda.png";
 import Header from "../../../Component/Diatom/Header";
 import { UserContext } from "../../UserContext";
 import { useState } from "react";
+import axios from "axios";
 
 const Page8 = ({ Action1 }) => {
-  const { value, setValue, selectedAnimalID } = useContext(UserContext);
+  const { value, setValue, selectedAnimalID, userToken } =
+    useContext(UserContext);
   const [hewan, setHewan] = useState([]);
 
   const goToPage7 = () => {
@@ -103,7 +105,23 @@ const Page8 = ({ Action1 }) => {
       image: Kerbau,
     },
   ];
-  
+
+  const cobaBeliPangan = async () => {
+    try {
+      let res = await axios.post(
+        `${process.env.REACT_APP_BASE_URL}/buy-pakan`,
+        {
+          token: userToken,
+          pakan_id: 1,
+        }
+      );
+      let data = res.data;
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const getHewan = () => {
     const data = Hewan.find((x) => x.id === selectedAnimalID);
     setHewan(data);
@@ -118,7 +136,7 @@ const Page8 = ({ Action1 }) => {
       <div className="w-[90%] h-full mx-auto ">
         {/* HEADER */}
         <div class="h-[15%] ">
-        <Header Pouch={true} harta={value} setHarta={setValue} />
+          <Header Pouch={true} harta={value} setHarta={setValue} />
         </div>
 
         {/* HEADER END */}
@@ -181,7 +199,10 @@ const Page8 = ({ Action1 }) => {
                           </span>
                         </div>
                       </div>
-                      <div className="w-40 h-10 bg-purple-400 rounded-full  flex items-center ">
+                      <div
+                        className="w-40 h-10 bg-purple-400 rounded-full  flex items-center active:bg-yellow-300"
+                        onClick={cobaBeliPangan}
+                      >
                         <div className="w-full text-center">
                           <span className="font-bold  text-sm text-white tracking-widest uppercase">
                             beri pangan

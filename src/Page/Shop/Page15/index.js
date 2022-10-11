@@ -63,6 +63,7 @@ const Page15 = ({ Action1, Action2 }) => {
   const goToPage13 = () => {
     Action2();
   };
+
   const cobaTopup = async (e) => {
     e.preventDefault();
     try {
@@ -79,6 +80,7 @@ const Page15 = ({ Action1, Action2 }) => {
       console.log(error);
     }
   };
+  
   return (
     <div className="w-full h-screen overflow-hidden bg-outFarm bg-cover mx-auto lg:max-w-6xl lg:h-[70%]">
       <div className="w-[90%] h-full mx-auto">
