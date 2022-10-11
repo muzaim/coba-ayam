@@ -1,18 +1,32 @@
-import React, { useContext } from "react";
+import React, { useContext, useRef } from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import axios from "axios";
 import Tama from "../../img/common/tamako.png";
 import { UserContext } from "./../UserContext";
+import "./style.css";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye } from "@fortawesome/free-solid-svg-icons";
+const eye = <FontAwesomeIcon icon={faEye} />;
+
+const initialValue = {
+  username: "",
+  password: "",
+};
 const Menu = ({ Action1, Action2 }) => {
   const { setUserToken } = useContext(UserContext);
-
+  const dataLogin = useRef(initialValue);
   const [loading, setLoading] = useState(true);
   const [loginForm, setLoginForm] = useState(false);
+  const [wrongPassword, setWrongPassword] = useState(false);
+  const [empty, setEmpty] = useState(false);
+  const [passwordShown, setPasswordShown] = useState(false);
 
   const openLoginForm = () => {
     setLoginForm((current) => !current);
+    setWrongPassword(false);
+    setEmpty(false);
   };
 
   const LoadingBar = () => {
@@ -29,26 +43,43 @@ const Menu = ({ Action1, Action2 }) => {
   const goToPage2 = () => {
     Action1();
   };
+
   const goToPage6 = () => {
     Action2();
   };
+
+  const togglePasswordVisiblity = () => {
+    setPasswordShown(passwordShown ? false : true);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const form = dataLogin.current;
+    const formData = new FormData();
+    formData.append("username", form["username"].value);
+    formData.append("password", form["password"].value);
+    console.log(dataLogin.current.username.value);
+    if (
+      dataLogin.current.username.value === "" ||
+      dataLogin.current.password.value === ""
+    ) {
+      setEmpty(true);
+      setWrongPassword(false);
+      return;
+    }
     try {
-      let res = await axios.post(`${process.env.REACT_APP_BASE_URL}/login`, {
-        username: "miarta2",
-        password: "123123",
-      });
+      let res = await axios.post(
+        `${process.env.REACT_APP_BASE_URL}/login`,
+        formData
+      );
       let data = res.data;
       setUserToken(data.token);
 
       if (data.status === 200) {
         goToPage6();
-      } else {
-        goToPage6();
       }
     } catch (error) {
-      goToPage6();
+      setWrongPassword(true);
     }
   };
 
@@ -72,6 +103,9 @@ const Menu = ({ Action1, Action2 }) => {
       </div>
     );
   };
+  useEffect(() => {
+    console.log(`data login`, dataLogin);
+  }, [dataLogin]);
 
   const LoginForm = () => {
     return (
@@ -81,24 +115,59 @@ const Menu = ({ Action1, Action2 }) => {
             action=""
             className="flex flex-col gap-4"
             onSubmit={handleSubmit}
+            ref={dataLogin}
           >
+            {wrongPassword ? (
+              <span className="text-center text-red-600 text-lg font-semibold">
+                Username atau password salah!
+              </span>
+            ) : null}
+            {empty ? (
+              <span className="text-center text-red-600 text-lg font-semibold">
+                Username dan password tidak boleh kosong!
+              </span>
+            ) : null}
             <input
-              type="text"
+              ref={dataLogin.username}
               name="username"
+              type="text"
+              placeholder="Username"
               className="h-10 rounded-lg px-3 outline-pink-500 outline-offset-5 outline-5"
+              onFocus={(e) => {
+                setWrongPassword(false);
+                setEmpty(false);
+              }}
             />
-            <input
-              type="password"
-              name="password"
-              className="h-10 rounded-lg px-3 outline-pink-500 outline-offset-5 outline-5"
-            />
-            <div className="block mx-auto h-16 w-44 bg-gradient-to-r from-green-400 to-blue-500 rounded-full uppercase tracking-[0.15rem] font-extrabold text-white font-openSans active:bg-[#ffffff] group">
-              <button
-                className="group-active:text-[#5e17eb]  w-full h-full items-center"
-                type="submit"
-              >
-                Login
-              </button>
+            <div className="pass-wrapper bg-white rounded-lg">
+              <input
+                ref={dataLogin.password}
+                name="password"
+                type={passwordShown ? "text" : "password"}
+                placeholder="Password"
+                className="h-10 rounded-lg px-3 w-full  outline-pink-500 outline-offset-5 outline-5"
+              />
+              <i className="text-[#00fcb6]" onClick={togglePasswordVisiblity}>
+                {eye}
+              </i>
+            </div>
+            <div className="w-full h-full flex">
+              <div className="block mx-auto h-14 w-36 bg-gradient-to-r from-pink-400 to-red-500 rounded-full uppercase tracking-[0.15rem] font-extrabold text-white font-openSans active:bg-[#ffffff] group">
+                <button
+                  className="group-active:text-[#5e17eb]  w-full h-full items-center tracking-widest"
+                  type="submit"
+                  onClick={openLoginForm}
+                >
+                  Back
+                </button>
+              </div>
+              <div className="block mx-auto h-14 w-36 bg-gradient-to-r from-green-400 to-blue-500 rounded-full uppercase tracking-[0.15rem] font-extrabold text-white font-openSans active:bg-[#ffffff] group">
+                <button
+                  className="group-active:text-[#5e17eb]  w-full h-full items-center tracking-widest"
+                  type="submit"
+                >
+                  Login
+                </button>
+              </div>
             </div>
           </form>
         </div>

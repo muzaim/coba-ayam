@@ -1,0 +1,12 @@
+.pass-wrapper {
+  position: relative;
+  display: flex;
+}
+i {
+  position: absolute;
+  right: 5%;
+  top: 8px;
+}
+i:hover {
+  cursor: pointer;
+}
