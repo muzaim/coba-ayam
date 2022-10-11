@@ -69,7 +69,7 @@ const MainPage = () => {
 
   switch (step) {
     case "Menu":
-      return <Menu Action1={goToPage2} />;
+      return <Menu Action1={goToPage2} Action2={goToPage6} />;
     case "Page2":
       return <Page2 Action1={goToPage3} />;
     case "Page3":

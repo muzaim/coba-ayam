@@ -118,7 +118,7 @@ const Page8 = ({ Action1 }) => {
       <div className="w-[90%] h-full mx-auto ">
         {/* HEADER */}
         <div class="h-[15%] ">
-          <Header Pouch={true} harta={value} setHarta={setValue} />
+        <Header Pouch={true} harta={value} setHarta={setValue} />
         </div>
 
         {/* HEADER END */}

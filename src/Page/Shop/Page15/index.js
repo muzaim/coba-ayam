@@ -3,9 +3,11 @@ import Diamond from "../../../img/common/diamond.png";
 import Pouch from "../../../img/common/pouch.png";
 import Header from "../../../Component/Diatom/Header";
 import { UserContext } from "../../UserContext";
+import axios from "axios";
 
 const Page15 = ({ Action1, Action2 }) => {
-  const { value, setValue } = useContext(UserContext);
+  const { value, setValue, userToken } = useContext(UserContext);
+
   const Makanan = [
     {
       id: 1,
@@ -53,6 +55,7 @@ const Page15 = ({ Action1, Action2 }) => {
       price: "100.000",
     },
   ];
+
   const goToPage6 = () => {
     Action1();
   };
@@ -60,7 +63,22 @@ const Page15 = ({ Action1, Action2 }) => {
   const goToPage13 = () => {
     Action2();
   };
-
+  const cobaTopup = async (e) => {
+    e.preventDefault();
+    try {
+      let res = await axios.post(
+        `${process.env.REACT_APP_BASE_URL}/buy-diamon`,
+        {
+          token: userToken,
+          diamon_id: 1,
+        }
+      );
+      let data = res.data;
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <div className="w-full h-screen overflow-hidden bg-outFarm bg-cover mx-auto lg:max-w-6xl lg:h-[70%]">
       <div className="w-[90%] h-full mx-auto">
@@ -118,10 +136,10 @@ const Page15 = ({ Action1, Action2 }) => {
           <div className=" px-10 flex justify-start">
             <div
               className="w-52 h-full bg-[#ff1616] rounded-full py-3 text-center "
-              onClick={goToPage13}
+              onClick={cobaTopup}
             >
               <div className="font-semibold capitalize text-lg tracking-wider text-white">
-                beli pangan
+                Coba Top Up
               </div>
             </div>
           </div>

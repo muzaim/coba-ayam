@@ -3,11 +3,13 @@ import Shop from "../../../img/common/shop.png";
 import Barn from "../../../img/common/barn.png";
 import ArrowDown from "../../../img/usage/down.png";
 import { UserContext } from "../../UserContext";
+import axios from "axios";
+import { useEffect } from "react";
 
 import Header from "../../../Component/Diatom/Header";
 
 const Page6 = ({ Action1, Action2, Action3, Action4 }) => {
-  const { value, setValue } = useContext(UserContext);
+  const { userToken, setUserLogin, value, setValue } = useContext(UserContext);
 
   const goToPage5 = () => {
     Action1();
@@ -21,6 +23,33 @@ const Page6 = ({ Action1, Action2, Action3, Action4 }) => {
   const goToPage15 = () => {
     Action4();
   };
+
+  const doLogin = async () => {
+    try {
+      let res = await axios.get(`${process.env.REACT_APP_BASE_URL}/user-info`, {
+        params: { token: userToken },
+      });
+      let data = res.data;
+      let info = data.Data.user_active;
+      let harta = data.Data.user_wallet;
+      setUserLogin(info);
+      setValue((prevState) => ({
+        ...prevState,
+        [value.diamond]: (value.diamond = harta.diamon),
+        [value.pakan]: (value.pakan = harta.pakan),
+        [value.egg]: (value.egg = harta.hasil_ternak[1].qty),
+        [value.milk]: (value.milk = harta.hasil_ternak[2].qty),
+        [value.meat]: (value.meat = harta.hasil_ternak[3].qty),
+      }));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    doLogin();
+    console.log(`user token=`, userToken);
+  }, []);
 
   return (
     <div className="w-full h-screen overflow-hidden bg-farmCultivature bg-cover mx-auto lg:max-w-6xl lg:h-[70%]">
@@ -119,17 +148,17 @@ const Page6 = ({ Action1, Action2, Action3, Action4 }) => {
           <div class="w-[25%] flex flex-col relative gap-2 py-3 -mt-10">
             <div className="w-44 py-2 bg-[#5e17eb] text-center rounded-full active:bg-[#ffffff] group">
               <span className="text-white font-semibold group-active:text-[#5e17eb] ">
-                Daging 100 Kg
+                Daging {value.meat} Kg
               </span>
             </div>
             <div className="w-44 py-2 bg-[#5e17eb] text-center rounded-full active:bg-[#ffffff] group">
               <span className="text-white font-semibold group-active:text-[#5e17eb] ">
-                Susu 100 Liter
+                Susu {value.milk} Liter
               </span>
             </div>
             <div className="w-44 py-2 bg-[#5e17eb] text-center rounded-full active:bg-[#ffffff] group">
               <span className="text-white font-semibold group-active:text-[#5e17eb] ">
-                Telur 365 Butir
+                Telur {value.egg} Butir
               </span>
             </div>
           </div>

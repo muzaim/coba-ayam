@@ -7,12 +7,15 @@ import { useState } from "react";
 
 const App = () => {
   const [value, setValue] = useState({
-    diamond: 3162,
-    egg: 27,
-    milk: 12,
-    meat: 20,
+    diamond: "0",
+    pakan: "0",
+    egg: "0",
+    milk: "0",
+    meat: "0",
   });
   const [selectedAnimalID, setSelectedAnimalID] = useState(0);
+  const [userToken, setUserToken] = useState("");
+  const [userLogin, setUserLogin] = useState({});
 
   const providerValue = React.useMemo(
     () => ({
@@ -20,8 +23,12 @@ const App = () => {
       setValue,
       selectedAnimalID,
       setSelectedAnimalID,
+      userToken,
+      setUserToken,
+      userLogin,
+      setUserLogin,
     }),
-    [value, selectedAnimalID]
+    [value, selectedAnimalID, userToken, userLogin]
   );
 
   return (

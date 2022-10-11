@@ -13,7 +13,7 @@ import Header from "../../../Component/Diatom/Header";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Navigation, Pagination, EffectCoverflow } from "swiper";
 import "swiper/css";
-
+import axios from "axios";
 import { UserContext } from "../../UserContext";
 
 // Import Swiper styles
@@ -21,10 +21,13 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
+import { useEffect } from "react";
 
 SwiperCore.use([Navigation, Pagination, EffectCoverflow]);
+
 const Page7 = ({ Action1, Action2, Action3 }) => {
-  const { value, setValue, setSelectedAnimalID } = useContext(UserContext);
+  const { value, setValue, setSelectedAnimalID, userLogin, userToken } =
+    useContext(UserContext);
 
   const goToPage6 = () => {
     Action3();
@@ -184,21 +187,22 @@ const Page7 = ({ Action1, Action2, Action3 }) => {
         <div class="h-[20%]">
           <div className="grid grid-cols-3 gap-3">
             <div className="">
-              <div
+              {/* <div
                 className="w-full h-full bg-white rounded-full py-3 text-center active:bg-[#782443] group"
-                onClick={() => {
-                  setValue((prevState) => ({
-                    ...prevState,
-                    [value.diamond]: (value.diamond += 13),
-                    [value.egg]: (value.egg += 20),
-                    [value.milk]: (value.milk += 5),
-                  }));
-                }}
+                // onClick={() => {
+                //   setValue((prevState) => ({
+                //     ...prevState,
+                //     [value.diamond]: (value.diamond += 13),
+                //     [value.egg]: (value.egg += 20),
+                //     [value.milk]: (value.milk += 5),
+                //   }));
+                // }}
+             
               >
                 <span className="font-semibold capitalize text-lg tracking-wider text-[#782443] group-active:text-white">
-                  Coba tambah diamond
+                  Coba Top Up
                 </span>
-              </div>
+              </div> */}
             </div>
 
             <div

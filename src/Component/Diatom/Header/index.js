@@ -23,7 +23,9 @@ const Header = ({
   const openPage6 = () => {
     Action1();
   };
-
+  function numberWithCommas(num) {
+    return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
   const DiamondDiv = () => {
     return (
       <div className="w-40 h-10 bg-[#f6f3e4] rounded-full items-center flex">
@@ -32,7 +34,7 @@ const Header = ({
         </div>
         <div className="w-full text-start ">
           <span className="font-bold  text-sm text-[#782443]">
-            {harta.diamond.toLocaleString()}
+            {numberWithCommas(harta.diamond)}
           </span>
         </div>
       </div>
@@ -47,7 +49,7 @@ const Header = ({
         </div>
         <div className="w-full text-start ">
           <span className="font-bold  text-sm text-[#782443]">
-            {harta.egg.toLocaleString()} Butir
+            {numberWithCommas(harta.egg)} Butir
           </span>
         </div>
       </div>
@@ -62,7 +64,7 @@ const Header = ({
         </div>
         <div className="w-full text-start ">
           <span className="font-bold  text-sm text-[#782443]">
-            {harta.milk.toLocaleString()} Kg
+            {numberWithCommas(harta.pakan)} Kg
           </span>
         </div>
       </div>
@@ -77,7 +79,7 @@ const Header = ({
         </div>
         <div className="w-full text-start ">
           <span className="font-bold  text-sm text-[#782443]">
-            {harta.milk.toLocaleString()} Liter
+            {numberWithCommas(harta.milk)} Liter
           </span>
         </div>
       </div>
@@ -92,7 +94,7 @@ const Header = ({
         </div>
         <div className="w-full text-start ">
           <span className="font-bold  text-sm text-[#782443]">
-            {harta.meat.toLocaleString()} Kilogram
+            {numberWithCommas(harta.meat)} Kilogram
           </span>
         </div>
       </div>
