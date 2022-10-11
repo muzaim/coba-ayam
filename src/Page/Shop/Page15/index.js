@@ -5,7 +5,7 @@ import Header from "../../../Component/Diatom/Header";
 import { UserContext } from "../../UserContext";
 import axios from "axios";
 
-const Page15 = ({ Action1, Action2 }) => {
+const Page15 = ({ Action1, Action2, Action3 }) => {
   const { value, setValue, userToken } = useContext(UserContext);
 
   const Makanan = [
@@ -64,6 +64,10 @@ const Page15 = ({ Action1, Action2 }) => {
     Action2();
   };
 
+  const getUserInfo = () => {
+    Action3();
+  };
+
   const cobaTopup = async (e) => {
     e.preventDefault();
     try {
@@ -75,12 +79,13 @@ const Page15 = ({ Action1, Action2 }) => {
         }
       );
       let data = res.data;
+      getUserInfo();
       console.log(data);
     } catch (error) {
       console.log(error);
     }
   };
-  
+
   return (
     <div className="w-full h-screen overflow-hidden bg-outFarm bg-cover mx-auto lg:max-w-6xl lg:h-[70%]">
       <div className="w-[90%] h-full mx-auto">

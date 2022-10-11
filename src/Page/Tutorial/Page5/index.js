@@ -48,7 +48,7 @@ const Page5 = ({ Action1 }) => {
 
   const NextButtonDiv = () => {
     return (
-      <div className="absolute bottom-12 right-[2rem] w-40 h-12 z-10">
+      <div className="absolute bottom-5 right-[2rem] w-40 h-12 z-10">
         <div
           className="flex rounded-full h-full w-full bg-[#f6f3e4] items-center justify-center ring-offset-2 ring-4 ring-[#782443]"
           onClick={goToPage6}

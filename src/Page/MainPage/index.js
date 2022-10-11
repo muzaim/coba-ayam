@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import {
   Menu,
   Page2,
@@ -14,10 +14,12 @@ import {
   Page14,
   Page15,
 } from "../index";
+import { UserContext } from "./../UserContext";
+import axios from "axios";
 
 const MainPage = () => {
   const [step, setStep] = useState("Menu");
-
+  const { userToken, setUserLogin, value, setValue } = useContext(UserContext);
   const goToPage2 = () => {
     setStep("Page2");
   };
@@ -67,6 +69,29 @@ const MainPage = () => {
     setStep("Page15");
   };
 
+  const getUserInfo = async () => {
+    try {
+      let res = await axios.get(`${process.env.REACT_APP_BASE_URL}/user-info`, {
+        params: { token: userToken },
+      });
+      let data = res.data;
+      let info = data.Data.user_active;
+      let harta = data.Data.user_wallet;
+      setUserLogin(info);
+      setValue((prevState) => ({
+        ...prevState,
+        [value.diamond]: (value.diamond = harta.diamon),
+        [value.pakan]: (value.pakan = harta.pakan),
+        [value.egg]: (value.egg = harta.hasil_ternak[1].qty),
+        [value.milk]: (value.milk = harta.hasil_ternak[2].qty),
+        [value.meat]: (value.meat = harta.hasil_ternak[3].qty),
+      }));
+      console.log(value);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   switch (step) {
     case "Menu":
       return <Menu Action1={goToPage2} Action2={goToPage6} />;
@@ -93,7 +118,12 @@ const MainPage = () => {
       );
     case "Page8":
       return (
-        <Page8 Action1={goToPage7} Action2={goToPage12} Action3={goToPage6} />
+        <Page8
+          Action1={goToPage7}
+          Action2={goToPage12}
+          Action3={goToPage6}
+          Action4={getUserInfo}
+        />
       );
     case "Page9":
       return (
@@ -106,7 +136,13 @@ const MainPage = () => {
     case "Page14":
       return <Page14 Action1={goToPage15} Action2={goToPage6} />;
     case "Page15":
-      return <Page15 Action1={goToPage6} Action2={goToPage13} />;
+      return (
+        <Page15
+          Action1={goToPage6}
+          Action2={goToPage13}
+          Action3={getUserInfo}
+        />
+      );
     default:
       break;
   }

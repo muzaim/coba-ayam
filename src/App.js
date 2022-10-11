@@ -4,6 +4,7 @@ import React, { useMemo } from "react";
 import DeviceOrientation, { Orientation } from "react-screen-orientation";
 import { UserContext } from "./Page/UserContext";
 import { useState } from "react";
+import { useEffect } from "react";
 
 const App = () => {
   const [value, setValue] = useState({
@@ -17,7 +18,7 @@ const App = () => {
   const [userToken, setUserToken] = useState("");
   const [userLogin, setUserLogin] = useState({});
 
-  const providerValue = React.useMemo(
+  const providerValue = useMemo(
     () => ({
       value,
       setValue,

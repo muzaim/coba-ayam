@@ -24,7 +24,8 @@ const Page6 = ({ Action1, Action2, Action3, Action4 }) => {
     Action4();
   };
 
-  const doLogin = async () => {
+
+  const getUserInfo = async () => {
     try {
       let res = await axios.get(`${process.env.REACT_APP_BASE_URL}/user-info`, {
         params: { token: userToken },
@@ -41,14 +42,14 @@ const Page6 = ({ Action1, Action2, Action3, Action4 }) => {
         [value.milk]: (value.milk = harta.hasil_ternak[2].qty),
         [value.meat]: (value.meat = harta.hasil_ternak[3].qty),
       }));
+      console.log(value);
     } catch (error) {
       console.log(error);
     }
   };
 
   useEffect(() => {
-    doLogin();
-    console.log(`user token=`, userToken);
+    getUserInfo();
   }, []);
 
   return (

@@ -95,7 +95,8 @@ const Menu = ({ Action1, Action2 }) => {
         // angka 2 belum tutor
         // selain 2 sudah tutor
         if (doneTutor.Data.user_active.id === 2) {
-          goToPage2();
+          // goToPage2();
+          goToPage6();
         } else {
           goToPage6();
         }
@@ -109,17 +110,17 @@ const Menu = ({ Action1, Action2 }) => {
 
   const Display = () => {
     return (
-      <div className="grid gap-2 mt-44 ">
-        <div className="block mx-auto py-4 px-16  rounded-3xl uppercase tracking-[0.15rem] font-extrabold text-white font-openSans ">
-          <img src={Tama} alt="" className="w-[26rem]" />
+      <div className="grid gap-2 w-full h-full">
+        <div className="flex justify-center mx-auto py-4 px-16">
+          <img src={Tama} alt="" className="w-[55%]" />
         </div>
         <div
-          className="block mx-auto py-4 px-16 bg-gradient-to-r from-green-400 to-blue-500 rounded-3xl uppercase tracking-[0.15rem] font-extrabold text-white font-openSans active:bg-[#ffffff] group"
+          className="flex items-center justify-center mx-auto h-14 w-[20%] bg-gradient-to-r from-green-400 to-blue-500 rounded-full uppercase tracking-[0.20rem] font-extrabold text-white font-openSans active:bg-[#ffffff] group"
           onClick={openLoginForm}
         >
-          <span className="group-active:text-[#5e17eb] ">Masuk</span>
+          <span className="group-active:text-[#5e17eb]">Masuk</span>
         </div>
-        <div className="block mx-auto py-2 px-16 rounded-3xl uppercase tracking-[0.15rem] font-extrabold text-white font-openSans  group">
+        <div className="block mx-auto py-2 px-16 -mt-2 uppercase tracking-[0.15rem] font-extrabold text-white font-openSans group">
           <span className="group-active:text-[#5e17eb] uppercase">
             Belum punya akun? buat akun
           </span>
@@ -145,7 +146,7 @@ const Menu = ({ Action1, Action2 }) => {
             ) : null}
             {empty ? (
               <span className="text-center text-red-600 text-lg font-semibold">
-                Username dan password tidak boleh kosong!
+                Masukkan username & password!
               </span>
             ) : null}
             <input
@@ -205,7 +206,7 @@ const Menu = ({ Action1, Action2 }) => {
   return (
     <div className="w-full h-full overflow-hidden bg-farmBarn bg-cover mx-auto lg:max-w-6xl lg:h-[70%] ">
       <div className="h-full">
-        <div className="flex h-full items-end justify-center pb-5 ">
+        <div className="flex h-full items-end justify-center">
           {/* {loginForm ? <LoginForm /> : <Display />} */}
           {/* <LoginForm /> */}
           {/* {loading ? <LoadingBar /> : <Display />} */}

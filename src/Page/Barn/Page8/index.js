@@ -13,7 +13,7 @@ import { UserContext } from "../../UserContext";
 import { useState } from "react";
 import axios from "axios";
 
-const Page8 = ({ Action1 }) => {
+const Page8 = ({ Action1, Action4 }) => {
   const { value, setValue, selectedAnimalID, userToken } =
     useContext(UserContext);
   const [hewan, setHewan] = useState([]);
@@ -22,6 +22,10 @@ const Page8 = ({ Action1 }) => {
     Action1();
   };
 
+  const getUserInfo = () => {
+    Action4();
+  };
+  
   const Pakan = [
     {
       id: 1,
@@ -116,6 +120,7 @@ const Page8 = ({ Action1 }) => {
         }
       );
       let data = res.data;
+      getUserInfo();
       console.log(data);
     } catch (error) {
       console.log(error);

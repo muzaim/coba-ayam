@@ -109,7 +109,7 @@ const Page7 = ({ Action1, Action2, Action3 }) => {
   ];
 
   return (
-    <div className="w-full h-screen overflow-hidden bg-barn bg-cover mx-auto lg:max-w-6xl lg:h-[70%]">
+    <div className="w-full h-screen overflow-hidden bg-barn bg-cover mx-auto lg:max-w-6xl lg:h-[70%] ">
       <div className="w-[90%] h-full mx-auto">
         {/* HEADER */}
         <div class="h-[15%]">
@@ -126,7 +126,7 @@ const Page7 = ({ Action1, Action2, Action3 }) => {
         </div>
         {/* HEADER END */}
         {/* CONTENT */}
-        <div class="w-full h-[65%]">
+        <div class="w-full h-[65%] ">
           <div class="w-full h-full justify-center flex items-start">
             <div className="w-full h-full flex flex-col ">
               <div className="w-full h-10 flex justify-center items-center lg:h-20">
@@ -186,24 +186,7 @@ const Page7 = ({ Action1, Action2, Action3 }) => {
         {/* FOOTER */}
         <div class="h-[20%]">
           <div className="grid grid-cols-3 gap-3">
-            <div className="">
-              {/* <div
-                className="w-full h-full bg-white rounded-full py-3 text-center active:bg-[#782443] group"
-                // onClick={() => {
-                //   setValue((prevState) => ({
-                //     ...prevState,
-                //     [value.diamond]: (value.diamond += 13),
-                //     [value.egg]: (value.egg += 20),
-                //     [value.milk]: (value.milk += 5),
-                //   }));
-                // }}
-             
-              >
-                <span className="font-semibold capitalize text-lg tracking-wider text-[#782443] group-active:text-white">
-                  Coba Top Up
-                </span>
-              </div> */}
-            </div>
+            <div className=""></div>
 
             <div
               className="w-full h-full bg-white rounded-full py-3 text-center active:bg-[#782443] group"
@@ -213,22 +196,6 @@ const Page7 = ({ Action1, Action2, Action3 }) => {
                 Tambah ternak
               </span>
             </div>
-            {/* <Button
-              action={goToPage6}
-              text={"tambah ternak"}
-              textColor={"#782443"}
-              bgColor={"#ffffff"}
-              activeColor={"#5e17eb"}
-            /> */}
-
-            {/* <div
-              className="w-full h-full bg-[#5e17eb] rounded-full py-3 text-center active:bg-[#ffffff] group"
-              onClick={goToPage8}
-            >
-              <span className="font-semibold capitalize text-lg tracking-wider text-[#ffffff] group-active:text-[#5e17eb]">
-                proses pangan
-              </span>
-            </div> */}
           </div>
         </div>
         {/* FOOTER END*/}
