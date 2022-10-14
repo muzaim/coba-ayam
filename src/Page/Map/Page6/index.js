@@ -8,45 +8,34 @@ import { useEffect } from "react";
 
 import Header from "../../../Component/Diatom/Header";
 
-const Page6 = ({ Action1, Action2, Action3, Action4 }) => {
-  const { userToken, setUserLogin, value, setValue } = useContext(UserContext);
+const Page6 = ({ Action1, Action2, Action3, Action4, Action5, Action6 }) => {
+  const { value, setValue } = useContext(UserContext);
+
+  const goToMenu = () => {
+    Action6();
+  };
 
   const goToPage5 = () => {
     Action1();
   };
+
   const goToPage7 = () => {
     Action2();
   };
+
   const goToPage13 = () => {
     Action3();
   };
+
   const goToPage15 = () => {
     Action4();
   };
 
-
-  const getUserInfo = async () => {
-    try {
-      let res = await axios.get(`${process.env.REACT_APP_BASE_URL}/user-info`, {
-        params: { token: userToken },
-      });
-      let data = res.data;
-      let info = data.Data.user_active;
-      let harta = data.Data.user_wallet;
-      setUserLogin(info);
-      setValue((prevState) => ({
-        ...prevState,
-        [value.diamond]: (value.diamond = harta.diamon),
-        [value.pakan]: (value.pakan = harta.pakan),
-        [value.egg]: (value.egg = harta.hasil_ternak[1].qty),
-        [value.milk]: (value.milk = harta.hasil_ternak[2].qty),
-        [value.meat]: (value.meat = harta.hasil_ternak[3].qty),
-      }));
-      console.log(value);
-    } catch (error) {
-      console.log(error);
-    }
+  const getUserInfo = () => {
+    Action5();
   };
+
+  const doLogOut = () => {};
 
   useEffect(() => {
     getUserInfo();
@@ -57,7 +46,13 @@ const Page6 = ({ Action1, Action2, Action3, Action4 }) => {
       <div className="w-[90%] h-full mx-auto ">
         {/* HEADER */}
         <div class="h-[15%]">
-          <Header Diamond={true} harta={value} setHarta={setValue} />
+          <Header
+            Diamond={true}
+            LogOut={true}
+            ActionLogout={goToMenu}
+            harta={value}
+            setHarta={setValue}
+          />
         </div>
         {/* HEADER END */}
         {/* CONTENT */}

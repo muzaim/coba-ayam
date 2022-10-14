@@ -12,10 +12,10 @@ import Header from "../../../Component/Diatom/Header";
 import { UserContext } from "../../UserContext";
 import { useState } from "react";
 import axios from "axios";
+import Cookies from "js-cookie";
 
 const Page8 = ({ Action1, Action4 }) => {
-  const { value, setValue, selectedAnimalID, userToken } =
-    useContext(UserContext);
+  const { value, setValue, selectedAnimalID } = useContext(UserContext);
   const [hewan, setHewan] = useState([]);
 
   const goToPage7 = () => {
@@ -25,7 +25,7 @@ const Page8 = ({ Action1, Action4 }) => {
   const getUserInfo = () => {
     Action4();
   };
-  
+
   const Pakan = [
     {
       id: 1,
@@ -111,11 +111,12 @@ const Page8 = ({ Action1, Action4 }) => {
   ];
 
   const cobaBeliPangan = async () => {
+    const userCookie = Cookies.get("user");
     try {
       let res = await axios.post(
         `${process.env.REACT_APP_BASE_URL}/buy-pakan`,
         {
-          token: userToken,
+          token: userCookie,
           pakan_id: 1,
         }
       );

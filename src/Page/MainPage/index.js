@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import {
   Menu,
   Page2,
@@ -16,10 +16,16 @@ import {
 } from "../index";
 import { UserContext } from "./../UserContext";
 import axios from "axios";
+import Cookies from "js-cookie";
 
 const MainPage = () => {
+  const { userLogin, setUserLogin, setValue, value } = useContext(UserContext);
   const [step, setStep] = useState("Menu");
-  const { userToken, setUserLogin, value, setValue } = useContext(UserContext);
+
+  const goToMenu = () => {
+    setStep("Menu");
+  };
+
   const goToPage2 = () => {
     setStep("Page2");
   };
@@ -70,27 +76,40 @@ const MainPage = () => {
   };
 
   const getUserInfo = async () => {
+    const userCookie = Cookies.get("user");
     try {
-      let res = await axios.get(`${process.env.REACT_APP_BASE_URL}/user-info`, {
-        params: { token: userToken },
-      });
-      let data = res.data;
-      let info = data.Data.user_active;
-      let harta = data.Data.user_wallet;
-      setUserLogin(info);
-      setValue((prevState) => ({
-        ...prevState,
-        [value.diamond]: (value.diamond = harta.diamon),
-        [value.pakan]: (value.pakan = harta.pakan),
-        [value.egg]: (value.egg = harta.hasil_ternak[1].qty),
-        [value.milk]: (value.milk = harta.hasil_ternak[2].qty),
-        [value.meat]: (value.meat = harta.hasil_ternak[3].qty),
-      }));
-      console.log(value);
+      let userInfo = await axios.get(
+        `${process.env.REACT_APP_BASE_URL}/user-info`,
+        {
+          params: {
+            token: userCookie,
+          },
+        }
+      );
+      let dataUser = userInfo.data.Data;
+      setValue(dataUser.user_wallet);
+      setUserLogin(dataUser.user_active);
+
+      // console.log(`ini data user dari main page`, dataUser);
+      // console.log(`info`, info);
+      // console.log(`harta`, harta);
     } catch (error) {
-      console.log(error);
+      console.log(`dari ketika getUsrInfo `, error);
     }
   };
+
+  const readCookie = () => {
+    const userCookie = Cookies.get("user");
+    if (userCookie) {
+      setStep("Page6");
+    } else {
+      setStep("Menu");
+    }
+  };
+
+  useEffect(() => {
+    readCookie();
+  }, []);
 
   switch (step) {
     case "Menu":
@@ -110,6 +129,8 @@ const MainPage = () => {
           Action2={goToPage7}
           Action3={goToPage13}
           Action4={goToPage15}
+          Action5={getUserInfo}
+          Action6={goToMenu}
         />
       );
     case "Page7":
@@ -146,6 +167,7 @@ const MainPage = () => {
     default:
       break;
   }
+
   return <div>MainPage</div>;
 };
 

@@ -4,19 +4,11 @@ import React, { useMemo } from "react";
 import DeviceOrientation, { Orientation } from "react-screen-orientation";
 import { UserContext } from "./Page/UserContext";
 import { useState } from "react";
-import { useEffect } from "react";
 
 const App = () => {
-  const [value, setValue] = useState({
-    diamond: "0",
-    pakan: "0",
-    egg: "0",
-    milk: "0",
-    meat: "0",
-  });
-  const [selectedAnimalID, setSelectedAnimalID] = useState(0);
-  const [userToken, setUserToken] = useState("");
+  const [value, setValue] = useState({});
   const [userLogin, setUserLogin] = useState({});
+  const [selectedAnimalID, setSelectedAnimalID] = useState(0);
 
   const providerValue = useMemo(
     () => ({
@@ -24,12 +16,10 @@ const App = () => {
       setValue,
       selectedAnimalID,
       setSelectedAnimalID,
-      userToken,
-      setUserToken,
       userLogin,
       setUserLogin,
     }),
-    [value, selectedAnimalID, userToken, userLogin]
+    [value, selectedAnimalID, userLogin]
   );
 
   return (

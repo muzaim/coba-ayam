@@ -4,9 +4,10 @@ import Pouch from "../../../img/common/pouch.png";
 import Header from "../../../Component/Diatom/Header";
 import { UserContext } from "../../UserContext";
 import axios from "axios";
+import Cookies from "js-cookie";
 
 const Page15 = ({ Action1, Action2, Action3 }) => {
-  const { value, setValue, userToken } = useContext(UserContext);
+  const { value } = useContext(UserContext);
 
   const Makanan = [
     {
@@ -69,12 +70,13 @@ const Page15 = ({ Action1, Action2, Action3 }) => {
   };
 
   const cobaTopup = async (e) => {
+    const userCookie = Cookies.get("user");
     e.preventDefault();
     try {
       let res = await axios.post(
         `${process.env.REACT_APP_BASE_URL}/buy-diamon`,
         {
-          token: userToken,
+          token: userCookie,
           diamon_id: 1,
         }
       );

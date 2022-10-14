@@ -26,8 +26,7 @@ import { useEffect } from "react";
 SwiperCore.use([Navigation, Pagination, EffectCoverflow]);
 
 const Page7 = ({ Action1, Action2, Action3 }) => {
-  const { value, setValue, setSelectedAnimalID, userLogin, userToken } =
-    useContext(UserContext);
+  const { value, setValue, setSelectedAnimalID } = useContext(UserContext);
 
   const goToPage6 = () => {
     Action3();

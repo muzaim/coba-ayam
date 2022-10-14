@@ -5,6 +5,10 @@ import PouchImg from "../../../img/common/pouch.png";
 import MeatImg from "../../../img/common/meat.png";
 import MilkImg from "../../../img/common/milk.png";
 import QuestBookImg from "../../../img/common/questbook.png";
+import { useEffect } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
+import Cookies from "js-cookie";
 
 const Header = ({
   Diamond,
@@ -12,20 +16,28 @@ const Header = ({
   Pouch,
   Milk,
   Meat,
-  PanganTersedia,
   QuestBook,
   BackButton,
+  LogOut,
   Action1,
   Action2,
+  ActionLogout,
   harta,
-  setHarta,
 }) => {
   const openPage6 = () => {
     Action1();
   };
+
+  const goToMenu = () => {
+    Cookies.remove("user");
+    ActionLogout();
+  };
+
   function numberWithCommas(num) {
-    return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    let newNum = parseInt(num);
+    return newNum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   }
+
   const DiamondDiv = () => {
     return (
       <div className="w-40 h-10 bg-[#f6f3e4] rounded-full items-center flex">
@@ -34,7 +46,7 @@ const Header = ({
         </div>
         <div className="w-full text-start ">
           <span className="font-bold  text-sm text-[#782443]">
-            {numberWithCommas(harta.diamond)}
+            {numberWithCommas(harta.diamon)}
           </span>
         </div>
       </div>
@@ -49,7 +61,7 @@ const Header = ({
         </div>
         <div className="w-full text-start ">
           <span className="font-bold  text-sm text-[#782443]">
-            {numberWithCommas(harta.egg)} Butir
+            {numberWithCommas(harta.hasil_ternak[1].qty)} Butir
           </span>
         </div>
       </div>
@@ -79,7 +91,7 @@ const Header = ({
         </div>
         <div className="w-full text-start ">
           <span className="font-bold  text-sm text-[#782443]">
-            {numberWithCommas(harta.milk)} Liter
+            {numberWithCommas(harta.hasil_ternak[2].qty)} Liter
           </span>
         </div>
       </div>
@@ -94,18 +106,7 @@ const Header = ({
         </div>
         <div className="w-full text-start ">
           <span className="font-bold  text-sm text-[#782443]">
-            {numberWithCommas(harta.meat)} Kilogram
-          </span>
-        </div>
-      </div>
-    );
-  };
-  const PanganTersediaDiv = () => {
-    return (
-      <div className="w-40 h-10 bg-[#f6f3e4] rounded-full  flex items-center ">
-        <div className="w-full text-center">
-          <span className="font-bold  text-sm text-[#782443]">
-            Pangan Tersedia
+            {numberWithCommas(harta.hasil_ternak[3].qty)} Kilogram
           </span>
         </div>
       </div>
@@ -135,6 +136,27 @@ const Header = ({
     );
   };
 
+  const LogOutDiv = () => {
+    return (
+      <div
+        className="w-40 h-10 bg-white rounded-full items-center flex active:bg-[#51a9d5] overflow-hidden"
+        onClick={goToMenu}
+      >
+        <div className="w-full h-full ">
+          <div className="flex h-full justify-center gap-2 items-center group active:border-2 active:border-white rounded-full">
+            <FontAwesomeIcon
+              icon={faRightFromBracket}
+              className="group-active:text-white text-[#51a9d5]"
+            />
+            <span className="font-bold  text-sm tracking-widest text-[#51a9d5] group-active:text-white">
+              Logout
+            </span>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
   const Tampilan = () => {
     return (
       <div className="flex h-full py-1 justify-between items-center z-10">
@@ -159,10 +181,6 @@ const Header = ({
           {Milk ? <MilkDiv /> : null}
           {/* MILK END */}
 
-          {/* PANGAN TERSEDIA */}
-          {PanganTersedia ? <PanganTersediaDiv /> : null}
-          {/* PANGAN TERSEDIA END*/}
-
           {/* QUEST BOOK */}
           {BackButton ? <BackButtonDiv /> : null}
           {/* QUEST BOOK END*/}
@@ -171,9 +189,14 @@ const Header = ({
         {/* QUEST BOOK */}
         {QuestBook ? <QuestBookDiv /> : null}
         {/* QUEST BOOK END*/}
+
+        {/* QUEST BOOK */}
+        {LogOut ? <LogOutDiv /> : null}
+        {/* QUEST BOOK END*/}
       </div>
     );
   };
+
   return (
     <>
       <Tampilan />
