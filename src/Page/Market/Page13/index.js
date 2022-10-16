@@ -1,14 +1,17 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import Chef1 from "../../../img/common/chef1.png";
 import Jualan from "../../../img/common/jualan.png";
 import Play from "../../../img/usage/play.png";
 import Header from "../../../Component/Diatom/Header";
 import { UserContext } from "../../UserContext";
+import axios from "axios";
+import Cookies from "js-cookie";
 
 const Page13 = ({ Action1, Action2 }) => {
   const { value, setValue } = useContext(UserContext);
   const [index, setIndex] = useState(0);
   const [backDialog, setBackDialog] = useState(false);
+  const [market, setMarket] = useState([]);
 
   const goToPage6 = () => {
     Action2();
@@ -38,11 +41,11 @@ const Page13 = ({ Action1, Action2 }) => {
   ];
 
   const checkNumber = (number) => {
-    if (number > Dialog.length - 1) {
+    if (number > 21) {
       return 0;
     }
     if (number < 0) {
-      return Dialog.length - 1;
+      return 21;
     }
     return number;
   };
@@ -57,6 +60,22 @@ const Page13 = ({ Action1, Action2 }) => {
   const openBackDialog = () => {
     setBackDialog((current) => !current);
   };
+
+  const getMarket = async () => {
+    try {
+      let marketData = await axios.get(
+        `${process.env.REACT_APP_BASE_URL}/request-market`
+      );
+      let res = marketData.data.data;
+      setMarket((currentList) => [...currentList, res]);
+    } catch (error) {
+      console.log(`dari ketika getUsrInfo `, error);
+    }
+  };
+
+  useEffect(() => {
+    getMarket();
+  }, []);
 
   return (
     <div className="w-full h-screen overflow-hidden bg-caffe bg-cover mx-auto lg:max-w-6xl lg:h-[70%]">
@@ -131,7 +150,19 @@ const Page13 = ({ Action1, Action2 }) => {
                 <div className="absolute z-10 right-[12rem] top-2">
                   <div className="w-48 h-24 p-3 bg-[#782443] rounded-xl ml-5 ring-offset-2 ring-4 ring-[#782443] ">
                     <div className="w-32 h-full text-center items-center flex mx-auto">
-                      <span className="text-white">{Dialog[index].text}</span>
+                      {market.map((item, idx) => {
+                        return (
+                          <div key={idx}>
+                            <p className="text-white">
+                              Kamu ingin menjual{" "}
+                              <b>{item[index].product.name}</b> {""}
+                              sebesar {""}
+                              <b>{item[index].qty}</b> {""}
+                              {item[index].product.satuan}?
+                            </p>
+                          </div>
+                        );
+                      })}
                     </div>
                   </div>
                 </div>

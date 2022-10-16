@@ -102,8 +102,8 @@ const Menu = ({ Action1, Action2 }) => {
           }
         );
         let dataUser = userInfo.data.Data;
-        setValue(dataUser.user_wallet);
         setUserLogin(dataUser.user_active);
+        setValue(dataUser.user_wallet);
 
         // navigate
         // angka 2 belum tutor

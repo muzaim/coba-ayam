@@ -1,15 +1,20 @@
 import React, { useContext } from "react";
-import Shop from "../../../img/common/shop.png";
-import Barn from "../../../img/common/barn.png";
+import EggImg from "../../../img/common/egg.png";
+import MeatImg from "../../../img/common/meat.png";
+import MilkImg from "../../../img/common/milk.png";
 import ArrowDown from "../../../img/usage/down.png";
 import { UserContext } from "../../UserContext";
 import axios from "axios";
 import { useEffect } from "react";
-
+import Cookies from "js-cookie";
 import Header from "../../../Component/Diatom/Header";
+import { useState } from "react";
 
 const Page6 = ({ Action1, Action2, Action3, Action4, Action5, Action6 }) => {
   const { value, setValue } = useContext(UserContext);
+  const [telur, setTelur] = useState(null);
+  const [daging, setDaging] = useState(null);
+  const [susu, setSusu] = useState(null);
 
   const goToMenu = () => {
     Action6();
@@ -35,10 +40,34 @@ const Page6 = ({ Action1, Action2, Action3, Action4, Action5, Action6 }) => {
     Action5();
   };
 
-  const doLogOut = () => {};
+  const getUserInfo2 = async () => {
+    const userCookie = Cookies.get("user");
+    try {
+      let userInfo = await axios.get(
+        `${process.env.REACT_APP_BASE_URL}/user-info`,
+        {
+          params: {
+            token: userCookie,
+          },
+        }
+      );
+      let dataUser = userInfo.data.Data;
+      setDaging(dataUser.user_wallet.hasil_ternak[3].qty);
+      setSusu(dataUser.user_wallet.hasil_ternak[2].qty);
+      setTelur(dataUser.user_wallet.hasil_ternak[1].qty);
+
+      // console.log(`ini data user dari main page`, dataUser);
+      // console.log(`info`, info);
+      // console.log(`harta`, harta);
+    } catch (error) {
+      console.log(`dari ketika getUsrInfo `, error);
+    }
+  };
 
   useEffect(() => {
     getUserInfo();
+    getUserInfo2();
+    // console.log(`ini value`, value);
   }, []);
 
   return (
@@ -142,21 +171,41 @@ const Page6 = ({ Action1, Action2, Action3, Action4, Action5, Action6 }) => {
         {/* FOOTER */}
         <div class="h-[10%]">
           <div class="w-[25%] flex flex-col relative gap-2 py-3 -mt-10">
-            <div className="w-44 py-2 bg-[#5e17eb] text-center rounded-full active:bg-[#ffffff] group">
-              <span className="text-white font-semibold group-active:text-[#5e17eb] ">
-                Daging {value.meat} Kg
+            <div className="w-40 h-10 bg-blue-600 rounded-full items-center flex justify-center gap-1">
+              <div className="flex items-center justify-center ">
+                <img src={MeatImg} alt="" className="w-8" />
+              </div>
+              <span className="font-bold  text-sm text-white">
+                {daging} Butir
               </span>
             </div>
-            <div className="w-44 py-2 bg-[#5e17eb] text-center rounded-full active:bg-[#ffffff] group">
-              <span className="text-white font-semibold group-active:text-[#5e17eb] ">
-                Susu {value.milk} Liter
+
+            <div className="w-40 h-10 bg-blue-600 rounded-full items-center flex justify-center gap-1">
+              <div className="flex items-center justify-center ">
+                <img src={MilkImg} alt="" className="w-8" />
+              </div>
+
+              <span className="font-bold  text-sm text-white">
+                {susu} Liter
               </span>
             </div>
-            <div className="w-44 py-2 bg-[#5e17eb] text-center rounded-full active:bg-[#ffffff] group">
-              <span className="text-white font-semibold group-active:text-[#5e17eb] ">
-                Telur {value.egg} Butir
+
+            <div className="w-40 h-10 bg-blue-600 rounded-full items-center flex justify-center gap-1">
+              <div className="flex items-center justify-center ">
+                <img src={EggImg} alt="" className="w-8" />
+              </div>
+              <span className="font-bold  text-sm text-white">
+                {telur} Butir
               </span>
             </div>
+
+            <Header
+              // Milk={true}
+              // Milk={true}
+              // Egg={true}
+              harta={value}
+              setHarta={setValue}
+            />
           </div>
         </div>
         {/* FOOTER END*/}

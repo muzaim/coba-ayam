@@ -82,7 +82,7 @@ const Header = ({
       </div>
     );
   };
-
+  
   const MilkDiv = () => {
     return (
       <div className="w-40 h-10 bg-[#f6f3e4] rounded-full items-center flex">

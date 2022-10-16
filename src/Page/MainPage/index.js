@@ -19,7 +19,7 @@ import axios from "axios";
 import Cookies from "js-cookie";
 
 const MainPage = () => {
-  const { userLogin, setUserLogin, setValue, value } = useContext(UserContext);
+  const { setUserLogin, setValue, value } = useContext(UserContext);
   const [step, setStep] = useState("Menu");
 
   const goToMenu = () => {
@@ -87,14 +87,14 @@ const MainPage = () => {
         }
       );
       let dataUser = userInfo.data.Data;
-      setValue(dataUser.user_wallet);
-      setUserLogin(dataUser.user_active);
+      await setValue(dataUser.user_wallet);
+      await setUserLogin(dataUser.user_active);
 
       // console.log(`ini data user dari main page`, dataUser);
       // console.log(`info`, info);
-      // console.log(`harta`, harta);
+      // console.log(`harta`, value);
     } catch (error) {
-      console.log(`dari ketika getUsrInfo `, error);
+      console.log(error);
     }
   };
 

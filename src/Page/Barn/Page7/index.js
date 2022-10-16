@@ -13,7 +13,6 @@ import Header from "../../../Component/Diatom/Header";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Navigation, Pagination, EffectCoverflow } from "swiper";
 import "swiper/css";
-import axios from "axios";
 import { UserContext } from "../../UserContext";
 
 // Import Swiper styles
@@ -21,7 +20,6 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
-import { useEffect } from "react";
 
 SwiperCore.use([Navigation, Pagination, EffectCoverflow]);
 
