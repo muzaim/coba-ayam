@@ -147,7 +147,7 @@ const Page7 = ({ Action1, Action2, Action3 }) => {
                     {Hewan.map((item) => {
                       const { id, name, image, kenyang } = item;
                       return (
-                        <SwiperSlide>
+                        <SwiperSlide key={id}>
                           <div
                             key={id}
                             className="flex justify-center items-center bg-papan1 bg-[length:200px_160px] bg-center bg-no-repeat cursor-pointer mt-3"

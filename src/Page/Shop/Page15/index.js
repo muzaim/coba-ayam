@@ -114,7 +114,10 @@ const Page15 = ({ Action1, Action2, Action3 }) => {
           <div className="grid grid-rows-3 grid-cols-3 grid-flow-col gap-3 ">
             {Makanan.map((item) => {
               return (
-                <div className=" flex items-center justify-center">
+                <div
+                  className=" flex items-center justify-center"
+                  key={item.id}
+                >
                   <div className="w-52  py-2 bg-[#f6f3e4] rounded-full items-center flex justify-center active:bg-[#b6def2]">
                     <img src={Pouch} alt="" className="w-7" />
                     <span className="font-bold  text-sm text-[#782443]">

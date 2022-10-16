@@ -184,6 +184,7 @@ const Menu = ({ Action1, Action2 }) => {
                 type="password"
                 placeholder="Password"
                 className="h-10 rounded-lg px-3 w-full  outline-pink-500 outline-offset-5 outline-5"
+                onKeyPress={(e) => EnterHandler(e)}
               />
               {/* <i className="text-[#00fcb6]" onClick={togglePasswordVisiblity}>
                 {eye}
@@ -213,6 +214,14 @@ const Menu = ({ Action1, Action2 }) => {
       </div>
     );
   };
+
+  const EnterHandler = (e) => {
+    if (e.key === "Enter") {
+      handleSubmit(e);
+    }
+  };
+
+  useEffect(() => {});
 
   const RegisterForm = () => {
     return (
@@ -292,6 +301,7 @@ const Menu = ({ Action1, Action2 }) => {
       </div>
     );
   };
+
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
