@@ -108,7 +108,8 @@ const Menu = ({ Action1, Action2 }) => {
         // navigate
         // angka 2 belum tutor
         // selain 2 sudah tutor
-        if (dataUser.user_active.id === 2) {
+        // console.log(dataUser.user_active.active_tutor);
+        if (dataUser.user_active.active_tutor === "0") {
           goToPage6();
           // goToPage2();
         } else {
