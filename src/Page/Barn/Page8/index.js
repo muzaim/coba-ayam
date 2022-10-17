@@ -6,6 +6,7 @@ import Cow2 from "../../../img/common/cow2.png";
 import AyamKecil from "../../../img/common/ayamkecil.png";
 import Kelinci from "../../../img/common/kelinci.png";
 import Keledai from "../../../img/common/keledai.png";
+import Next from "../../../img/usage/play.png";
 import Kerbau from "../../../img/common/kerbau.png";
 import Kuda from "../../../img/common/kuda.png";
 import Header from "../../../Component/Diatom/Header";
@@ -17,6 +18,10 @@ import Cookies from "js-cookie";
 const Page8 = ({ Action1, Action4 }) => {
   const { value, setValue, selectedAnimalID } = useContext(UserContext);
   const [hewan, setHewan] = useState([]);
+  const [dialog, setDialog] = useState({
+    show: false,
+    message: "",
+  });
 
   const goToPage7 = () => {
     Action1();
@@ -113,19 +118,32 @@ const Page8 = ({ Action1, Action4 }) => {
   const cobaBeliPangan = async () => {
     const userCookie = Cookies.get("user");
     try {
-      let res = await axios.post(
+      let hit = await axios.post(
         `${process.env.REACT_APP_BASE_URL}/buy-pakan`,
         {
           token: userCookie,
           pakan_id: 1,
         }
       );
-      let data = res.data;
-      getUserInfo();
-      console.log(data);
+      let res = hit.data.message;
+      setDialog({
+        show: true,
+        message: res,
+      });
     } catch (error) {
-      console.log(error);
+      setDialog({
+        show: true,
+        message: error.response.data.message,
+      });
     }
+  };
+
+  const tutupNoDiamondDialog = () => {
+    setDialog({
+      show: false,
+      message: "",
+    });
+    getUserInfo();
   };
 
   const getHewan = () => {
@@ -142,14 +160,34 @@ const Page8 = ({ Action1, Action4 }) => {
       <div className="w-[90%] h-full mx-auto ">
         {/* HEADER */}
         <div class="h-[15%] ">
-          <Header Pouch={true} harta={value} setHarta={setValue} />
+          <Header
+            Diamond={true}
+            Pouch={true}
+            harta={value}
+            setHarta={setValue}
+          />
         </div>
 
         {/* HEADER END */}
         {/* CONTENT */}
         <div class="w-full h-[75%]">
           <div class="w-full h-full justify-center flex items-start">
-            <div className="w-full h-full flex flex-col">
+            <div className="w-full h-full flex flex-col relative">
+              {dialog.show ? (
+                <div className="absolute w-80 h-32 bg-[#782443] rounded-xl ml-5 ring-offset-2 ring-4 ring-[#782443] left-52 z-50">
+                  <div className="w-full h-full px-16 text-center items-center flex">
+                    <span className="text-white text-xl">{dialog.message}</span>
+                  </div>
+                  <div className="flex justify-end h-6 -mt-10 mr-5">
+                    <img
+                      src={Next}
+                      alt=""
+                      className="w-6 animate-pulse"
+                      onClick={tutupNoDiamondDialog}
+                    />
+                  </div>
+                </div>
+              ) : null}
               <div className="w-full h-10 flex justify-center items-center lg:h-20 mb-2">
                 <span className="text-white text-xl tracking-widest font-bold uppercase">
                   beri pakan ternakku!

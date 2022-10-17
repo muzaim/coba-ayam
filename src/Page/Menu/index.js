@@ -110,10 +110,10 @@ const Menu = ({ Action1, Action2 }) => {
         // selain 2 sudah tutor
         // console.log(dataUser.user_active.active_tutor);
         if (dataUser.user_active.active_tutor === "0") {
+          // goToPage6();
           goToPage6();
-          // goToPage2();
         } else {
-          goToPage6();
+          goToPage2();
         }
       } catch (error) {
         console.log(error);

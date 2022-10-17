@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import Cewek from "../../../img/common/npcayam.png";
 import Next from "../../../img/usage/play.png";
 import Typewriter from "typewriter-effect";
+import axios from "axios";
+import { useEffect } from "react";
+import Cookies from "js-cookie";
 
 const Page5 = ({ Action1 }) => {
   const [skipDialog, setSkipDalog] = useState(false);
@@ -42,8 +45,18 @@ const Page5 = ({ Action1 }) => {
     );
   };
 
-  const goToPage6 = () => {
-    Action1();
+  const goToPage6 = async () => {
+    const userCookie = Cookies.get("user");
+    try {
+      await axios.get(`${process.env.REACT_APP_BASE_URL}/tutor-update`, {
+        params: {
+          token: userCookie,
+        },
+      });
+      Action1();
+    } catch (error) {
+      console.log(`dari ketika getUsrInfo `, error);
+    }
   };
 
   const NextButtonDiv = () => {
