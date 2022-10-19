@@ -22,41 +22,51 @@ import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import { useState } from "react";
 import { useEffect } from "react";
+
 SwiperCore.use([Navigation, Pagination, EffectCoverflow]);
 
-const Page12 = ({ Action1, Action2 }) => {
+const Page12 = ({ Action1, Action2, Action3 }) => {
   const { value, setValue } = useContext(UserContext);
   const [ternakTersedia, setTernakTersedia] = useState([]);
+  const [dialog, setDialog] = useState({
+    show: false,
+    message: "",
+  });
 
-  const Hewan = [
-    {
-      id: 1,
-      name: "Ayam",
-      skill: "Max 25 Kg daging perhari",
-      image: Chicken2,
-      harga: 100,
-      benefit: "101 - 5050 butir/hari",
-      durasi: 30,
-    },
-    {
-      id: 2,
-      name: "Sapi",
-      skill: "Max 10 Kg daging perhari",
-      image: Cow2,
-      harga: 600,
-      benefit: "102 - 1020 liter susu/hari",
-      durasi: 30,
-    },
-    {
-      id: 3,
-      name: "Domba",
-      skill: "Max 10 Kg daging perhari",
-      image: Domba,
-      harga: 300,
-      benefit: "102 - 1020 daging/hari",
-      durasi: 5,
-    },
-  ];
+  const getUserInfo = () => {
+    Action3();
+  };
+  const tutupAlert = () => {
+    setDialog({
+      show: false,
+      message: "",
+    });
+    getUserInfo();
+  };
+  const buyTernak = async (e) => {
+    const ternakDipilih = e.currentTarget.getAttribute("data-id");
+    const userCookie = Cookies.get("user");
+    try {
+      let beli = await axios.post(
+        `${process.env.REACT_APP_BASE_URL}/buy-ternak`,
+        {
+          token: userCookie,
+          ternak_id: ternakDipilih,
+        }
+      );
+      let res = beli.data.message;
+
+      setDialog({
+        show: true,
+        message: res,
+      });
+    } catch (error) {
+      setDialog({
+        show: true,
+        message: error.response.data.message,
+      });
+    }
+  };
 
   const getTernak = async () => {
     try {
@@ -101,7 +111,19 @@ const Page12 = ({ Action1, Action2 }) => {
         {/* CONTENT */}
         <div className="w-full h-[75%] animate-fadeInKu">
           <div className="w-full h-full justify-center flex items-start">
-            <div className="w-full h-full flex flex-col">
+            <div className="w-full h-full flex flex-col relative">
+              {dialog.show ? (
+                <div
+                  className="absolute w-80 h-20 bg-[#782443] rounded-xl ml-5 ring-offset-2 ring-4 ring-[#782443] left-52 z-50 animate-fadeInKu "
+                  onClick={tutupAlert}
+                >
+                  <div className="w-full h-full px-16 text-center items-center flex animate-pulse">
+                    <span className="text-white text-xl">
+                      {dialog.message}!
+                    </span>
+                  </div>
+                </div>
+              ) : null}
               <div className="w-full h-10 flex justify-center items-center lg:h-20 ">
                 <span className="text-white text-xl tracking-[0.4em] font-bold uppercase">
                   beli ternak
@@ -109,7 +131,7 @@ const Page12 = ({ Action1, Action2 }) => {
               </div>
               <div className="w-full h-full flex justify-center items-center -mt-8">
                 {/* TENGAH */}
-                <div className="flex w-full h-full">
+                <div className="flex w-full h-full overflow-hidden">
                   <Swiper
                     spaceBetween={50}
                     slidesPerView={3}
@@ -119,10 +141,10 @@ const Page12 = ({ Action1, Action2 }) => {
                     }}
                   >
                     {ternakTersedia.map((item) => {
-                      const { name, avatar, duration, max_benefit, price } =
+                      const { id, name, avatar, duration, max_benefit, price } =
                         item;
                       return (
-                        <SwiperSlide key={name}>
+                        <SwiperSlide key={id}>
                           <div
                             className="flex h-full w-full bg-papan2 bg-[length:220px_200px] bg-no-repeat bg-center  justify-center items-center"
                             key={name}
@@ -142,7 +164,11 @@ const Page12 = ({ Action1, Action2 }) => {
                               <p className="text-center text-[10px] font-semibold ">
                                 Benefit : {max_benefit}
                               </p>
-                              <div className="mt-2 w-28 py-2 bg-blue-600 text-center rounded-full">
+                              <div
+                                className="mt-2 w-28 py-2 bg-blue-600 text-center rounded-full"
+                                data-id={id}
+                                onClick={buyTernak}
+                              >
                                 <span className="tracking-[0.3em] uppercase text-white">
                                   beli
                                 </span>

@@ -138,7 +138,7 @@ const Page8 = ({ Action1, Action4 }) => {
     }
   };
 
-  const tutupNoDiamondDialog = () => {
+  const tutupAlert = () => {
     setDialog({
       show: false,
       message: "",
@@ -176,7 +176,7 @@ const Page8 = ({ Action1, Action4 }) => {
               {dialog.show ? (
                 <div
                   className="absolute w-80 h-20 bg-[#782443] rounded-xl ml-5 ring-offset-2 ring-4 ring-[#782443] left-52 z-50 animate-fadeInKu "
-                  onClick={tutupNoDiamondDialog}
+                  onClick={tutupAlert}
                 >
                   <div className="w-full h-full px-16 text-center items-center flex animate-pulse">
                     <span className="text-white text-xl">

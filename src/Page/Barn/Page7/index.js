@@ -29,7 +29,7 @@ SwiperCore.use([Navigation, Pagination, EffectCoverflow]);
 
 const Page7 = ({ Action1, Action2, Action3 }) => {
   const { value, setValue, setSelectedAnimalID } = useContext(UserContext);
-  const [userTernak, setUserTernak] = useState(null);
+  const [userTernak, setUserTernak] = useState([]);
 
   const goToPage6 = () => {
     Action3();
@@ -123,7 +123,7 @@ const Page7 = ({ Action1, Action2, Action3 }) => {
       );
       let dataUser = userInfo.data.Data;
       setUserTernak(dataUser);
-      console.log(userTernak);
+      console.log(dataUser);
 
       // console.log(`ini data user dari main page`, dataUser);
       // console.log(`info`, info);

@@ -15,6 +15,11 @@ const Page15 = ({ Action1, Action2, Action3 }) => {
   const [daftarHargaPakan, setDaftarHargaPakan] = useState([]);
   const [diamodDipilih, setDiamondDipilih] = useState("");
   const [pakanDipilih, setPakanDipilih] = useState("");
+  const [dialog, setDialog] = useState({
+    show: false,
+    message: "",
+  });
+
   const openDiamondPanel = () => {
     setDiamondPanel(!diamondPanel);
     setPakanPanel(false);
@@ -60,10 +65,16 @@ const Page15 = ({ Action1, Action2, Action3 }) => {
           diamon_id: diamodDipilih,
         }
       );
-      let res = beli.data;
-      console.log(res);
+      let res = beli.data.message;
+      setDialog({
+        show: true,
+        message: res,
+      });
     } catch (error) {
-      console.log(`dari ketika getUsrInfo `, error);
+      setDialog({
+        show: true,
+        message: error.response.data.message,
+      });
     }
   };
 
@@ -95,10 +106,16 @@ const Page15 = ({ Action1, Action2, Action3 }) => {
           pakan_id: pakanDipilih,
         }
       );
-      let res = beli.data;
-      console.log(res);
+      let res = beli.data.message;
+      setDialog({
+        show: true,
+        message: res,
+      });
     } catch (error) {
-      console.log(`dari ketika getUsrInfo `, error);
+      setDialog({
+        show: true,
+        message: error.response.data.message,
+      });
     }
   };
 
@@ -193,10 +210,10 @@ const Page15 = ({ Action1, Action2, Action3 }) => {
             const { id, diamon, price } = item;
             return (
               <button
-                className="w-52  py-2 bg-[#f6f3e4] rounded-full items-center flex justify-center focus:outline-none focus:ring-sky-400 focus:bg-sky-100 focus:ring-2"
+                className="w-52  py-2 bg-[#f6f3e4] rounded-full items-center flex justify-center focus:outline-none focus:ring-sky-400 focus:bg-sky-100 focus:ring-2 focus-visible:ring"
                 key={id}
                 data-id={id}
-                onClick={() => tangkapDiamondDipilih()}
+                onClick={(e) => tangkapDiamondDipilih(e)}
               >
                 <img src={Diamond} alt="" className="w-7" />
                 <span className="font-bold  text-sm text-sky-400">
@@ -297,6 +314,13 @@ const Page15 = ({ Action1, Action2, Action3 }) => {
     getDaftarHargaDimond();
     getDaftarHargaPakan();
   }, []);
+  const tutupAlert = () => {
+    setDialog({
+      show: false,
+      message: "",
+    });
+    getUserInfo();
+  };
 
   return (
     <div className="w-full h-screen overflow-hidden bg-outFarm bg-cover mx-auto lg:max-w-6xl lg:h-[70%]">
@@ -312,6 +336,16 @@ const Page15 = ({ Action1, Action2, Action3 }) => {
             harta={value}
             setHarta={setValue}
           /> */}
+          {dialog.show ? (
+            <div
+              className="absolute top-10 w-80 h-20 bg-[#782443] rounded-xl ml-5 ring-offset-2 ring-4 ring-[#782443] left-52 z-50 animate-fadeInKu "
+              onClick={tutupAlert}
+            >
+              <div className="w-full h-full px-16 text-center items-center flex animate-pulse">
+                <span className="text-white text-xl">{dialog.message}!</span>
+              </div>
+            </div>
+          ) : null}
         </div>
         {/* HEADER END */}
         {/* CONTENT */}
