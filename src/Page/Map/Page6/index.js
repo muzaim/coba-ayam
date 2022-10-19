@@ -74,7 +74,7 @@ const Page6 = ({ Action1, Action2, Action3, Action4, Action5, Action6 }) => {
     <div className="w-full h-screen overflow-hidden bg-farmCultivature bg-cover mx-auto lg:max-w-6xl lg:h-[70%]">
       <div className="w-[90%] h-full mx-auto ">
         {/* HEADER */}
-        <div class="h-[15%]">
+        <div className="h-[15%]">
           <Header
             Diamond={true}
             LogOut={true}
@@ -169,8 +169,8 @@ const Page6 = ({ Action1, Action2, Action3, Action4, Action5, Action6 }) => {
         </div>
         {/* CONTENT END*/}
         {/* FOOTER */}
-        <div class="h-[10%]">
-          <div class="w-[25%] flex flex-col relative gap-2 py-3 -mt-10">
+        <div className="h-[10%]">
+          <div className="w-[25%] flex flex-col relative gap-2 py-3 -mt-10">
             <div className="w-40 h-10 bg-blue-600 rounded-full items-center flex justify-center gap-1">
               <div className="flex items-center justify-center ">
                 <img src={MeatImg} alt="" className="w-8" />

@@ -16,7 +16,8 @@ module.exports = {
         jualan: "url('./img/bg/jualan.png')",
       },
       animation: {
-        running: "fill 3.5s linear",
+        running: "fill 1.5s linear",
+        fadeInKu: "fadeInRight 0.3s ease-in-out",
       },
       keyframes: {
         fill: {
@@ -25,6 +26,15 @@ module.exports = {
           },
           "100%": {
             width: "100%",
+          },
+        },
+        fadeInRight: {
+          "0%": {
+            opacity: 0,
+            // transform: "translateX",
+          },
+          "100%": {
+            opacity: 1,
           },
         },
       },

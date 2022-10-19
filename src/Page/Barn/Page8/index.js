@@ -156,10 +156,10 @@ const Page8 = ({ Action1, Action4 }) => {
   }, []);
 
   return (
-    <div className="w-full h-screen overflow-hidden bg-barn bg-cover mx-auto lg:max-w-6xl lg:h-[70%]">
+    <div className="w-full h-screen overflow-hidden bg-barn bg-cover mx-auto lg:max-w-6xl lg:h-[70%] ">
       <div className="w-[90%] h-full mx-auto ">
         {/* HEADER */}
-        <div class="h-[15%] ">
+        <div className="h-[15%] ">
           <Header
             Diamond={true}
             Pouch={true}
@@ -170,21 +170,18 @@ const Page8 = ({ Action1, Action4 }) => {
 
         {/* HEADER END */}
         {/* CONTENT */}
-        <div class="w-full h-[75%]">
-          <div class="w-full h-full justify-center flex items-start">
+        <div className="w-full h-[75%] animate-fadeInKu">
+          <div className="w-full h-full justify-center flex items-start">
             <div className="w-full h-full flex flex-col relative">
               {dialog.show ? (
-                <div className="absolute w-80 h-32 bg-[#782443] rounded-xl ml-5 ring-offset-2 ring-4 ring-[#782443] left-52 z-50">
-                  <div className="w-full h-full px-16 text-center items-center flex">
-                    <span className="text-white text-xl">{dialog.message}</span>
-                  </div>
-                  <div className="flex justify-end h-6 -mt-10 mr-5">
-                    <img
-                      src={Next}
-                      alt=""
-                      className="w-6 animate-pulse"
-                      onClick={tutupNoDiamondDialog}
-                    />
+                <div
+                  className="absolute w-80 h-20 bg-[#782443] rounded-xl ml-5 ring-offset-2 ring-4 ring-[#782443] left-52 z-50 animate-fadeInKu "
+                  onClick={tutupNoDiamondDialog}
+                >
+                  <div className="w-full h-full px-16 text-center items-center flex animate-pulse">
+                    <span className="text-white text-xl">
+                      {dialog.message}!
+                    </span>
                   </div>
                 </div>
               ) : null}

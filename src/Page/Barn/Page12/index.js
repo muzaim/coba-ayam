@@ -64,7 +64,7 @@ const Page12 = ({ Action1, Action2 }) => {
     <div className="w-full h-screen overflow-hidden bg-barn bg-cover mx-auto lg:max-w-6xl lg:h-[70%]">
       <div className="w-[90%] h-full mx-auto">
         {/* HEADER */}
-        <div class="h-[15%]">
+        <div className="h-[15%]">
           <Header
             Diamond={true}
             BackButton={true}
@@ -76,8 +76,8 @@ const Page12 = ({ Action1, Action2 }) => {
         </div>
         {/* HEADER END */}
         {/* CONTENT */}
-        <div class="w-full h-[75%]">
-          <div class="w-full h-full justify-center flex items-start">
+        <div className="w-full h-[75%] animate-fadeInKu">
+          <div className="w-full h-full justify-center flex items-start">
             <div className="w-full h-full flex flex-col">
               <div className="w-full h-10 flex justify-center items-center lg:h-20 ">
                 <span className="text-white text-xl tracking-[0.4em] font-bold uppercase">
@@ -90,7 +90,10 @@ const Page12 = ({ Action1, Action2 }) => {
                   {Hewan.map((item) => {
                     const { name, image, harga, benefit, durasi } = item;
                     return (
-                      <div className="flex h-full w-full bg-papan2 bg-[length:220px_200px] bg-no-repeat bg-center  justify-center items-center">
+                      <div
+                        className="flex h-full w-full bg-papan2 bg-[length:220px_200px] bg-no-repeat bg-center  justify-center items-center"
+                        key={name}
+                      >
                         <div className="flex flex-col h-full w-[70%] items-center">
                           <span className="mt-11 text-white text-sm">
                             {name} - {durasi} hari

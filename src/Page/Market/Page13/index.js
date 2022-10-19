@@ -81,15 +81,13 @@ const Page13 = ({ Action1, Action2 }) => {
 
   useEffect(() => {
     getMarket();
-    // console.log(avaArray);
-    console.log(market);
   }, []);
 
   return (
     <div className="w-full h-screen overflow-hidden bg-caffe bg-cover mx-auto lg:max-w-6xl lg:h-[70%]">
       <div className="w-full h-full mx-auto">
         {/* HEADER */}
-        <div class="w-[90%] h-[15%] mx-auto">
+        <div className="w-[90%] h-[15%] mx-auto">
           <Header
             Diamond={true}
             Egg={true}
@@ -102,12 +100,12 @@ const Page13 = ({ Action1, Action2 }) => {
         </div>
         {/* HEADER END */}
         {/* CONTENT */}
-        <div class="h-full flex">
+        <div className="h-full flex ">
           <div className="w-full h-full z-10 ">
             <div className="relative">
               {/* BACK DIALOG */}
               {backDialog ? (
-                <div className="absolute z-20 right-[16rem] top-5">
+                <div className="absolute z-20 right-[16rem] top-5 animate-fadeInKu">
                   <div className="w-[22rem] h-36 p-5 bg-[#782443] rounded-xl ml-5 ring-offset-2 ring-4 ring-[#782443] flex items-center">
                     <div className="w-full h-32 text-center items-center grid  mx-auto ">
                       <span className="text-white font-semibold text-justify text-base font-openSans">
@@ -135,7 +133,7 @@ const Page13 = ({ Action1, Action2 }) => {
               <div className="absolute right-3 z-20 top-[6.5rem]">
                 <div className="w-48 h-32 my-auto">
                   <div className="w-full h-full flex   items-center align-middle">
-                    <div class="w-full flex flex-col gap-2">
+                    <div className="w-full flex flex-col gap-2">
                       <div
                         className="w-full h-full py-2 bg-blue-500 rounded-full text-center"
                         onClick={() => alert(dialogArray[index])}
@@ -158,7 +156,7 @@ const Page13 = ({ Action1, Action2 }) => {
               </div>
               {/* DIALOG NPC */}
               {backDialog ? null : (
-                <div className="absolute z-10 right-[12rem] top-2">
+                <div className="absolute z-10 right-[12rem] top-2 animate-fadeInKu">
                   <div className="w-48 h-24 p-3 bg-[#782443] rounded-xl ml-5 ring-offset-2 ring-4 ring-[#782443] ">
                     <div className="w-full h-full text-center items-center flex mx-auto">
                       <p className="text-white capitalize">
@@ -170,7 +168,7 @@ const Page13 = ({ Action1, Action2 }) => {
               )}
               {/* BACK */}
               {backDialog ? null : (
-                <div className="absolute z-10 -bottom-[18.6rem] left-20">
+                <div className="absolute z-10 -bottom-[18.6rem] left-20 ">
                   <div
                     className="w-40 h-10 bg-[#329bd1] rounded-full items-center flex active:bg-[#51a9d5]"
                     onClick={openBackDialog}
@@ -184,7 +182,7 @@ const Page13 = ({ Action1, Action2 }) => {
                 </div>
               )}
               {/* NPC */}
-              <div className="w-full h-full bg-green-300 top-[6.5rem] relative">
+              <div className="w-full h-full bg-green-300 top-[6.5rem] relative animate-fadeInKu">
                 <div className="absolute">
                   <img
                     src={avaArray[indexAvatar + 5]}

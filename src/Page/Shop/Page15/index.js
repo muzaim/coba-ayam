@@ -92,7 +92,7 @@ const Page15 = ({ Action1, Action2, Action3 }) => {
     <div className="w-full h-screen overflow-hidden bg-outFarm bg-cover mx-auto lg:max-w-6xl lg:h-[70%]">
       <div className="w-[90%] h-full mx-auto">
         {/* HEADER */}
-        <div class="h-[15%]">
+        <div className="h-[15%]">
           {/* <Header
             Diamond={true}
             Egg={true}
@@ -105,7 +105,7 @@ const Page15 = ({ Action1, Action2, Action3 }) => {
         </div>
         {/* HEADER END */}
         {/* CONTENT */}
-        <div class="w-full">
+        <div className="w-full">
           <div className="col-span-2 h-12 text-center flex justify-center">
             <span className="text-white text-xl tracking-widest font-bold uppercase">
               beri pakan ternakku!

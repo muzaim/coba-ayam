@@ -109,7 +109,7 @@ const Page7 = ({ Action1, Action2, Action3 }) => {
     <div className="w-full h-screen overflow-hidden bg-barn bg-cover mx-auto lg:max-w-6xl lg:h-[70%] ">
       <div className="w-[90%] h-full mx-auto">
         {/* HEADER */}
-        <div class="h-[15%]">
+        <div className="h-[15%]">
           <Header
             Diamond={true}
             Egg={true}
@@ -123,8 +123,8 @@ const Page7 = ({ Action1, Action2, Action3 }) => {
         </div>
         {/* HEADER END */}
         {/* CONTENT */}
-        <div class="w-full h-[65%] ">
-          <div class="w-full h-full justify-center flex items-start">
+        <div className="w-full h-[65%] animate-fadeInKu">
+          <div className="w-full h-full justify-center flex items-start">
             <div className="w-full h-full flex flex-col ">
               <div className="w-full h-10 flex justify-center items-center lg:h-20">
                 <span className="text-white text-xl tracking-widest font-bold uppercase">
@@ -161,9 +161,9 @@ const Page7 = ({ Action1, Action2, Action3 }) => {
                                   alt=""
                                   className="w-[5rem] h-[5rem]  lg:w-60 lg:h-64"
                                 />
-                                <div class="w-32 bg-gray-200 h-3 rounded-full overflow-hidden lg:w-72 lg:h-10 mt-3">
+                                <div className="w-32 bg-gray-200 h-3 rounded-full overflow-hidden lg:w-72 lg:h-10 mt-3">
                                   <div
-                                    class="bg-[#7fa65a] h-3 rounded-full lg:h-10"
+                                    className="bg-[#7fa65a] h-3 rounded-full lg:h-10"
                                     style={{ width: `${kenyang}%` }}
                                   ></div>
                                 </div>
@@ -181,7 +181,7 @@ const Page7 = ({ Action1, Action2, Action3 }) => {
         </div>
         {/* CONTENT END*/}
         {/* FOOTER */}
-        <div class="h-[20%]">
+        <div className="h-[20%] animate-fadeInKu">
           <div className="grid grid-cols-3 gap-3">
             <div className=""></div>
 

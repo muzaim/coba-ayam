@@ -14,16 +14,26 @@ import {
   Page14,
   Page15,
 } from "../index";
+import FormLogin from "../Menu/Login/FormLogin";
+import FormRegister from "../Menu/Register/FormRegister";
 import { UserContext } from "./../UserContext";
 import axios from "axios";
 import Cookies from "js-cookie";
 
 const MainPage = () => {
-  const { setUserLogin, setValue, value } = useContext(UserContext);
+  const { setUserLogin, setValue } = useContext(UserContext);
   const [step, setStep] = useState("Menu");
 
   const goToMenu = () => {
     setStep("Menu");
+  };
+
+  const goToFormLogin = () => {
+    setStep("FormLogin");
+  };
+
+  const goToFormRegister = () => {
+    setStep("FormRegister");
   };
 
   const goToPage2 = () => {
@@ -113,7 +123,19 @@ const MainPage = () => {
 
   switch (step) {
     case "Menu":
-      return <Menu Action1={goToPage2} Action2={goToPage6} />;
+      return <Menu Action1={goToFormLogin} Action2={goToFormRegister} />;
+    case "FormLogin":
+      return (
+        <FormLogin Action1={goToPage2} Action2={goToPage6} Action3={goToMenu} />
+      );
+    case "FormRegister":
+      return (
+        <FormRegister
+          Action1={goToPage2}
+          Action2={goToPage6}
+          Action3={goToMenu}
+        />
+      );
     case "Page2":
       return <Page2 Action1={goToPage3} />;
     case "Page3":
