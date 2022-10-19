@@ -4,13 +4,21 @@ import MeatImg from "../../../img/common/meat.png";
 import MilkImg from "../../../img/common/milk.png";
 import ArrowDown from "../../../img/usage/down.png";
 import { UserContext } from "../../UserContext";
-import axios from "axios";
 import { useEffect } from "react";
+import axios from "axios";
 import Cookies from "js-cookie";
 import Header from "../../../Component/Diatom/Header";
 import { useState } from "react";
 
-const Page6 = ({ Action1, Action2, Action3, Action4, Action5, Action6 }) => {
+const Page6 = ({
+  Action1,
+  Action2,
+  Action3,
+  Action4,
+  Action5,
+  Action6,
+  Action7,
+}) => {
   const { value, setValue } = useContext(UserContext);
   const [telur, setTelur] = useState(null);
   const [daging, setDaging] = useState(null);
@@ -34,6 +42,10 @@ const Page6 = ({ Action1, Action2, Action3, Action4, Action5, Action6 }) => {
 
   const goToPage15 = () => {
     Action4();
+  };
+
+  const goToPage16 = () => {
+    Action7();
   };
 
   const getUserInfo = () => {
@@ -105,7 +117,7 @@ const Page6 = ({ Action1, Action2, Action3, Action4, Action5, Action6 }) => {
           {/* KE BISNIS */}
           <div
             className="top-[0rem] left-[14rem] absolute group animate-bounce"
-            onClick={goToPage15}
+            onClick={goToPage16}
           >
             <div className="flex flex-col justify-center items-center">
               <span className="text-2xl text-white tracking-wider font-comic">

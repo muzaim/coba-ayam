@@ -9,13 +9,19 @@ const eyeSlash = <FontAwesomeIcon icon={faEyeSlash} />;
 
 const FormRegister = ({ Action1, Action2, Action3 }) => {
   const { setUserLogin, setValue } = useContext(UserContext);
-  const [dataLogin, setDataLogin] = useState({
+  const [dataRegister, setDataRegister] = useState({
     username: "",
+    phone: "",
+    user_ref: "",
+    email: "",
     password: "",
+    password_confirmation: "",
   });
   const [wrongPassword, setWrongPassword] = useState(false);
   const [empty, setEmpty] = useState(false);
   const [passwordShown, setPasswordShown] = useState(false);
+  const [passwordConfirmShow, setPasswordConfirmShown] = useState(false);
+  const [registerSuccess, setRegisterSuccess] = useState(false);
 
   const goToPage2 = () => {
     Action1();
@@ -30,7 +36,7 @@ const FormRegister = ({ Action1, Action2, Action3 }) => {
   };
 
   const changeHandler = (e) => {
-    setDataLogin({ ...dataLogin, [e.target.name]: e.target.value });
+    setDataRegister({ ...dataRegister, [e.target.name]: e.target.value });
   };
 
   const EnterHandler = (e) => {
@@ -44,54 +50,43 @@ const FormRegister = ({ Action1, Action2, Action3 }) => {
     setPasswordShown(passwordShown ? false : true);
   };
 
+  const togglePasswordConfirmVisiblity = (e) => {
+    e.preventDefault();
+    setPasswordConfirmShown(passwordConfirmShow ? false : true);
+  };
+
   // LOGIN
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData();
-    formData.append("username", dataLogin.username);
-    formData.append("password", dataLogin.password);
+    formData.append("username", dataRegister.username);
+    formData.append("phone", dataRegister.phone);
+    formData.append("user_ref", dataRegister.user_ref);
+    formData.append("password", dataRegister.password);
+    formData.append(
+      "password_confirmation",
+      dataRegister.password_confirmation
+    );
 
     //if empty
-    if (dataLogin.username === "" || dataLogin.password === "") {
-      setEmpty(true);
-      setWrongPassword(false);
-      return;
-    }
+    // if (dataRegister.username === "" || dataRegister.password === "") {
+    //   setEmpty(true);
+    //   setWrongPassword(false);
+    //   return;
+    // }
 
     // login
     try {
-      let res = await axios.post(
-        `${process.env.REACT_APP_BASE_URL}/login`,
-        formData
-      );
-      let data = res.data;
-      Cookies.set("user", data.token, { expires: 1 });
-      // is tutorial
-      try {
-        let userInfo = await axios.get(
-          `${process.env.REACT_APP_BASE_URL}/user-info`,
-          {
-            params: {
-              token: data.token,
-            },
-          }
-        );
-        let dataUser = userInfo.data.Data;
-        setUserLogin(dataUser.user_active);
-        setValue(dataUser.user_wallet);
-        // navigate
-        // angka 2 belum tutor
-        // selain 2 sudah tutor
-        // console.log(dataUser.user_active.active_tutor);
-        if (dataUser.user_active.active_tutor === "0") {
-          // goToPage6();
-          goToPage6();
-        } else {
-          goToPage2();
-        }
-      } catch (error) {
-        console.log(error);
-      }
+      await axios.post(`${process.env.REACT_APP_BASE_URL}/register`, formData);
+      setRegisterSuccess(true);
+      setDataRegister({
+        username: "",
+        phone: "",
+        user_ref: "",
+        email: "",
+        password: "",
+        password_confirmation: "",
+      });
     } catch (error) {
       setWrongPassword(true);
     }
@@ -102,8 +97,12 @@ const FormRegister = ({ Action1, Action2, Action3 }) => {
       <div className="h-full">
         <div className="flex h-full items-end justify-center pb-5 ">
           <div className="w-full h-full  flex items-center animate-fadeInKu">
-            <div className="w-[40%] h-52 mx-auto">
-              <form action="" className="flex flex-col gap-4">
+            <div className="w-[60%] h-52 mx-auto -mt-10">
+              <form
+                action=""
+                className="flex flex-col gap-4"
+                onSubmit={handleSubmit}
+              >
                 {wrongPassword ? (
                   <span className="text-center text-red-600 text-lg font-semibold">
                     Username atau password salah!
@@ -114,43 +113,83 @@ const FormRegister = ({ Action1, Action2, Action3 }) => {
                     Masukkan username & password!
                   </span>
                 ) : null}
+                {registerSuccess ? (
+                  <span className="text-center text-green-600 text-lg font-semibold">
+                    Akun berhasil dibuat!
+                  </span>
+                ) : null}
                 <input
-                  // ref={dataLogin.username}
+                  value={dataRegister.username}
                   name="username"
                   type="text"
                   placeholder="Username"
+                  onChange={changeHandler}
                   className="h-10 rounded-lg px-3 outline-pink-500 outline-offset-5 outline-5"
                   onFocus={(e) => {
                     setWrongPassword(false);
                     setEmpty(false);
                   }}
                 />
-                <div className="pass-wrapper bg-white rounded-lg">
-                  <input
-                    type={passwordShown ? "text" : "password"}
-                    onChange={changeHandler}
-                    name="password"
-                    placeholder="Password"
-                    className="h-10 rounded-lg px-3 w-full  outline-pink-500 outline-offset-5 outline-5"
-                    onKeyPress={(e) => EnterHandler(e)}
-                  />
-                  <i
-                    className="text-[#00fcb6]"
-                    onClick={togglePasswordVisiblity}
-                  >
-                    {passwordShown ? eyeSlash : eye}
-                  </i>
-                </div>
                 <input
-                  // ref={dataLogin.username}
-                  name="username"
-                  type="text"
-                  placeholder="Referal"
+                  value={dataRegister.phone}
+                  name="phone"
+                  type="number"
+                  placeholder="Phone"
+                  onChange={changeHandler}
                   className="h-10 rounded-lg px-3 outline-pink-500 outline-offset-5 outline-5"
                   onFocus={(e) => {
                     setWrongPassword(false);
                     setEmpty(false);
                   }}
+                />
+                <div className="flex gap-2 w-full">
+                  <div className="pass-wrapper bg-white rounded-lg w-[50%]">
+                    <input
+                      type={passwordShown ? "text" : "password"}
+                      value={dataRegister.password}
+                      onChange={changeHandler}
+                      name="password"
+                      placeholder="Password"
+                      className="h-10 rounded-lg px-3 w-full  outline-pink-500 outline-offset-5 outline-5"
+                      onKeyPress={(e) => EnterHandler(e)}
+                    />
+                    <i
+                      className="text-[#00fcb6]"
+                      onClick={togglePasswordVisiblity}
+                    >
+                      {passwordShown ? eyeSlash : eye}
+                    </i>
+                  </div>
+                  <div className="pass-wrapper bg-white rounded-lg w-[50%]">
+                    <input
+                      type={passwordConfirmShow ? "text" : "password"}
+                      value={dataRegister.password_confirmation}
+                      onChange={changeHandler}
+                      name="password_confirmation"
+                      placeholder="Password confirm"
+                      className="h-10 rounded-lg px-3 w-full  outline-pink-500 outline-offset-5 outline-5"
+                      onKeyPress={(e) => EnterHandler(e)}
+                    />
+                    <i
+                      className="text-[#00fcb6]"
+                      onClick={togglePasswordConfirmVisiblity}
+                    >
+                      {passwordConfirmShow ? eyeSlash : eye}
+                    </i>
+                  </div>
+                </div>
+                <input
+                  value={dataRegister.user_ref}
+                  name="user_ref"
+                  type="text"
+                  onChange={changeHandler}
+                  placeholder="Referal Code"
+                  className="h-10 rounded-lg px-3 outline-pink-500 outline-offset-5 outline-5"
+                  onFocus={(e) => {
+                    setWrongPassword(false);
+                    setEmpty(false);
+                  }}
+                  onKeyPress={(e) => EnterHandler(e)}
                 />
 
                 <div className="w-full h-full flex">

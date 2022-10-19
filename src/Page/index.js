@@ -12,6 +12,8 @@ import { Page13, Page14 } from "./Market";
 
 import { Page15, Simple } from "./Shop";
 
+import { Page16 } from "./Business";
+
 import Rotate from "./Rotate";
 
 export {
@@ -30,6 +32,7 @@ export {
   Page13,
   Page14,
   Page15,
+  Page16,
   Simple,
   Rotate,
 };

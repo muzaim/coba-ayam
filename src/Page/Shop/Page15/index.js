@@ -1,13 +1,106 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import Diamond from "../../../img/common/diamond.png";
 import Pouch from "../../../img/common/pouch.png";
 import Header from "../../../Component/Diatom/Header";
 import { UserContext } from "../../UserContext";
 import axios from "axios";
 import Cookies from "js-cookie";
+import { useState } from "react";
 
 const Page15 = ({ Action1, Action2, Action3 }) => {
   const { value } = useContext(UserContext);
+  const [diamondPanel, setDiamondPanel] = useState(true);
+  const [pakanPanel, setPakanPanel] = useState(false);
+  const [daftarHargaDiamond, setDaftarHargaDiamond] = useState([]);
+  const [daftarHargaPakan, setDaftarHargaPakan] = useState([]);
+  const [diamodDipilih, setDiamondDipilih] = useState("");
+  const [pakanDipilih, setPakanDipilih] = useState("");
+  const openDiamondPanel = () => {
+    setDiamondPanel(!diamondPanel);
+    setPakanPanel(false);
+  };
+
+  const openPakanPanel = () => {
+    setPakanPanel(true);
+    setDiamondPanel(!diamondPanel);
+  };
+
+  const tangkapDiamondDipilih = (e) => {
+    setDiamondDipilih(e.currentTarget.getAttribute("data-id"));
+  };
+  const tangkapPakanDipilih = (e) => {
+    setPakanDipilih(e.currentTarget.getAttribute("data-id"));
+  };
+
+  const getDaftarHargaDimond = async () => {
+    const userCookie = Cookies.get("user");
+    try {
+      let userInfo = await axios.get(
+        `${process.env.REACT_APP_BASE_URL}/harga-diamon`,
+        {
+          params: {
+            token: userCookie,
+          },
+        }
+      );
+      let res = userInfo.data.data;
+      setDaftarHargaDiamond(res);
+    } catch (error) {
+      console.log(`dari ketika getUsrInfo `, error);
+    }
+  };
+
+  const buyDiamond = async () => {
+    const userCookie = Cookies.get("user");
+    try {
+      let beli = await axios.post(
+        `${process.env.REACT_APP_BASE_URL}/buy-diamon`,
+        {
+          token: userCookie,
+          diamon_id: diamodDipilih,
+        }
+      );
+      let res = beli.data;
+      console.log(res);
+    } catch (error) {
+      console.log(`dari ketika getUsrInfo `, error);
+    }
+  };
+
+  const getDaftarHargaPakan = async () => {
+    const userCookie = Cookies.get("user");
+    try {
+      let userInfo = await axios.get(
+        `${process.env.REACT_APP_BASE_URL}/harga-pakan`,
+        {
+          params: {
+            token: userCookie,
+          },
+        }
+      );
+      let res = userInfo.data.data;
+      setDaftarHargaPakan(res);
+    } catch (error) {
+      console.log(`dari ketika getUsrInfo `, error);
+    }
+  };
+
+  const buyPakan = async () => {
+    const userCookie = Cookies.get("user");
+    try {
+      let beli = await axios.post(
+        `${process.env.REACT_APP_BASE_URL}/buy-pakan`,
+        {
+          token: userCookie,
+          pakan_id: pakanDipilih,
+        }
+      );
+      let res = beli.data;
+      console.log(res);
+    } catch (error) {
+      console.log(`dari ketika getUsrInfo `, error);
+    }
+  };
 
   const Makanan = [
     {
@@ -87,6 +180,123 @@ const Page15 = ({ Action1, Action2, Action3 }) => {
       console.log(error);
     }
   };
+  function numberWithCommas(num) {
+    let newNum = parseInt(num);
+    return newNum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
+
+  const TopUpDiamond = () => {
+    return (
+      <>
+        <div className="grid grid-rows-3 grid-cols-3 grid-flow-col gap-3 place-items-center">
+          {daftarHargaDiamond.map((item) => {
+            const { id, diamon, price } = item;
+            return (
+              <button
+                className="w-52  py-2 bg-[#f6f3e4] rounded-full items-center flex justify-center focus:outline-none focus:ring-sky-400 focus:bg-sky-100 focus:ring-2"
+                key={id}
+                data-id={id}
+                onClick={() => tangkapDiamondDipilih()}
+              >
+                <img src={Diamond} alt="" className="w-7" />
+                <span className="font-bold  text-sm text-sky-400">
+                  {numberWithCommas(diamon)}
+                </span>
+                <span className="font-semibold mx-1">=</span>
+                <span></span>
+                <span className="font-semibold text-sm">
+                  Rp {numberWithCommas(price)}
+                </span>
+              </button>
+            );
+          })}
+        </div>
+        <div className="grid grid-cols-2 mt-5">
+          <div className=" px-10 flex justify-end">
+            <button
+              type="button"
+              className="w-52 h-full bg-[#ff1616]  rounded-full py-3 text-center "
+              onClick={goToPage6}
+            >
+              <div className="font-semibold capitalize text-lg tracking-wider text-white">
+                kembali
+              </div>
+            </button>
+          </div>
+          <div className=" px-10 flex justify-start">
+            <button
+              type="button"
+              className="w-52 h-full bg-[#329bd1] rounded-full py-3 text-center "
+              onClick={buyDiamond}
+            >
+              <div className="font-semibold capitalize text-lg tracking-wider text-white">
+                Top Up
+              </div>
+            </button>
+          </div>
+        </div>
+      </>
+    );
+  };
+
+  const TopUpPakan = () => {
+    return (
+      <>
+        <div className="grid grid-rows-3 grid-cols-3 grid-flow-col gap-3 place-items-center">
+          {daftarHargaPakan.map((item) => {
+            const { id, pakan, diamon } = item;
+            return (
+              <button
+                className="w-52  py-2 bg-[#f6f3e4] rounded-full items-center flex justify-center focus:outline-none focus:ring-sky-400 focus:bg-sky-100 focus:ring-2"
+                key={id}
+                data-id={id}
+                onClick={(e) => tangkapPakanDipilih(e)}
+              >
+                <img src={Pouch} alt="" className="w-7" />
+                <span className="font-semibold  text-sm text-[#782443]">
+                  {numberWithCommas(pakan)} Kg
+                </span>
+                <span className="font-semibold mx-1">=</span>
+                <img src={Diamond} alt="" className="w-7" />
+                <span className="font-semibold text-sky-400">
+                  {numberWithCommas(diamon)}
+                </span>
+              </button>
+            );
+          })}
+        </div>
+        <div className="grid grid-cols-2 mt-5">
+          <div className=" px-10 flex justify-end">
+            <button
+              type="button"
+              className="w-52 h-full bg-[#ff1616]  rounded-full py-3 text-center "
+              onClick={goToPage6}
+            >
+              <div className="font-semibold capitalize text-lg tracking-wider text-white">
+                kembali
+              </div>
+            </button>
+          </div>
+          <div className=" px-10 flex justify-start">
+            <button
+              type="button"
+              className="w-52 h-full bg-[#329bd1] rounded-full py-3 text-center "
+              onClick={buyPakan}
+            >
+              <div className="font-semibold capitalize text-lg tracking-wider text-white">
+                Top Up
+              </div>
+            </button>
+          </div>
+        </div>
+      </>
+    );
+  };
+
+  useEffect(() => {
+    getDaftarHargaDimond();
+    getDaftarHargaPakan();
+  }, []);
 
   return (
     <div className="w-full h-screen overflow-hidden bg-outFarm bg-cover mx-auto lg:max-w-6xl lg:h-[70%]">
@@ -106,56 +316,41 @@ const Page15 = ({ Action1, Action2, Action3 }) => {
         {/* HEADER END */}
         {/* CONTENT */}
         <div className="w-full">
-          <div className="col-span-2 h-12 text-center flex justify-center">
-            <span className="text-white text-xl tracking-widest font-bold uppercase">
-              beri pakan ternakku!
-            </span>
+          <div className="flex justify-around  w-full -mt-3  rounded-t-xl mb-5">
+            <div
+              className={`${
+                diamondPanel
+                  ? "border-x-[1px] border-t-[1px] border-white  rounded-t-xl w-full h-full py-3 text-center"
+                  : "w-full h-full py-3 text-center border-b-[1px] border-white"
+              }`}
+            >
+              <span
+                className="font-bold text-white text-xl cursor-pointer"
+                onClick={openDiamondPanel}
+              >
+                Top Up Diamond
+              </span>
+            </div>
+            <div
+              className={`${
+                pakanPanel
+                  ? "border-x-[1px] border-t-[1px] border-white rounded-t-xl w-full h-full py-3 text-center"
+                  : "w-full h-full py-3 text-center border-b-[1px] border-white"
+              }`}
+            >
+              <span
+                className="text-white text-xl cursor-pointer"
+                onClick={openPakanPanel}
+              >
+                Top Up Pakan
+              </span>
+            </div>
           </div>
-          <div className="grid grid-rows-3 grid-cols-3 grid-flow-col gap-3 ">
-            {Makanan.map((item) => {
-              return (
-                <div
-                  className=" flex items-center justify-center"
-                  key={item.id}
-                >
-                  <div className="w-52  py-2 bg-[#f6f3e4] rounded-full items-center flex justify-center active:bg-[#b6def2]">
-                    <img src={Pouch} alt="" className="w-7" />
-                    <span className="font-bold  text-sm text-[#782443]">
-                      {item.value} Kg
-                    </span>
-                    <span className="font-semibold mx-1">=</span>
-                    <img src={Diamond} alt="" className="w-7" />
-                    <span className="font-semibold">{item.price}</span>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
+          {diamondPanel ? <TopUpDiamond /> : <TopUpPakan />}
         </div>
         {/* CONTENT END*/}
         {/* FOOTER */}
-        <div className="grid grid-cols-2 mt-5">
-          <div className=" px-10 flex justify-end">
-            <div
-              className="w-52 h-full bg-[#329bd1] rounded-full py-3 text-center"
-              onClick={goToPage6}
-            >
-              <div className="font-semibold capitalize text-lg tracking-wider text-white">
-                kembali
-              </div>
-            </div>
-          </div>
-          <div className=" px-10 flex justify-start">
-            <div
-              className="w-52 h-full bg-[#ff1616] rounded-full py-3 text-center "
-              onClick={cobaTopup}
-            >
-              <div className="font-semibold capitalize text-lg tracking-wider text-white">
-                Coba Top Up
-              </div>
-            </div>
-          </div>
-        </div>
+
         {/* FOOTER END*/}
       </div>
     </div>

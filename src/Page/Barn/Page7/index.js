@@ -14,17 +14,22 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Navigation, Pagination, EffectCoverflow } from "swiper";
 import "swiper/css";
 import { UserContext } from "../../UserContext";
+import { useEffect } from "react";
+import axios from "axios";
+import Cookies from "js-cookie";
 
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
+import { useState } from "react";
 
 SwiperCore.use([Navigation, Pagination, EffectCoverflow]);
 
 const Page7 = ({ Action1, Action2, Action3 }) => {
   const { value, setValue, setSelectedAnimalID } = useContext(UserContext);
+  const [userTernak, setUserTernak] = useState(null);
 
   const goToPage6 = () => {
     Action3();
@@ -105,6 +110,32 @@ const Page7 = ({ Action1, Action2, Action3 }) => {
     // },
   ];
 
+  const getUserTernak = async () => {
+    const userCookie = Cookies.get("user");
+    try {
+      let userInfo = await axios.get(
+        `${process.env.REACT_APP_BASE_URL}/user-ternak`,
+        {
+          params: {
+            token: userCookie,
+          },
+        }
+      );
+      let dataUser = userInfo.data.Data;
+      setUserTernak(dataUser);
+      console.log(userTernak);
+
+      // console.log(`ini data user dari main page`, dataUser);
+      // console.log(`info`, info);
+      // console.log(`harta`, harta);
+    } catch (error) {
+      console.log(`dari ketika getUsrInfo `, error);
+    }
+  };
+
+  useEffect(() => {
+    getUserTernak();
+  }, []);
   return (
     <div className="w-full h-screen overflow-hidden bg-barn bg-cover mx-auto lg:max-w-6xl lg:h-[70%] ">
       <div className="w-[90%] h-full mx-auto">

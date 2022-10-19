@@ -106,7 +106,7 @@ const FormLogin = ({ Action1, Action2, Action3 }) => {
   };
 
   return (
-    <div className="w-full h-full overflow-hidden bg-farmBarn bg-cover mx-auto lg:max-w-6xl lg:h-[70%] fixed">
+    <div className="w-full h-full overflow-hidden bg-farmBarn bg-cover mx-auto lg:max-w-6xl lg:h-[70%]">
       <div className="h-full">
         <div className="flex h-full items-end justify-center pb-5 ">
           <div className="w-full h-full  flex items-center animate-fadeInKu">

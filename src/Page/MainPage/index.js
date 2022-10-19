@@ -13,6 +13,7 @@ import {
   Page13,
   Page14,
   Page15,
+  Page16,
 } from "../index";
 import FormLogin from "../Menu/Login/FormLogin";
 import FormRegister from "../Menu/Register/FormRegister";
@@ -84,7 +85,9 @@ const MainPage = () => {
   const goToPage15 = () => {
     setStep("Page15");
   };
-
+  const goToPage16 = () => {
+    setStep("Page16");
+  };
   const getUserInfo = async () => {
     const userCookie = Cookies.get("user");
     try {
@@ -153,6 +156,7 @@ const MainPage = () => {
           Action4={goToPage15}
           Action5={getUserInfo}
           Action6={goToMenu}
+          Action7={goToPage16}
         />
       );
     case "Page7":
@@ -186,6 +190,8 @@ const MainPage = () => {
           Action3={getUserInfo}
         />
       );
+    case "Page16":
+      return <Page16 Action1={goToPage6} />;
     default:
       break;
   }
