@@ -55,6 +55,10 @@ const FormLogin = ({ Action1, Action2, Action3 }) => {
     if (dataLogin.username === "" || dataLogin.password === "") {
       setEmpty(true);
       setWrongPassword(false);
+      setDataLogin({
+        username: "",
+        password: "",
+      });
       return;
     }
 
@@ -94,11 +98,15 @@ const FormLogin = ({ Action1, Action2, Action3 }) => {
       }
     } catch (error) {
       setWrongPassword(true);
+      setDataLogin({
+        username: "",
+        password: "",
+      });
     }
   };
 
   return (
-    <div className="w-full h-full overflow-hidden bg-farmBarn bg-cover mx-auto lg:max-w-6xl lg:h-[70%] ">
+    <div className="w-full h-full overflow-hidden bg-farmBarn bg-cover mx-auto lg:max-w-6xl lg:h-[70%] fixed">
       <div className="h-full">
         <div className="flex h-full items-end justify-center pb-5 ">
           <div className="w-full h-full  flex items-center animate-fadeInKu">
@@ -117,6 +125,7 @@ const FormLogin = ({ Action1, Action2, Action3 }) => {
                 <input
                   name="username"
                   type="text"
+                  value={dataLogin.username}
                   onChange={changeHandler}
                   placeholder="Username"
                   className="h-10 rounded-lg px-3 outline-pink-500 outline-offset-5 outline-5"
@@ -129,6 +138,7 @@ const FormLogin = ({ Action1, Action2, Action3 }) => {
                   <input
                     type={passwordShown ? "text" : "password"}
                     onChange={changeHandler}
+                    value={dataLogin.password}
                     name="password"
                     placeholder="Password"
                     className="h-10 rounded-lg px-3 w-full  outline-pink-500 outline-offset-5 outline-5"

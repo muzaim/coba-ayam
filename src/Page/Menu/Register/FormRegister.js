@@ -125,29 +125,34 @@ const FormRegister = ({ Action1, Action2, Action3 }) => {
                     setEmpty(false);
                   }}
                 />
+                <div className="pass-wrapper bg-white rounded-lg">
+                  <input
+                    type={passwordShown ? "text" : "password"}
+                    onChange={changeHandler}
+                    name="password"
+                    placeholder="Password"
+                    className="h-10 rounded-lg px-3 w-full  outline-pink-500 outline-offset-5 outline-5"
+                    onKeyPress={(e) => EnterHandler(e)}
+                  />
+                  <i
+                    className="text-[#00fcb6]"
+                    onClick={togglePasswordVisiblity}
+                  >
+                    {passwordShown ? eyeSlash : eye}
+                  </i>
+                </div>
                 <input
                   // ref={dataLogin.username}
                   name="username"
-                  type="email"
-                  placeholder="Email"
+                  type="text"
+                  placeholder="Referal"
                   className="h-10 rounded-lg px-3 outline-pink-500 outline-offset-5 outline-5"
                   onFocus={(e) => {
                     setWrongPassword(false);
                     setEmpty(false);
                   }}
                 />
-                <div className="pass-wrapper bg-white rounded-lg">
-                  <input
-                    // ref={dataLogin.password}
-                    name="password"
-                    type="password"
-                    placeholder="Password"
-                    className="h-10 rounded-lg px-3 w-full  outline-pink-500 outline-offset-5 outline-5"
-                  />
-                  {/* <i className="text-[#00fcb6]" onClick={togglePasswordVisiblity}>
-                {eye}
-              </i> */}
-                </div>
+
                 <div className="w-full h-full flex">
                   <div className="block mx-auto h-14 w-36 bg-gradient-to-r from-pink-400 to-red-500 rounded-full uppercase tracking-[0.15rem] font-extrabold text-white font-openSans active:bg-[#ffffff] group">
                     <button
