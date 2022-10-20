@@ -84,9 +84,7 @@ const Page6 = ({
             onClick={goToPage16}
           >
             <div className="flex flex-col justify-center items-center">
-              <span className="text-xl text-white tracking-wider font-custom1">
-                Bisnis
-              </span>
+              <span className="text-xl text-white tracking-wider ">Bisnis</span>
               <img
                 src={ArrowDown}
                 alt=""
@@ -100,7 +98,7 @@ const Page6 = ({
             onClick={goToPage7}
           >
             <div className="flex flex-col justify-center items-center">
-              <span className="text-xl text-white tracking-wider font-custom1">
+              <span className="text-xl text-white tracking-wider ">
                 Kandangku
               </span>
               <img
