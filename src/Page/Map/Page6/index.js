@@ -68,7 +68,7 @@ const Page6 = ({
             onClick={goToPage13}
           >
             <div className="flex flex-col justify-center items-center">
-              <span className="text-2xl text-white tracking-wider font-comic">
+              <span className="text-xl text-white tracking-wider font-custom1">
                 Warung
               </span>
               <img
@@ -84,7 +84,7 @@ const Page6 = ({
             onClick={goToPage16}
           >
             <div className="flex flex-col justify-center items-center">
-              <span className="text-2xl text-white tracking-wider font-comic">
+              <span className="text-xl text-white tracking-wider font-custom1">
                 Bisnis
               </span>
               <img
@@ -100,7 +100,7 @@ const Page6 = ({
             onClick={goToPage7}
           >
             <div className="flex flex-col justify-center items-center">
-              <span className="text-2xl text-white tracking-wider font-comic">
+              <span className="text-xl text-white tracking-wider font-custom1">
                 Kandangku
               </span>
               <img
@@ -116,7 +116,7 @@ const Page6 = ({
             onClick={goToPage15}
           >
             <div className="flex flex-col justify-center items-center">
-              <span className="text-2xl text-white tracking-wider font-comic">
+              <span className="text-xl text-white tracking-wider font-custom1">
                 Top Up
               </span>
               <img
@@ -132,7 +132,7 @@ const Page6 = ({
             onClick={goToPage13}
           >
             <div className="flex flex-col justify-center items-center">
-              <span className="text-2xl text-white tracking-wider font-comic">
+              <span className="text-xl text-white tracking-wider font-custom1">
                 Rumah
               </span>
               <img
