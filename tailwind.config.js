@@ -5,7 +5,6 @@ module.exports = {
     extend: {
       backgroundImage: {
         page2: "url('./img/bg/6.jpg')",
-        // pageMap: "url('./img/bg/map.jpg')",
         barn: "url('./img/bg/1.jpg')",
         caffe: "url('./img/bg/shop.jpg')",
         outFarm: "url('./img/bg/outfarm.jpg')",

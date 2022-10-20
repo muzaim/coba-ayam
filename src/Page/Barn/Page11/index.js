@@ -1,11 +1,8 @@
 import React from "react";
-import Cow from "../../../img/common/cow.png";
 import Diamond from "../../../img/common/diamond.png";
 import Milk from "../../../img/common/milk.png";
 import Pouch from "../../../img/common/pouch.png";
 import QuestBook from "../../../img/common/questbook.png";
-import RightArrow from "../../../img/usage/right-arrow.png";
-import LeftArrow from "../../../img/usage/left-arrow.png";
 import { useState } from "react";
 import { Page8 } from "../../index";
 
@@ -73,13 +70,13 @@ const Page11 = () => {
                 </h1>
               </div>
               <div className=" flex items-center justify-end">
-                <img src={LeftArrow} alt="" className="w-20 mr-10" />
+                <img src={Milk} alt="" className="w-20 mr-10" />
               </div>
               <div className=" flex justify-center">
-                <img src={Cow} alt="" className="w-36" />
+                <img src={Milk} alt="" className="w-36" />
               </div>
               <div className=" flex items-center ">
-                <img src={RightArrow} alt="" className="w-20 ml-10" />
+                <img src={Milk} alt="" className="w-20 ml-10" />
               </div>
             </div>
             {/* CONTENT END*/}
