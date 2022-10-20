@@ -23,10 +23,10 @@ code {
 
 @layer base {
   html {
-    font-family: "Bukhari Script", sans-serif;
     font-family: "Open Sans", sans-serif;
   }
 }
+
 @layer base {
   input[type="number"]::-webkit-inner-spin-button,
   input[type="number"]::-webkit-outer-spin-button {

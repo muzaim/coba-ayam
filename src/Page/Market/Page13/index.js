@@ -1,13 +1,11 @@
 import React, { useState, useContext, useEffect } from "react";
-import Chef1 from "../../../img/common/chef1.png";
 import Jualan from "../../../img/common/jualan.png";
 import Play from "../../../img/usage/play.png";
 import Header from "../../../Component/Diatom/Header";
 import { UserContext } from "../../UserContext";
 import axios from "axios";
-import Cookies from "js-cookie";
 
-const Page13 = ({ Action1, Action2 }) => {
+const Page13 = ({ goToPage6 }) => {
   const { value, setValue } = useContext(UserContext);
   const [index, setIndex] = useState(0);
   const [backDialog, setBackDialog] = useState(false);
@@ -15,10 +13,6 @@ const Page13 = ({ Action1, Action2 }) => {
   const [avaArray, setAvaArray] = useState([]);
   const [indexAvatar, setIndexAvatar] = useState(0);
   const [dialogArray, setDialogArray] = useState([]);
-
-  const goToPage6 = () => {
-    Action2();
-  };
 
   const checkNumber = (number) => {
     if (number > avaArray.length - 1) {

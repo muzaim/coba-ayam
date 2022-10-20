@@ -1,13 +1,4 @@
-import React, { useContext } from "react";
-import Chicken2 from "../../../img/common/chicken2.png";
-import Babi from "../../../img/common/pig.png";
-import Domba from "../../../img/common/domba.png";
-import Cow2 from "../../../img/common/cow2.png";
-import AyamKecil from "../../../img/common/ayamkecil.png";
-import Kelinci from "../../../img/common/kelinci.png";
-import Keledai from "../../../img/common/keledai.png";
-import Kerbau from "../../../img/common/kerbau.png";
-import Kuda from "../../../img/common/kuda.png";
+import React, { useContext, useState, useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Navigation, Pagination, EffectCoverflow } from "swiper";
 import "swiper/css";
@@ -15,17 +6,16 @@ import Header from "../../../Component/Diatom/Header";
 import { UserContext } from "../../UserContext";
 import axios from "axios";
 import Cookies from "js-cookie";
+
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
-import { useState } from "react";
-import { useEffect } from "react";
 
 SwiperCore.use([Navigation, Pagination, EffectCoverflow]);
 
-const Page12 = ({ Action1, Action2, Action3 }) => {
+const Page12 = ({ goToPage6, goToPage7, getUserInfo }) => {
   const { value, setValue } = useContext(UserContext);
   const [ternakTersedia, setTernakTersedia] = useState([]);
   const [dialog, setDialog] = useState({
@@ -33,9 +23,6 @@ const Page12 = ({ Action1, Action2, Action3 }) => {
     message: "",
   });
 
-  const getUserInfo = () => {
-    Action3();
-  };
   const tutupAlert = () => {
     setDialog({
       show: false,
@@ -43,6 +30,7 @@ const Page12 = ({ Action1, Action2, Action3 }) => {
     });
     getUserInfo();
   };
+
   const buyTernak = async (e) => {
     const ternakDipilih = e.currentTarget.getAttribute("data-id");
     const userCookie = Cookies.get("user");
@@ -82,13 +70,6 @@ const Page12 = ({ Action1, Action2, Action3 }) => {
     }
   };
 
-  const goToPage6 = () => {
-    Action1();
-  };
-  const goToPage7 = () => {
-    Action2();
-  };
-
   useEffect(() => {
     getTernak();
   }, []);
@@ -101,8 +82,8 @@ const Page12 = ({ Action1, Action2, Action3 }) => {
           <Header
             Diamond={true}
             BackButton={true}
-            Action1={goToPage7}
-            Action2={goToPage6}
+            Action1={goToPage6}
+            Action2={goToPage7}
             harta={value}
             setHarta={setValue}
           />
@@ -165,11 +146,11 @@ const Page12 = ({ Action1, Action2, Action3 }) => {
                                 Benefit : {max_benefit}
                               </p>
                               <div
-                                className="mt-2 w-28 py-2 bg-blue-600 text-center rounded-full"
+                                className="mt-2 w-28 py-2 bg-gradient-to-r from-cyan-400 to-blue-600 active:bg-gradient-to-r active:from-blue-500 active:to-cyan-500  text-center rounded-full"
                                 data-id={id}
                                 onClick={buyTernak}
                               >
-                                <span className="tracking-[0.3em] uppercase text-white">
+                                <span className="font-bold  text-sm text-white tracking-widest capitalize">
                                   beli
                                 </span>
                               </div>

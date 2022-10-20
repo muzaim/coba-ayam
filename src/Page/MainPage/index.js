@@ -11,7 +11,6 @@ import {
   Page9,
   Page12,
   Page13,
-  Page14,
   Page15,
   Page16,
 } from "../index";
@@ -53,7 +52,6 @@ const MainPage = () => {
     setStep("Page5");
   };
 
-  // MAP
   const goToPage6 = () => {
     setStep("Page6");
   };
@@ -66,20 +64,12 @@ const MainPage = () => {
     setStep("Page8");
   };
 
-  const goToPage9 = () => {
-    setStep("Page9");
-  };
-
   const goToPage12 = () => {
     setStep("Page12");
   };
 
   const goToPage13 = () => {
     setStep("Page13");
-  };
-
-  const goToPage14 = () => {
-    setStep("Page14");
   };
 
   const goToPage15 = () => {
@@ -126,74 +116,73 @@ const MainPage = () => {
 
   switch (step) {
     case "Menu":
-      return <Menu Action1={goToFormLogin} Action2={goToFormRegister} />;
-    case "FormLogin":
       return (
-        <FormLogin Action1={goToPage2} Action2={goToPage6} Action3={goToMenu} />
-      );
-    case "FormRegister":
-      return (
-        <FormRegister
-          Action1={goToPage2}
-          Action2={goToPage6}
-          Action3={goToMenu}
+        <Menu
+          goToFormLogin={goToFormLogin}
+          goToFormRegister={goToFormRegister}
         />
       );
+    case "FormLogin":
+      return (
+        <FormLogin
+          goToPage2={goToPage2}
+          goToPage6={goToPage6}
+          goToMenu={goToMenu}
+        />
+      );
+    case "FormRegister":
+      return <FormRegister goToMenu={goToMenu} />;
     case "Page2":
-      return <Page2 Action1={goToPage3} />;
+      return <Page2 goToPage3={goToPage3} />;
     case "Page3":
-      return <Page3 Action1={goToPage4} />;
+      return <Page3 goToPage4={goToPage4} />;
     case "Page4":
-      return <Page4 Action1={goToPage5} />;
+      return <Page4 goToPage5={goToPage5} />;
     case "Page5":
-      return <Page5 Action1={goToPage6} />;
+      return <Page5 goToPage6={goToPage6} />;
     case "Page6":
       return (
         <Page6
-          Action1={goToPage5}
-          Action2={goToPage7}
-          Action3={goToPage13}
-          Action4={goToPage15}
-          Action5={getUserInfo}
-          Action6={goToMenu}
-          Action7={goToPage16}
+          goToPage7={goToPage7}
+          goToPage13={goToPage13}
+          goToPage15={goToPage15}
+          getUserInfo={getUserInfo}
+          goToMenu={goToMenu}
+          goToPage16={goToPage16}
         />
       );
     case "Page7":
       return (
-        <Page7 Action1={goToPage8} Action2={goToPage12} Action3={goToPage6} />
-      );
-    case "Page8":
-      return (
-        <Page8
-          Action1={goToPage7}
-          Action2={goToPage12}
-          Action3={goToPage6}
-          Action4={getUserInfo}
+        <Page7
+          goToPage8={goToPage8}
+          goToPage12={goToPage12}
+          goToPage6={goToPage6}
         />
       );
+    case "Page8":
+      return <Page8 goToPage7={goToPage7} getUserInfo={getUserInfo} />;
     case "Page9":
       return (
-        <Page9 Action1={goToPage7} Action2={goToPage13} Action3={goToPage6} />
+        <Page9
+          goToPage7={goToPage7}
+          goToPage13={goToPage13}
+          goToPage6={goToPage6}
+        />
       );
     case "Page12":
       return (
-        <Page12 Action1={goToPage7} Action2={goToPage6} Action3={getUserInfo} />
-      );
-    case "Page13":
-      return <Page13 Action1={goToPage14} Action2={goToPage6} />;
-    case "Page14":
-      return <Page14 Action1={goToPage15} Action2={goToPage6} />;
-    case "Page15":
-      return (
-        <Page15
-          Action1={goToPage6}
-          Action2={goToPage13}
-          Action3={getUserInfo}
+        <Page12
+          goToPage6={goToPage6}
+          goToPage7={goToPage7}
+          getUserInfo={getUserInfo}
         />
       );
+    case "Page13":
+      return <Page13 goToPage6={goToPage6} />;
+    case "Page15":
+      return <Page15 goToPage6={goToPage6} getUserInfo={getUserInfo} />;
     case "Page16":
-      return <Page16 Action1={goToPage6} />;
+      return <Page16 goToPage6={goToPage6} />;
     default:
       break;
   }

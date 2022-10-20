@@ -4,8 +4,9 @@ import Button from "../../../Component/Atom/Button";
 import Header from "../../../Component/Diatom/Header";
 import { UserContext } from "../../UserContext";
 
-const Page9 = ({ Action1, Action2, Action3 }) => {
+const Page9 = ({ goToPage7, goToPage13, goToPage6 }) => {
   const { value, setValue } = useContext(UserContext);
+
   const Makanan = [
     {
       id: 1,
@@ -32,16 +33,7 @@ const Page9 = ({ Action1, Action2, Action3 }) => {
       value: "100",
     },
   ];
-  const goToPage6 = () => {
-    Action3();
-  };
-  const goToPage7 = () => {
-    Action1();
-  };
 
-  const goToPage13 = () => {
-    Action2();
-  };
   return (
     <div className="w-full h-screen overflow-hidden bg-barn bg-cover mx-auto lg:max-w-6xl lg:h-[70%]">
       <div className="w-[90%] h-full mx-auto">

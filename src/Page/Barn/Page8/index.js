@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Chicken2 from "../../../img/common/chicken2.png";
 import Babi from "../../../img/common/pig.png";
 import Domba from "../../../img/common/domba.png";
@@ -6,29 +6,26 @@ import Cow2 from "../../../img/common/cow2.png";
 import AyamKecil from "../../../img/common/ayamkecil.png";
 import Kelinci from "../../../img/common/kelinci.png";
 import Keledai from "../../../img/common/keledai.png";
-import Next from "../../../img/usage/play.png";
+import Pouch from "../../../img/common/pouch.png";
 import Kerbau from "../../../img/common/kerbau.png";
 import Kuda from "../../../img/common/kuda.png";
 import Header from "../../../Component/Diatom/Header";
 import { UserContext } from "../../UserContext";
-import { useState } from "react";
 import axios from "axios";
 import Cookies from "js-cookie";
 
-const Page8 = ({ Action1, Action4 }) => {
+const Page8 = ({ goToPage7, getUserInfo }) => {
   const { value, setValue, selectedAnimalID } = useContext(UserContext);
   const [hewan, setHewan] = useState([]);
+  const [pakanDipilih, setPakanDipilih] = useState("");
   const [dialog, setDialog] = useState({
     show: false,
     message: "",
   });
 
-  const goToPage7 = () => {
-    Action1();
-  };
-
-  const getUserInfo = () => {
-    Action4();
+  const tangkapPakanDipilih = (e) => {
+    console.log(e.currentTarget.getAttribute("data-id"));
+    setPakanDipilih(e.currentTarget.getAttribute("data-id"));
   };
 
   const Pakan = [
@@ -138,6 +135,11 @@ const Page8 = ({ Action1, Action4 }) => {
     }
   };
 
+  function numberWithCommas(num) {
+    let newNum = parseInt(num);
+    return newNum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
+
   const tutupAlert = () => {
     setDialog({
       show: false,
@@ -213,42 +215,43 @@ const Page8 = ({ Action1, Action4 }) => {
                   <div className="">
                     <div className="w-full h-[70%] grid grid-cols-2 gap-2 py-5">
                       {Pakan.map((item) => {
+                        const { id, ukuran } = item;
                         return (
-                          <div
-                            key={item.id}
-                            className="w-36 h-10 bg-[#30D5C8] rounded-full  flex items-center"
+                          <button
+                            className="w-40  py-2 bg-[#f0ecd8]  rounded-full items-center flex justify-center border-transparent focus:outline-none focus:ring-[#E29A6C] focus:bg-white focus:ring-2"
+                            type="button"
+                            key={id}
+                            data-id={id}
+                            onClick={tangkapPakanDipilih}
                           >
-                            <div className="w-full text-center">
-                              <span className="text-md text-white">
-                                {item.ukuran} Kg
-                              </span>
-                            </div>
-                          </div>
+                            <img src={Pouch} alt="" className="w-7" />
+                            <span className="font-semibold  text-sm text-[#782443]">
+                              {numberWithCommas(ukuran)} Kg
+                            </span>
+                          </button>
                         );
                       })}
                     </div>
                   </div>
                   <div className="w-full h-full ">
                     <div className="h-full flex justify-center items-center gap-2">
-                      <div
-                        className="w-40 h-10 bg-green-400 rounded-full  flex items-center"
-                        onClick={goToPage7}
-                      >
-                        <div className="w-full text-center">
-                          <span className="font-bold  text-sm text-white tracking-widest uppercase">
-                            batal
-                          </span>
-                        </div>
+                      <div className="block mx-auto w-40 h-10 bg-gradient-to-r from-pink-400 to-red-600 rounded-full uppercase tracking-[0.15rem] font-extrabold text-white font-openSans active:bg-gradient-to-r active:from-red-500 active:to-pink-500 group">
+                        <button
+                          className="w-full h-full items-center tracking-widest"
+                          type="button"
+                          onClick={goToPage7}
+                        >
+                          Batal
+                        </button>
                       </div>
-                      <div
-                        className="w-40 h-10 bg-purple-400 rounded-full  flex items-center active:bg-yellow-300"
-                        onClick={cobaBeliPangan}
-                      >
-                        <div className="w-full text-center">
-                          <span className="font-bold  text-sm text-white tracking-widest uppercase">
-                            beri pangan
-                          </span>
-                        </div>
+                      <div className="block mx-auto w-40 h-10 bg-gradient-to-r from-cyan-400 to-blue-600 rounded-full uppercase tracking-[0.15rem] font-extrabold text-white font-openSans active:bg-gradient-to-r active:from-blue-500 active:to-cyan-500 group">
+                        <button
+                          className=" w-full h-full items-center tracking-widest"
+                          type="button"
+                          onClick={cobaBeliPangan}
+                        >
+                          Beri Pangan
+                        </button>
                       </div>
                     </div>
                   </div>

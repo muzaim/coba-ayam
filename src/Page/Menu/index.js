@@ -4,16 +4,8 @@ import { useState } from "react";
 import Tama from "../../img/common/tamako.png";
 import "./style.css";
 
-const Menu = ({ Action1, Action2 }) => {
+const Menu = ({ goToFormLogin, goToFormRegister }) => {
   const [loading, setLoading] = useState(true);
-
-  const goToFormLogin = () => {
-    Action1();
-  };
-
-  const openRegisterForm = () => {
-    Action2();
-  };
 
   const LoadingBar = () => {
     return (
@@ -52,7 +44,7 @@ const Menu = ({ Action1, Action2 }) => {
 
             <div
               className="block mx-auto py-2 px-16 rounded-3xl uppercase tracking-[0.15rem] font-extrabold text-white font-openSans group"
-              onClick={openRegisterForm}
+              onClick={goToFormRegister}
             >
               <span className="group-active:text-[#5e17eb] uppercase">
                 Belum punya akun? buat akun

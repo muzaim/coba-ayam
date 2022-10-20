@@ -1,9 +1,8 @@
 import "./App.css";
 import { MainPage, Rotate } from "./Page";
-import React, { useMemo } from "react";
+import React, { useMemo, useState } from "react";
 import DeviceOrientation, { Orientation } from "react-screen-orientation";
 import { UserContext } from "./Page/UserContext";
-import { useState } from "react";
 
 const App = () => {
   const [value, setValue] = useState({});

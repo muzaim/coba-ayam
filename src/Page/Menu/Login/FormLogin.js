@@ -7,7 +7,7 @@ import Cookies from "js-cookie";
 const eye = <FontAwesomeIcon icon={faEye} />;
 const eyeSlash = <FontAwesomeIcon icon={faEyeSlash} />;
 
-const FormLogin = ({ Action1, Action2, Action3 }) => {
+const FormLogin = ({ goToPage2, goToPage6, goToMenu }) => {
   const { setUserLogin, setValue } = useContext(UserContext);
   const [dataLogin, setDataLogin] = useState({
     username: "",
@@ -16,18 +16,6 @@ const FormLogin = ({ Action1, Action2, Action3 }) => {
   const [wrongPassword, setWrongPassword] = useState(false);
   const [empty, setEmpty] = useState(false);
   const [passwordShown, setPasswordShown] = useState(false);
-
-  const goToPage2 = () => {
-    Action1();
-  };
-
-  const goToPage6 = () => {
-    Action2();
-  };
-
-  const goToMenu = () => {
-    Action3();
-  };
 
   const changeHandler = (e) => {
     setDataLogin({ ...dataLogin, [e.target.name]: e.target.value });
@@ -83,12 +71,8 @@ const FormLogin = ({ Action1, Action2, Action3 }) => {
         let dataUser = userInfo.data.Data;
         setUserLogin(dataUser.user_active);
         setValue(dataUser.user_wallet);
-        // navigate
-        // angka 2 belum tutor
-        // selain 2 sudah tutor
-        // console.log(dataUser.user_active.active_tutor);
+
         if (dataUser.user_active.active_tutor === "0") {
-          // goToPage6();
           goToPage6();
         } else {
           goToPage2();

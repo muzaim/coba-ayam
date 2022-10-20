@@ -4,7 +4,7 @@ import axios from "axios";
 import { useEffect } from "react";
 import Chicken2 from "../../../img/common/chicken2.png";
 
-const Page16 = ({ Action1 }) => {
+const Page16 = ({ goToPage6 }) => {
   const [aktMembPanel, setAktMembPanel] = useState(true);
   const [penKomPanel, setPenKomPanel] = useState(false);
   const [dataUserWallet, setDataUserWallet] = useState([]);
@@ -21,10 +21,6 @@ const Page16 = ({ Action1 }) => {
   const openPenKomPanel = () => {
     setPenKomPanel(!penKomPanel);
     setAktMembPanel(false);
-  };
-
-  const goToPage6 = () => {
-    Action1();
   };
 
   const getUserInfo = async () => {
@@ -183,7 +179,7 @@ const Page16 = ({ Action1 }) => {
           <div className="absolute right-2 top-2">
             <div
               className="w-40 h-10 bg-[#329bd1] rounded-full items-center flex active:bg-[#51a9d5]"
-              onClick={Action1}
+              onClick={goToPage6}
             >
               <div className="w-full text-center ">
                 <span className="font-bold  text-sm text-white tracking-widest">

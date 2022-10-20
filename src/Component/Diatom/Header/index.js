@@ -40,7 +40,7 @@ const Header = ({
 
   const DiamondDiv = () => {
     return (
-      <div className="w-40 h-10 bg-[#f6f3e4] rounded-full items-center flex">
+      <div className="w-40 h-10 bg-white rounded-full items-center flex">
         <div className="w-20 flex items-center justify-center ">
           <img src={DiamondImg} alt="" className="w-10" />
         </div>
@@ -55,7 +55,7 @@ const Header = ({
 
   const EggDiv = () => {
     return (
-      <div className="w-40 h-10 bg-[#f6f3e4] rounded-full items-center flex">
+      <div className="w-40 h-10 bg-white rounded-full items-center flex">
         <div className="w-20 flex items-center justify-center ">
           <img src={EggImg} alt="" className="w-8" />
         </div>
@@ -70,7 +70,7 @@ const Header = ({
 
   const PouchDiv = () => {
     return (
-      <div className="w-40 h-10 bg-[#f6f3e4] rounded-full items-center flex">
+      <div className="w-40 h-10 bg-white rounded-full items-center flex">
         <div className="w-20 flex items-center justify-center ">
           <img src={PouchImg} alt="" className="w-8" />
         </div>
@@ -82,10 +82,10 @@ const Header = ({
       </div>
     );
   };
-  
+
   const MilkDiv = () => {
     return (
-      <div className="w-40 h-10 bg-[#f6f3e4] rounded-full items-center flex">
+      <div className="w-40 h-10 bg-white rounded-full items-center flex">
         <div className="w-20 flex items-center justify-center ">
           <img src={MilkImg} alt="" className="w-8" />
         </div>
@@ -100,7 +100,7 @@ const Header = ({
 
   const MeatDiv = () => {
     return (
-      <div className="w-40 h-10 bg-[#f6f3e4] rounded-full items-center flex">
+      <div className="w-40 h-10 bg-white rounded-full items-center flex">
         <div className="w-20 flex items-center justify-center ">
           <img src={MeatImg} alt="" className="w-8" />
         </div>
@@ -116,7 +116,7 @@ const Header = ({
   const BackButtonDiv = () => {
     return (
       <div
-        className="w-40 h-10 bg-[#329bd1] rounded-full items-center flex active:bg-[#51a9d5]"
+        className="w-40 h-10 bg-gradient-to-r from-pink-400 to-red-600 rounded-full items-center flex active:bg-gradient-to-r active:from-red-500 active:to-pink-500"
         onClick={Action2}
       >
         <div className="w-full text-center ">

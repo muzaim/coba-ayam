@@ -1,20 +1,14 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import "./style.css";
 import Chicken2 from "../../../img/common/chicken2.png";
-import Babi from "../../../img/common/pig.png";
 import Domba from "../../../img/common/domba.png";
 import Cow2 from "../../../img/common/cow2.png";
-import AyamKecil from "../../../img/common/ayamkecil.png";
-import Kelinci from "../../../img/common/kelinci.png";
-import Keledai from "../../../img/common/keledai.png";
-import Kerbau from "../../../img/common/kerbau.png";
-import Kuda from "../../../img/common/kuda.png";
 import Header from "../../../Component/Diatom/Header";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Navigation, Pagination, EffectCoverflow } from "swiper";
 import "swiper/css";
 import { UserContext } from "../../UserContext";
-import { useEffect } from "react";
+
 import axios from "axios";
 import Cookies from "js-cookie";
 
@@ -27,21 +21,13 @@ import { useState } from "react";
 
 SwiperCore.use([Navigation, Pagination, EffectCoverflow]);
 
-const Page7 = ({ Action1, Action2, Action3 }) => {
+const Page7 = ({ goToPage8, goToPage12, goToPage6 }) => {
   const { value, setValue, setSelectedAnimalID } = useContext(UserContext);
   const [userTernak, setUserTernak] = useState([]);
 
-  const goToPage6 = () => {
-    Action3();
-  };
-
-  const goToPage8 = (item) => {
+  const openPage8 = (item) => {
     setSelectedAnimalID(item.id);
-    Action1();
-  };
-
-  const goToPage12 = () => {
-    Action2();
+    goToPage8();
   };
 
   const Hewan = [
@@ -180,7 +166,7 @@ const Page7 = ({ Action1, Action2, Action3 }) => {
                           <div
                             key={id}
                             className="flex justify-center items-center bg-papan1 bg-[length:200px_160px] bg-center bg-no-repeat cursor-pointer mt-3"
-                            onClick={() => goToPage8(item)}
+                            onClick={() => openPage8(item)}
                           >
                             <div className="w-[80%] h-[80%]">
                               <div className="flex flex-col items-center my-5">
@@ -217,10 +203,10 @@ const Page7 = ({ Action1, Action2, Action3 }) => {
             <div className=""></div>
 
             <div
-              className="w-full h-full bg-white rounded-full py-3 text-center active:bg-[#782443] group"
+              className="w-full h-full bg-gradient-to-r from-cyan-300 to-blue-700 rounded-full py-3 text-center group active:bg-gradient-to-r active:from-blue-500 active:to-cyan-500 "
               onClick={goToPage12}
             >
-              <span className="font-semibold capitalize text-lg tracking-wider text-[#782443] group-active:text-white">
+              <span className="font-semibold capitalize text-lg tracking-wider  text-white">
                 Tambah ternak
               </span>
             </div>

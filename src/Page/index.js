@@ -8,7 +8,7 @@ import { Page6 } from "./Map";
 
 import { Page7, Page8, Page9, Page11, Page12 } from "./Barn";
 
-import { Page13, Page14 } from "./Market";
+import { Page13 } from "./Market";
 
 import { Page15, Simple } from "./Shop";
 
@@ -30,7 +30,6 @@ export {
   Page11,
   Page12,
   Page13,
-  Page14,
   Page15,
   Page16,
   Simple,

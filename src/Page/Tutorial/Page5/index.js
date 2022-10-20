@@ -1,12 +1,10 @@
 import React, { useState } from "react";
 import Cewek from "../../../img/common/npcayam.png";
-import Next from "../../../img/usage/play.png";
 import Typewriter from "typewriter-effect";
 import axios from "axios";
-import { useEffect } from "react";
 import Cookies from "js-cookie";
 
-const Page5 = ({ Action1 }) => {
+const Page5 = ({ goToPage6 }) => {
   const [skipDialog, setSkipDalog] = useState(false);
   const [nextButton, setNextButton] = useState(false);
 
@@ -45,7 +43,7 @@ const Page5 = ({ Action1 }) => {
     );
   };
 
-  const goToPage6 = async () => {
+  const selesaiTutor = async () => {
     const userCookie = Cookies.get("user");
     try {
       await axios.get(`${process.env.REACT_APP_BASE_URL}/tutor-update`, {
@@ -53,7 +51,7 @@ const Page5 = ({ Action1 }) => {
           token: userCookie,
         },
       });
-      Action1();
+      goToPage6();
     } catch (error) {
       console.log(`dari ketika getUsrInfo `, error);
     }
@@ -64,7 +62,7 @@ const Page5 = ({ Action1 }) => {
       <div className="absolute bottom-2 right-[2rem] w-40 h-12 z-10">
         <div
           className="flex rounded-full h-full w-full bg-[#f6f3e4] items-center justify-center ring-offset-2 ring-4 ring-[#782443]"
-          onClick={goToPage6}
+          onClick={selesaiTutor}
         >
           <span className="text-[#782443] font-semibold">Masuk Agenda</span>
         </div>

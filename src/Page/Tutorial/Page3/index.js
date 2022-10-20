@@ -3,7 +3,7 @@ import Cewek from "../../../img/common/npcayam.png";
 import Next from "../../../img/usage/play.png";
 import Typewriter from "typewriter-effect";
 
-const Page3 = ({ Action1 }) => {
+const Page3 = ({ goToPage4 }) => {
   const [skipDialog, setSkipDalog] = useState(false);
   const [nextButton, setNextButton] = useState(false);
 
@@ -32,10 +32,6 @@ const Page3 = ({ Action1 }) => {
         </div>
       </div>
     );
-  };
-
-  const goToPage4 = () => {
-    Action1();
   };
 
   return (

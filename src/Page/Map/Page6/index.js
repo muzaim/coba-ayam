@@ -1,56 +1,25 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import EggImg from "../../../img/common/egg.png";
 import MeatImg from "../../../img/common/meat.png";
 import MilkImg from "../../../img/common/milk.png";
 import ArrowDown from "../../../img/usage/down.png";
 import { UserContext } from "../../UserContext";
-import { useEffect } from "react";
 import axios from "axios";
 import Cookies from "js-cookie";
 import Header from "../../../Component/Diatom/Header";
-import { useState } from "react";
 
 const Page6 = ({
-  Action1,
-  Action2,
-  Action3,
-  Action4,
-  Action5,
-  Action6,
-  Action7,
+  goToPage7,
+  goToPage13,
+  goToPage15,
+  getUserInfo,
+  goToMenu,
+  goToPage16,
 }) => {
   const { value, setValue } = useContext(UserContext);
   const [telur, setTelur] = useState(null);
   const [daging, setDaging] = useState(null);
   const [susu, setSusu] = useState(null);
-
-  const goToMenu = () => {
-    Action6();
-  };
-
-  const goToPage5 = () => {
-    Action1();
-  };
-
-  const goToPage7 = () => {
-    Action2();
-  };
-
-  const goToPage13 = () => {
-    Action3();
-  };
-
-  const goToPage15 = () => {
-    Action4();
-  };
-
-  const goToPage16 = () => {
-    Action7();
-  };
-
-  const getUserInfo = () => {
-    Action5();
-  };
 
   const getUserInfo2 = async () => {
     const userCookie = Cookies.get("user");
@@ -67,10 +36,6 @@ const Page6 = ({
       setDaging(dataUser.user_wallet.hasil_ternak[3].qty);
       setSusu(dataUser.user_wallet.hasil_ternak[2].qty);
       setTelur(dataUser.user_wallet.hasil_ternak[1].qty);
-
-      // console.log(`ini data user dari main page`, dataUser);
-      // console.log(`info`, info);
-      // console.log(`harta`, harta);
     } catch (error) {
       console.log(`dari ketika getUsrInfo `, error);
     }
@@ -79,7 +44,6 @@ const Page6 = ({
   useEffect(() => {
     getUserInfo();
     getUserInfo2();
-    // console.log(`ini value`, value);
   }, []);
 
   return (
@@ -187,9 +151,7 @@ const Page6 = ({
               <div className="flex items-center justify-center ">
                 <img src={MeatImg} alt="" className="w-8" />
               </div>
-              <span className="font-bold  text-sm text-white">
-                {daging} Butir
-              </span>
+              <span className="font-bold  text-sm text-white">{daging} Kg</span>
             </div>
 
             <div className="w-40 h-10 bg-blue-600 rounded-full items-center flex justify-center gap-1">
@@ -211,13 +173,7 @@ const Page6 = ({
               </span>
             </div>
 
-            <Header
-              // Milk={true}
-              // Milk={true}
-              // Egg={true}
-              harta={value}
-              setHarta={setValue}
-            />
+            <Header harta={value} setHarta={setValue} />
           </div>
         </div>
         {/* FOOTER END*/}

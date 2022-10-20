@@ -1,14 +1,11 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
-import { useState, useContext } from "react";
-import { UserContext } from "../../UserContext";
+import { useState } from "react";
 import axios from "axios";
-import Cookies from "js-cookie";
 const eye = <FontAwesomeIcon icon={faEye} />;
 const eyeSlash = <FontAwesomeIcon icon={faEyeSlash} />;
 
-const FormRegister = ({ Action1, Action2, Action3 }) => {
-  const { setUserLogin, setValue } = useContext(UserContext);
+const FormRegister = ({ goToMenu }) => {
   const [dataRegister, setDataRegister] = useState({
     username: "",
     phone: "",
@@ -22,18 +19,6 @@ const FormRegister = ({ Action1, Action2, Action3 }) => {
   const [passwordShown, setPasswordShown] = useState(false);
   const [passwordConfirmShow, setPasswordConfirmShown] = useState(false);
   const [registerSuccess, setRegisterSuccess] = useState(false);
-
-  const goToPage2 = () => {
-    Action1();
-  };
-
-  const goToPage6 = () => {
-    Action2();
-  };
-
-  const goToMenu = () => {
-    Action3();
-  };
 
   const changeHandler = (e) => {
     setDataRegister({ ...dataRegister, [e.target.name]: e.target.value });
