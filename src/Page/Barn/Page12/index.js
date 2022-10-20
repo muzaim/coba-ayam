@@ -4,6 +4,7 @@ import SwiperCore, { Navigation, Pagination, EffectCoverflow } from "swiper";
 import "swiper/css";
 import Header from "../../../Component/Diatom/Header";
 import { UserContext } from "../../UserContext";
+import DiamondImg from "../../../img/common/diamond.png";
 import axios from "axios";
 import Cookies from "js-cookie";
 
@@ -127,26 +128,32 @@ const Page12 = ({ goToPage6, goToPage7, getUserInfo }) => {
                       return (
                         <SwiperSlide key={id}>
                           <div
-                            className="flex h-full w-full bg-papan2 bg-[length:220px_200px] bg-no-repeat bg-center  justify-center items-center"
+                            className="flex h-full w-full bg-papan2 bg-[length:190px_170px] bg-no-repeat bg-center  justify-center items-center"
                             key={name}
                           >
                             <div className="flex flex-col h-full w-[70%] items-center">
-                              <span className="mt-11 text-white text-sm">
-                                {name} - {duration} hari
-                              </span>
+                              <div className="flex mt-14">
+                                <img src={DiamondImg} alt="" className="w-7" />
+                                <span className="text-white font-bold">
+                                  {price}
+                                </span>
+                              </div>
                               <img
                                 src={avatar}
                                 alt=""
-                                className="w-20 h-20 mt-5 lg:w-60 lg:h-64"
+                                className="w-16 h-16 mt-2 lg:w-60 lg:h-64"
                               />
-                              <p className="mt-4 text-center text-[10px] font-semibold ">
-                                Harga : {price} D
+                              <p className="text-center text-sm font-bold ">
+                                {name}
                               </p>
-                              <p className="text-center text-[10px] font-semibold ">
+                              <p className="text-center text-[10px] ">
+                                Duration : {duration} hari
+                              </p>
+                              <p className="text-center text-[10px]">
                                 Benefit : {max_benefit}
                               </p>
                               <div
-                                className="mt-2 w-28 py-2 bg-gradient-to-r from-cyan-400 to-blue-600 active:bg-gradient-to-r active:from-blue-500 active:to-cyan-500  text-center rounded-full"
+                                className=" w-28 py-2 bg-gradient-to-r from-cyan-400 to-blue-600 active:bg-gradient-to-r active:from-blue-500 active:to-cyan-500  text-center rounded-full"
                                 data-id={id}
                                 onClick={buyTernak}
                               >

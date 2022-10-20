@@ -213,12 +213,12 @@ const Page8 = ({ goToPage7, getUserInfo }) => {
                 </div>
                 <div className="flex flex-col h-full w-full items-center ">
                   <div className="">
-                    <div className="w-full h-[70%] grid grid-cols-2 gap-2 py-5">
+                    <div className="w-full h-[70%] grid grid-cols-2 gap-2 py-5 ">
                       {Pakan.map((item) => {
                         const { id, ukuran } = item;
                         return (
                           <button
-                            className="w-40  py-2 bg-[#f0ecd8]  rounded-full items-center flex justify-center border-transparent focus:outline-none focus:ring-[#E29A6C] focus:bg-white focus:ring-2"
+                            className="w-40  py-2 bg-[#f0ecd8]  rounded-full items-center flex justify-center border-transparent focus:outline-none focus:ring-[#E29A6C] focus:bg-white focus:ring-2 "
                             type="button"
                             key={id}
                             data-id={id}
