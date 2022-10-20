@@ -176,7 +176,7 @@ const Page13 = ({ goToPage6 }) => {
                 </div>
               )}
               {/* NPC */}
-              <div className="w-full h-full bg-green-300 top-[6.5rem] relative animate-fadeInKu">
+              <div className="w-full h-full bg-green-300 top-[7.5rem] relative animate-fadeInKu">
                 <div className="absolute">
                   <img
                     src={avaArray[indexAvatar + 5]}

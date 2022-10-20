@@ -132,7 +132,7 @@ const Page12 = ({ goToPage6, goToPage7, getUserInfo }) => {
                             key={name}
                           >
                             <div className="flex flex-col h-full w-[70%] items-center">
-                              <div className="flex mt-14">
+                              <div className="flex mt-[3.75rem]">
                                 <img src={DiamondImg} alt="" className="w-7" />
                                 <span className="text-white font-bold">
                                   {price}
@@ -141,7 +141,7 @@ const Page12 = ({ goToPage6, goToPage7, getUserInfo }) => {
                               <img
                                 src={avatar}
                                 alt=""
-                                className="w-16 h-16 mt-2 lg:w-60 lg:h-64"
+                                className="w-16 h-16 my-2 lg:w-60 lg:h-64"
                               />
                               <p className="text-center text-sm font-bold ">
                                 {name}
