@@ -7,12 +7,13 @@ const TopUpDiamond = ({
 }) => {
   return (
     <>
-      <div className="grid grid-rows-3 grid-cols-3 grid-flow-col gap-3 place-items-center">
+      <div className="grid grid-rows-3 grid-cols-3 grid-flow-col gap-3 place-items-center ">
         {daftarHargaDiamond.map((item) => {
           const { id, diamon, price } = item;
           return (
             <button
-              className="w-52  py-2 bg-[#f0ecd8] rounded-full items-center flex justify-center border-transparent focus:outline-none focus:ring-sky-400 focus:bg-white focus:ring-2"
+              type="button"
+              className="w-52  py-2 bg-[#f0ecd8] rounded-full items-center flex justify-center border-transparent focus:outline-none focus:ring-sky-400 focus:bg-white focus:ring-2 "
               key={id}
               data-id={id}
               onClick={tangkapDiamondDipilih}

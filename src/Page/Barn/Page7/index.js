@@ -170,7 +170,7 @@ const Page7 = ({ goToPage8, goToPage12, goToPage6 }) => {
                           >
                             <div className="w-[80%] h-[80%]">
                               <div className="flex flex-col items-center my-5">
-                                <span className="text-sm  uppercase font-comic">
+                                <span className="text-sm  uppercase font-custom1">
                                   {name} - GRATIS
                                 </span>
                                 <img

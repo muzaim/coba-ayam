@@ -127,7 +127,7 @@ const Page6 = ({
             </div>
           </div>
           {/* KE RUMAH*/}
-          <div
+          {/* <div
             className="top-[6rem] right-[15.5rem] absolute group animate-bounce"
             onClick={goToPage13}
           >
@@ -141,7 +141,7 @@ const Page6 = ({
                 className="w-10 group-active:opacity-80"
               />
             </div>
-          </div>
+          </div> */}
         </div>
         {/* CONTENT END*/}
         {/* FOOTER */}

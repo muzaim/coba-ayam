@@ -41,6 +41,7 @@ module.exports = {
       fontFamily: {
         openSans: ["Open Sans"],
         comic: ["Sans Comic Sans"],
+        custom1: ["Custom-1", "sans comic sans"],
       },
       rotate: {
         17: "17deg",

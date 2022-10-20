@@ -27,6 +27,11 @@ code {
   }
 }
 
+@font-face {
+  font-family: "Custom-1";
+  src: url("../public/fonts/ComicSansMS3.ttf");
+}
+
 @layer base {
   input[type="number"]::-webkit-inner-spin-button,
   input[type="number"]::-webkit-outer-spin-button {

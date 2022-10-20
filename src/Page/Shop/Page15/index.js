@@ -28,7 +28,6 @@ const Page15 = ({ goToPage6, getUserInfo }) => {
   };
 
   const tangkapDiamondDipilih = (e) => {
-    console.log(e.currentTarget);
     setDiamondDipilih(e.currentTarget.getAttribute("data-id"));
   };
 
