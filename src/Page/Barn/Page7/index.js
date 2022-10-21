@@ -27,75 +27,9 @@ const Page7 = ({ goToPage8, goToPage12, goToPage6 }) => {
   const [jumlahUserTernak, setJumlahUserTernak] = useState(1);
 
   const openPage8 = (item) => {
-    setSelectedAnimalID(item.name);
+    setSelectedAnimalID(item.ternak_id);
     goToPage8();
   };
-
-  const Hewan = [
-    {
-      id: 1,
-      name: "Ayam Eropa",
-      skill: "Max 1.020 telur perhari",
-      image: Chicken2,
-      kenyang: 27,
-    },
-    {
-      id: 2,
-      name: "Sapi",
-      skill: "Max penghasil susu 1.010 liter perhari",
-      image: Cow2,
-      kenyang: 78,
-    },
-    {
-      id: 3,
-      name: "Domba",
-      skill: "Max 25 Kg daging perhari",
-      image: Cow2,
-      kenyang: 12,
-    },
-    // {
-    //   id: 4,
-    //   name: "Babi",
-    //   skill: "Max 25 Kg daging perhari",
-    //   image: Domba,
-    //   kenyang: 90,
-    // },
-    // {
-    //   id: 5,
-    //   name: "Kuda",
-    //   skill: "Max 25 Kg daging perhari",
-    //   image: Kuda,
-    //   kenyang: 57,
-    // },
-    // {
-    //   id: 6,
-    //   name: "Ayam Kecil",
-    //   skill: "Max 25 Kg daging perhari",
-    //   image: AyamKecil,
-    //   kenyang: 32,
-    // },
-    // {
-    //   id: 7,
-    //   name: "Kelinci",
-    //   skill: "Max 25 Kg daging perhari",
-    //   image: Kelinci,
-    //   kenyang: 10,
-    // },
-    // {
-    //   id: 8,
-    //   name: "Keledai",
-    //   skill: "Max 25 Kg daging perhari",
-    //   image: Keledai,
-    //   kenyang: 62,
-    // },
-    // {
-    //   id: 9,
-    //   name: "Kerbau",
-    //   skill: "Max 25 Kg daging perhari",
-    //   image: Kerbau,
-    //   kenyang: 57,
-    // },
-  ];
 
   const getUserTernak = async () => {
     const userCookie = Cookies.get("user");
@@ -113,10 +47,6 @@ const Page7 = ({ goToPage8, goToPage12, goToPage6 }) => {
       setUserTernak(dataUser);
       setJumlahUserTernak(dataUser.length);
       console.log(dataUser);
-
-      // console.log(`ini data user dari main page`, dataUser);
-      // console.log(`info`, info);
-      // console.log(`harta`, harta);
     } catch (error) {
       console.log(`dari ketika getUsrInfo `, error);
     }
@@ -166,8 +96,26 @@ const Page7 = ({ goToPage8, goToPage12, goToPage6 }) => {
                       }}
                     >
                       {userTernak.map((item) => {
-                        const { id, name, avatar } = item;
-                        const angka = Math.floor(Math.random() * 100) + 1;
+                        const {
+                          id,
+                          name,
+                          avatar,
+                          time_now,
+                          pakan_start,
+                          pakan_end,
+                        } = item;
+                        // INI
+                        // const hariIni = Math.round(new Date().getTime() / 1000);
+                        console.log(`start`, new Date(pakan_start).valueOf());
+                        console.log(`now`, new Date(time_now).valueOf());
+                        console.log(`end`, new Date(pakan_end).valueOf());
+                        const start = new Date(pakan_start).valueOf();
+                        const now = new Date(time_now).valueOf();
+                        const end = new Date(pakan_end).valueOf();
+                        const hasil = ((now - start) / (end - start)) * 100;
+                        console.log(`ini hasil`, hasil);
+                        const finalHasil = 100 - hasil;
+                        //INI
                         return (
                           <SwiperSlide key={id}>
                             <div
@@ -178,7 +126,7 @@ const Page7 = ({ goToPage8, goToPage12, goToPage6 }) => {
                               <div className="w-[80%] h-[80%]">
                                 <div className="flex flex-col items-center my-5">
                                   <span className="text-sm  uppercase font-custom1 mb-2">
-                                    {name}
+                                    {Math.round(finalHasil)}
                                   </span>
                                   <img
                                     src={avatar}
@@ -188,7 +136,9 @@ const Page7 = ({ goToPage8, goToPage12, goToPage6 }) => {
                                   <div className="w-32 bg-gray-200 h-3 rounded-full overflow-hidden lg:w-72 lg:h-10 mt-3">
                                     <div
                                       className="bg-[#7fa65a] h-3 rounded-full lg:h-10"
-                                      style={{ width: `${angka}%` }}
+                                      style={{
+                                        width: `${Math.round(finalHasil)}%`,
+                                      }}
                                     ></div>
                                   </div>
                                 </div>
@@ -212,8 +162,26 @@ const Page7 = ({ goToPage8, goToPage12, goToPage6 }) => {
                       }}
                     >
                       {userTernak.map((item) => {
-                        const { id, name, avatar } = item;
-                        const angka = Math.floor(Math.random() * 100) + 1;
+                        const {
+                          id,
+                          name,
+                          avatar,
+                          time_now,
+                          pakan_start,
+                          pakan_end,
+                        } = item;
+                        // INI
+                        // const hariIni = Math.round(new Date().getTime() / 1000);
+                        console.log(`start`, new Date(pakan_start).valueOf());
+                        console.log(`now`, new Date(time_now).valueOf());
+                        console.log(`end`, new Date(pakan_end).valueOf());
+                        const start = new Date(pakan_start).valueOf();
+                        const now = new Date(time_now).valueOf();
+                        const end = new Date(pakan_end).valueOf();
+                        const hasil = ((now - start) / (end - start)) * 100;
+                        console.log(`ini hasil`, hasil);
+                        const finalHasil = 100 - hasil;
+                        //INI
                         return (
                           <SwiperSlide key={id}>
                             <div
@@ -224,7 +192,7 @@ const Page7 = ({ goToPage8, goToPage12, goToPage6 }) => {
                               <div className="w-[80%] h-[80%]">
                                 <div className="flex flex-col items-center my-5">
                                   <span className="text-sm  uppercase font-custom1 mb-2">
-                                    {name}
+                                    {Math.round(finalHasil)}
                                   </span>
                                   <img
                                     src={avatar}
@@ -234,7 +202,9 @@ const Page7 = ({ goToPage8, goToPage12, goToPage6 }) => {
                                   <div className="w-32 bg-gray-200 h-3 rounded-full overflow-hidden lg:w-72 lg:h-10 mt-3">
                                     <div
                                       className="bg-[#7fa65a] h-3 rounded-full lg:h-10"
-                                      style={{ width: `${angka}%` }}
+                                      style={{
+                                        width: `${Math.round(finalHasil)}%`,
+                                      }}
                                     ></div>
                                   </div>
                                 </div>
@@ -258,8 +228,27 @@ const Page7 = ({ goToPage8, goToPage12, goToPage6 }) => {
                       }}
                     >
                       {userTernak.map((item) => {
-                        const { id, name, avatar } = item;
-                        const angka = Math.floor(Math.random() * 100) + 1;
+                        const {
+                          id,
+                          name,
+                          avatar,
+                          time_now,
+                          pakan_start,
+                          pakan_end,
+                        } = item;
+                        // INI
+                        // const hariIni = Math.round(new Date().getTime() / 1000);
+                        console.log(`start`, new Date(pakan_start).valueOf());
+                        console.log(`now`, new Date(time_now).valueOf());
+                        console.log(`end`, new Date(pakan_end).valueOf());
+                        const start = new Date(pakan_start).valueOf();
+                        const now = new Date(time_now).valueOf();
+                        const end = new Date(pakan_end).valueOf();
+                        const hasil = ((now - start) / (end - start)) * 100;
+                        console.log(`ini hasil`, hasil);
+                        const finalHasil = 100 - hasil;
+                        //INI
+
                         return (
                           <SwiperSlide key={id}>
                             <div
@@ -270,7 +259,7 @@ const Page7 = ({ goToPage8, goToPage12, goToPage6 }) => {
                               <div className="w-[80%] h-[80%]">
                                 <div className="flex flex-col items-center my-5">
                                   <span className="text-sm  uppercase font-custom1 mb-2">
-                                    {name}
+                                    {Math.round(finalHasil)}
                                   </span>
                                   <img
                                     src={avatar}
@@ -280,7 +269,9 @@ const Page7 = ({ goToPage8, goToPage12, goToPage6 }) => {
                                   <div className="w-32 bg-gray-200 h-3 rounded-full overflow-hidden lg:w-72 lg:h-10 mt-3">
                                     <div
                                       className="bg-[#7fa65a] h-3 rounded-full lg:h-10"
-                                      style={{ width: `${angka}%` }}
+                                      style={{
+                                        width: `${Math.round(finalHasil)}%`,
+                                      }}
                                     ></div>
                                   </div>
                                 </div>

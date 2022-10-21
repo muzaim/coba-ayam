@@ -1,6 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
 import Jualan from "../../../img/common/jualan.png";
-import Play from "../../../img/usage/play.png";
 import Header from "../../../Component/Diatom/Header";
 import { UserContext } from "../../UserContext";
 import axios from "axios";
@@ -13,22 +12,10 @@ const MySwal = withReactContent(Swal);
 const Page13 = ({ goToPage6, getUserInfo }) => {
   const { value, setValue } = useContext(UserContext);
   const [index, setIndex] = useState(0);
-  const [backDialog, setBackDialog] = useState(false);
   const [market, setMarket] = useState([]);
   const [avaArray, setAvaArray] = useState([]);
-  const [marketId, setMarketId] = useState(1);
   const [indexAvatar, setIndexAvatar] = useState(0);
   const [dialogArray, setDialogArray] = useState([]);
-
-  const checkMarketId = (number) => {
-    if (number > avaArray.length) {
-      return 1;
-    }
-    if (number < 1) {
-      return avaArray.length;
-    }
-    return number;
-  };
 
   const checkNumber = (number) => {
     if (number > avaArray.length - 1) {
@@ -51,10 +38,6 @@ const Page13 = ({ goToPage6, getUserInfo }) => {
   };
 
   const nextDialog = () => {
-    setMarketId((index) => {
-      let newIndex = index + 1;
-      return checkMarketId(newIndex);
-    });
     setIndex((index) => {
       let newIndex = index + 1;
       return checkNumber(newIndex);
@@ -68,7 +51,7 @@ const Page13 = ({ goToPage6, getUserInfo }) => {
   const openBackDialog = () => {
     MySwal.fire({
       title: "Tutup Toko",
-      position: "top",
+      position: "center",
       text: "Apakah kamu yakin menutup toko?",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
@@ -113,23 +96,23 @@ const Page13 = ({ goToPage6, getUserInfo }) => {
         `${process.env.REACT_APP_BASE_URL}/market-sell`,
         {
           token: userCookie,
-          market_id: marketId,
+          market_id: index,
         }
       );
-      let res = userInfo.data;
+      let res = userInfo.data.message;
       MySwal.fire({
-        position: "top",
-        text: res.message,
-        width: "25rem",
+        position: "center",
+        icon: "success",
+        text: res,
         showConfirmButton: false,
         timer: 1500,
       });
       getUserInfo();
     } catch (error) {
       MySwal.fire({
-        position: "top",
-        text: error,
-        width: "25rem",
+        icon: "error",
+        position: "center",
+        text: error.response.data.message,
         showConfirmButton: false,
         timer: 1500,
       });
@@ -160,27 +143,7 @@ const Page13 = ({ goToPage6, getUserInfo }) => {
           <div className="w-full h-full z-10 ">
             <div className="relative">
               <div className="h-[15%]">{/* BACK DIALOG */}</div>
-              {backDialog ? (
-                <div className="absolute z-20 right-[16rem] top-5 animate-fadeInKu">
-                  <div className="w-[22rem] h-36 p-5 bg-[#782443] rounded-xl ml-5 ring-offset-2 ring-4 ring-[#782443] flex items-center">
-                    <div className="w-full h-32 text-center items-center grid  mx-auto ">
-                      <span className="text-white font-semibold text-justify text-base font-openSans">
-                        Yahh sayang sekali toko anda ditutup, padahal banyak
-                        orderan daging susu dan telur. Ayo berikan makan hewan
-                        kamu lagi!
-                      </span>
-                      <div className="flex justify-end h-6">
-                        <img
-                          src={Play}
-                          alt=""
-                          className="w-6 animate-pulse"
-                          onClick={goToPage6}
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              ) : null}
+
               {/* GEROBAK */}
               <div className="absolute z-10 -top-12">
                 <img src={Jualan} alt="" className="" />
@@ -194,7 +157,7 @@ const Page13 = ({ goToPage6, getUserInfo }) => {
                         className="w-full h-full py-2 bg-blue-500 rounded-full text-center"
                         onClick={sellOnMarket}
                       >
-                        <span className="uppercase text-xl text-white tracking-widest">
+                        <span className="capitalize text-xl text-white tracking-widest">
                           jual
                         </span>
                       </div>
@@ -202,7 +165,7 @@ const Page13 = ({ goToPage6, getUserInfo }) => {
                         className="w-full h-full py-2 bg-green-500 rounded-full text-center"
                         onClick={nextDialog}
                       >
-                        <span className="uppercase text-xl text-white tracking-widest">
+                        <span className="capitalize text-xl text-white tracking-widest">
                           skip
                         </span>
                       </div>
@@ -211,32 +174,32 @@ const Page13 = ({ goToPage6, getUserInfo }) => {
                 </div>
               </div>
               {/* DIALOG NPC */}
-              {backDialog ? null : (
-                <div className="absolute z-10 right-[12rem] top-2 animate-fadeInKu">
-                  <div className="w-48 h-24 p-3 bg-[#782443] rounded-xl ml-5 ring-offset-2 ring-4 ring-[#782443] ">
-                    <div className="w-full h-full text-center items-center flex mx-auto">
-                      <p className="text-white capitalize">
-                        {dialogArray[index]}
-                      </p>
-                    </div>
+
+              <div className="absolute z-10 right-[12rem] top-2 animate-fadeInKu">
+                <div className="w-48 h-24 p-3 bg-[#782443] rounded-xl ml-5 ring-offset-2 ring-4 ring-[#782443] ">
+                  <div className="w-full h-full text-center items-center flex mx-auto">
+                    <p className="text-white capitalize">
+                      {dialogArray[index]}
+                    </p>
                   </div>
                 </div>
-              )}
+              </div>
+
               {/* BACK */}
-              {backDialog ? null : (
-                <div className="absolute z-10 -bottom-[18.6rem] left-20 ">
-                  <div
-                    className="w-40 h-10 bg-[#329bd1] rounded-full items-center flex active:bg-[#51a9d5]"
-                    onClick={openBackDialog}
-                  >
-                    <div className="w-full text-center ">
-                      <span className="font-bold  text-sm text-white tracking-widest">
-                        Tutup Toko
-                      </span>
-                    </div>
+
+              <div className="absolute z-10 -bottom-[18.6rem] left-20 ">
+                <div
+                  className="w-40 h-10 bg-[#329bd1] rounded-full items-center flex active:bg-[#51a9d5]"
+                  onClick={openBackDialog}
+                >
+                  <div className="w-full text-center ">
+                    <span className="font-bold  text-sm text-white tracking-widest">
+                      Tutup Toko
+                    </span>
                   </div>
                 </div>
-              )}
+              </div>
+
               {/* NPC */}
               <div className="w-full h-full bg-green-300 top-[7.8rem] relative animate-fadeInKu">
                 <div className="absolute">

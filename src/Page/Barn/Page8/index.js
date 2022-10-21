@@ -14,100 +14,99 @@ import { UserContext } from "../../UserContext";
 import axios from "axios";
 import Cookies from "js-cookie";
 
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+const MySwal = withReactContent(Swal);
+
 const Page8 = ({ goToPage7, getUserInfo }) => {
   const { value, setValue, selectedAnimalID } = useContext(UserContext);
   const [hewan, setHewan] = useState([]);
-  const [pakanDipilih, setPakanDipilih] = useState("");
-  const [pakanTernak, setPakanTernak] = useState([]);
-  const [dialog, setDialog] = useState({
-    show: false,
-    message: "",
+  const [pakanDipilih, setPakanDipilih] = useState({
+    id: "",
+    ternakId: "",
+    pakan: "",
+    benefit: "",
   });
+  const [pakanTernak, setPakanTernak] = useState([]);
+
+  const tanyaBuyPakan = () => {
+    if (!pakanDipilih.pakan) {
+      MySwal.fire({
+        position: "center",
+        icon: "error",
+        text: "Pilih pakan terlebih dahulu!",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      return;
+    }
+    MySwal.fire({
+      title: "Beli Pakan",
+      position: "center",
+      text: `Apakah kamu ingin membeli ${pakanDipilih.pakan} Kg Pakan?`,
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      confirmButtonText: "Ya",
+      cancelButtonText: "Tidak",
+      cancelButtonColor: "#d33",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        buyPakan();
+      }
+    });
+  };
 
   const tangkapPakanDipilih = (e) => {
-    console.log(`pakan dipilih`, e.currentTarget.getAttribute("data-id"));
-    setPakanDipilih(e.currentTarget.getAttribute("data-id"));
+    setPakanDipilih({
+      id: e.currentTarget.getAttribute("data-id"),
+      ternakId: e.currentTarget.getAttribute("data-ternak-id"),
+      pakan: e.currentTarget.getAttribute("data-pakan"),
+      benefit: e.currentTarget.getAttribute("data-benefit"),
+    });
   };
 
   const getPakanTernak = async () => {
-    let ternakId = 0;
-    if (selectedAnimalID === "Ayam Gratis") {
-      ternakId = 1;
-    } else if (selectedAnimalID === "Ayam Eropa") {
-      ternakId = 2;
-    } else if (selectedAnimalID === "Sapi") {
-      ternakId = 3;
-    } else if (selectedAnimalID === "Domba") {
-      ternakId = 4;
-    }
     try {
       let dataTernak = await axios.get(
-        `${process.env.REACT_APP_BASE_URL}/get-pakan-ternak/${ternakId}`
+        `${process.env.REACT_APP_BASE_URL}/get-pakan-ternak/${selectedAnimalID}`
       );
       let res = dataTernak.data.data;
-      setPakanTernak(res);
+      setPakanTernak(res.pakan);
+      setHewan(res.ternak);
     } catch (error) {
-      console.log(`dari ketika getUsrInfo `, error);
+      console.log(error.response.data.message);
     }
   };
 
-  const Hewan = [
-    {
-      id: 1,
-      name: "Ayam Gratis",
-      skill: "Max 1.020 telur perhari",
-      image: AyamKecil,
-    },
-    {
-      id: 2,
-      name: "Ayam Eropa",
-      skill: "Max 1.020 telur perhari",
-      image: Chicken2,
-    },
-    {
-      id: 3,
-      name: "Sapi",
-      skill: "Max penghasil susu 1.010 liter perhari",
-      image: Cow2,
-    },
-    {
-      id: 4,
-      name: "Domba",
-      skill: "Max 25 Kg daging perhari",
-      image: Domba,
-    },
-  ];
-
-  const cobaBeliPangan = async () => {
+  const buyPakan = async () => {
     const userCookie = Cookies.get("user");
-    let ternakId = 0;
-    if (selectedAnimalID === "Ayam Gratis") {
-      ternakId = 1;
-    } else if (selectedAnimalID === "Ayam Eropa") {
-      ternakId = 2;
-    } else if (selectedAnimalID === "Sapi") {
-      ternakId = 3;
-    } else if (selectedAnimalID === "Domba") {
-      ternakId = 4;
-    }
+    const pakanId = pakanDipilih.id;
+    const ternakId = pakanDipilih.ternakId;
     try {
       let hit = await axios.post(
         `${process.env.REACT_APP_BASE_URL}/beri-pakan`,
         {
           token: userCookie,
-          pakan_id: pakanDipilih,
+          pakan_id: pakanId,
           ternak_id: ternakId,
         }
       );
       let res = hit.data.message;
-      setDialog({
-        show: true,
-        message: res,
+      MySwal.fire({
+        position: "center",
+        icon: "success",
+        text: res,
+        showConfirmButton: false,
+        timer: 1500,
       });
+      getUserInfo();
     } catch (error) {
-      setDialog({
-        show: true,
-        message: error.response.data.message,
+      MySwal.fire({
+        position: "center",
+        icon: "error",
+        text: error.response.data.message,
+        showConfirmButton: false,
+        timer: 1500,
       });
     }
   };
@@ -117,22 +116,8 @@ const Page8 = ({ goToPage7, getUserInfo }) => {
     return newNum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   }
 
-  const tutupAlert = () => {
-    setDialog({
-      show: false,
-      message: "",
-    });
-    getUserInfo();
-  };
-
-  const getHewan = () => {
-    const data = Hewan.find((x) => x.name === selectedAnimalID);
-    setHewan(data);
-  };
-
   useEffect(() => {
     getPakanTernak();
-    getHewan();
   }, []);
 
   return (
@@ -153,18 +138,6 @@ const Page8 = ({ goToPage7, getUserInfo }) => {
         <div className="w-full h-[75%] animate-fadeInKu">
           <div className="w-full h-full justify-center flex items-start">
             <div className="w-full h-full flex flex-col relative">
-              {dialog.show ? (
-                <div
-                  className="absolute w-80 h-20 bg-[#782443] rounded-xl ml-5 ring-offset-2 ring-4 ring-[#782443] left-52 z-50 animate-fadeInKu "
-                  onClick={tutupAlert}
-                >
-                  <div className="w-full h-full px-16 text-center items-center flex animate-pulse">
-                    <span className="text-white text-xl">
-                      {dialog.message}!
-                    </span>
-                  </div>
-                </div>
-              ) : null}
               <div className="w-full h-10 flex justify-center items-center lg:h-20 mb-2">
                 <span className="text-white text-xl tracking-widest font-bold uppercase">
                   beri pakan ternakku!
@@ -173,19 +146,23 @@ const Page8 = ({ goToPage7, getUserInfo }) => {
               <div className="w-full h-full flex justify-center items-center ">
                 <div className="flex h-full w-full bg-papan2 bg-contain bg-no-repeat bg-center justify-center items-center ">
                   <div className="flex flex-col  h-full w-[60%] items-center ">
-                    <span className="mt-2 text-white text-md">
-                      {hewan.name} - 30 Hari
-                    </span>
+                    <span className="mt-2 text-white text-md"></span>
                     <img
-                      src={hewan.image}
+                      src={hewan.avatar}
                       alt=""
-                      className="w-20 h-24 mt-5 lg:w-60 lg:h-64"
+                      className="w-20 h-24 mt-12 lg:w-60 lg:h-64"
                     />
                     <p className="mt-4 text-center text-md font-semibold ">
-                      10Kg Pangan
+                      {/* {pakanDipilih.pakan}Kg Pangan */}
+                      {pakanDipilih.pakan
+                        ? `${pakanDipilih.pakan} Kg Pangan`
+                        : `Pilih pakan untuk melihat benefit!`}
                     </p>
                     <p className="text-center text-sm font-semibold ">
-                      Menghasilkan 101 telur per hari
+                      {/* Menghasilkan {pakanDipilih.benefit} telur per hari */}
+                      {pakanDipilih.benefit
+                        ? `Menghasilkan ${pakanDipilih.benefit} terlur /hari`
+                        : null}
                     </p>
                   </div>
                 </div>
@@ -193,13 +170,16 @@ const Page8 = ({ goToPage7, getUserInfo }) => {
                   <div className="">
                     <div className="w-full h-[70%] grid grid-cols-2 gap-2 py-5 ">
                       {pakanTernak.map((item) => {
-                        const { id, pakan } = item;
+                        const { id, ternak_id, pakan, benefit } = item;
                         return (
                           <button
                             className="w-40  py-2 bg-[#f0ecd8]  rounded-full items-center flex justify-center border-transparent focus:outline-none focus:ring-[#E29A6C] focus:bg-white focus:ring-2 "
                             type="button"
                             key={id}
                             data-id={id}
+                            data-ternak-id={ternak_id}
+                            data-pakan={pakan}
+                            data-benefit={benefit}
                             onClick={tangkapPakanDipilih}
                           >
                             <img src={Pouch} alt="" className="w-7" />
@@ -226,7 +206,7 @@ const Page8 = ({ goToPage7, getUserInfo }) => {
                         <button
                           className=" w-full h-full items-center tracking-widest"
                           type="button"
-                          onClick={cobaBeliPangan}
+                          onClick={tanyaBuyPakan}
                         >
                           Beri Pangan
                         </button>
