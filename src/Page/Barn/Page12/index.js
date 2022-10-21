@@ -13,27 +13,17 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
-
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+const MySwal = withReactContent(Swal);
 SwiperCore.use([Navigation, Pagination, EffectCoverflow]);
 
 const Page12 = ({ goToPage6, goToPage7, getUserInfo }) => {
   const { value, setValue } = useContext(UserContext);
   const [ternakTersedia, setTernakTersedia] = useState([]);
-  const [dialog, setDialog] = useState({
-    show: false,
-    message: "",
-  });
-
-  const tutupAlert = () => {
-    setDialog({
-      show: false,
-      message: "",
-    });
-    getUserInfo();
-  };
 
   const buyTernak = async (e) => {
-    const ternakDipilih = e.currentTarget.getAttribute("data-id");
+    const ternakDipilih = e;
     const userCookie = Cookies.get("user");
     try {
       let beli = await axios.post(
@@ -44,15 +34,21 @@ const Page12 = ({ goToPage6, goToPage7, getUserInfo }) => {
         }
       );
       let res = beli.data.message;
-
-      setDialog({
-        show: true,
-        message: res,
+      MySwal.fire({
+        position: "center",
+        icon: "success",
+        text: res,
+        showConfirmButton: false,
+        timer: 1500,
       });
+      getUserInfo();
     } catch (error) {
-      setDialog({
-        show: true,
-        message: error.response.data.message,
+      MySwal.fire({
+        icon: "error",
+        position: "center",
+        text: error.response.data.message,
+        showConfirmButton: false,
+        timer: 1500,
       });
     }
   };
@@ -94,18 +90,6 @@ const Page12 = ({ goToPage6, goToPage7, getUserInfo }) => {
         <div className="w-full h-[75%] animate-fadeInKu">
           <div className="w-full h-full justify-center flex items-start">
             <div className="w-full h-full flex flex-col relative">
-              {dialog.show ? (
-                <div
-                  className="absolute w-80 h-20 bg-[#782443] rounded-xl ml-5 ring-offset-2 ring-4 ring-[#782443] left-52 z-50 animate-fadeInKu "
-                  onClick={tutupAlert}
-                >
-                  <div className="w-full h-full px-16 text-center items-center flex animate-pulse">
-                    <span className="text-white text-xl">
-                      {dialog.message}!
-                    </span>
-                  </div>
-                </div>
-              ) : null}
               <div className="w-full h-10 flex justify-center items-center lg:h-20 ">
                 <span className="text-white text-xl tracking-[0.4em] font-bold uppercase">
                   beli ternak
@@ -155,7 +139,23 @@ const Page12 = ({ goToPage6, goToPage7, getUserInfo }) => {
                               <div
                                 className=" w-28 py-2 bg-gradient-to-r from-cyan-400 to-blue-600 active:bg-gradient-to-r active:from-blue-500 active:to-cyan-500  text-center rounded-full"
                                 data-id={id}
-                                onClick={buyTernak}
+                                onClick={() => {
+                                  var dataId = id;
+                                  MySwal.fire({
+                                    title: "Beli Ternak",
+                                    position: "center",
+                                    text: `Apakah kamu yakin ingin membeli ${name}?`,
+                                    showCancelButton: true,
+                                    confirmButtonColor: "#3085d6",
+                                    confirmButtonText: "Ya",
+                                    cancelButtonText: "Tidak",
+                                    cancelButtonColor: "#d33",
+                                  }).then((result) => {
+                                    if (result.isConfirmed) {
+                                      buyTernak(dataId);
+                                    }
+                                  });
+                                }}
                               >
                                 <span className="font-bold  text-sm text-white tracking-widest capitalize">
                                   beli

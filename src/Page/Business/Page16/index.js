@@ -3,6 +3,14 @@ import Cookies from "js-cookie";
 import axios from "axios";
 import { useEffect } from "react";
 import Chicken2 from "../../../img/common/chicken2.png";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faClipboard } from "@fortawesome/free-solid-svg-icons";
+
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+const MySwal = withReactContent(Swal);
+
+const Copy = <FontAwesomeIcon icon={faClipboard} />;
 
 const Page16 = ({ goToPage6 }) => {
   const [aktMembPanel, setAktMembPanel] = useState(true);
@@ -51,9 +59,9 @@ const Page16 = ({ goToPage6 }) => {
 
   const AktivasiMemberPanel = () => {
     return (
-      <div className="w-full h-full bg-white overflow-x-auto animate-fadeInKu border">
+      <div className="w-full h-full bg-slate-300 overflow-x-auto animate-fadeInKu border">
         <table className="table-auto w-full border-collapse border text-center">
-          <thead className="bg-gray-50 sticky top-0">
+          <thead className="bg-slate-400 sticky top-0">
             <tr className="">
               <th className="w-[40%] py-3">User</th>
               <th className="w-[20%] ">Level</th>
@@ -146,7 +154,7 @@ const Page16 = ({ goToPage6 }) => {
 
   const PenarikanKomisiPanel = () => {
     return (
-      <div className="w-full h-full overflow-x-auto bg-white animate-fadeInKu">
+      <div className="w-full h-full overflow-x-auto bg-slate-300 animate-fadeInKu">
         <div className="flex gap-2 flex-col justify-center items-center">
           <div className="w-[80%] py-2 bg-yellow-300 rounded-full text-center">
             Nama
@@ -188,21 +196,38 @@ const Page16 = ({ goToPage6 }) => {
               </div>
             </div>
           </div>
+          <div className="h-[15%]"></div>
           {/* KIRI */}
           <div className="w-[30%] h-full px-4 animate-fadeInKu flex items-center py-3">
-            <div className="mx-auto w-full h-[100%] flex flex-col items-center justify-center bg-white rounded-lg px-1">
+            <div className="mx-auto w-full h-[100%] flex flex-col items-center justify-center bg-slate-300 rounded-lg px-1">
               <img
                 src={Chicken2}
                 alt="imag"
-                className="w-28 h-28 border border-indigo-600 rounded-full -mt-10"
+                className="w-28 h-28   rounded-full -mt-10"
               />
-              <span className="uppercase my-1 tracking-widest">
+              <span className="uppercase my-1 tracking-widest text-black">
                 {dataUserActive.username}
               </span>
-              <span className="text-sm bg-gradient-to-r from-green-400 to-blue-500 px-4 rounded-xl text-white">
-                {dataUserActive.user_ref}
-              </span>
-              <div className="mt-5 w-full h-20 ">
+              <div className="flex bg-gradient-to-r from-green-400 to-blue-500 px-4 rounded-xl gap-3 items-center">
+                <span className="text-sm  text-white">
+                  {dataUserActive.user_ref}
+                </span>
+                <span
+                  className="text-white"
+                  onClick={() => {
+                    navigator.clipboard.writeText(dataUserActive.user_ref);
+                    MySwal.fire({
+                      position: "top",
+                      text: "Referal code berhasil dicopy!",
+                      showConfirmButton: false,
+                      timer: 1500,
+                    });
+                  }}
+                >
+                  {Copy}
+                </span>
+              </div>
+              {/* <div className="mt-5 w-full h-20 ">
                 <div className="flex justify-between px-2 w-full border-b-2 ">
                   <span className="font-semibold">Diamond</span>
                   <span className="font-light">{dataUserWallet.diamon}</span>
@@ -223,14 +248,14 @@ const Page16 = ({ goToPage6 }) => {
                   <span className="font-semibold">Daging</span>
                   <span className="font-light">{daging}</span>
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
           {/* KANAN */}
           <div className="w-[70%] h-full ">
             <div className="w-full h-full px-10 flex flex-col justify-center items-center ">
               {/* ATAS */}
-              <div className="flex justify-around  w-full mt-5 bg-white rounded-t-xl">
+              <div className="flex justify-around  w-full mt-5 bg-slate-300 rounded-t-xl">
                 <div
                   className={`${
                     aktMembPanel
@@ -239,7 +264,11 @@ const Page16 = ({ goToPage6 }) => {
                   }`}
                 >
                   <span
-                    className="font-bold text-slate-900 text-xl cursor-pointer"
+                    className={`${
+                      aktMembPanel
+                        ? "font-bold text-slate-900 text-xl cursor-pointer"
+                        : "text-slate-900 text-xl cursor-pointer"
+                    }`}
                     onClick={openAktMembPanel}
                   >
                     Aktivitas member
@@ -253,7 +282,11 @@ const Page16 = ({ goToPage6 }) => {
                   }`}
                 >
                   <span
-                    className="text-slate-900 text-xl cursor-pointer"
+                    className={`${
+                      penKomPanel
+                        ? "font-bold text-slate-900 text-xl cursor-pointer"
+                        : "text-slate-900 text-xl cursor-pointer"
+                    }`}
                     onClick={openPenKomPanel}
                   >
                     Penarikan Komisi
@@ -261,7 +294,7 @@ const Page16 = ({ goToPage6 }) => {
                 </div>
               </div>
               {/* BAWAH */}
-              <div className="w-full h-[55%] bg-white pt-7">
+              <div className="w-full h-[55%] bg-slate-300 pt-7">
                 {aktMembPanel ? (
                   <AktivasiMemberPanel />
                 ) : (

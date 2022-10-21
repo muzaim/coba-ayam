@@ -18,108 +18,85 @@ const Page8 = ({ goToPage7, getUserInfo }) => {
   const { value, setValue, selectedAnimalID } = useContext(UserContext);
   const [hewan, setHewan] = useState([]);
   const [pakanDipilih, setPakanDipilih] = useState("");
+  const [pakanTernak, setPakanTernak] = useState([]);
   const [dialog, setDialog] = useState({
     show: false,
     message: "",
   });
 
   const tangkapPakanDipilih = (e) => {
-    console.log(e.currentTarget.getAttribute("data-id"));
+    console.log(`pakan dipilih`, e.currentTarget.getAttribute("data-id"));
     setPakanDipilih(e.currentTarget.getAttribute("data-id"));
   };
 
-  const Pakan = [
-    {
-      id: 1,
-      ukuran: 10,
-    },
-    {
-      id: 2,
-      ukuran: 50,
-    },
-    {
-      id: 3,
-      ukuran: 100,
-    },
-    {
-      id: 4,
-      ukuran: 300,
-    },
-    {
-      id: 5,
-      ukuran: 500,
-    },
-    {
-      id: 6,
-      ukuran: 1000,
-    },
-  ];
+  const getPakanTernak = async () => {
+    let ternakId = 0;
+    if (selectedAnimalID === "Ayam Gratis") {
+      ternakId = 1;
+    } else if (selectedAnimalID === "Ayam Eropa") {
+      ternakId = 2;
+    } else if (selectedAnimalID === "Sapi") {
+      ternakId = 3;
+    } else if (selectedAnimalID === "Domba") {
+      ternakId = 4;
+    }
+    try {
+      let dataTernak = await axios.get(
+        `${process.env.REACT_APP_BASE_URL}/get-pakan-ternak/${ternakId}`
+      );
+      let res = dataTernak.data.data;
+      setPakanTernak(res);
+    } catch (error) {
+      console.log(`dari ketika getUsrInfo `, error);
+    }
+  };
 
   const Hewan = [
     {
       id: 1,
+      name: "Ayam Gratis",
+      skill: "Max 1.020 telur perhari",
+      image: AyamKecil,
+    },
+    {
+      id: 2,
       name: "Ayam Eropa",
       skill: "Max 1.020 telur perhari",
       image: Chicken2,
     },
     {
-      id: 2,
+      id: 3,
       name: "Sapi",
       skill: "Max penghasil susu 1.010 liter perhari",
       image: Cow2,
     },
     {
-      id: 3,
+      id: 4,
       name: "Domba",
       skill: "Max 25 Kg daging perhari",
       image: Domba,
-    },
-    {
-      id: 4,
-      name: "Babi",
-      skill: "Max 25 Kg daging perhari",
-      image: Babi,
-    },
-    {
-      id: 5,
-      name: "Kuda",
-      skill: "Max 25 Kg daging perhari",
-      image: Kuda,
-    },
-    {
-      id: 6,
-      name: "Ayam Kecil",
-      skill: "Max 25 Kg daging perhari",
-      image: AyamKecil,
-    },
-    {
-      id: 7,
-      name: "Kelinci",
-      skill: "Max 25 Kg daging perhari",
-      image: Kelinci,
-    },
-    {
-      id: 8,
-      name: "Keledai",
-      skill: "Max 25 Kg daging perhari",
-      image: Keledai,
-    },
-    {
-      id: 9,
-      name: "Kerbau",
-      skill: "Max 25 Kg daging perhari",
-      image: Kerbau,
     },
   ];
 
   const cobaBeliPangan = async () => {
     const userCookie = Cookies.get("user");
+    let ternakId = 0;
+    if (selectedAnimalID === "Ayam Gratis") {
+      ternakId = 1;
+    } else if (selectedAnimalID === "Ayam Eropa") {
+      ternakId = 2;
+    } else if (selectedAnimalID === "Sapi") {
+      ternakId = 3;
+    } else if (selectedAnimalID === "Domba") {
+      ternakId = 4;
+    }
     try {
       let hit = await axios.post(
-        `${process.env.REACT_APP_BASE_URL}/buy-pakan`,
+        `${process.env.REACT_APP_BASE_URL}/beri-pakan`,
         {
           token: userCookie,
-          pakan_id: 1,
+          pakan_id: pakanDipilih,
+          ternak_id: ternakId,
         }
       );
       let res = hit.data.message;
@@ -149,11 +126,12 @@ const Page8 = ({ goToPage7, getUserInfo }) => {
   };
 
   const getHewan = () => {
-    const data = Hewan.find((x) => x.id === selectedAnimalID);
+    const data = Hewan.find((x) => x.name === selectedAnimalID);
     setHewan(data);
   };
 
   useEffect(() => {
+    getPakanTernak();
     getHewan();
   }, []);
 
@@ -214,8 +192,8 @@ const Page8 = ({ goToPage7, getUserInfo }) => {
                 <div className="flex flex-col h-full w-full items-center ">
                   <div className="">
                     <div className="w-full h-[70%] grid grid-cols-2 gap-2 py-5 ">
-                      {Pakan.map((item) => {
-                        const { id, ukuran } = item;
+                      {pakanTernak.map((item) => {
+                        const { id, pakan } = item;
                         return (
                           <button
                             className="w-40  py-2 bg-[#f0ecd8]  rounded-full items-center flex justify-center border-transparent focus:outline-none focus:ring-[#E29A6C] focus:bg-white focus:ring-2 "
@@ -226,7 +204,7 @@ const Page8 = ({ goToPage7, getUserInfo }) => {
                           >
                             <img src={Pouch} alt="" className="w-7" />
                             <span className="font-semibold  text-sm text-[#782443]">
-                              {numberWithCommas(ukuran)} Kg
+                              {numberWithCommas(pakan)} Kg
                             </span>
                           </button>
                         );

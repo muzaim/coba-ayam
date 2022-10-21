@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import "./style.css";
 import Chicken2 from "../../../img/common/chicken2.png";
-import Domba from "../../../img/common/domba.png";
+import Rumah from "../../../img/common/rumah.png";
 import Cow2 from "../../../img/common/cow2.png";
 import Header from "../../../Component/Diatom/Header";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -24,9 +24,10 @@ SwiperCore.use([Navigation, Pagination, EffectCoverflow]);
 const Page7 = ({ goToPage8, goToPage12, goToPage6 }) => {
   const { value, setValue, setSelectedAnimalID } = useContext(UserContext);
   const [userTernak, setUserTernak] = useState([]);
+  const [jumlahUserTernak, setJumlahUserTernak] = useState(1);
 
   const openPage8 = (item) => {
-    setSelectedAnimalID(item.id);
+    setSelectedAnimalID(item.name);
     goToPage8();
   };
 
@@ -49,14 +50,14 @@ const Page7 = ({ goToPage8, goToPage12, goToPage6 }) => {
       id: 3,
       name: "Domba",
       skill: "Max 25 Kg daging perhari",
-      image: Domba,
+      image: Cow2,
       kenyang: 12,
     },
     // {
     //   id: 4,
     //   name: "Babi",
     //   skill: "Max 25 Kg daging perhari",
-    //   image: Babi,
+    //   image: Domba,
     //   kenyang: 90,
     // },
     // {
@@ -108,7 +109,9 @@ const Page7 = ({ goToPage8, goToPage12, goToPage6 }) => {
         }
       );
       let dataUser = userInfo.data.Data;
+      console.log(`jumalh user ternak`, dataUser.length);
       setUserTernak(dataUser);
+      setJumlahUserTernak(dataUser.length);
       console.log(dataUser);
 
       // console.log(`ini data user dari main page`, dataUser);
@@ -121,6 +124,7 @@ const Page7 = ({ goToPage8, goToPage12, goToPage6 }) => {
 
   useEffect(() => {
     getUserTernak();
+    console.log(jumlahUserTernak);
   }, []);
   return (
     <div className="w-full h-screen overflow-hidden bg-barn bg-cover mx-auto lg:max-w-6xl lg:h-[70%] ">
@@ -150,48 +154,144 @@ const Page7 = ({ goToPage8, goToPage12, goToPage6 }) => {
               </div>
               <div className="w-full h-full flex justify-center items-center">
                 {/* TENGAH */}
-                <div className="flex w-full h-full overflow-hidden">
-                  <Swiper
-                    spaceBetween={50}
-                    slidesPerView={3}
-                    pagination={{
-                      clickable: true,
-                      dynamicBullets: true,
-                    }}
-                  >
-                    {Hewan.map((item) => {
-                      const { id, name, image, kenyang } = item;
-                      return (
-                        <SwiperSlide key={id}>
-                          <div
-                            key={id}
-                            className="flex justify-center items-center bg-papan1 bg-[length:200px_160px] bg-center bg-no-repeat cursor-pointer mt-3"
-                            onClick={() => openPage8(item)}
-                          >
-                            <div className="w-[80%] h-[80%]">
-                              <div className="flex flex-col items-center my-5">
-                                <span className="text-sm  uppercase font-custom1 mb-2">
-                                  {name} - GRATIS
-                                </span>
-                                <img
-                                  src={image}
-                                  alt=""
-                                  className="w-[5rem] h-[5rem]  lg:w-60 lg:h-64"
-                                />
-                                <div className="w-32 bg-gray-200 h-3 rounded-full overflow-hidden lg:w-72 lg:h-10 mt-3">
-                                  <div
-                                    className="bg-[#7fa65a] h-3 rounded-full lg:h-10"
-                                    style={{ width: `${kenyang}%` }}
-                                  ></div>
+                {/* Jumlah user ternak =1*/}
+                {jumlahUserTernak === 1 ? (
+                  <div className="flex w-full h-full overflow-hidden">
+                    <Swiper
+                      spaceBetween={50}
+                      slidesPerView={1}
+                      pagination={{
+                        clickable: true,
+                        dynamicBullets: true,
+                      }}
+                    >
+                      {userTernak.map((item) => {
+                        const { id, name, avatar } = item;
+                        const angka = Math.floor(Math.random() * 100) + 1;
+                        return (
+                          <SwiperSlide key={id}>
+                            <div
+                              key={id}
+                              className="flex justify-center items-center bg-papan1 bg-[length:200px_160px] bg-center bg-no-repeat cursor-pointer mt-3"
+                              onClick={() => openPage8(item)}
+                            >
+                              <div className="w-[80%] h-[80%]">
+                                <div className="flex flex-col items-center my-5">
+                                  <span className="text-sm  uppercase font-custom1 mb-2">
+                                    {name}
+                                  </span>
+                                  <img
+                                    src={avatar}
+                                    alt=""
+                                    className="w-[5rem] h-[5rem]  lg:w-60 lg:h-64"
+                                  />
+                                  <div className="w-32 bg-gray-200 h-3 rounded-full overflow-hidden lg:w-72 lg:h-10 mt-3">
+                                    <div
+                                      className="bg-[#7fa65a] h-3 rounded-full lg:h-10"
+                                      style={{ width: `${angka}%` }}
+                                    ></div>
+                                  </div>
                                 </div>
                               </div>
                             </div>
-                          </div>
-                        </SwiperSlide>
-                      );
-                    })}
-                  </Swiper>
-                </div>
+                          </SwiperSlide>
+                        );
+                      })}
+                    </Swiper>
+                  </div>
+                ) : null}
+                {/* Jumlah user ternak =2 */}
+                {jumlahUserTernak === 2 ? (
+                  <div className="flex w-full h-full overflow-hidden">
+                    <Swiper
+                      spaceBetween={50}
+                      slidesPerView={2}
+                      pagination={{
+                        clickable: true,
+                        dynamicBullets: true,
+                      }}
+                    >
+                      {userTernak.map((item) => {
+                        const { id, name, avatar } = item;
+                        const angka = Math.floor(Math.random() * 100) + 1;
+                        return (
+                          <SwiperSlide key={id}>
+                            <div
+                              key={id}
+                              className="flex justify-center items-center bg-papan1 bg-[length:200px_160px] bg-center bg-no-repeat cursor-pointer mt-3"
+                              onClick={() => openPage8(item)}
+                            >
+                              <div className="w-[80%] h-[80%]">
+                                <div className="flex flex-col items-center my-5">
+                                  <span className="text-sm  uppercase font-custom1 mb-2">
+                                    {name}
+                                  </span>
+                                  <img
+                                    src={avatar}
+                                    alt=""
+                                    className="w-[5rem] h-[5rem]  lg:w-60 lg:h-64"
+                                  />
+                                  <div className="w-32 bg-gray-200 h-3 rounded-full overflow-hidden lg:w-72 lg:h-10 mt-3">
+                                    <div
+                                      className="bg-[#7fa65a] h-3 rounded-full lg:h-10"
+                                      style={{ width: `${angka}%` }}
+                                    ></div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </SwiperSlide>
+                        );
+                      })}
+                    </Swiper>
+                  </div>
+                ) : null}
+                {/* Jumlah user ternak =2 */}
+                {jumlahUserTernak >= 3 ? (
+                  <div className="flex w-full h-full overflow-hidden">
+                    <Swiper
+                      spaceBetween={50}
+                      slidesPerView={3}
+                      pagination={{
+                        clickable: true,
+                        dynamicBullets: true,
+                      }}
+                    >
+                      {userTernak.map((item) => {
+                        const { id, name, avatar } = item;
+                        const angka = Math.floor(Math.random() * 100) + 1;
+                        return (
+                          <SwiperSlide key={id}>
+                            <div
+                              key={id}
+                              className="flex justify-center items-center bg-papan1 bg-[length:200px_160px] bg-center bg-no-repeat cursor-pointer mt-3"
+                              onClick={() => openPage8(item)}
+                            >
+                              <div className="w-[80%] h-[80%]">
+                                <div className="flex flex-col items-center my-5">
+                                  <span className="text-sm  uppercase font-custom1 mb-2">
+                                    {name}
+                                  </span>
+                                  <img
+                                    src={avatar}
+                                    alt=""
+                                    className="w-[5rem] h-[5rem]  lg:w-60 lg:h-64"
+                                  />
+                                  <div className="w-32 bg-gray-200 h-3 rounded-full overflow-hidden lg:w-72 lg:h-10 mt-3">
+                                    <div
+                                      className="bg-[#7fa65a] h-3 rounded-full lg:h-10"
+                                      style={{ width: `${angka}%` }}
+                                    ></div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </SwiperSlide>
+                        );
+                      })}
+                    </Swiper>
+                  </div>
+                ) : null}
               </div>
             </div>
           </div>

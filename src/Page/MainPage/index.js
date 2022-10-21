@@ -178,7 +178,7 @@ const MainPage = () => {
         />
       );
     case "Page13":
-      return <Page13 goToPage6={goToPage6} />;
+      return <Page13 goToPage6={goToPage6} getUserInfo={getUserInfo} />;
     case "Page15":
       return <Page15 goToPage6={goToPage6} getUserInfo={getUserInfo} />;
     case "Page16":
