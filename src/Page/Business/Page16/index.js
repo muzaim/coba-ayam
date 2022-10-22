@@ -208,24 +208,23 @@ const Page16 = ({ goToPage6 }) => {
               <span className="uppercase my-1 tracking-widest text-black">
                 {dataUserActive.username}
               </span>
-              <div className="flex bg-gradient-to-r from-green-400 to-blue-500 px-4 rounded-xl gap-3 items-center">
+              <div
+                className="flex bg-gradient-to-r from-green-400 to-blue-500 px-8 py-1 rounded-xl gap-3 items-center"
+                onClick={() => {
+                  navigator.clipboard.writeText(dataUserActive.user_ref);
+                  MySwal.fire({
+                    position: "center",
+                    icon: "success",
+                    text: "Referal code berhasil dicopy!",
+                    showConfirmButton: false,
+                    timer: 1500,
+                  });
+                }}
+              >
                 <span className="text-sm  text-white">
                   {dataUserActive.user_ref}
                 </span>
-                <span
-                  className="text-white"
-                  onClick={() => {
-                    navigator.clipboard.writeText(dataUserActive.user_ref);
-                    MySwal.fire({
-                      position: "top",
-                      text: "Referal code berhasil dicopy!",
-                      showConfirmButton: false,
-                      timer: 1500,
-                    });
-                  }}
-                >
-                  {Copy}
-                </span>
+                {/* <span className="text-white">{Copy}</span> */}
               </div>
               {/* <div className="mt-5 w-full h-20 ">
                 <div className="flex justify-between px-2 w-full border-b-2 ">

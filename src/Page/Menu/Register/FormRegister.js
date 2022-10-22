@@ -2,6 +2,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import axios from "axios";
+
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+const MySwal = withReactContent(Swal);
+
 const eye = <FontAwesomeIcon icon={faEye} />;
 const eyeSlash = <FontAwesomeIcon icon={faEyeSlash} />;
 
@@ -63,7 +68,6 @@ const FormRegister = ({ goToMenu }) => {
     // login
     try {
       await axios.post(`${process.env.REACT_APP_BASE_URL}/register`, formData);
-      setRegisterSuccess(true);
       setDataRegister({
         username: "",
         phone: "",
@@ -72,8 +76,21 @@ const FormRegister = ({ goToMenu }) => {
         password: "",
         password_confirmation: "",
       });
+      MySwal.fire({
+        position: "center",
+        icon: "success",
+        text: "Register Success!",
+        showConfirmButton: false,
+        timer: 1500,
+      });
     } catch (error) {
-      setWrongPassword(true);
+      MySwal.fire({
+        position: "center",
+        icon: "error",
+        text: "Register Failed!",
+        showConfirmButton: false,
+        timer: 1500,
+      });
     }
   };
 
@@ -88,21 +105,6 @@ const FormRegister = ({ goToMenu }) => {
                 className="flex flex-col gap-4"
                 onSubmit={handleSubmit}
               >
-                {wrongPassword ? (
-                  <span className="text-center text-red-600 text-lg font-semibold">
-                    Username atau password salah!
-                  </span>
-                ) : null}
-                {empty ? (
-                  <span className="text-center text-red-600 text-lg font-semibold">
-                    Masukkan username & password!
-                  </span>
-                ) : null}
-                {registerSuccess ? (
-                  <span className="text-center text-green-600 text-lg font-semibold">
-                    Akun berhasil dibuat!
-                  </span>
-                ) : null}
                 <input
                   value={dataRegister.username}
                   name="username"
