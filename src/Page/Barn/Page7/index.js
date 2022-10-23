@@ -26,6 +26,9 @@ const Page7 = ({ goToPage8, goToPage12, goToPage6 }) => {
   const [userTernak, setUserTernak] = useState([]);
   const [jumlahUserTernak, setJumlahUserTernak] = useState(1);
 
+  // INI PEMBATAS YA
+  // HAHA PEMBATS DOANG KOK
+
   const openPage8 = (item) => {
     setSelectedAnimalID(item.ternak_id);
     goToPage8();
@@ -82,160 +85,182 @@ const Page7 = ({ goToPage8, goToPage12, goToPage6 }) => {
                   ternakku
                 </span>
               </div>
-              <div className="w-full h-full flex justify-center items-center">
+              <div className="w-full h-full  justify-center items-center">
                 {/* TENGAH */}
                 {/* Jumlah user ternak =1*/}
                 {jumlahUserTernak === 1 ? (
-                  <div className="flex w-full h-full overflow-hidden">
-                    <Swiper
-                      spaceBetween={50}
-                      slidesPerView={1}
-                      pagination={{
-                        clickable: true,
-                        dynamicBullets: true,
-                      }}
-                    >
-                      {userTernak.map((item) => {
-                        const {
-                          id,
-                          name,
-                          avatar,
-                          time_now,
-                          pakan_start,
-                          pakan_end,
-                          umur_end,
-                          umur_start,
-                        } = item;
-                        // INI
-                        // const hariIni = Math.round(new Date().getTime() / 1000);
-                        console.log(`start`, new Date(pakan_start).valueOf());
-                        console.log(`now`, new Date(time_now).valueOf());
-                        console.log(`end`, new Date(pakan_end).valueOf());
-                        const start = new Date(pakan_start).valueOf();
-                        const now = new Date(time_now).valueOf();
-                        const end = new Date(pakan_end).valueOf();
-                        const hasil = ((now - start) / (end - start)) * 100;
-                        console.log(`ini hasil`, hasil);
-                        const finalHasil = 100 - hasil;
-                        //INI
+                  <div className="flex   w-full h-full overflow-hidden ">
+                    {userTernak.map((item) => {
+                      const {
+                        id,
+                        name,
+                        avatar,
+                        time_now,
+                        pakan_start,
+                        pakan_end,
+                        umur_end,
+                        umur_start,
+                      } = item;
+                      // INI
+                      // const hariIni = Math.round(new Date().getTime() / 1000);
+                      console.log(`start`, new Date(pakan_start).valueOf());
+                      console.log(`now`, new Date(time_now).valueOf());
+                      console.log(`end`, new Date(pakan_end).valueOf());
+                      const start = new Date(pakan_start).valueOf();
+                      const now = new Date(time_now).valueOf();
+                      const end = new Date(pakan_end).valueOf();
+                      const hasil = ((now - start) / (end - start)) * 100;
+                      console.log(`ini hasil`, hasil);
+                      const finalHasil = 100 - hasil;
+                      //INI
 
-                        // Durasi
-                        const startDate = time_now;
-                        const endDate = umur_end;
+                      // Durasi
+                      const startDate = time_now;
+                      const endDate = umur_end;
 
-                        const diffInMs =
-                          new Date(endDate) - new Date(startDate);
-                        const beda = diffInMs / (1000 * 60 * 60 * 24);
-                        // Durasi
-                        return (
-                          <SwiperSlide key={id}>
-                            <div
-                              key={id}
-                              className="flex justify-center items-center bg-papan1 bg-[length:200px_160px] bg-center bg-no-repeat cursor-pointer mt-3"
-                              onClick={() => openPage8(item)}
-                            >
-                              <div className="w-[90%] h-[80%]">
-                                <div className="flex flex-col items-center my-5">
-                                  <span className="text-sm  uppercase font-custom1 mb-2 text-center">
-                                    {name} {Math.round(beda)}
-                                  </span>
-                                  <img
-                                    src={avatar}
-                                    alt=""
-                                    className="w-[5rem] h-[5rem]  lg:w-60 lg:h-64"
-                                  />
-                                  <div className="w-32 bg-gray-200 h-3 rounded-full overflow-hidden lg:w-72 lg:h-10 mt-3">
-                                    <div
-                                      className="bg-[#7fa65a] h-3 rounded-full lg:h-10"
-                                      style={{
-                                        width: `${Math.round(finalHasil)}%`,
-                                      }}
-                                    ></div>
-                                  </div>
-                                </div>
+                      const diffInMs = new Date(endDate) - new Date(startDate);
+                      const beda = diffInMs / (1000 * 60 * 60 * 24);
+                      // Durasi
+                      return (
+                        <div
+                          key={id}
+                          className="flex justify-center items-center bg-papan1 bg-[length:200px_160px] bg-center bg-no-repeat cursor-pointer mt-3 w-full"
+                          onClick={() => openPage8(item)}
+                        >
+                          <div className="w-[90%] h-[80%]">
+                            <div className="flex flex-col items-center my-5">
+                              <span className="text-sm  uppercase font-custom1 mb-2 text-center">
+                                {name} - {Math.round(beda)} Hari
+                              </span>
+                              <img
+                                src={avatar}
+                                alt=""
+                                className="w-[5rem] h-[5rem]  lg:w-60 lg:h-64"
+                              />
+                              <div className="w-32 bg-gray-200 h-3 rounded-full overflow-hidden lg:w-72 lg:h-10 ">
+                                <div
+                                  className="bg-[#7fa65a] h-3 rounded-full lg:h-10"
+                                  style={{
+                                    width: `${Math.round(finalHasil)}%`,
+                                  }}
+                                ></div>
                               </div>
                             </div>
-                          </SwiperSlide>
-                        );
-                      })}
-                    </Swiper>
+                          </div>
+                        </div>
+                      );
+                    })}
+                    {/* POSISI 2 */}
+                    <div
+                      className="flex justify-center items-center bg-papan1 bg-[length:200px_160px] bg-center bg-no-repeat cursor-pointer mt-3  w-full"
+                      // onClick={() => openPage8(item)}
+                    >
+                      <div className="w-[90%] h-[80%]" onClick={goToPage12}>
+                        <div className="flex flex-col items-center justify-center h-full">
+                          <img
+                            src={Rumah}
+                            alt=""
+                            className="w-[5rem] h-[5rem]  lg:w-60 lg:h-64"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    {/* POSISI 3*/}
+                    <div
+                      className="flex justify-center items-center bg-papan1 bg-[length:200px_160px] bg-center bg-no-repeat cursor-pointer mt-3  w-full"
+                      // onClick={() => openPage8(item)}
+                    >
+                      <div className="w-[90%] h-[80%]" onClick={goToPage12}>
+                        <div className="flex flex-col items-center justify-center h-full">
+                          <img
+                            src={Rumah}
+                            alt=""
+                            className="w-[5rem] h-[5rem]  lg:w-60 lg:h-64"
+                          />
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 ) : null}
                 {/* Jumlah user ternak =2 */}
                 {jumlahUserTernak === 2 ? (
-                  <div className="flex w-full h-full overflow-hidden">
-                    <Swiper
-                      spaceBetween={50}
-                      slidesPerView={2}
-                      pagination={{
-                        clickable: true,
-                        dynamicBullets: true,
-                      }}
-                    >
-                      {userTernak.map((item) => {
-                        const {
-                          id,
-                          name,
-                          avatar,
-                          time_now,
-                          pakan_start,
-                          pakan_end,
-                          umur_start,
-                          umur_end,
-                        } = item;
-                        // INI
-                        // const hariIni = Math.round(new Date().getTime() / 1000);
-                        console.log(`start`, new Date(pakan_start).valueOf());
-                        console.log(`now`, new Date(time_now).valueOf());
-                        console.log(`end`, new Date(pakan_end).valueOf());
-                        const start = new Date(pakan_start).valueOf();
-                        const now = new Date(time_now).valueOf();
-                        const end = new Date(pakan_end).valueOf();
-                        const hasil = ((now - start) / (end - start)) * 100;
-                        console.log(`ini hasil`, hasil);
-                        const finalHasil = 100 - hasil;
-                        //INI
+                  <div className="flex w-full h-full overflow-hidden ">
+                    {userTernak.map((item) => {
+                      const {
+                        id,
+                        name,
+                        avatar,
+                        time_now,
+                        pakan_start,
+                        pakan_end,
+                        umur_start,
+                        umur_end,
+                      } = item;
+                      // INI
+                      // const hariIni = Math.round(new Date().getTime() / 1000);
+                      console.log(`start`, new Date(pakan_start).valueOf());
+                      console.log(`now`, new Date(time_now).valueOf());
+                      console.log(`end`, new Date(pakan_end).valueOf());
+                      const start = new Date(pakan_start).valueOf();
+                      const now = new Date(time_now).valueOf();
+                      const end = new Date(pakan_end).valueOf();
+                      const hasil = ((now - start) / (end - start)) * 100;
+                      console.log(`ini hasil`, hasil);
+                      const finalHasil = 100 - hasil;
+                      //INI
 
-                        // Durasi
-                        const startDate = time_now;
-                        const endDate = umur_end;
+                      // Durasi
+                      const startDate = time_now;
+                      const endDate = umur_end;
 
-                        const diffInMs =
-                          new Date(endDate) - new Date(startDate);
-                        const beda = diffInMs / (1000 * 60 * 60 * 24);
-                        // Durasi
-                        return (
-                          <SwiperSlide key={id}>
-                            <div
-                              key={id}
-                              className="flex justify-center items-center bg-papan1 bg-[length:200px_160px] bg-center bg-no-repeat cursor-pointer mt-3"
-                              onClick={() => openPage8(item)}
-                            >
-                              <div className="w-[90%] h-[80%]">
-                                <div className="flex flex-col items-center my-5">
-                                  <span className="text-sm  uppercase font-custom1 mb-2 text-center">
-                                    {name} - {Math.round(beda)}
-                                  </span>
-                                  <img
-                                    src={avatar}
-                                    alt=""
-                                    className="w-[5rem] h-[5rem]  lg:w-60 lg:h-64"
-                                  />
-                                  <div className="w-32 bg-gray-200 h-3 rounded-full overflow-hidden lg:w-72 lg:h-10 mt-3">
-                                    <div
-                                      className="bg-[#7fa65a] h-3 rounded-full lg:h-10"
-                                      style={{
-                                        width: `${Math.round(finalHasil)}%`,
-                                      }}
-                                    ></div>
-                                  </div>
-                                </div>
+                      const diffInMs = new Date(endDate) - new Date(startDate);
+                      const beda = diffInMs / (1000 * 60 * 60 * 24);
+                      // Durasi
+                      return (
+                        <div
+                          key={id}
+                          className="flex justify-center items-center bg-papan1 bg-[length:200px_160px] bg-center bg-no-repeat cursor-pointer mt-3 w-full"
+                          onClick={() => openPage8(item)}
+                        >
+                          <div className="w-[90%] h-[80%]">
+                            <div className="flex flex-col items-center justify-center h-full">
+                              <span className="text-sm  uppercase font-custom1 mb-2 text-center">
+                                {name} - {Math.round(beda)}
+                              </span>
+                              <img
+                                src={avatar}
+                                alt=""
+                                className="w-[5rem] h-[5rem]  lg:w-60 lg:h-64"
+                              />
+                              <div className="w-32 bg-gray-200 h-3 rounded-full overflow-hidden lg:w-72 lg:h-10 mt-3">
+                                <div
+                                  className="bg-[#7fa65a] h-3 rounded-full lg:h-10"
+                                  style={{
+                                    width: `${Math.round(finalHasil)}%`,
+                                  }}
+                                ></div>
                               </div>
                             </div>
-                          </SwiperSlide>
-                        );
-                      })}
-                    </Swiper>
+                          </div>
+                        </div>
+                      );
+                    })}
+
+                    {/* POSISI 3*/}
+                    <div
+                      className="flex justify-center items-center bg-papan1 bg-[length:200px_160px] bg-center bg-no-repeat cursor-pointer mt-3  w-full"
+                      // onClick={() => openPage8(item)}
+                    >
+                      <div className="w-[90%] h-[80%]" onClick={goToPage12}>
+                        <div className="flex flex-col items-center justify-center h-full">
+                          <img
+                            src={Rumah}
+                            alt=""
+                            className="w-[5rem] h-[5rem]  lg:w-60 lg:h-64"
+                          />
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 ) : null}
                 {/* Jumlah user ternak =3 */}
