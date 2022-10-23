@@ -103,6 +103,8 @@ const Page7 = ({ goToPage8, goToPage12, goToPage6 }) => {
                           time_now,
                           pakan_start,
                           pakan_end,
+                          umur_end,
+                          umur_start,
                         } = item;
                         // INI
                         // const hariIni = Math.round(new Date().getTime() / 1000);
@@ -116,6 +118,15 @@ const Page7 = ({ goToPage8, goToPage12, goToPage6 }) => {
                         console.log(`ini hasil`, hasil);
                         const finalHasil = 100 - hasil;
                         //INI
+
+                        // Durasi
+                        const startDate = time_now;
+                        const endDate = umur_end;
+
+                        const diffInMs =
+                          new Date(endDate) - new Date(startDate);
+                        const beda = diffInMs / (1000 * 60 * 60 * 24);
+                        // Durasi
                         return (
                           <SwiperSlide key={id}>
                             <div
@@ -123,10 +134,10 @@ const Page7 = ({ goToPage8, goToPage12, goToPage6 }) => {
                               className="flex justify-center items-center bg-papan1 bg-[length:200px_160px] bg-center bg-no-repeat cursor-pointer mt-3"
                               onClick={() => openPage8(item)}
                             >
-                              <div className="w-[80%] h-[80%]">
+                              <div className="w-[90%] h-[80%]">
                                 <div className="flex flex-col items-center my-5">
-                                  <span className="text-sm  uppercase font-custom1 mb-2">
-                                    {name}
+                                  <span className="text-sm  uppercase font-custom1 mb-2 text-center">
+                                    {name} {Math.round(beda)}
                                   </span>
                                   <img
                                     src={avatar}
@@ -169,6 +180,8 @@ const Page7 = ({ goToPage8, goToPage12, goToPage6 }) => {
                           time_now,
                           pakan_start,
                           pakan_end,
+                          umur_start,
+                          umur_end,
                         } = item;
                         // INI
                         // const hariIni = Math.round(new Date().getTime() / 1000);
@@ -182,6 +195,15 @@ const Page7 = ({ goToPage8, goToPage12, goToPage6 }) => {
                         console.log(`ini hasil`, hasil);
                         const finalHasil = 100 - hasil;
                         //INI
+
+                        // Durasi
+                        const startDate = time_now;
+                        const endDate = umur_end;
+
+                        const diffInMs =
+                          new Date(endDate) - new Date(startDate);
+                        const beda = diffInMs / (1000 * 60 * 60 * 24);
+                        // Durasi
                         return (
                           <SwiperSlide key={id}>
                             <div
@@ -189,10 +211,10 @@ const Page7 = ({ goToPage8, goToPage12, goToPage6 }) => {
                               className="flex justify-center items-center bg-papan1 bg-[length:200px_160px] bg-center bg-no-repeat cursor-pointer mt-3"
                               onClick={() => openPage8(item)}
                             >
-                              <div className="w-[80%] h-[80%]">
+                              <div className="w-[90%] h-[80%]">
                                 <div className="flex flex-col items-center my-5">
-                                  <span className="text-sm  uppercase font-custom1 mb-2">
-                                    {name}
+                                  <span className="text-sm  uppercase font-custom1 mb-2 text-center">
+                                    {name} - {Math.round(beda)}
                                   </span>
                                   <img
                                     src={avatar}
@@ -235,6 +257,8 @@ const Page7 = ({ goToPage8, goToPage12, goToPage6 }) => {
                           time_now,
                           pakan_start,
                           pakan_end,
+                          umur_start,
+                          umur_end,
                         } = item;
                         // INI
                         // const hariIni = Math.round(new Date().getTime() / 1000);
@@ -249,6 +273,15 @@ const Page7 = ({ goToPage8, goToPage12, goToPage6 }) => {
                         const finalHasil = 100 - hasil;
                         //INI
 
+                        // Durasi
+                        const startDate = time_now;
+                        const endDate = umur_end;
+
+                        const diffInMs =
+                          new Date(endDate) - new Date(startDate);
+                        const beda = diffInMs / (1000 * 60 * 60 * 24);
+                        // Durasi
+
                         return (
                           <SwiperSlide key={id}>
                             <div
@@ -256,10 +289,10 @@ const Page7 = ({ goToPage8, goToPage12, goToPage6 }) => {
                               className="flex justify-center items-center bg-papan1 bg-[length:200px_160px] bg-center bg-no-repeat cursor-pointer mt-3"
                               onClick={() => openPage8(item)}
                             >
-                              <div className="w-[80%] h-[80%]">
+                              <div className="w-[90%] h-[80%]">
                                 <div className="flex flex-col items-center my-5">
-                                  <span className="text-sm  uppercase font-custom1 mb-2">
-                                    {name}
+                                  <span className="text-sm  uppercase font-custom1 mb-2 text-center">
+                                    {name} - {Math.round(beda)} hari
                                   </span>
                                   <img
                                     src={avatar}
