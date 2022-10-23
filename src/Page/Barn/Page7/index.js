@@ -216,7 +216,7 @@ const Page7 = ({ goToPage8, goToPage12, goToPage6 }) => {
                     </Swiper>
                   </div>
                 ) : null}
-                {/* Jumlah user ternak =2 */}
+                {/* Jumlah user ternak =3 */}
                 {jumlahUserTernak >= 3 ? (
                   <div className="flex w-full h-full overflow-hidden">
                     <Swiper
