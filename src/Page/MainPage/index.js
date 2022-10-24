@@ -131,7 +131,7 @@ const MainPage = () => {
         />
       );
     case "FormRegister":
-      return <FormRegister goToMenu={goToMenu} />;
+      return <FormRegister goToMenu={goToMenu} goToFormLogin={goToFormLogin} />;
     case "Page2":
       return <Page2 goToPage3={goToPage3} />;
     case "Page3":

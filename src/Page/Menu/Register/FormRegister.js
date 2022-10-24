@@ -10,7 +10,7 @@ const MySwal = withReactContent(Swal);
 const eye = <FontAwesomeIcon icon={faEye} />;
 const eyeSlash = <FontAwesomeIcon icon={faEyeSlash} />;
 
-const FormRegister = ({ goToMenu }) => {
+const FormRegister = ({ goToMenu, goToFormLogin }) => {
   const [dataRegister, setDataRegister] = useState({
     username: "",
     phone: "",
@@ -83,7 +83,7 @@ const FormRegister = ({ goToMenu }) => {
         timer: 1500,
       }).then(
         setTimeout(() => {
-          goToMenu();
+          goToFormLogin();
         }, 1650)
       );
     } catch (error) {
