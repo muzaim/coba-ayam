@@ -71,7 +71,7 @@ const Page15 = ({ goToPage6, getUserInfo }) => {
   };
 
   const tanyaBuyDiamond = () => {
-    if (!diamodDipilih) {
+    if (!diamodDipilih.id) {
       MySwal.fire({
         position: "center",
         icon: "error",
@@ -98,7 +98,7 @@ const Page15 = ({ goToPage6, getUserInfo }) => {
   };
 
   const tanyaBuyPakan = () => {
-    if (!pakanDipilih) {
+    if (!pakanDipilih.id) {
       MySwal.fire({
         position: "center",
         icon: "error",
