@@ -26,6 +26,7 @@ const Page8 = ({ goToPage7, getUserInfo }) => {
     ternakId: "",
     pakan: "",
     benefit: "",
+    text: "",
   });
   const [pakanTernak, setPakanTernak] = useState([]);
 
@@ -62,6 +63,7 @@ const Page8 = ({ goToPage7, getUserInfo }) => {
       ternakId: e.currentTarget.getAttribute("data-ternak-id"),
       pakan: e.currentTarget.getAttribute("data-pakan"),
       benefit: e.currentTarget.getAttribute("data-benefit"),
+      text: e.currentTarget.getAttribute("data-text"),
     });
   };
 
@@ -160,9 +162,7 @@ const Page8 = ({ goToPage7, getUserInfo }) => {
                     </p>
                     <p className="text-center text-sm font-semibold ">
                       {/* Menghasilkan {pakanDipilih.benefit} telur per hari */}
-                      {pakanDipilih.benefit
-                        ? `Menghasilkan ${pakanDipilih.benefit} terlur /hari`
-                        : null}
+                      {pakanDipilih.text ? pakanDipilih.text : null}
                     </p>
                   </div>
                 </div>
@@ -170,7 +170,7 @@ const Page8 = ({ goToPage7, getUserInfo }) => {
                   <div className="">
                     <div className="w-full h-[70%] grid grid-cols-2 gap-2 py-5 ">
                       {pakanTernak.map((item) => {
-                        const { id, ternak_id, pakan, benefit } = item;
+                        const { id, ternak_id, pakan, benefit, text } = item;
                         return (
                           <button
                             className="w-40  py-2 bg-[#f0ecd8]  rounded-full items-center flex justify-center border-transparent focus:outline-none focus:ring-[#E29A6C] focus:bg-white focus:ring-2 "
@@ -180,6 +180,7 @@ const Page8 = ({ goToPage7, getUserInfo }) => {
                             data-ternak-id={ternak_id}
                             data-pakan={pakan}
                             data-benefit={benefit}
+                            data-text={text}
                             onClick={tangkapPakanDipilih}
                           >
                             <img src={Pouch} alt="" className="w-7" />
