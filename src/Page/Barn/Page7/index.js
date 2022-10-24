@@ -103,15 +103,22 @@ const Page7 = ({ goToPage8, goToPage12, goToPage6 }) => {
                       } = item;
                       // INI
                       // const hariIni = Math.round(new Date().getTime() / 1000);
-                      console.log(`start`, new Date(pakan_start).valueOf());
-                      console.log(`now`, new Date(time_now).valueOf());
-                      console.log(`end`, new Date(pakan_end).valueOf());
+
                       const start = new Date(pakan_start).valueOf();
                       const now = new Date(time_now).valueOf();
                       const end = new Date(pakan_end).valueOf();
-                      const hasil = ((now - start) / (end - start)) * 100;
-                      console.log(`ini hasil`, hasil);
-                      const finalHasil = 100 - hasil;
+                      console.log(`start`, start);
+                      console.log(`now`, now);
+                      console.log(`end`, new Date(pakan_end).valueOf());
+                      let finalHasil = 0;
+                      if (start === now) {
+                        finalHasil = 0;
+                      } else {
+                        const hasil = ((now - start) / (end - start)) * 100;
+                        finalHasil = 100 - hasil;
+                        console.log(`ini final hasil`, finalHasil);
+                      }
+
                       //INI
 
                       // Durasi
@@ -198,15 +205,20 @@ const Page7 = ({ goToPage8, goToPage12, goToPage6 }) => {
                       } = item;
                       // INI
                       // const hariIni = Math.round(new Date().getTime() / 1000);
-                      console.log(`start`, new Date(pakan_start).valueOf());
-                      console.log(`now`, new Date(time_now).valueOf());
-                      console.log(`end`, new Date(pakan_end).valueOf());
                       const start = new Date(pakan_start).valueOf();
                       const now = new Date(time_now).valueOf();
                       const end = new Date(pakan_end).valueOf();
-                      const hasil = ((now - start) / (end - start)) * 100;
-                      console.log(`ini hasil`, hasil);
-                      const finalHasil = 100 - hasil;
+                      console.log(`start`, start);
+                      console.log(`now`, now);
+                      console.log(`end`, new Date(pakan_end).valueOf());
+                      let finalHasil = 0;
+                      if (start === now) {
+                        finalHasil = 0;
+                      } else {
+                        const hasil = ((now - start) / (end - start)) * 100;
+                        finalHasil = 100 - hasil;
+                        console.log(`ini final hasil`, finalHasil);
+                      }
                       //INI
 
                       // Durasi
@@ -225,7 +237,7 @@ const Page7 = ({ goToPage8, goToPage12, goToPage6 }) => {
                           <div className="w-[90%] h-[80%]">
                             <div className="flex flex-col items-center justify-center h-full">
                               <span className="text-sm  uppercase font-custom1 mb-2 text-center">
-                                {name} - {Math.round(beda)}
+                                {name} - {Math.round(beda)} Hari
                               </span>
                               <img
                                 src={avatar}
@@ -282,20 +294,28 @@ const Page7 = ({ goToPage8, goToPage12, goToPage6 }) => {
                           time_now,
                           pakan_start,
                           pakan_end,
-                          umur_start,
                           umur_end,
                         } = item;
                         // INI
                         // const hariIni = Math.round(new Date().getTime() / 1000);
-                        console.log(`start`, new Date(pakan_start).valueOf());
-                        console.log(`now`, new Date(time_now).valueOf());
-                        console.log(`end`, new Date(pakan_end).valueOf());
+                        // console.log(`start`, new Date(pakan_start).valueOf());
+                        // console.log(`now`, new Date(time_now).valueOf());
+                        // console.log(`end`, new Date(pakan_end).valueOf());
                         const start = new Date(pakan_start).valueOf();
                         const now = new Date(time_now).valueOf();
                         const end = new Date(pakan_end).valueOf();
-                        const hasil = ((now - start) / (end - start)) * 100;
-                        console.log(`ini hasil`, hasil);
-                        const finalHasil = 100 - hasil;
+                        console.log(`start`, start);
+                        console.log(`now`, now);
+                        console.log(`end`, new Date(pakan_end).valueOf());
+                        let finalHasil = 0;
+                        if (start === now) {
+                          finalHasil = 0;
+                        } else {
+                          const hasil = ((now - start) / (end - start)) * 100;
+                          finalHasil = 100 - hasil;
+                          console.log(`ini final hasil`, finalHasil);
+                        }
+
                         //INI
 
                         // Durasi
@@ -317,7 +337,7 @@ const Page7 = ({ goToPage8, goToPage12, goToPage6 }) => {
                               <div className="w-[90%] h-[80%]">
                                 <div className="flex flex-col items-center my-5">
                                   <span className="text-sm  uppercase font-custom1 mb-2 text-center">
-                                    {name} - {Math.round(beda)} hari
+                                    {name} - {Math.round(beda)} Hari
                                   </span>
                                   <img
                                     src={avatar}

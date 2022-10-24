@@ -180,10 +180,6 @@ const Header = ({
           {/* MILK */}
           {Milk ? <MilkDiv /> : null}
           {/* MILK END */}
-
-          {/* QUEST BOOK */}
-          {BackButton ? <BackButtonDiv /> : null}
-          {/* QUEST BOOK END*/}
         </div>
 
         {/* QUEST BOOK */}
@@ -192,6 +188,10 @@ const Header = ({
 
         {/* QUEST BOOK */}
         {LogOut ? <LogOutDiv /> : null}
+        {/* QUEST BOOK END*/}
+
+        {/* QUEST BOOK */}
+        {BackButton ? <BackButtonDiv /> : null}
         {/* QUEST BOOK END*/}
       </div>
     );

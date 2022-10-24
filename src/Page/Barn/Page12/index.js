@@ -53,6 +53,11 @@ const Page12 = ({ goToPage6, goToPage7, getUserInfo }) => {
     }
   };
 
+  function numberWithCommas(num) {
+    let newNum = parseInt(num);
+    return newNum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
+
   const getTernak = async () => {
     try {
       let userInfo = await axios.get(
@@ -119,7 +124,7 @@ const Page12 = ({ goToPage6, goToPage7, getUserInfo }) => {
                               <div className="flex mt-[3.75rem]">
                                 <img src={DiamondImg} alt="" className="w-7" />
                                 <span className="text-white font-bold">
-                                  {price}
+                                  {numberWithCommas(price)}
                                 </span>
                               </div>
                               <img
@@ -133,9 +138,9 @@ const Page12 = ({ goToPage6, goToPage7, getUserInfo }) => {
                               <p className="text-center text-[10px] ">
                                 Duration : {duration} hari
                               </p>
-                              <p className="text-center text-[10px]">
+                              {/* <p className="text-center text-[10px]">
                                 Benefit : {max_benefit}
-                              </p>
+                              </p> */}
                               <div
                                 className=" w-28 py-2 bg-gradient-to-r from-cyan-400 to-blue-600 active:bg-gradient-to-r active:from-blue-500 active:to-cyan-500  text-center rounded-full"
                                 data-id={id}

@@ -88,7 +88,7 @@ const Page8 = ({ goToPage7, getUserInfo }) => {
         {
           token: userCookie,
           pakan_id: pakanId,
-          ternak_id: ternakId,
+          user_ternak_id: ternakId,
         }
       );
       let res = hit.data.message;

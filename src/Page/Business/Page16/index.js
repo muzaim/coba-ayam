@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import Chicken2 from "../../../img/common/chicken2.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClipboard } from "@fortawesome/free-solid-svg-icons";
+import Header from "../../../Component/Diatom/Header";
 
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
@@ -59,9 +60,9 @@ const Page16 = ({ goToPage6 }) => {
 
   const AktivasiMemberPanel = () => {
     return (
-      <div className="w-full h-full bg-slate-300 overflow-x-auto animate-fadeInKu border">
+      <div className="w-full h-full  bg-transparent overflow-x-auto animate-fadeInKu -mt-8 ">
         <table className="table-auto w-full border-collapse border text-center">
-          <thead className="bg-slate-400 sticky top-0">
+          <thead className="bg-slate-700 sticky top-0 text-white">
             <tr className="">
               <th className="w-[40%] py-3">User</th>
               <th className="w-[20%] ">Level</th>
@@ -154,21 +155,21 @@ const Page16 = ({ goToPage6 }) => {
 
   const PenarikanKomisiPanel = () => {
     return (
-      <div className="w-full h-full overflow-x-auto bg-slate-300 animate-fadeInKu">
+      <div className="w-full h-full overflow-x-auto bg-transparent animate-fadeInKu -mt-8">
         <div className="flex gap-2 flex-col justify-center items-center">
-          <div className="w-[80%] py-2 bg-yellow-300 rounded-full text-center">
+          <div className="w-[80%] py-2 bg-slate-300 rounded-full text-center">
             Nama
           </div>
-          <div className="w-[80%] py-2 bg-yellow-300 rounded-full text-center">
+          <div className="w-[80%] py-2 bg-slate-300 rounded-full text-center">
             Nama Bank
           </div>
-          <div className="w-[80%] py-2 bg-yellow-300 rounded-full text-center">
+          <div className="w-[80%] py-2 bg-slate-300 rounded-full text-center">
             No Rekening
           </div>
-          <div className="w-[80%] py-2 bg-yellow-300 rounded-full text-center">
+          <div className="w-[80%] py-2 bg-slate-300 rounded-full text-center">
             Jumlah diamond yang ditarik
           </div>
-          <div className="w-[80%] py-2 bg-yellow-300 rounded-full text-center">
+          <div className="w-[80%] py-2 bg-slate-300 rounded-full text-center">
             Jumlah rupiah yang ditarik
           </div>
           <div className="w-[80%] py-2 bg-red-600 rounded-full text-center">
@@ -180,26 +181,18 @@ const Page16 = ({ goToPage6 }) => {
   };
 
   return (
-    <div className="w-full h-screen overflow-hidden bg-farmBarn bg-cover mx-auto lg:max-w-6xl lg:h-[70%]">
-      <div className="w-full h-full mx-auto">
-        <div className="flex w-full h-full relative">
-          {/* BACK */}
-          <div className="absolute right-2 top-2">
-            <div
-              className="w-40 h-10 bg-[#329bd1] rounded-full items-center flex active:bg-[#51a9d5]"
-              onClick={goToPage6}
-            >
-              <div className="w-full text-center ">
-                <span className="font-bold  text-sm text-white tracking-widest">
-                  Back
-                </span>
-              </div>
-            </div>
-          </div>
-          <div className="h-[15%]"></div>
-          {/* KIRI */}
-          <div className="w-[30%] h-full px-4 animate-fadeInKu flex items-center py-3">
-            <div className="mx-auto w-full h-[100%] flex flex-col items-center justify-center bg-slate-300 rounded-lg px-1">
+    <div className="w-full h-screen overflow-hidden bg-outFarm bg-cover mx-auto lg:max-w-6xl lg:h-[70%]">
+      <div className="w-[90%] h-full mx-auto">
+        {/* HEADER */}
+        <div className="h-[15%]">
+          <Header BackButton={true} Action2={goToPage6} />
+        </div>
+        {/* HEADER END */}
+        {/* CONTENT */}
+        <div className="w-full flex h-[80%]">
+          {/* kiri */}
+          <div className="w-[30%] h-full px-4 animate-fadeInKu flex items-center py-3 ">
+            <div className="mx-auto w-full h-[100%] flex flex-col items-center justify-center bg-transparent border rounded-lg px-1">
               <img
                 src={Chicken2}
                 alt="imag"
@@ -250,59 +243,56 @@ const Page16 = ({ goToPage6 }) => {
               </div> */}
             </div>
           </div>
-          {/* KANAN */}
-          <div className="w-[70%] h-full ">
-            <div className="w-full h-full px-10 flex flex-col justify-center items-center ">
-              {/* ATAS */}
-              <div className="flex justify-around  w-full mt-5 bg-slate-300 rounded-t-xl">
-                <div
+          <div className="w-full h-full px-10 flex flex-col justify-center items-center py-3 ">
+            <div className="flex justify-around  w-full h-full  bg-transparent rounded-xl">
+              <div
+                className={`${
+                  aktMembPanel
+                    ? "border-x-[1px] border-t-[1px] border-black rounded-t-xl w-full h-[60%]  py-3 text-center"
+                    : "w-full h-[60%]  py-3 text-center border-b-[1px] border-black"
+                }`}
+              >
+                <span
                   className={`${
                     aktMembPanel
-                      ? "border-x-[1px] border-t-[1px] border-black rounded-t-xl w-full h-full py-3 text-center"
-                      : "w-full h-full py-3 text-center border-b-[1px] border-black"
+                      ? "font-bold text-slate-900 text-xl cursor-pointer"
+                      : "text-slate-900 text-xl cursor-pointer"
                   }`}
+                  onClick={openAktMembPanel}
                 >
-                  <span
-                    className={`${
-                      aktMembPanel
-                        ? "font-bold text-slate-900 text-xl cursor-pointer"
-                        : "text-slate-900 text-xl cursor-pointer"
-                    }`}
-                    onClick={openAktMembPanel}
-                  >
-                    Aktivitas member
-                  </span>
-                </div>
-                <div
+                  Aktivitas member
+                </span>
+              </div>
+              <div
+                className={`${
+                  penKomPanel
+                    ? "border-x-[1px] border-t-[1px] border-black rounded-t-xl w-full  h-[60%]   py-3 text-center"
+                    : "w-full  h-[60%] py-3 text-center border-b-[1px] border-black"
+                }`}
+              >
+                <span
                   className={`${
                     penKomPanel
-                      ? "border-x-[1px] border-t-[1px] border-black rounded-t-xl w-full h-full py-3 text-center"
-                      : "w-full h-full py-3 text-center border-b-[1px] border-black"
+                      ? "font-bold text-slate-900 text-xl cursor-pointer"
+                      : "text-slate-900 text-xl cursor-pointer"
                   }`}
+                  onClick={openPenKomPanel}
                 >
-                  <span
-                    className={`${
-                      penKomPanel
-                        ? "font-bold text-slate-900 text-xl cursor-pointer"
-                        : "text-slate-900 text-xl cursor-pointer"
-                    }`}
-                    onClick={openPenKomPanel}
-                  >
-                    Penarikan Komisi
-                  </span>
-                </div>
+                  Penarikan Komisi
+                </span>
               </div>
-              {/* BAWAH */}
-              <div className="w-full h-[55%] bg-slate-300 pt-7">
-                {aktMembPanel ? (
-                  <AktivasiMemberPanel />
-                ) : (
-                  <PenarikanKomisiPanel />
-                )}
-              </div>
+            </div>
+
+            <div className="w-full h-[70%]  pt-3 bg-transparent">
+              {aktMembPanel ? (
+                <AktivasiMemberPanel />
+              ) : (
+                <PenarikanKomisiPanel />
+              )}
             </div>
           </div>
         </div>
+        {/* KANAN */}
       </div>
     </div>
   );

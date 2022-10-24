@@ -99,15 +99,30 @@ const Page13 = ({ goToPage6, getUserInfo }) => {
           market_id: index,
         }
       );
-      let res = userInfo.data.message;
-      MySwal.fire({
-        position: "center",
-        icon: "success",
-        text: res,
-        showConfirmButton: false,
-        timer: 1500,
-      });
+      let message = userInfo.data.message;
+      let status = userInfo.data.status;
+
+      if (status === 200) {
+        MySwal.fire({
+          position: "center",
+          icon: "success",
+          text: message,
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        nextDialog();
+      } else if (status === 401) {
+        MySwal.fire({
+          position: "center",
+          icon: "error",
+          text: message,
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
+
       getUserInfo();
+      return;
     } catch (error) {
       MySwal.fire({
         icon: "error",
