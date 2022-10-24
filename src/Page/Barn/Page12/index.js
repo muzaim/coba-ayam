@@ -40,8 +40,11 @@ const Page12 = ({ goToPage6, goToPage7, getUserInfo }) => {
         text: res,
         showConfirmButton: false,
         timer: 1500,
-      });
-      getUserInfo();
+      }).then(
+        setTimeout(() => {
+          goToPage7();
+        }, 1700)
+      );
     } catch (error) {
       MySwal.fire({
         icon: "error",
@@ -112,8 +115,7 @@ const Page12 = ({ goToPage6, goToPage7, getUserInfo }) => {
                     }}
                   >
                     {ternakTersedia.map((item) => {
-                      const { id, name, avatar, duration, max_benefit, price } =
-                        item;
+                      const { id, name, avatar, duration, price } = item;
                       return (
                         <SwiperSlide key={id}>
                           <div

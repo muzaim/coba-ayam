@@ -17,8 +17,14 @@ const Page15 = ({ goToPage6, getUserInfo }) => {
   const [pakanPanel, setPakanPanel] = useState(false);
   const [daftarHargaDiamond, setDaftarHargaDiamond] = useState([]);
   const [daftarHargaPakan, setDaftarHargaPakan] = useState([]);
-  const [diamodDipilih, setDiamondDipilih] = useState("");
-  const [pakanDipilih, setPakanDipilih] = useState("");
+  const [diamodDipilih, setDiamondDipilih] = useState({
+    id: "",
+    diamond: "",
+  });
+  const [pakanDipilih, setPakanDipilih] = useState({
+    id: "",
+    pakan: "",
+  });
 
   const openDiamondPanel = () => {
     setDiamondPanel(true);
@@ -31,11 +37,19 @@ const Page15 = ({ goToPage6, getUserInfo }) => {
   };
 
   const tangkapDiamondDipilih = (e) => {
-    setDiamondDipilih(e.currentTarget.getAttribute("data-id"));
+    // setDiamondDipilih(e.currentTarget.getAttribute("data-id"));
+    setDiamondDipilih({
+      id: e.currentTarget.getAttribute("data-id"),
+      diamond: e.currentTarget.getAttribute("data-diamond"),
+    });
   };
 
   const tangkapPakanDipilih = (e) => {
-    setPakanDipilih(e.currentTarget.getAttribute("data-id"));
+    // setPakanDipilih(e.currentTarget.getAttribute("data-id"));
+    setPakanDipilih({
+      id: e.currentTarget.getAttribute("data-id"),
+      pakan: e.currentTarget.getAttribute("data-pakan"),
+    });
   };
 
   const getDaftarHargaDimond = async () => {
@@ -70,7 +84,7 @@ const Page15 = ({ goToPage6, getUserInfo }) => {
     MySwal.fire({
       title: "Beli Diamond",
       position: "center",
-      text: `Apakah kamu yakin ingin membeli ${diamodDipilih}?`,
+      text: `Apakah kamu yakin ingin membeli ${diamodDipilih.diamond} diamond?`,
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       confirmButtonText: "Ya",
@@ -97,7 +111,7 @@ const Page15 = ({ goToPage6, getUserInfo }) => {
     MySwal.fire({
       title: "Beli Pakan",
       position: "center",
-      text: `Apakah kamu yakin ingin membeli ini?`,
+      text: `Apakah kamu yakin ingin membeli  ${pakanDipilih.pakan} Kg Pakan?`,
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       confirmButtonText: "Ya",
@@ -118,12 +132,12 @@ const Page15 = ({ goToPage6, getUserInfo }) => {
         `${process.env.REACT_APP_BASE_URL}/buy-diamon`,
         {
           token: userCookie,
-          diamon_id: diamodDipilih,
+          diamon_id: diamodDipilih.id,
         }
       );
       let res = beli.data.message;
       setDiamondDipilih("");
-      getUserInfo();
+
       MySwal.fire({
         position: "center",
         icon: "success",
@@ -131,6 +145,9 @@ const Page15 = ({ goToPage6, getUserInfo }) => {
         showConfirmButton: false,
         timer: 1500,
       });
+      setTimeout(() => {
+        getUserInfo();
+      }, 1650);
     } catch (error) {
       MySwal.fire({
         position: "center",
@@ -162,18 +179,17 @@ const Page15 = ({ goToPage6, getUserInfo }) => {
 
   const buyPakan = async () => {
     const userCookie = Cookies.get("user");
-
     try {
       let beli = await axios.post(
         `${process.env.REACT_APP_BASE_URL}/buy-pakan`,
         {
           token: userCookie,
-          pakan_id: pakanDipilih,
+          pakan_id: pakanDipilih.id,
         }
       );
       let res = beli.data.message;
       setPakanDipilih("");
-      getUserInfo();
+
       MySwal.fire({
         position: "center",
         icon: "success",
@@ -181,6 +197,9 @@ const Page15 = ({ goToPage6, getUserInfo }) => {
         showConfirmButton: false,
         timer: 1500,
       });
+      setTimeout(() => {
+        getUserInfo();
+      }, 1650);
     } catch (error) {
       MySwal.fire({
         position: "center",

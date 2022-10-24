@@ -23,7 +23,6 @@ const FormRegister = ({ goToMenu }) => {
   const [empty, setEmpty] = useState(false);
   const [passwordShown, setPasswordShown] = useState(false);
   const [passwordConfirmShow, setPasswordConfirmShown] = useState(false);
-  const [registerSuccess, setRegisterSuccess] = useState(false);
 
   const changeHandler = (e) => {
     setDataRegister({ ...dataRegister, [e.target.name]: e.target.value });
@@ -82,7 +81,11 @@ const FormRegister = ({ goToMenu }) => {
         text: "Register Success!",
         showConfirmButton: false,
         timer: 1500,
-      });
+      }).then(
+        setTimeout(() => {
+          goToMenu();
+        }, 1650)
+      );
     } catch (error) {
       MySwal.fire({
         position: "center",

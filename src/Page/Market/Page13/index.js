@@ -50,7 +50,7 @@ const Page13 = ({ goToPage6, getUserInfo }) => {
 
   const openBackDialog = () => {
     MySwal.fire({
-      title: "Tutup Toko",
+      icon: "question",
       position: "center",
       text: "Apakah kamu yakin menutup toko?",
       showCancelButton: true,
@@ -89,6 +89,22 @@ const Page13 = ({ goToPage6, getUserInfo }) => {
     }
   };
 
+  const tanyaBuyDiamond = () => {
+    MySwal.fire({
+      icon: "question",
+      position: "center",
+      text: dialogArray[index],
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      confirmButtonText: "Ya",
+      cancelButtonText: "Tidak",
+      cancelButtonColor: "#d33",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        sellOnMarket();
+      }
+    });
+  };
   const sellOnMarket = async () => {
     const userCookie = Cookies.get("user");
     try {
@@ -109,8 +125,11 @@ const Page13 = ({ goToPage6, getUserInfo }) => {
           text: message,
           showConfirmButton: false,
           timer: 1500,
-        });
-        nextDialog();
+        }).then(
+          setTimeout(() => {
+            nextDialog();
+          }, 1650)
+        );
       } else if (status === 401) {
         MySwal.fire({
           position: "center",
@@ -118,11 +137,15 @@ const Page13 = ({ goToPage6, getUserInfo }) => {
           text: message,
           showConfirmButton: false,
           timer: 1500,
-        });
+        }).then(
+          setTimeout(() => {
+            nextDialog();
+          }, 1650)
+        );
       }
-
-      getUserInfo();
-      return;
+      setTimeout(() => {
+        getUserInfo();
+      }, 1650);
     } catch (error) {
       MySwal.fire({
         icon: "error",
@@ -170,7 +193,7 @@ const Page13 = ({ goToPage6, getUserInfo }) => {
                     <div className="w-full flex flex-col gap-2">
                       <div
                         className="w-full h-full py-2 bg-blue-500 rounded-full text-center"
-                        onClick={sellOnMarket}
+                        onClick={tanyaBuyDiamond}
                       >
                         <span className="capitalize text-xl text-white tracking-widest">
                           jual

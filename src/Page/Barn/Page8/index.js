@@ -1,14 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import Chicken2 from "../../../img/common/chicken2.png";
-import Babi from "../../../img/common/pig.png";
-import Domba from "../../../img/common/domba.png";
-import Cow2 from "../../../img/common/cow2.png";
-import AyamKecil from "../../../img/common/ayamkecil.png";
-import Kelinci from "../../../img/common/kelinci.png";
-import Keledai from "../../../img/common/keledai.png";
 import Pouch from "../../../img/common/pouch.png";
-import Kerbau from "../../../img/common/kerbau.png";
-import Kuda from "../../../img/common/kuda.png";
 import Header from "../../../Component/Diatom/Header";
 import { UserContext } from "../../UserContext";
 import axios from "axios";
@@ -42,9 +33,11 @@ const Page8 = ({ goToPage7, getUserInfo }) => {
       return;
     }
     MySwal.fire({
-      title: "Beli Pakan",
+      title: "Beri Pakan",
       position: "center",
-      text: `Apakah kamu ingin membeli ${pakanDipilih.pakan} Kg Pakan?`,
+      text: `Apakah kamu ingin memberi ${numberWithCommas(
+        pakanDipilih.pakan
+      )} Kg Pakan?`,
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       confirmButtonText: "Ya",
@@ -57,6 +50,10 @@ const Page8 = ({ goToPage7, getUserInfo }) => {
     });
   };
 
+  function numberWithCommas(num) {
+    let newNum = parseInt(num);
+    return newNum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
   const tangkapPakanDipilih = (e) => {
     setPakanDipilih({
       id: e.currentTarget.getAttribute("data-id"),
@@ -94,14 +91,19 @@ const Page8 = ({ goToPage7, getUserInfo }) => {
         }
       );
       let res = hit.data.message;
+
       MySwal.fire({
         position: "center",
         icon: "success",
         text: res,
         showConfirmButton: false,
         timer: 1500,
-      });
-      getUserInfo();
+      }).then(
+        setTimeout(() => {
+          getUserInfo();
+          goToPage7();
+        }, 1700)
+      );
     } catch (error) {
       MySwal.fire({
         position: "center",
@@ -112,11 +114,6 @@ const Page8 = ({ goToPage7, getUserInfo }) => {
       });
     }
   };
-
-  function numberWithCommas(num) {
-    let newNum = parseInt(num);
-    return newNum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-  }
 
   useEffect(() => {
     getPakanTernak();
@@ -147,20 +144,20 @@ const Page8 = ({ goToPage7, getUserInfo }) => {
               </div>
               <div className="w-full h-full flex justify-center items-center ">
                 <div className="flex h-full w-full bg-papan2 bg-contain bg-no-repeat bg-center justify-center items-center ">
-                  <div className="flex flex-col  h-full w-[60%] items-center ">
+                  <div className="flex flex-col  h-full w-[70%] items-center">
                     <span className="mt-2 text-white text-md"></span>
                     <img
                       src={hewan.avatar}
                       alt=""
                       className="w-20 h-24 mt-12 lg:w-60 lg:h-64"
                     />
-                    <p className="mt-4 text-center text-md font-semibold ">
+                    <p className="mt-2 text-center text-md font-semibold ">
                       {/* {pakanDipilih.pakan}Kg Pangan */}
                       {pakanDipilih.pakan
                         ? `${pakanDipilih.pakan} Kg Pangan`
                         : `Pilih pakan untuk melihat benefit!`}
                     </p>
-                    <p className="text-center text-sm font-semibold ">
+                    <p className="text-center text-sm font-semibold">
                       {/* Menghasilkan {pakanDipilih.benefit} telur per hari */}
                       {pakanDipilih.text ? pakanDipilih.text : null}
                     </p>

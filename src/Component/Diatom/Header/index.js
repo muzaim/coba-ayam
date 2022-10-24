@@ -5,10 +5,13 @@ import PouchImg from "../../../img/common/pouch.png";
 import MeatImg from "../../../img/common/meat.png";
 import MilkImg from "../../../img/common/milk.png";
 import QuestBookImg from "../../../img/common/questbook.png";
-import { useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 import Cookies from "js-cookie";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+
+const MySwal = withReactContent(Swal);
 
 const Header = ({
   Diamond,
@@ -27,7 +30,22 @@ const Header = ({
   const openPage6 = () => {
     Action1();
   };
-
+  const tanyaLogout = () => {
+    MySwal.fire({
+      icon: "question",
+      position: "center",
+      text: `Apakah kamu akan keluar?`,
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      confirmButtonText: "Ya",
+      cancelButtonText: "Tidak",
+      cancelButtonColor: "#d33",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        goToMenu();
+      }
+    });
+  };
   const goToMenu = () => {
     Cookies.remove("user");
     ActionLogout();
@@ -140,7 +158,7 @@ const Header = ({
     return (
       <div
         className="w-40 h-10 bg-white rounded-full items-center flex active:bg-[#51a9d5] overflow-hidden"
-        onClick={goToMenu}
+        onClick={tanyaLogout}
       >
         <div className="w-full h-full ">
           <div className="flex h-full justify-center gap-2 items-center group active:border-2 active:border-white rounded-full">

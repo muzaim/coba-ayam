@@ -4,6 +4,11 @@ import { useState, useContext } from "react";
 import { UserContext } from "../../UserContext";
 import axios from "axios";
 import Cookies from "js-cookie";
+
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+const MySwal = withReactContent(Swal);
+
 const eye = <FontAwesomeIcon icon={faEye} />;
 const eyeSlash = <FontAwesomeIcon icon={faEyeSlash} />;
 
@@ -71,12 +76,21 @@ const FormLogin = ({ goToPage2, goToPage6, goToMenu }) => {
         let dataUser = userInfo.data.Data;
         setUserLogin(dataUser.user_active);
         setValue(dataUser.user_wallet);
-
-        if (dataUser.user_active.active_tutor === "0") {
-          goToPage6();
-        } else {
-          goToPage2();
-        }
+        MySwal.fire({
+          position: "center",
+          icon: "success",
+          text: "Login Success",
+          showConfirmButton: false,
+          timer: 1500,
+        }).then(
+          setTimeout(() => {
+            if (dataUser.user_active.active_tutor === "0") {
+              goToPage6();
+            } else {
+              goToPage2();
+            }
+          }, 1700)
+        );
       } catch (error) {
         console.log(error);
       }

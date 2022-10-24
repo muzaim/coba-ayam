@@ -16,6 +16,7 @@ const TopUpDiamond = ({
               className="w-52  py-2 bg-[#f0ecd8] rounded-full items-center flex justify-center border-transparent focus:outline-none focus:ring-sky-400 focus:bg-white focus:ring-2 "
               key={id}
               data-id={id}
+              data-diamond={diamon}
               onClick={tangkapDiamondDipilih}
             >
               <img src={Diamond} alt="" className="w-7" />
