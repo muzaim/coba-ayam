@@ -67,7 +67,7 @@ const Page8 = ({ goToPage7, getUserInfo }) => {
   const getPakanTernak = async () => {
     try {
       let dataTernak = await axios.get(
-        `${process.env.REACT_APP_BASE_URL}/get-pakan-ternak/${selectedAnimalID}`
+        `${process.env.REACT_APP_BASE_URL}/get-pakan-ternak/${selectedAnimalID.ternak_id}`
       );
       let res = dataTernak.data.data;
       setPakanTernak(res.pakan);
@@ -80,7 +80,7 @@ const Page8 = ({ goToPage7, getUserInfo }) => {
   const buyPakan = async () => {
     const userCookie = Cookies.get("user");
     const pakanId = pakanDipilih.id;
-    const ternakId = pakanDipilih.ternakId;
+    const ternakId = selectedAnimalID.id;
     try {
       let hit = await axios.post(
         `${process.env.REACT_APP_BASE_URL}/beri-pakan`,

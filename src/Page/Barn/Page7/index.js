@@ -1,8 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import "./style.css";
-import Chicken2 from "../../../img/common/chicken2.png";
 import Rumah from "../../../img/common/rumah.png";
-import Cow2 from "../../../img/common/cow2.png";
 import Header from "../../../Component/Diatom/Header";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Navigation, Pagination, EffectCoverflow } from "swiper";
@@ -30,7 +28,10 @@ const Page7 = ({ goToPage8, goToPage12, goToPage6 }) => {
   // HAHA PEMBATS DOANG KOK
 
   const openPage8 = (item) => {
-    setSelectedAnimalID(item.ternak_id);
+    setSelectedAnimalID({
+      id: item.id,
+      ternak_id: item.ternak_id,
+    });
     goToPage8();
   };
 

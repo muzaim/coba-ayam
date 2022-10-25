@@ -7,7 +7,10 @@ import { UserContext } from "./Page/UserContext";
 const App = () => {
   const [value, setValue] = useState({});
   const [userLogin, setUserLogin] = useState({});
-  const [selectedAnimalID, setSelectedAnimalID] = useState(0);
+  const [selectedAnimalID, setSelectedAnimalID] = useState({
+    id: "",
+    ternak_id: "",
+  });
 
   const providerValue = useMemo(
     () => ({
