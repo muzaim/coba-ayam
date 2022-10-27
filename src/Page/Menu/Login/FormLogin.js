@@ -95,7 +95,14 @@ const FormLogin = ({ goToPage2, goToPage6, goToMenu }) => {
         console.log(error);
       }
     } catch (error) {
-      setWrongPassword(true);
+      MySwal.fire({
+        position: "center",
+        icon: "error",
+        text: "Username or password not found!",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+
       setDataLogin({
         username: "",
         password: "",

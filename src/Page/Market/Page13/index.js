@@ -16,6 +16,7 @@ const Page13 = ({ goToPage6, getUserInfo }) => {
   const [avaArray, setAvaArray] = useState([]);
   const [indexAvatar, setIndexAvatar] = useState(0);
   const [dialogArray, setDialogArray] = useState([]);
+  const [questionArray, setQuestionArray] = useState([]);
 
   const checkNumber = (number) => {
     if (number > avaArray.length - 1) {
@@ -84,16 +85,21 @@ const Page13 = ({ goToPage6, getUserInfo }) => {
       for (let index2 = 0; index2 < res.length; index2++) {
         setDialogArray((current) => [...current, res[index2].text]);
       }
+
+      //set Question
+      for (let index2 = 0; index2 < res.length; index2++) {
+        setQuestionArray((current) => [...current, res[index2].alert]);
+      }
     } catch (error) {
       console.log(`dari ketika getUsrInfo `, error);
     }
   };
 
-  const tanyaBuyDiamond = () => {
+  const tanyaJualMarket = () => {
     MySwal.fire({
       icon: "question",
       position: "center",
-      text: dialogArray[index],
+      text: questionArray[index],
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       confirmButtonText: "Ya",
@@ -193,7 +199,7 @@ const Page13 = ({ goToPage6, getUserInfo }) => {
                     <div className="w-full flex flex-col gap-2">
                       <div
                         className="w-full h-full py-2 bg-blue-500 rounded-full text-center"
-                        onClick={tanyaBuyDiamond}
+                        onClick={tanyaJualMarket}
                       >
                         <span className="capitalize text-xl text-white tracking-widest">
                           jual
