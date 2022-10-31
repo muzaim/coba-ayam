@@ -19,8 +19,30 @@ import FormRegister from "../Menu/Register/FormRegister";
 import { UserContext } from "./../UserContext";
 import axios from "axios";
 import Cookies from "js-cookie";
+import useSound from "use-sound";
+import successSound from "../../music/success.mp3";
+import pop1 from "../../music/pop1.mp3";
+import selectSound from "../../music/selectItem.mp3";
+import goBackSound from "../../music/back.mp3";
+import negativeSound from "../../music/negative.mp3";
+import cow from "../../music/cow.mp3";
+import rooster from "../../music/rooster.mp3";
+import chicken from "../../music/chicken.mp3";
+import goat from "../../music/goat.mp3";
+import doorOpen from "../../music/doorOpen.mp3";
 
 const MainPage = () => {
+  const [playPop1] = useSound(pop1);
+  const [playSuccessSound] = useSound(successSound);
+  const [playSelectSound] = useSound(selectSound);
+  const [playGoBackSound] = useSound(goBackSound);
+  const [playNegativeSound] = useSound(negativeSound);
+  const [playCow] = useSound(cow);
+  const [playGoat] = useSound(goat);
+  const [playChicken] = useSound(chicken);
+  const [playRooster] = useSound(rooster);
+  const [playDoorOpen] = useSound(doorOpen);
+
   const { setUserLogin, setValue } = useContext(UserContext);
   const [step, setStep] = useState("Menu");
 
@@ -157,10 +179,26 @@ const MainPage = () => {
           goToPage8={goToPage8}
           goToPage12={goToPage12}
           goToPage6={goToPage6}
+          playChicken={playChicken}
+          playCow={playCow}
+          playGoat={playGoat}
+          playRooster={playRooster}
+          playPop1={playPop1}
+          playDoorOpen={playDoorOpen}
         />
       );
     case "Page8":
-      return <Page8 goToPage7={goToPage7} getUserInfo={getUserInfo} />;
+      return (
+        <Page8
+          goToPage7={goToPage7}
+          getUserInfo={getUserInfo}
+          playNegativeSound={playNegativeSound}
+          playPop1={playPop1}
+          playSuccessSound={playSuccessSound}
+          playSelectSound={playSelectSound}
+          playGoBackSound={playGoBackSound}
+        />
+      );
     case "Page9":
       return (
         <Page9
@@ -175,12 +213,25 @@ const MainPage = () => {
           goToPage6={goToPage6}
           goToPage7={goToPage7}
           getUserInfo={getUserInfo}
+          playPop1={playPop1}
+          playSuccessSound={playSuccessSound}
+          playNegativeSound={playNegativeSound}
         />
       );
     case "Page13":
       return <Page13 goToPage6={goToPage6} getUserInfo={getUserInfo} />;
     case "Page15":
-      return <Page15 goToPage6={goToPage6} getUserInfo={getUserInfo} />;
+      return (
+        <Page15
+          goToPage6={goToPage6}
+          getUserInfo={getUserInfo}
+          playSelectSound={playSelectSound}
+          playPop1={playPop1}
+          playSuccessSound={playSuccessSound}
+          playNegativeSound={playNegativeSound}
+          playGoBackSound={playGoBackSound}
+        />
+      );
     case "Page16":
       return <Page16 goToPage6={goToPage6} />;
     default:

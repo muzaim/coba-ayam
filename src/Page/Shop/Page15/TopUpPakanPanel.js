@@ -1,11 +1,15 @@
 import Diamond from "../../../img/common/diamond.png";
 import Pouch from "../../../img/common/pouch.png";
+import useSound from "use-sound";
+import selectSound from "../../../music/selectItem.mp3";
 
 const TopUpPakan = ({
   daftarHargaPakan,
   tangkapPakanDipilih,
   numberWithCommas,
 }) => {
+  const [playSelectSound] = useSound(selectSound);
+
   return (
     <>
       <div className="grid grid-rows-3 grid-cols-3 grid-flow-col gap-3 place-items-center">
@@ -17,7 +21,10 @@ const TopUpPakan = ({
               key={id}
               data-id={id}
               data-pakan={pakan}
-              onClick={tangkapPakanDipilih}
+              onClick={(e) => {
+                playSelectSound();
+                tangkapPakanDipilih(e);
+              }}
             >
               <img src={Pouch} alt="" className="w-7" />
               <span className="font-semibold  text-sm text-[#782443]">

@@ -7,6 +7,8 @@ import { UserContext } from "../../UserContext";
 import axios from "axios";
 import Cookies from "js-cookie";
 import Header from "../../../Component/Diatom/Header";
+import useSound from "use-sound";
+import pop1 from "../../../music/pop1.mp3";
 
 const Page6 = ({
   goToPage7,
@@ -16,6 +18,7 @@ const Page6 = ({
   goToMenu,
   goToPage16,
 }) => {
+  const [playPop1] = useSound(pop1);
   const { value, setValue } = useContext(UserContext);
   const [telur, setTelur] = useState(null);
   const [daging, setDaging] = useState(null);
@@ -69,7 +72,10 @@ const Page6 = ({
           {/* KE Warung */}
           <div
             className="top-[8rem] left-[12.5rem] absolute group animate-bounce"
-            onClick={goToPage13}
+            onClick={() => {
+              playPop1();
+              goToPage13();
+            }}
           >
             <div className="flex flex-col justify-center items-center">
               <span className="text-xl text-white tracking-wider font-custom1">
@@ -85,7 +91,10 @@ const Page6 = ({
           {/* KE BISNIS */}
           <div
             className="top-[0rem] left-[14rem] absolute group animate-bounce"
-            onClick={goToPage16}
+            onClick={() => {
+              playPop1();
+              goToPage16();
+            }}
           >
             <div className="flex flex-col justify-center items-center">
               <span className="text-xl text-white tracking-wider font-custom1">
@@ -101,7 +110,10 @@ const Page6 = ({
           {/* KE KANDANGKU */}
           <div
             className="top-[.5rem] right-[16rem] absolute group animate-bounce"
-            onClick={goToPage7}
+            onClick={() => {
+              playPop1();
+              goToPage7();
+            }}
           >
             <div className="flex flex-col justify-center items-center">
               <span className="text-xl text-white tracking-wider font-custom1">
@@ -117,7 +129,10 @@ const Page6 = ({
           {/* KE TOP UP */}
           <div
             className="top-[4rem] right-[8rem] absolute group animate-bounce"
-            onClick={goToPage15}
+            onClick={() => {
+              playPop1();
+              goToPage15();
+            }}
           >
             <div className="flex flex-col justify-center items-center">
               <span className="text-xl text-white tracking-wider font-custom1">

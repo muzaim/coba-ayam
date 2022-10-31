@@ -7,6 +7,9 @@ import { UserContext } from "../../UserContext";
 import DiamondImg from "../../../img/common/diamond.png";
 import axios from "axios";
 import Cookies from "js-cookie";
+import useSound from "use-sound";
+import pop1 from "../../../music/pop1.mp3";
+import successSound from "../../../music/success.mp3";
 
 // Import Swiper styles
 import "swiper/css";
@@ -18,7 +21,14 @@ import withReactContent from "sweetalert2-react-content";
 const MySwal = withReactContent(Swal);
 SwiperCore.use([Navigation, Pagination, EffectCoverflow]);
 
-const Page12 = ({ goToPage6, goToPage7, getUserInfo }) => {
+const Page12 = ({
+  goToPage6,
+  goToPage7,
+  getUserInfo,
+  playPop1,
+  playSuccessSound,
+  playNegativeSound,
+}) => {
   const { value, setValue } = useContext(UserContext);
   const [ternakTersedia, setTernakTersedia] = useState([]);
 
@@ -34,6 +44,7 @@ const Page12 = ({ goToPage6, goToPage7, getUserInfo }) => {
         }
       );
       let res = beli.data.message;
+      playSuccessSound();
       MySwal.fire({
         position: "center",
         icon: "success",
@@ -47,6 +58,7 @@ const Page12 = ({ goToPage6, goToPage7, getUserInfo }) => {
         }, 1700)
       );
     } catch (error) {
+      playNegativeSound();
       MySwal.fire({
         icon: "error",
         position: "center",
@@ -148,6 +160,7 @@ const Page12 = ({ goToPage6, goToPage7, getUserInfo }) => {
                                 className=" w-28 py-2 bg-gradient-to-r from-cyan-400 to-blue-600 active:bg-gradient-to-r active:from-blue-500 active:to-cyan-500  text-center rounded-full"
                                 data-id={id}
                                 onClick={() => {
+                                  playPop1();
                                   var dataId = id;
                                   MySwal.fire({
                                     title: "Beli Ternak",

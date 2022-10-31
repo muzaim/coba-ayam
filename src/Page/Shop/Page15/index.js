@@ -11,7 +11,15 @@ import withReactContent from "sweetalert2-react-content";
 import Header from "../../../Component/Diatom/Header";
 const MySwal = withReactContent(Swal);
 
-const Page15 = ({ goToPage6, getUserInfo }) => {
+const Page15 = ({
+  goToPage6,
+  getUserInfo,
+  playSelectSound,
+  playPop1,
+  playNegativeSound,
+  playSuccessSound,
+  playGoBackSound,
+}) => {
   const { value, setValue } = useContext(UserContext);
   const [diamondPanel, setDiamondPanel] = useState(true);
   const [pakanPanel, setPakanPanel] = useState(false);
@@ -27,11 +35,13 @@ const Page15 = ({ goToPage6, getUserInfo }) => {
   });
 
   const openDiamondPanel = () => {
+    playSelectSound();
     setDiamondPanel(true);
     setPakanPanel(false);
   };
 
   const openPakanPanel = () => {
+    playSelectSound();
     setPakanPanel(true);
     setDiamondPanel(false);
   };
@@ -46,6 +56,7 @@ const Page15 = ({ goToPage6, getUserInfo }) => {
 
   const tangkapPakanDipilih = (e) => {
     // setPakanDipilih(e.currentTarget.getAttribute("data-id"));
+
     setPakanDipilih({
       id: e.currentTarget.getAttribute("data-id"),
       pakan: e.currentTarget.getAttribute("data-pakan"),
@@ -71,6 +82,7 @@ const Page15 = ({ goToPage6, getUserInfo }) => {
   };
 
   const tanyaBuyDiamond = () => {
+    playPop1();
     if (!diamodDipilih.id) {
       MySwal.fire({
         position: "center",
@@ -98,6 +110,7 @@ const Page15 = ({ goToPage6, getUserInfo }) => {
   };
 
   const tanyaBuyPakan = () => {
+    playPop1();
     if (!pakanDipilih.id) {
       MySwal.fire({
         position: "center",
@@ -145,10 +158,12 @@ const Page15 = ({ goToPage6, getUserInfo }) => {
         showConfirmButton: false,
         timer: 1500,
       });
+      playSuccessSound();
       setTimeout(() => {
         getUserInfo();
       }, 1650);
     } catch (error) {
+      playNegativeSound();
       MySwal.fire({
         position: "center",
         icon: "error",
@@ -197,10 +212,12 @@ const Page15 = ({ goToPage6, getUserInfo }) => {
         showConfirmButton: false,
         timer: 1500,
       });
+      playSuccessSound();
       setTimeout(() => {
         getUserInfo();
       }, 1650);
     } catch (error) {
+      playNegativeSound();
       MySwal.fire({
         position: "center",
         icon: "error",
@@ -295,7 +312,10 @@ const Page15 = ({ goToPage6, getUserInfo }) => {
             <button
               type="button"
               className="w-52 h-full bg-gradient-to-r from-pink-400 to-red-600 active:bg-gradient-to-r active:from-red-500 active:to-pink-500  rounded-full py-3 text-center "
-              onClick={goToPage6}
+              onClick={() => {
+                playGoBackSound();
+                goToPage6();
+              }}
             >
               <div className="font-semibold capitalize text-lg tracking-wider text-white">
                 kembali

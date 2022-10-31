@@ -19,7 +19,17 @@ import { useState } from "react";
 
 SwiperCore.use([Navigation, Pagination, EffectCoverflow]);
 
-const Page7 = ({ goToPage8, goToPage12, goToPage6 }) => {
+const Page7 = ({
+  goToPage8,
+  goToPage12,
+  goToPage6,
+  playChicken,
+  playCow,
+  playGoat,
+  playRooster,
+  playPop1,
+  playDoorOpen,
+}) => {
   const { value, setValue, setSelectedAnimalID } = useContext(UserContext);
   const [userTernak, setUserTernak] = useState([]);
   const [jumlahUserTernak, setJumlahUserTernak] = useState(1);
@@ -27,7 +37,20 @@ const Page7 = ({ goToPage8, goToPage12, goToPage6 }) => {
   // INI PEMBATAS YA
   // HAHA PEMBATS DOANG KOK
 
+  const checkPlaySound = (ternak_id) => {
+    if (ternak_id === "1") {
+      return playChicken();
+    } else if (ternak_id === "2") {
+      return playRooster();
+    } else if (ternak_id === "3") {
+      return playCow();
+    } else {
+      return playGoat();
+    }
+  };
+
   const openPage8 = (item) => {
+    checkPlaySound(item.ternak_id);
     setSelectedAnimalID({
       id: item.id,
       ternak_id: item.ternak_id,
@@ -163,7 +186,13 @@ const Page7 = ({ goToPage8, goToPage12, goToPage6 }) => {
                       className="flex justify-center items-center bg-papan1 bg-[length:200px_160px] bg-center bg-no-repeat cursor-pointer mt-3  w-full"
                       // onClick={() => openPage8(item)}
                     >
-                      <div className="w-[90%] h-[80%]" onClick={goToPage12}>
+                      <div
+                        className="w-[90%] h-[80%]"
+                        onClick={() => {
+                          playDoorOpen();
+                          goToPage12();
+                        }}
+                      >
                         <div className="flex flex-col items-center justify-center h-full">
                           <img
                             src={Rumah}
@@ -178,7 +207,13 @@ const Page7 = ({ goToPage8, goToPage12, goToPage6 }) => {
                       className="flex justify-center items-center bg-papan1 bg-[length:200px_160px] bg-center bg-no-repeat cursor-pointer mt-3  w-full"
                       // onClick={() => openPage8(item)}
                     >
-                      <div className="w-[90%] h-[80%]" onClick={goToPage12}>
+                      <div
+                        className="w-[90%] h-[80%]"
+                        onClick={() => {
+                          playDoorOpen();
+                          goToPage12();
+                        }}
+                      >
                         <div className="flex flex-col items-center justify-center h-full">
                           <img
                             src={Rumah}
@@ -264,7 +299,13 @@ const Page7 = ({ goToPage8, goToPage12, goToPage6 }) => {
                       className="flex justify-center items-center bg-papan1 bg-[length:200px_160px] bg-center bg-no-repeat cursor-pointer mt-3  w-full"
                       // onClick={() => openPage8(item)}
                     >
-                      <div className="w-[90%] h-[80%]" onClick={goToPage12}>
+                      <div
+                        className="w-[90%] h-[80%]"
+                        onClick={() => {
+                          playDoorOpen();
+                          goToPage12();
+                        }}
+                      >
                         <div className="flex flex-col items-center justify-center h-full">
                           <img
                             src={Rumah}
@@ -374,7 +415,10 @@ const Page7 = ({ goToPage8, goToPage12, goToPage6 }) => {
 
             <div
               className="w-full h-full bg-gradient-to-r from-cyan-300 to-blue-700 rounded-full py-3 text-center group active:bg-gradient-to-r active:from-blue-500 active:to-cyan-500 "
-              onClick={goToPage12}
+              onClick={() => {
+                playDoorOpen();
+                goToPage12();
+              }}
             >
               <span className="font-semibold capitalize text-lg tracking-wider  text-white">
                 Tambah ternak

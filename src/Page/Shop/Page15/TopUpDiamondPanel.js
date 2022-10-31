@@ -1,10 +1,13 @@
 import Diamond from "../../../img/common/diamond.png";
+import useSound from "use-sound";
+import selectSound from "../../../music/selectItem.mp3";
 
 const TopUpDiamond = ({
   daftarHargaDiamond,
   tangkapDiamondDipilih,
   numberWithCommas,
 }) => {
+  const [playSelectSound] = useSound(selectSound);
   return (
     <>
       <div className="grid grid-rows-3 grid-cols-3 grid-flow-col gap-3 place-items-center ">
@@ -17,7 +20,10 @@ const TopUpDiamond = ({
               key={id}
               data-id={id}
               data-diamond={diamon}
-              onClick={tangkapDiamondDipilih}
+              onClick={(e) => {
+                playSelectSound();
+                tangkapDiamondDipilih(e);
+              }}
             >
               <img src={Diamond} alt="" className="w-7" />
               <span className="font-bold  text-sm text-sky-400">

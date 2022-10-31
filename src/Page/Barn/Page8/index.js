@@ -9,7 +9,15 @@ import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 const MySwal = withReactContent(Swal);
 
-const Page8 = ({ goToPage7, getUserInfo }) => {
+const Page8 = ({
+  goToPage7,
+  getUserInfo,
+  playNegativeSound,
+  playPop1,
+  playSuccessSound,
+  playSelectSound,
+  playGoBackSound,
+}) => {
   const { value, setValue, selectedAnimalID } = useContext(UserContext);
   const [hewan, setHewan] = useState([]);
   const [pakanDipilih, setPakanDipilih] = useState({
@@ -22,6 +30,7 @@ const Page8 = ({ goToPage7, getUserInfo }) => {
   const [pakanTernak, setPakanTernak] = useState([]);
 
   const tanyaBuyPakan = () => {
+    playPop1();
     if (!pakanDipilih.pakan) {
       MySwal.fire({
         position: "center",
@@ -55,6 +64,7 @@ const Page8 = ({ goToPage7, getUserInfo }) => {
     return newNum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   }
   const tangkapPakanDipilih = (e) => {
+    playSelectSound();
     setPakanDipilih({
       id: e.currentTarget.getAttribute("data-id"),
       ternakId: e.currentTarget.getAttribute("data-ternak-id"),
@@ -91,7 +101,7 @@ const Page8 = ({ goToPage7, getUserInfo }) => {
         }
       );
       let res = hit.data.message;
-
+      playSuccessSound();
       MySwal.fire({
         position: "center",
         icon: "success",
@@ -105,6 +115,7 @@ const Page8 = ({ goToPage7, getUserInfo }) => {
         }, 1700)
       );
     } catch (error) {
+      playNegativeSound();
       MySwal.fire({
         position: "center",
         icon: "error",
@@ -195,7 +206,10 @@ const Page8 = ({ goToPage7, getUserInfo }) => {
                         <button
                           className="w-full h-full items-center tracking-widest"
                           type="button"
-                          onClick={goToPage7}
+                          onClick={() => {
+                            playGoBackSound();
+                            goToPage7();
+                          }}
                         >
                           Batal
                         </button>

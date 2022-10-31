@@ -10,6 +10,9 @@ import { faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 import Cookies from "js-cookie";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
+import backSound from "../../../music/back.mp3";
+import paperFlipSound from "../../../music/paperflip.mp3";
+import useSound from "use-sound";
 
 const MySwal = withReactContent(Swal);
 
@@ -27,6 +30,8 @@ const Header = ({
   ActionLogout,
   harta,
 }) => {
+  const [playPop1] = useSound(backSound);
+  const [playPaperFlip] = useSound(paperFlipSound);
   const openPage6 = () => {
     Action1();
   };
@@ -135,7 +140,10 @@ const Header = ({
     return (
       <div
         className="w-40 h-10 bg-gradient-to-r from-pink-400 to-red-600 rounded-full items-center flex active:bg-gradient-to-r active:from-red-500 active:to-pink-500"
-        onClick={Action2}
+        onClick={() => {
+          playPop1();
+          Action2();
+        }}
       >
         <div className="w-full text-center ">
           <span className="font-bold  text-sm text-white tracking-widest">
@@ -148,7 +156,13 @@ const Header = ({
 
   const QuestBookDiv = () => {
     return (
-      <div className="" onClick={openPage6}>
+      <div
+        className=""
+        onClick={() => {
+          playPaperFlip();
+          openPage6();
+        }}
+      >
         <img src={QuestBookImg} alt="" className="w-16" />
       </div>
     );
