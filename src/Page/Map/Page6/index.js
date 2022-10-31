@@ -7,8 +7,6 @@ import { UserContext } from "../../UserContext";
 import axios from "axios";
 import Cookies from "js-cookie";
 import Header from "../../../Component/Diatom/Header";
-import buddy from "../../../music/buddy.mp3";
-import ReactAudioPlayer from "react-audio-player";
 
 const Page6 = ({
   goToPage7,
