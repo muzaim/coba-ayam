@@ -3,7 +3,6 @@ import { MainPage, Rotate } from "./Page";
 import React, { useMemo, useState } from "react";
 import DeviceOrientation, { Orientation } from "react-screen-orientation";
 import { UserContext } from "./Page/UserContext";
-import MusicOnly from "./Page/Music/MusicOnly";
 
 const App = () => {
   const [value, setValue] = useState({});
@@ -33,7 +32,6 @@ const App = () => {
           <div className="w-full h-full flex items-center">
             <UserContext.Provider value={providerValue}>
               <MainPage />
-              <MusicOnly />
             </UserContext.Provider>
           </div>
         </div>

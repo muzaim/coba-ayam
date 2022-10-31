@@ -102,7 +102,7 @@ const FormLogin = ({
             } else {
               goToPage2();
             }
-            // return play();
+            return play();
           }, 1700)
         );
       } catch (error) {
