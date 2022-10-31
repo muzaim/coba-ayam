@@ -74,7 +74,7 @@ const Page5 = ({ goToPage6, playYaySound, playSelectSound }) => {
 
   return (
     <div className="w-full h-screen overflow-hidden bg-page2 bg-cover mx-auto lg:max-w-6xl lg:h-[70%]">
-      <div className="w-[90%] h-full mx-auto ">
+      <div clName="w-[90%] h-full mx-auto ">
         {/* HEADER */}
         <div className="h-[15%]"></div>
         {/* HEADER END */}

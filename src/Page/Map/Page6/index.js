@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import EggImg from "../../../img/common/egg.png";
 import MeatImg from "../../../img/common/meat.png";
 import MilkImg from "../../../img/common/milk.png";
@@ -7,6 +7,8 @@ import { UserContext } from "../../UserContext";
 import axios from "axios";
 import Cookies from "js-cookie";
 import Header from "../../../Component/Diatom/Header";
+import buddy from "../../../music/buddy.mp3";
+import ReactAudioPlayer from "react-audio-player";
 
 const Page6 = ({
   goToPage7,
@@ -26,6 +28,7 @@ const Page6 = ({
 
   const getUserInfo2 = async () => {
     const userCookie = Cookies.get("user");
+
     try {
       let userInfo = await axios.get(
         `${process.env.REACT_APP_BASE_URL}/user-info`,

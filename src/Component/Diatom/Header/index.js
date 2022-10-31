@@ -13,7 +13,6 @@ import withReactContent from "sweetalert2-react-content";
 import backSound from "../../../music/back.mp3";
 import paperFlipSound from "../../../music/paperflip.mp3";
 import warningSound from "../../../music/warning.mp3";
-import goBackSound from "../../../music/back.mp3";
 import useSound from "use-sound";
 
 const MySwal = withReactContent(Swal);
