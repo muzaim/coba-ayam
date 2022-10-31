@@ -70,10 +70,9 @@ const Page7 = ({
         }
       );
       let dataUser = userInfo.data.Data;
-      console.log(`jumalh user ternak`, dataUser.length);
+
       setUserTernak(dataUser);
       setJumlahUserTernak(dataUser.length);
-      console.log(dataUser);
     } catch (error) {
       console.log(`dari ketika getUsrInfo `, error);
     }
@@ -81,7 +80,6 @@ const Page7 = ({
 
   useEffect(() => {
     getUserTernak();
-    console.log(jumlahUserTernak);
   }, []);
   return (
     <div className="w-full h-screen overflow-hidden bg-barn bg-cover mx-auto lg:max-w-6xl lg:h-[70%] ">
@@ -131,16 +129,13 @@ const Page7 = ({
                       const start = new Date(pakan_start).valueOf();
                       const now = new Date(time_now).valueOf();
                       const end = new Date(pakan_end).valueOf();
-                      console.log(`start`, start);
-                      console.log(`now`, now);
-                      console.log(`end`, new Date(pakan_end).valueOf());
+
                       let finalHasil = 0;
                       if (start === now) {
                         finalHasil = 0;
                       } else {
                         const hasil = ((now - start) / (end - start)) * 100;
                         finalHasil = 100 - hasil;
-                        console.log(`ini final hasil`, finalHasil);
                       }
 
                       //INI
@@ -236,7 +231,7 @@ const Page7 = ({
                         time_now,
                         pakan_start,
                         pakan_end,
-                        umur_start,
+
                         umur_end,
                       } = item;
                       // INI
@@ -244,16 +239,13 @@ const Page7 = ({
                       const start = new Date(pakan_start).valueOf();
                       const now = new Date(time_now).valueOf();
                       const end = new Date(pakan_end).valueOf();
-                      console.log(`start`, start);
-                      console.log(`now`, now);
-                      console.log(`end`, new Date(pakan_end).valueOf());
+
                       let finalHasil = 0;
                       if (start === now) {
                         finalHasil = 0;
                       } else {
                         const hasil = ((now - start) / (end - start)) * 100;
                         finalHasil = 100 - hasil;
-                        console.log(`ini final hasil`, finalHasil);
                       }
                       //INI
 
@@ -338,24 +330,18 @@ const Page7 = ({
                           pakan_end,
                           umur_end,
                         } = item;
-                        // INI
-                        // const hariIni = Math.round(new Date().getTime() / 1000);
-                        // console.log(`start`, new Date(pakan_start).valueOf());
-                        // console.log(`now`, new Date(time_now).valueOf());
-                        // console.log(`end`, new Date(pakan_end).valueOf());
+                        
                         const start = new Date(pakan_start).valueOf();
                         const now = new Date(time_now).valueOf();
                         const end = new Date(pakan_end).valueOf();
-                        console.log(`start`, start);
-                        console.log(`now`, now);
-                        console.log(`end`, new Date(pakan_end).valueOf());
+                       
                         let finalHasil = 0;
                         if (start === now) {
                           finalHasil = 0;
                         } else {
                           const hasil = ((now - start) / (end - start)) * 100;
                           finalHasil = 100 - hasil;
-                          console.log(`ini final hasil`, finalHasil);
+                        
                         }
 
                         //INI

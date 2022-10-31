@@ -17,6 +17,7 @@ const Page8 = ({
   playSuccessSound,
   playSelectSound,
   playGoBackSound,
+  playWarningSound,
 }) => {
   const { value, setValue, selectedAnimalID } = useContext(UserContext);
   const [hewan, setHewan] = useState([]);
@@ -30,17 +31,18 @@ const Page8 = ({
   const [pakanTernak, setPakanTernak] = useState([]);
 
   const tanyaBuyPakan = () => {
-    playPop1();
     if (!pakanDipilih.pakan) {
+      playWarningSound();
       MySwal.fire({
         position: "center",
-        icon: "error",
+        icon: "warning",
         text: "Pilih pakan terlebih dahulu!",
         showConfirmButton: false,
         timer: 1500,
       });
       return;
     }
+    playPop1();
     MySwal.fire({
       title: "Beri Pakan",
       position: "center",
@@ -55,6 +57,15 @@ const Page8 = ({
     }).then((result) => {
       if (result.isConfirmed) {
         buyPakan();
+      } else {
+        playGoBackSound();
+        setPakanDipilih({
+          id: "",
+          ternakId: "",
+          pakan: "",
+          benefit: "",
+          text: "",
+        });
       }
     });
   };
@@ -116,6 +127,13 @@ const Page8 = ({
       );
     } catch (error) {
       playNegativeSound();
+      setPakanDipilih({
+        id: "",
+        ternakId: "",
+        pakan: "",
+        benefit: "",
+        text: "",
+      });
       MySwal.fire({
         position: "center",
         icon: "error",

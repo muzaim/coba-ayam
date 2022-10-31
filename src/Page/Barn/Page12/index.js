@@ -7,9 +7,6 @@ import { UserContext } from "../../UserContext";
 import DiamondImg from "../../../img/common/diamond.png";
 import axios from "axios";
 import Cookies from "js-cookie";
-import useSound from "use-sound";
-import pop1 from "../../../music/pop1.mp3";
-import successSound from "../../../music/success.mp3";
 
 // Import Swiper styles
 import "swiper/css";
@@ -28,6 +25,7 @@ const Page12 = ({
   playPop1,
   playSuccessSound,
   playNegativeSound,
+  playGoBackSound,
 }) => {
   const { value, setValue } = useContext(UserContext);
   const [ternakTersedia, setTernakTersedia] = useState([]);
@@ -174,6 +172,8 @@ const Page12 = ({
                                   }).then((result) => {
                                     if (result.isConfirmed) {
                                       buyTernak(dataId);
+                                    } else {
+                                      playGoBackSound();
                                     }
                                   });
                                 }}

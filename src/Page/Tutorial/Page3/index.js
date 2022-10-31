@@ -3,11 +3,12 @@ import Cewek from "../../../img/common/npcayam.png";
 import Next from "../../../img/usage/play.png";
 import Typewriter from "typewriter-effect";
 
-const Page3 = ({ goToPage4 }) => {
+const Page3 = ({ goToPage4, playNextDialogSound, playSelectSound }) => {
   const [skipDialog, setSkipDalog] = useState(false);
   const [nextButton, setNextButton] = useState(false);
 
   const skip = () => {
+    playSelectSound();
     setSkipDalog((current) => !current);
   };
 
@@ -26,7 +27,10 @@ const Page3 = ({ goToPage4 }) => {
               src={Next}
               alt=""
               className="w-6 animate-pulse"
-              onClick={goToPage4}
+              onClick={() => {
+                playNextDialogSound();
+                goToPage4();
+              }}
             />
           </div>
         </div>

@@ -10,7 +10,14 @@ const MySwal = withReactContent(Swal);
 const eye = <FontAwesomeIcon icon={faEye} />;
 const eyeSlash = <FontAwesomeIcon icon={faEyeSlash} />;
 
-const FormRegister = ({ goToMenu, goToFormLogin }) => {
+const FormRegister = ({
+  goToMenu,
+  goToFormLogin,
+  playGoBackSound,
+  playPop1,
+  playSuccessSound,
+  playNegativeSound,
+}) => {
   const [dataRegister, setDataRegister] = useState({
     username: "",
     phone: "",
@@ -47,6 +54,7 @@ const FormRegister = ({ goToMenu, goToFormLogin }) => {
   // LOGIN
   const handleSubmit = async (e) => {
     e.preventDefault();
+    playPop1();
     const formData = new FormData();
     formData.append("username", dataRegister.username);
     formData.append("phone", dataRegister.phone);
@@ -75,6 +83,7 @@ const FormRegister = ({ goToMenu, goToFormLogin }) => {
         password: "",
         password_confirmation: "",
       });
+      playSuccessSound();
       MySwal.fire({
         position: "center",
         icon: "success",
@@ -87,6 +96,7 @@ const FormRegister = ({ goToMenu, goToFormLogin }) => {
         }, 1650)
       );
     } catch (error) {
+      playNegativeSound();
       MySwal.fire({
         position: "center",
         icon: "error",
@@ -187,7 +197,10 @@ const FormRegister = ({ goToMenu, goToFormLogin }) => {
                     <button
                       className="group-active:text-[#5e17eb]  w-full h-full items-center tracking-widest"
                       type="submit"
-                      onClick={goToMenu}
+                      onClick={() => {
+                        playGoBackSound();
+                        goToMenu();
+                      }}
                     >
                       Back
                     </button>

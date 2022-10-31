@@ -14,7 +14,15 @@ const MySwal = withReactContent(Swal);
 const eye = <FontAwesomeIcon icon={faEye} />;
 const eyeSlash = <FontAwesomeIcon icon={faEyeSlash} />;
 
-const FormLogin = ({ goToPage2, goToPage6, goToMenu }) => {
+const FormLogin = ({
+  goToPage2,
+  goToPage6,
+  goToMenu,
+  playGoBackSound,
+  playPop1,
+  playSuccessSound,
+  playNegativeSound,
+}) => {
   const [play] = useSound(buddy);
   const { setUserLogin, setValue } = useContext(UserContext);
   const [dataLogin, setDataLogin] = useState({
@@ -43,6 +51,7 @@ const FormLogin = ({ goToPage2, goToPage6, goToMenu }) => {
   // LOGIN
   const handleSubmit = async (e) => {
     e.preventDefault();
+    playPop1();
     const formData = new FormData();
     formData.append("username", dataLogin.username);
     formData.append("password", dataLogin.password);
@@ -79,6 +88,7 @@ const FormLogin = ({ goToPage2, goToPage6, goToMenu }) => {
         let dataUser = userInfo.data.Data;
         setUserLogin(dataUser.user_active);
         setValue(dataUser.user_wallet);
+        playSuccessSound();
         MySwal.fire({
           position: "center",
           icon: "success",
@@ -99,6 +109,7 @@ const FormLogin = ({ goToPage2, goToPage6, goToMenu }) => {
         console.log(error);
       }
     } catch (error) {
+      playNegativeSound();
       MySwal.fire({
         position: "center",
         icon: "error",
@@ -165,7 +176,10 @@ const FormLogin = ({ goToPage2, goToPage6, goToMenu }) => {
                     <button
                       className="group-active:text-[#5e17eb]  w-full h-full items-center tracking-widest"
                       type="button"
-                      onClick={goToMenu}
+                      onClick={() => {
+                        playGoBackSound();
+                        goToMenu();
+                      }}
                     >
                       Back
                     </button>

@@ -4,7 +4,7 @@ import { useState } from "react";
 import Tama from "../../img/common/tamako.png";
 import "./style.css";
 
-const Menu = ({ goToFormLogin, goToFormRegister }) => {
+const Menu = ({ goToFormLogin, goToFormRegister, playPop1 }) => {
   const [loading, setLoading] = useState(true);
 
   const LoadingBar = () => {
@@ -35,7 +35,10 @@ const Menu = ({ goToFormLogin, goToFormRegister }) => {
 
             <div
               className="block mx-auto py-4 px-16 bg-gradient-to-r from-green-400 to-blue-500 rounded-3xl uppercase tracking-[0.15rem] font-extrabold text-white font-openSans active:bg-[#ffffff] group "
-              onClick={goToFormLogin}
+              onClick={() => {
+                playPop1();
+                goToFormLogin();
+              }}
             >
               <span className="group-active:text-[#5e17eb] delay-1000">
                 Masuk
@@ -44,7 +47,10 @@ const Menu = ({ goToFormLogin, goToFormRegister }) => {
 
             <div
               className="block mx-auto py-2 px-16 rounded-3xl uppercase tracking-[0.15rem] font-extrabold text-white font-openSans group"
-              onClick={goToFormRegister}
+              onClick={() => {
+                playPop1();
+                goToFormRegister();
+              }}
             >
               <span className="group-active:text-[#5e17eb] uppercase">
                 Belum punya akun? buat akun

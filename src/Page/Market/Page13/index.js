@@ -9,7 +9,16 @@ import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 const MySwal = withReactContent(Swal);
 
-const Page13 = ({ goToPage6, getUserInfo }) => {
+const Page13 = ({
+  goToPage6,
+  getUserInfo,
+  playPop1,
+  playSelectSound,
+  playGoBackSound,
+  playSuccessSound,
+  playNegativeSound,
+  playPaperFlipSound,
+}) => {
   const { value, setValue } = useContext(UserContext);
   const [index, setIndex] = useState(0);
   const [market, setMarket] = useState([]);
@@ -39,6 +48,7 @@ const Page13 = ({ goToPage6, getUserInfo }) => {
   };
 
   const nextDialog = () => {
+    playSelectSound();
     setIndex((index) => {
       let newIndex = index + 1;
       return checkNumber(newIndex);
@@ -50,6 +60,7 @@ const Page13 = ({ goToPage6, getUserInfo }) => {
   };
 
   const openBackDialog = () => {
+    playPop1();
     MySwal.fire({
       icon: "question",
       position: "center",
@@ -61,7 +72,10 @@ const Page13 = ({ goToPage6, getUserInfo }) => {
       cancelButtonColor: "#d33",
     }).then((result) => {
       if (result.isConfirmed) {
+        playPaperFlipSound();
         goToPage6();
+      } else {
+        playGoBackSound();
       }
     });
   };
@@ -96,6 +110,7 @@ const Page13 = ({ goToPage6, getUserInfo }) => {
   };
 
   const tanyaJualMarket = () => {
+    playPop1();
     MySwal.fire({
       icon: "question",
       position: "center",
@@ -108,9 +123,12 @@ const Page13 = ({ goToPage6, getUserInfo }) => {
     }).then((result) => {
       if (result.isConfirmed) {
         sellOnMarket();
+      } else {
+        playGoBackSound();
       }
     });
   };
+
   const sellOnMarket = async () => {
     const userCookie = Cookies.get("user");
     try {
@@ -125,6 +143,7 @@ const Page13 = ({ goToPage6, getUserInfo }) => {
       let status = userInfo.data.status;
 
       if (status === 200) {
+        playSuccessSound();
         MySwal.fire({
           position: "center",
           icon: "success",
@@ -137,6 +156,7 @@ const Page13 = ({ goToPage6, getUserInfo }) => {
           }, 1650)
         );
       } else if (status === 401) {
+        playNegativeSound();
         MySwal.fire({
           position: "center",
           icon: "error",
@@ -250,43 +270,39 @@ const Page13 = ({ goToPage6, getUserInfo }) => {
                   <img
                     src={avaArray[indexAvatar + 5]}
                     alt=""
-                    className="w-24 animate-bounce"
+                    className="w-24 "
                   />
                 </div>
                 <div className="absolute left-20">
                   <img
                     src={avaArray[indexAvatar + 4]}
                     alt=""
-                    className="w-24 animate-bounce"
+                    className="w-24 "
                   />
                 </div>
                 <div className="absolute left-40">
                   <img
                     src={avaArray[indexAvatar + 3]}
                     alt=""
-                    className="w-24 animate-bounce"
+                    className="w-24 "
                   />
                 </div>
                 <div className="absolute left-60">
                   <img
                     src={avaArray[indexAvatar + 2]}
                     alt=""
-                    className="w-24 animate-bounce"
+                    className="w-24 "
                   />
                 </div>
                 <div className="absolute left-80">
                   <img
                     src={avaArray[indexAvatar + 1]}
                     alt=""
-                    className="w-24 animate-bounce"
+                    className="w-24 "
                   />
                 </div>
                 <div className="absolute left-[31rem]">
-                  <img
-                    src={avaArray[indexAvatar]}
-                    alt=""
-                    className="w-24 animate-bounce"
-                  />
+                  <img src={avaArray[indexAvatar]} alt="" className="w-24 " />
                 </div>
               </div>
             </div>

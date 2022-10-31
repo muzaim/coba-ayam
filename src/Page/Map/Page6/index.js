@@ -7,8 +7,6 @@ import { UserContext } from "../../UserContext";
 import axios from "axios";
 import Cookies from "js-cookie";
 import Header from "../../../Component/Diatom/Header";
-import useSound from "use-sound";
-import pop1 from "../../../music/pop1.mp3";
 
 const Page6 = ({
   goToPage7,
@@ -17,8 +15,10 @@ const Page6 = ({
   getUserInfo,
   goToMenu,
   goToPage16,
+  playPop1,
+  playWarningSound,
+  playGoBackSound,
 }) => {
-  const [playPop1] = useSound(pop1);
   const { value, setValue } = useContext(UserContext);
   const [telur, setTelur] = useState(null);
   const [daging, setDaging] = useState(null);

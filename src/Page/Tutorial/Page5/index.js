@@ -4,11 +4,12 @@ import Typewriter from "typewriter-effect";
 import axios from "axios";
 import Cookies from "js-cookie";
 
-const Page5 = ({ goToPage6 }) => {
+const Page5 = ({ goToPage6, playYaySound, playSelectSound }) => {
   const [skipDialog, setSkipDalog] = useState(false);
   const [nextButton, setNextButton] = useState(false);
 
   const skip = () => {
+    playSelectSound();
     setSkipDalog((current) => !current);
   };
 
@@ -44,6 +45,7 @@ const Page5 = ({ goToPage6 }) => {
   };
 
   const selesaiTutor = async () => {
+    playYaySound();
     const userCookie = Cookies.get("user");
     try {
       await axios.get(`${process.env.REACT_APP_BASE_URL}/tutor-update`, {
@@ -74,17 +76,17 @@ const Page5 = ({ goToPage6 }) => {
     <div className="w-full h-screen overflow-hidden bg-page2 bg-cover mx-auto lg:max-w-6xl lg:h-[70%]">
       <div className="w-[90%] h-full mx-auto ">
         {/* HEADER */}
-        <div class="h-[15%]"></div>
+        <div className="h-[15%]"></div>
         {/* HEADER END */}
         {/* CONTENT */}
-        <div class="h-[85%] flex">
-          <div class="w-[35%]">
+        <div className="h-[85%] flex">
+          <div className="w-[35%]">
             <div className="w-full h-full items-end flex">
               <img src={Cewek} alt="" className="w-48" />
             </div>
           </div>
           {nextButton ? <NextButtonDiv /> : null}
-          <div class="w-full h-screen mt-3">
+          <div className="w-full h-screen mt-3">
             {skipDialog ? (
               <DialogComplete />
             ) : (

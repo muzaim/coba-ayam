@@ -19,6 +19,7 @@ const Page15 = ({
   playNegativeSound,
   playSuccessSound,
   playGoBackSound,
+  playWarningSound,
 }) => {
   const { value, setValue } = useContext(UserContext);
   const [diamondPanel, setDiamondPanel] = useState(true);
@@ -82,17 +83,19 @@ const Page15 = ({
   };
 
   const tanyaBuyDiamond = () => {
-    playPop1();
+    // playPop1();
     if (!diamodDipilih.id) {
+      playWarningSound();
       MySwal.fire({
         position: "center",
-        icon: "error",
+        icon: "warning",
         text: "Pilih diamond terlebih dahulu!",
         showConfirmButton: false,
         timer: 1500,
       });
       return;
     }
+    playPop1();
     MySwal.fire({
       title: "Beli Diamond",
       position: "center",
@@ -105,22 +108,29 @@ const Page15 = ({
     }).then((result) => {
       if (result.isConfirmed) {
         buyDiamond();
+      } else {
+        playGoBackSound();
+        setDiamondDipilih({
+          id: "",
+          diamond: "",
+        });
       }
     });
   };
 
   const tanyaBuyPakan = () => {
-    playPop1();
     if (!pakanDipilih.id) {
+      playWarningSound();
       MySwal.fire({
         position: "center",
-        icon: "error",
+        icon: "warning",
         text: "Pilih pakan terlebih dahulu!",
         showConfirmButton: false,
         timer: 1500,
       });
       return;
     }
+    playPop1();
     MySwal.fire({
       title: "Beli Pakan",
       position: "center",
@@ -133,6 +143,12 @@ const Page15 = ({
     }).then((result) => {
       if (result.isConfirmed) {
         buyPakan();
+      } else {
+        playGoBackSound();
+        setPakanDipilih({
+          id: "",
+          pakan: "",
+        });
       }
     });
   };

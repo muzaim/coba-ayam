@@ -12,6 +12,8 @@ import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import backSound from "../../../music/back.mp3";
 import paperFlipSound from "../../../music/paperflip.mp3";
+import warningSound from "../../../music/warning.mp3";
+import goBackSound from "../../../music/back.mp3";
 import useSound from "use-sound";
 
 const MySwal = withReactContent(Swal);
@@ -32,10 +34,15 @@ const Header = ({
 }) => {
   const [playPop1] = useSound(backSound);
   const [playPaperFlip] = useSound(paperFlipSound);
+  const [playWarningSound] = useSound(warningSound);
+  const [playGoBackSound] = useSound(backSound);
+
   const openPage6 = () => {
     Action1();
   };
+
   const tanyaLogout = () => {
+    playWarningSound();
     MySwal.fire({
       icon: "question",
       position: "center",
@@ -48,6 +55,8 @@ const Header = ({
     }).then((result) => {
       if (result.isConfirmed) {
         goToMenu();
+      } else {
+        playGoBackSound();
       }
     });
   };
