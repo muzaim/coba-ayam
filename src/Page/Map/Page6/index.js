@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import EggImg from "../../../img/common/egg.png";
 import MeatImg from "../../../img/common/meat.png";
 import MilkImg from "../../../img/common/milk.png";
@@ -62,6 +62,10 @@ const Page6 = ({
         {/* HEADER END */}
         {/* CONTENT */}
         <div className="relative h-[50%] ">
+          {/* TES MUSIC */}
+
+          {/* TES MUSIC */}
+
           {/* KE Warung */}
           <div
             className="top-[8rem] left-[12.5rem] absolute group animate-bounce"

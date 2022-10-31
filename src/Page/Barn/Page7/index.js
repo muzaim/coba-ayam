@@ -137,13 +137,13 @@ const Page7 = ({ goToPage8, goToPage12, goToPage6 }) => {
                         >
                           <div className="w-[90%] h-[80%]">
                             <div className="flex flex-col items-center my-5">
-                              <span className="text-sm  uppercase font-custom1 mb-2 text-center">
+                              <span className="text-sm  uppercase font-custom1 mb-2 text-center z-20">
                                 {name} - {Math.round(beda)} Hari
                               </span>
                               <img
                                 src={avatar}
                                 alt=""
-                                className="w-[5rem] h-[5rem]  lg:w-60 lg:h-64"
+                                className="w-[5rem] h-[5rem]  lg:w-60 lg:h-64 animate-bounce"
                               />
                               <div className="w-32 bg-gray-200 h-3 rounded-full overflow-hidden lg:w-72 lg:h-10 ">
                                 <div
@@ -237,13 +237,13 @@ const Page7 = ({ goToPage8, goToPage12, goToPage6 }) => {
                         >
                           <div className="w-[90%] h-[80%]">
                             <div className="flex flex-col items-center justify-center h-full">
-                              <span className="text-sm  uppercase font-custom1 mb-2 text-center">
+                              <span className="text-sm  uppercase font-custom1 mb-2 text-center z-10">
                                 {name} - {Math.round(beda)} Hari
                               </span>
                               <img
                                 src={avatar}
                                 alt=""
-                                className="w-[5rem] h-[5rem]  lg:w-60 lg:h-64"
+                                className="w-[5rem] h-[5rem]  lg:w-60 lg:h-64 animate-bounce"
                               />
                               <div className="w-32 bg-gray-200 h-3 rounded-full overflow-hidden lg:w-72 lg:h-10 mt-3">
                                 <div
@@ -337,13 +337,13 @@ const Page7 = ({ goToPage8, goToPage12, goToPage6 }) => {
                             >
                               <div className="w-[90%] h-[80%]">
                                 <div className="flex flex-col items-center my-5">
-                                  <span className="text-sm  uppercase font-custom1 mb-2 text-center">
+                                  <span className="text-sm  uppercase font-custom1 mb-2 text-center z-10">
                                     {name} - {Math.round(beda)} Hari
                                   </span>
                                   <img
                                     src={avatar}
                                     alt=""
-                                    className="w-[5rem] h-[5rem]  lg:w-60 lg:h-64"
+                                    className="w-[5rem] h-[5rem]  lg:w-60 lg:h-64 animate-bounce"
                                   />
                                   <div className="w-32 bg-gray-200 h-3 rounded-full overflow-hidden lg:w-72 lg:h-10 mt-3">
                                     <div

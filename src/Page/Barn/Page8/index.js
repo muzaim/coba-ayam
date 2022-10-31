@@ -149,7 +149,7 @@ const Page8 = ({ goToPage7, getUserInfo }) => {
                     <img
                       src={hewan.avatar}
                       alt=""
-                      className="w-20 h-24 mt-12 lg:w-60 lg:h-64"
+                      className="w-20 h-24 mt-12 lg:w-60 lg:h-64 animate-bounce"
                     />
                     <p className="mt-2 text-center text-md font-semibold ">
                       {/* {pakanDipilih.pakan}Kg Pangan */}

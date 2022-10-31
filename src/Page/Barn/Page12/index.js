@@ -42,6 +42,7 @@ const Page12 = ({ goToPage6, goToPage7, getUserInfo }) => {
         timer: 1500,
       }).then(
         setTimeout(() => {
+          getUserInfo();
           goToPage7();
         }, 1700)
       );

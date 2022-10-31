@@ -3,6 +3,9 @@ import { MainPage, Rotate } from "./Page";
 import React, { useMemo, useState } from "react";
 import DeviceOrientation, { Orientation } from "react-screen-orientation";
 import { UserContext } from "./Page/UserContext";
+import myMusic from "./music/buddy.mp3";
+import ReactAudioPlayer from "react-audio-player";
+import { useRef } from "react";
 
 const App = () => {
   const [value, setValue] = useState({});
@@ -30,6 +33,16 @@ const App = () => {
       <Orientation orientation="landscape" alwaysRender={false}>
         <div className="noSelect h-screen">
           <div className="w-full h-full flex items-center">
+            <ReactAudioPlayer
+              src={myMusic}
+              autoPlay
+              controls
+              loop
+              muted={false}
+              style={{ opacity: "0" }}
+              className="hidden"
+              // onPause={true}
+            />
             <UserContext.Provider value={providerValue}>
               <MainPage />
             </UserContext.Provider>

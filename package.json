@@ -11,6 +11,7 @@
     "axios": "^1.1.2",
     "js-cookie": "^3.0.1",
     "react": "^18.2.0",
+    "react-audio-player": "^0.17.0",
     "react-dom": "^18.2.0",
     "react-multi-carousel": "^2.8.2",
     "react-screen-orientation": "^0.0.4",
@@ -19,6 +20,7 @@
     "sweetalert2-react-content": "^5.0.5",
     "swiper": "^8.4.2",
     "typewriter-effect": "^2.19.0",
+    "use-sound": "^4.0.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

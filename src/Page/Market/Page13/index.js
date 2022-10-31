@@ -250,39 +250,43 @@ const Page13 = ({ goToPage6, getUserInfo }) => {
                   <img
                     src={avaArray[indexAvatar + 5]}
                     alt=""
-                    className="w-24 "
+                    className="w-24 animate-bounce"
                   />
                 </div>
                 <div className="absolute left-20">
                   <img
                     src={avaArray[indexAvatar + 4]}
                     alt=""
-                    className="w-24 "
+                    className="w-24 animate-bounce"
                   />
                 </div>
                 <div className="absolute left-40">
                   <img
                     src={avaArray[indexAvatar + 3]}
                     alt=""
-                    className="w-24 "
+                    className="w-24 animate-bounce"
                   />
                 </div>
                 <div className="absolute left-60">
                   <img
                     src={avaArray[indexAvatar + 2]}
                     alt=""
-                    className="w-24 "
+                    className="w-24 animate-bounce"
                   />
                 </div>
                 <div className="absolute left-80">
                   <img
                     src={avaArray[indexAvatar + 1]}
                     alt=""
-                    className="w-24 "
+                    className="w-24 animate-bounce"
                   />
                 </div>
                 <div className="absolute left-[31rem]">
-                  <img src={avaArray[indexAvatar]} alt="" className="w-24 " />
+                  <img
+                    src={avaArray[indexAvatar]}
+                    alt=""
+                    className="w-24 animate-bounce"
+                  />
                 </div>
               </div>
             </div>

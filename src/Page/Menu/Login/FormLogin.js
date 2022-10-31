@@ -166,6 +166,7 @@ const FormLogin = ({ goToPage2, goToPage6, goToMenu }) => {
                       Back
                     </button>
                   </div>
+
                   <div className="block mx-auto h-14 w-36 bg-gradient-to-r from-green-400 to-blue-500 rounded-full uppercase tracking-[0.15rem] font-extrabold text-white font-openSans active:bg-[#ffffff] group">
                     <button
                       className="group-active:text-[#5e17eb]  w-full h-full items-center tracking-widest"
