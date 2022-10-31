@@ -4,6 +4,8 @@ import { useState, useContext } from "react";
 import { UserContext } from "../../UserContext";
 import axios from "axios";
 import Cookies from "js-cookie";
+import useSound from "use-sound";
+import boopSfx from "../../../music/buddy.mp3";
 
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
@@ -13,6 +15,7 @@ const eye = <FontAwesomeIcon icon={faEye} />;
 const eyeSlash = <FontAwesomeIcon icon={faEyeSlash} />;
 
 const FormLogin = ({ goToPage2, goToPage6, goToMenu }) => {
+  const [play] = useSound(boopSfx);
   const { setUserLogin, setValue } = useContext(UserContext);
   const [dataLogin, setDataLogin] = useState({
     username: "",
@@ -89,6 +92,7 @@ const FormLogin = ({ goToPage2, goToPage6, goToMenu }) => {
             } else {
               goToPage2();
             }
+            return play();
           }, 1700)
         );
       } catch (error) {
