@@ -46,12 +46,8 @@ const Page6 = ({
   useEffect(() => {
     getUserInfo();
     getUserInfo2();
-    // BaruBalik();
-    // play();
   }, []);
-  // useEffect(() => {
-  //   BaruBalik();
-  // }, []);
+
   return (
     <div className="w-full h-screen overflow-hidden bg-farmCultivature bg-cover mx-auto lg:max-w-6xl lg:h-[70%]">
       <div className="w-[90%] h-full mx-auto ">

@@ -97,7 +97,6 @@ const FormLogin = ({
           setTimeout(() => {
             if (dataUser.user_active.active_tutor === "0") {
               goToPage6();
-              window.location.reload();
             } else {
               goToPage2();
               // window.location.reload();
