@@ -62,6 +62,7 @@ const Header = ({
   const goToMenu = () => {
     Cookies.remove("user");
     ActionLogout();
+    window.location.reload();
   };
 
   function numberWithCommas(num) {
