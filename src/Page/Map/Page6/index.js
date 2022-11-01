@@ -53,20 +53,21 @@ const Page6 = ({
   };
 
   const BaruBalik = () => {
-    console.log(`1`);
-    MySwal.fire({
-      title: "Welcome back!",
-      position: "center",
-      text: `Kamu baru saja kembali, ayo beri makan ternakmu!`,
-      confirmButtonColor: "#3085d6",
-      confirmButtonText: "Oke",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        console.log(`aku iya`);
-        play();
-        console.log(`dsada`);
-      }
-    });
+    // console.log(`1`);
+    // MySwal.fire({
+    //   title: "Welcome back!",
+    //   position: "center",
+    //   text: `Kamu baru saja kembali, ayo beri makan ternakmu!`,
+    //   confirmButtonColor: "#3085d6",
+    //   confirmButtonText: "Oke",
+    // }).then((result) => {
+    //   if (result.isConfirmed) {
+    //     console.log(`aku iya`);
+    //     play();
+    //     console.log(`dsada`);
+    //   }
+    // });
+    play();
   };
 
   useEffect(() => {
