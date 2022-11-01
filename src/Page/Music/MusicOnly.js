@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faVolumeHigh, faVolumeMute } from "@fortawesome/free-solid-svg-icons";
 import ReactAudioPlayer from "react-audio-player";
-
+import "./style.css";
 import AudioPlayer from "react-h5-audio-player";
-import "react-h5-audio-player/lib/styles.css";
+// import "react-h5-audio-player/lib/styles.css";
 
 // Import your audio file
 import song from "../../music/buddy.mp3";
@@ -49,12 +49,15 @@ const MusicOnly = () => {
   // const [play] = useSound(song);
 
   return (
-    <div className="absolute z-10 bottom-7 right-16">
+    <div className="absolute z-20 bottom-7 right-16">
       <AudioPlayer
         autoPlay
+        showJumpControls={false}
+        showFilledProgress={false}
+        showSkipControl={true}
+        volume={0.6}
         src={song}
         onPlay={(e) => console.log("onPlay")}
-        showSkipControls={false}
       />
     </div>
   );
