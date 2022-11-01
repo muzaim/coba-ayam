@@ -72,12 +72,12 @@ const Header = ({
 
   const DiamondDiv = () => {
     return (
-      <div className="w-40 h-10 bg-white rounded-full items-center flex">
+      <div className="w-32 h-10 bg-white rounded-full items-center flex">
         <div className="w-20 flex items-center justify-center ">
           <img src={DiamondImg} alt="" className="w-10" />
         </div>
         <div className="w-full text-start ">
-          <span className="font-bold  text-sm text-[#782443]">
+          <span className="font-bold  text-xs text-[#782443]">
             {numberWithCommas(harta.diamon)}
           </span>
         </div>
@@ -87,12 +87,12 @@ const Header = ({
 
   const EggDiv = () => {
     return (
-      <div className="w-40 h-10 bg-white rounded-full items-center flex">
+      <div className="w-32 h-10 bg-white rounded-full items-center flex">
         <div className="w-20 flex items-center justify-center ">
           <img src={EggImg} alt="" className="w-8" />
         </div>
         <div className="w-full text-start ">
-          <span className="font-bold  text-sm text-[#782443]">
+          <span className="font-bold  text-xs text-[#782443]">
             {numberWithCommas(harta.hasil_ternak[1].qty)} Butir
           </span>
         </div>
@@ -102,12 +102,12 @@ const Header = ({
 
   const PouchDiv = () => {
     return (
-      <div className="w-[20%] h-10 bg-white rounded-full items-center flex">
+      <div className="w-32 h-10 bg-white rounded-full items-center flex">
         <div className="w-20 flex items-center justify-center ">
           <img src={PouchImg} alt="" className="w-8" />
         </div>
         <div className="w-full text-start ">
-          <span className="font-bold  text-sm text-[#782443]">
+          <span className="font-bold  text-xs text-[#782443]">
             {numberWithCommas(harta.pakan)} Kg
           </span>
         </div>
@@ -117,12 +117,12 @@ const Header = ({
 
   const MilkDiv = () => {
     return (
-      <div className="w-40 h-10 bg-white rounded-full items-center flex">
+      <div className="w-32 h-10 bg-white rounded-full items-center flex">
         <div className="w-20 flex items-center justify-center ">
           <img src={MilkImg} alt="" className="w-8" />
         </div>
         <div className="w-full text-start ">
-          <span className="font-bold  text-sm text-[#782443]">
+          <span className="font-bold  text-xs text-[#782443]">
             {numberWithCommas(harta.hasil_ternak[2].qty)} Liter
           </span>
         </div>
@@ -132,12 +132,12 @@ const Header = ({
 
   const MeatDiv = () => {
     return (
-      <div className="w-40 h-10 bg-white rounded-full items-center flex">
+      <div className="w-32 h-10 bg-white rounded-full items-center flex">
         <div className="w-20 flex items-center justify-center ">
           <img src={MeatImg} alt="" className="w-8" />
         </div>
         <div className="w-full text-start ">
-          <span className="font-bold  text-sm text-[#782443]">
+          <span className="font-bold  text-xs  text-[#782443]">
             {numberWithCommas(harta.hasil_ternak[3].qty)} Kilogram
           </span>
         </div>
@@ -172,7 +172,7 @@ const Header = ({
           openPage6();
         }}
       >
-        <img src={QuestBookImg} alt="" className="w-16" />
+        <img src={QuestBookImg} alt="" className="w-14 mt-1" />
       </div>
     );
   };

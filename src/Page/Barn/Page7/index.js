@@ -358,22 +358,25 @@ const Page7 = ({
                           <SwiperSlide key={id}>
                             <div
                               key={id}
-                              className="flex justify-center items-center bg-papan1 bg-[length:200px_160px] bg-center bg-no-repeat cursor-pointer mt-3 "
+                              className="flex justify-center items-center bg-papan1 bg-[length:170px_130px] bg-center bg-no-repeat cursor-pointer mt-3 "
                               onClick={() => openPage8(item)}
                             >
                               <div className="w-[90%] h-[80%]">
-                                <div className="flex flex-col items-center my-5">
-                                  <span className="text-sm  uppercase font-custom1 mb-2 text-center z-10">
-                                    {name} - {Math.round(beda)} Hari
-                                  </span>
+                                <div className="flex flex-col items-center my-7">
+                                  <p className="text-xs font-bold uppercase font-custom1 mt-2 text-center z-10">
+                                    {name}
+                                  </p>
+                                  <p className="text-xs  uppercase font-custom1 mb-2 text-center z-10">
+                                    {Math.round(beda)} Hari
+                                  </p>
                                   <img
                                     src={avatar}
                                     alt=""
-                                    className="w-[5rem] h-[5rem]  lg:w-60 lg:h-64 animate-bounce"
+                                    className="w-[3.5rem] h-[3.5rem]  lg:w-60 lg:h-64 animate-bounce"
                                   />
-                                  <div className="w-32 bg-gray-200 h-3 rounded-full overflow-hidden lg:w-72 lg:h-10 mt-3">
+                                  <div className="w-24 bg-gray-200 h-2 rounded-full overflow-hidden lg:w-72 lg:h-10 mb-3">
                                     <div
-                                      className="bg-[#7fa65a] h-3 rounded-full lg:h-10"
+                                      className="bg-[#7fa65a] h-2 rounded-full lg:h-10"
                                       style={{
                                         width: `${Math.round(finalHasil)}%`,
                                       }}
@@ -395,17 +398,15 @@ const Page7 = ({
         {/* CONTENT END*/}
         {/* FOOTER */}
         <div className="h-[20%] animate-fadeInKu">
-          <div className="grid grid-cols-3 gap-3">
-            <div className=""></div>
-
+          <div className="flex justify-center  items-center">
             <div
-              className="w-full h-full bg-gradient-to-r from-cyan-300 to-blue-700 rounded-full py-3 text-center group active:bg-gradient-to-r active:from-blue-500 active:to-cyan-500 "
+              className="w-44 h-12 bg-gradient-to-r from-cyan-300 to-blue-700 rounded-full py-3 text-center group active:bg-gradient-to-r active:from-blue-500 active:to-cyan-500"
               onClick={() => {
                 playDoorOpen();
                 goToPage12();
               }}
             >
-              <span className="font-semibold capitalize text-lg tracking-wider  text-white">
+              <span className="font-semibold capitalize text-base tracking-wider  text-white ">
                 Tambah ternak
               </span>
             </div>
