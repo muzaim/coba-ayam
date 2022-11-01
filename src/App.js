@@ -30,10 +30,10 @@ const App = () => {
       {/* Will only be in DOM in landscape */}
       <Orientation orientation="landscape" alwaysRender={false}>
         <div className="noSelect h-screen">
-          <div className="w-full h-full flex items-center">
+          <div className="w-full h-full flex items-center relative">
             <UserContext.Provider value={providerValue}>
               <MainPage />
-              {/* <MusicOnly /> */}
+              <MusicOnly />
             </UserContext.Provider>
           </div>
         </div>

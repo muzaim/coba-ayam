@@ -4,11 +4,10 @@ import { useState, useContext } from "react";
 import { UserContext } from "../../UserContext";
 import axios from "axios";
 import Cookies from "js-cookie";
-import useSound from "use-sound";
-import buddy from "../../../music/buddy.mp3";
 
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
+import { useRef } from "react";
 const MySwal = withReactContent(Swal);
 
 const eye = <FontAwesomeIcon icon={faEye} />;
@@ -23,7 +22,6 @@ const FormLogin = ({
   playSuccessSound,
   playNegativeSound,
 }) => {
-  const [play] = useSound(buddy);
   const { setUserLogin, setValue } = useContext(UserContext);
   const [dataLogin, setDataLogin] = useState({
     username: "",
@@ -124,9 +122,8 @@ const FormLogin = ({
       });
     }
   };
-
   return (
-    <div className="w-full h-full overflow-hidden bg-farmBarn bg-cover mx-auto lg:max-w-6xl lg:h-[70%]">
+    <div className="w-full h-full overflow-hidden bg-farmBarn bg-cover mx-auto lg:max-w-6xl lg:h-[70%] z-50">
       <div className="h-full">
         <div className="flex h-full items-end justify-center pb-5 ">
           <div className="w-full h-full  flex items-center animate-fadeInKu">

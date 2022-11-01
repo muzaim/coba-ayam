@@ -25,7 +25,7 @@ const Menu = ({ goToFormLogin, goToFormRegister, playPop1 }) => {
   }, []);
 
   return (
-    <div className="w-full h-full overflow-hidden bg-farmBarn bg-cover mx-auto lg:max-w-6xl lg:h-[70%] ">
+    <div className="w-full h-full overflow-hidden bg-farmBarn bg-cover mx-auto lg:max-w-6xl lg:h-[70%] z-50">
       <div className="h-full">
         <div className="flex h-full items-end justify-center pb-5 ">
           <div className="grid gap-2 mt-44">

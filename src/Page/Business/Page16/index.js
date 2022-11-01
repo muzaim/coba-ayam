@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import Cookies from "js-cookie";
 import axios from "axios";
 import { useEffect } from "react";
-import Chicken2 from "../../../img/common/chicken2.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClipboard } from "@fortawesome/free-solid-svg-icons";
 import Header from "../../../Component/Diatom/Header";
@@ -194,7 +193,7 @@ const Page16 = ({ goToPage6 }) => {
           <div className="w-[30%] h-full px-4 animate-fadeInKu flex items-center py-3 ">
             <div className="mx-auto w-full h-[100%] flex flex-col items-center justify-center bg-transparent border rounded-lg px-1">
               <img
-                src={Chicken2}
+                src={dataUserActive.avatar}
                 alt="imag"
                 className="w-28 h-28   rounded-full -mt-10"
               />

@@ -7,12 +7,6 @@ import { UserContext } from "../../UserContext";
 import axios from "axios";
 import Cookies from "js-cookie";
 import Header from "../../../Component/Diatom/Header";
-import useSound from "use-sound";
-import buddy from "../../../music/buddy.mp3";
-
-import Swal from "sweetalert2";
-import withReactContent from "sweetalert2-react-content";
-const MySwal = withReactContent(Swal);
 
 const Page6 = ({
   goToPage7,
@@ -22,14 +16,11 @@ const Page6 = ({
   goToMenu,
   goToPage16,
   playPop1,
-  playWarningSound,
-  playGoBackSound,
 }) => {
   const { value, setValue } = useContext(UserContext);
   const [telur, setTelur] = useState(null);
   const [daging, setDaging] = useState(null);
   const [susu, setSusu] = useState(null);
-  const [play] = useSound(buddy);
 
   const getUserInfo2 = async () => {
     const userCookie = Cookies.get("user");
@@ -50,24 +41,6 @@ const Page6 = ({
     } catch (error) {
       console.log(`dari ketika getUsrInfo `, error);
     }
-  };
-
-  const BaruBalik = () => {
-    // console.log(`1`);
-    // MySwal.fire({
-    //   title: "Welcome back!",
-    //   position: "center",
-    //   text: `Kamu baru saja kembali, ayo beri makan ternakmu!`,
-    //   confirmButtonColor: "#3085d6",
-    //   confirmButtonText: "Oke",
-    // }).then((result) => {
-    //   if (result.isConfirmed) {
-    //     console.log(`aku iya`);
-    //     play();
-    //     console.log(`dsada`);
-    //   }
-    // });
-    play();
   };
 
   useEffect(() => {
@@ -96,9 +69,8 @@ const Page6 = ({
         {/* CONTENT */}
         <div className="relative h-[50%] ">
           {/* TES MUSIC */}
-          <BaruBalik />
-          {/* TES MUSIC */}
 
+          {/* TES MUSIC */}
           {/* KE Warung */}
           <div
             className="top-[8rem] left-[12.5rem] absolute group animate-bounce"
@@ -175,7 +147,6 @@ const Page6 = ({
               />
             </div>
           </div>
-
           {/* KE RUMAH*/}
           {/* <div
             className="top-[6rem] right-[15.5rem] absolute group animate-bounce"
