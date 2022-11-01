@@ -5,9 +5,12 @@
   display: none !important;
 }
 .rhap_play-pause-button {
+  /* color: #fff;
+  font-size: 1.5rem; */
   display: none !important;
 }
 .rhap_volume-button {
   color: #fff;
   font-size: 1.5rem;
+  /* display: none !important; */
 }
