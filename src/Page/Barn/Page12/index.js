@@ -130,32 +130,32 @@ const Page12 = ({
                       return (
                         <SwiperSlide key={id}>
                           <div
-                            className="flex h-full w-full bg-papan2 bg-[length:190px_170px] bg-no-repeat bg-center  justify-center items-center"
+                            className="flex h-full w-full bg-papan2 bg-[length:170px_150px] bg-no-repeat bg-center  justify-center items-center"
                             key={name}
                           >
                             <div className="flex flex-col h-full w-[70%] items-center">
-                              <div className="flex mt-[3.75rem]">
-                                <img src={DiamondImg} alt="" className="w-7" />
-                                <span className="text-white font-bold">
+                              <div className="flex mt-[4rem] -ml-2">
+                                <img src={DiamondImg} alt="" className="w-6" />
+                                <span className="text-white text-sm">
                                   {numberWithCommas(price)}
                                 </span>
                               </div>
                               <img
                                 src={avatar}
                                 alt=""
-                                className="w-16 h-16 my-2 lg:w-60 lg:h-64"
+                                className="w-14 h-14 my-2 lg:w-60 lg:h-64"
                               />
-                              <p className="text-center text-sm font-bold ">
+                              <p className="text-center text-xs font-bold ">
                                 {name}
                               </p>
-                              <p className="text-center text-[10px] ">
+                              <p className="text-center text-xs ">
                                 Duration : {duration} hari
                               </p>
                               {/* <p className="text-center text-[10px]">
                                 Benefit : {max_benefit}
                               </p> */}
                               <div
-                                className=" w-28 py-2 bg-gradient-to-r from-cyan-400 to-blue-600 active:bg-gradient-to-r active:from-blue-500 active:to-cyan-500  text-center rounded-full"
+                                className=" w-20 py-[0.4rem] bg-gradient-to-r from-cyan-400 to-blue-600 active:bg-gradient-to-r active:from-blue-500 active:to-cyan-500  text-center rounded-full"
                                 data-id={id}
                                 onClick={() => {
                                   playPop1();
@@ -178,7 +178,7 @@ const Page12 = ({
                                   });
                                 }}
                               >
-                                <span className="font-bold  text-sm text-white tracking-widest capitalize">
+                                <span className="font-bold  text-xs text-white tracking-widest capitalize">
                                   beli
                                 </span>
                               </div>

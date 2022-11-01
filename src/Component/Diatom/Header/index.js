@@ -148,7 +148,7 @@ const Header = ({
   const BackButtonDiv = () => {
     return (
       <div
-        className="w-40 h-10 bg-gradient-to-r from-pink-400 to-red-600 rounded-full items-center flex active:bg-gradient-to-r active:from-red-500 active:to-pink-500"
+        className="w-32 h-10 bg-gradient-to-r from-pink-400 to-red-600 rounded-full items-center flex active:bg-gradient-to-r active:from-red-500 active:to-pink-500"
         onClick={() => {
           playPop1();
           Action2();

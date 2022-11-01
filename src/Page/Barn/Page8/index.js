@@ -172,55 +172,56 @@ const Page8 = ({
                 </span>
               </div>
               <div className="w-full h-full flex justify-center items-center ">
-                <div className="flex h-full w-full bg-papan2 bg-contain bg-no-repeat bg-center justify-center items-center ">
-                  <div className="flex flex-col  h-full w-[70%] items-center">
+                <div className="flex h-48 w-full bg-papan2 bg-contain bg-no-repeat bg-center justify-center items-center ">
+                  <div className="flex flex-col  h-full w-[70%] items-center ">
                     <span className="mt-2 text-white text-md"></span>
                     <img
                       src={hewan.avatar}
                       alt=""
-                      className="w-20 h-24 mt-12 lg:w-60 lg:h-64 animate-bounce"
+                      className="w-20 h-20 mt-12 lg:w-60 lg:h-64 animate-bounce"
                     />
-                    <p className="mt-2 text-center text-md font-semibold ">
+                    <p className="-mt-1 text-center text-xs font-semibold ">
                       {/* {pakanDipilih.pakan}Kg Pangan */}
-                      {pakanDipilih.pakan
+                      {/* {pakanDipilih.pakan
                         ? `${pakanDipilih.pakan} Kg Pangan`
+                        : `Pilih pakan untuk melihat benefit!`} */}
+                      {pakanDipilih.pakan
+                        ? null
                         : `Pilih pakan untuk melihat benefit!`}
                     </p>
-                    <p className="text-center text-sm font-semibold">
+                    <p className="text-center mt-1 text-xs font-semibold">
                       {/* Menghasilkan {pakanDipilih.benefit} telur per hari */}
                       {pakanDipilih.text ? pakanDipilih.text : null}
                     </p>
                   </div>
                 </div>
-                <div className="flex flex-col h-full w-full items-center ">
-                  <div className="">
-                    <div className="w-full h-[70%] grid grid-cols-2 gap-2 py-5 ">
-                      {pakanTernak.map((item) => {
-                        const { id, ternak_id, pakan, benefit, text } = item;
-                        return (
-                          <button
-                            className="w-40  py-2 bg-[#f0ecd8]  rounded-full items-center flex justify-center border-transparent focus:outline-none focus:ring-[#E29A6C] focus:bg-white focus:ring-2 "
-                            type="button"
-                            key={id}
-                            data-id={id}
-                            data-ternak-id={ternak_id}
-                            data-pakan={pakan}
-                            data-benefit={benefit}
-                            data-text={text}
-                            onClick={tangkapPakanDipilih}
-                          >
-                            <img src={Pouch} alt="" className="w-7" />
-                            <span className="font-semibold  text-sm text-[#782443]">
-                              {numberWithCommas(pakan)} Kg
-                            </span>
-                          </button>
-                        );
-                      })}
-                    </div>
+                <div className="flex flex-col h-full w-full items-center  justify-center ">
+                  <div className="w-full h-full grid grid-cols-2 gap-2 py-5  place-items-center ">
+                    {pakanTernak.map((item) => {
+                      const { id, ternak_id, pakan, benefit, text } = item;
+                      return (
+                        <button
+                          className="w-32  py-[0.40rem] bg-[#f0ecd8]  rounded-full items-center flex justify-center border-transparent focus:outline-none focus:ring-[#E29A6C] focus:bg-white focus:ring-2 "
+                          type="button"
+                          key={id}
+                          data-id={id}
+                          data-ternak-id={ternak_id}
+                          data-pakan={pakan}
+                          data-benefit={benefit}
+                          data-text={text}
+                          onClick={tangkapPakanDipilih}
+                        >
+                          <img src={Pouch} alt="" className="w-7" />
+                          <span className="font-semibold  text-sm text-[#782443]">
+                            {numberWithCommas(pakan)} Kg
+                          </span>
+                        </button>
+                      );
+                    })}
                   </div>
                   <div className="w-full h-full ">
                     <div className="h-full flex justify-center items-center gap-2">
-                      <div className="block mx-auto w-40 h-10 bg-gradient-to-r from-pink-400 to-red-600 rounded-full uppercase tracking-[0.15rem] font-extrabold text-white font-openSans active:bg-gradient-to-r active:from-red-500 active:to-pink-500 group">
+                      <div className="block mx-auto w-36 h-10 bg-gradient-to-r from-pink-400 to-red-600 rounded-full uppercase tracking-[0.15rem] font-extrabold text-white font-openSans active:bg-gradient-to-r active:from-red-500 active:to-pink-500 group">
                         <button
                           className="w-full h-full items-center tracking-widest"
                           type="button"
@@ -232,7 +233,7 @@ const Page8 = ({
                           Batal
                         </button>
                       </div>
-                      <div className="block mx-auto w-40 h-10 bg-gradient-to-r from-cyan-400 to-blue-600 rounded-full uppercase tracking-[0.15rem] font-extrabold text-white font-openSans active:bg-gradient-to-r active:from-blue-500 active:to-cyan-500 group">
+                      <div className="block mx-auto w-[9rem] h-10 bg-gradient-to-r from-cyan-400 to-blue-600 rounded-full uppercase tracking-[0.15rem] font-extrabold text-white font-openSans active:bg-gradient-to-r active:from-blue-500 active:to-cyan-500 group">
                         <button
                           className=" w-full h-full items-center tracking-widest"
                           type="button"

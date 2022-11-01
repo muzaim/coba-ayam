@@ -76,70 +76,70 @@ const Page6 = ({
             }}
           >
             <div className="flex flex-col justify-center items-center">
-              <span className="text-xl text-white tracking-wider font-custom1">
+              <span className="text-md text-white tracking-wider font-custom1">
                 Warung
               </span>
               <img
                 src={ArrowDown}
                 alt=""
-                className="w-10 group-active:opacity-80"
+                className="w-8 group-active:opacity-80"
               />
             </div>
           </div>
           {/* KE BISNIS */}
           <div
-            className="top-[0rem] left-[14rem] absolute group animate-bounce"
+            className="-top-[1rem] left-[12rem] absolute group animate-bounce"
             onClick={() => {
               playPop1();
               goToPage16();
             }}
           >
             <div className="flex flex-col justify-center items-center">
-              <span className="text-xl text-white tracking-wider font-custom1">
+              <span className="text-md text-white tracking-wider font-custom1">
                 Bisnis
               </span>
               <img
                 src={ArrowDown}
                 alt=""
-                className="w-10 group-active:opacity-80"
+                className="w-8 group-active:opacity-80"
               />
             </div>
           </div>
           {/* KE KANDANGKU */}
           <div
-            className="top-[.5rem] right-[16rem] absolute group animate-bounce"
+            className="top-[0rem] right-[11rem] absolute group animate-bounce"
             onClick={() => {
               playPop1();
               goToPage7();
             }}
           >
             <div className="flex flex-col justify-center items-center">
-              <span className="text-xl text-white tracking-wider font-custom1">
+              <span className="text-md text-white tracking-wider font-custom1">
                 Kandangku
               </span>
               <img
                 src={ArrowDown}
                 alt=""
-                className="w-10 group-active:opacity-80"
+                className="w-8 group-active:opacity-80"
               />
             </div>
           </div>
           {/* KE TOP UP */}
           <div
-            className="top-[4rem] right-[8rem] absolute group animate-bounce"
+            className="top-[3rem] right-[6rem] absolute group animate-bounce"
             onClick={() => {
               playPop1();
               goToPage15();
             }}
           >
             <div className="flex flex-col justify-center items-center">
-              <span className="text-xl text-white tracking-wider font-custom1">
+              <span className="text-md text-white tracking-wider font-custom1">
                 Top Up
               </span>
               <img
                 src={ArrowDown}
                 alt=""
-                className="w-10 group-active:opacity-80"
+                className="w-8 group-active:opacity-80"
               />
             </div>
           </div>
