@@ -123,13 +123,7 @@ const MainPage = () => {
       let dataUser = userInfo.data.Data;
       await setValue(dataUser.user_wallet);
       await setUserLogin(dataUser.user_active);
-      if (dataUser.user_active.active_tutor === "0") {
-        goToPage6();
-        // window.location.reload();
-      } else {
-        goToPage2();
-        // window.location.reload();
-      }
+
       // console.log(`ini data user dari main page`, dataUser);
       // console.log(`info`, info);
       // console.log(`harta`, value);
@@ -148,7 +142,7 @@ const MainPage = () => {
   };
 
   useEffect(() => {
-    getUserInfo();
+    readCookie();
   }, []);
 
   switch (step) {

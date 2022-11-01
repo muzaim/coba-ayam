@@ -102,7 +102,7 @@ const Header = ({
 
   const PouchDiv = () => {
     return (
-      <div className="w-40 h-10 bg-white rounded-full items-center flex">
+      <div className="w-[20%] h-10 bg-white rounded-full items-center flex">
         <div className="w-20 flex items-center justify-center ">
           <img src={PouchImg} alt="" className="w-8" />
         </div>
@@ -200,7 +200,7 @@ const Header = ({
 
   const Tampilan = () => {
     return (
-      <div className="flex h-full py-1 justify-between items-center z-10">
+      <div className="flex w-full h-full py-1 justify-between items-center z-10 ">
         <div className="flex gap-2">
           {/* DIAMOND */}
           {Diamond ? <DiamondDiv /> : null}
