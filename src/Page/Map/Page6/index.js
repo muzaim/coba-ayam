@@ -49,7 +49,7 @@ const Page6 = ({
   }, []);
 
   return (
-    <div className="w-full h-screen overflow-hidden bg-farmCultivature bg-cover mx-auto lg:max-w-6xl lg:h-[70%] ">
+    <div className="w-full h-screen overflow-hidden bg-farmCultivature bg-contain  mx-auto lg:max-w-6xl lg:h-[70%] ">
       <div className="w-[90%] h-full mx-auto ">
         {/* HEADER */}
         <div className="h-[15%]">
@@ -107,7 +107,7 @@ const Page6 = ({
           </div>
           {/* KE KANDANGKU */}
           <div
-            className="top-[0rem] right-[11rem] absolute group animate-bounce"
+            className="top-[0rem] right-[13rem] absolute group animate-bounce"
             onClick={() => {
               playPop1();
               goToPage7();
