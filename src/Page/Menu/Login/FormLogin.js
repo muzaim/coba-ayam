@@ -100,7 +100,7 @@ const FormLogin = ({
               window.location.reload();
             } else {
               goToPage2();
-              window.location.reload();
+              // window.location.reload();
             }
             // return play();
           }, 1700)

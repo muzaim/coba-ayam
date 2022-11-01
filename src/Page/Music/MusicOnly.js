@@ -57,7 +57,6 @@ const MusicOnly = () => {
         showSkipControl={true}
         volume={0.6}
         src={song}
-        customIcons={MusicMute}
       />
     </div>
   );
