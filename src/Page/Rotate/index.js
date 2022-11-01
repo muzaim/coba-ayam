@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useCallback } from "react";
 import PhoneRotate from "../../img/usage/rotate.gif";
+import { FullScreen, useFullScreenHandle } from "react-full-screen";
 
 const Rotate = () => {
+  const handle = useFullScreenHandle();
   return (
     <div className="w-full h-screen">
       <div
@@ -23,6 +25,8 @@ const Rotate = () => {
             <p class="text-sm">
               Make sure you know how these changes affect you.
             </p>
+            <button onClick={handle.enter}>Enter fullscreen</button>
+            <FullScreen handle={handle}>Any fullscreen content here</FullScreen>
           </div>
         </div>
       </div>

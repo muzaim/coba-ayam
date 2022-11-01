@@ -40,6 +40,7 @@ const App = () => {
       </Orientation>
       {/* Will stay in DOM, but is only visible in portrait */}
       <Orientation orientation="portrait" alwaysRender={false}>
+        {/* MINTA ROTATE PAGE */}
         <Rotate />
       </Orientation>
     </DeviceOrientation>
