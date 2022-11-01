@@ -27,9 +27,7 @@ const Rotate = () => {
               Make sure you know how these changes affect you.
             </p>
             <button onClick={handle.enter}>Enter fullscreen</button>
-            <FullScreen handle={handle}>
-              <MainPage />
-            </FullScreen>
+            <FullScreen handle={handle}>"Main Page"</FullScreen>
           </div>
         </div>
       </div>
