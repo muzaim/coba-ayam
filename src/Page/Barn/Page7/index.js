@@ -330,18 +330,17 @@ const Page7 = ({
                           pakan_end,
                           umur_end,
                         } = item;
-                        
+
                         const start = new Date(pakan_start).valueOf();
                         const now = new Date(time_now).valueOf();
                         const end = new Date(pakan_end).valueOf();
-                       
+
                         let finalHasil = 0;
                         if (start === now) {
                           finalHasil = 0;
                         } else {
                           const hasil = ((now - start) / (end - start)) * 100;
                           finalHasil = 100 - hasil;
-                        
                         }
 
                         //INI
@@ -359,7 +358,7 @@ const Page7 = ({
                           <SwiperSlide key={id}>
                             <div
                               key={id}
-                              className="flex justify-center items-center bg-papan1 bg-[length:200px_160px] bg-center bg-no-repeat cursor-pointer mt-3"
+                              className="flex justify-center items-center bg-papan1 bg-[length:200px_160px] bg-center bg-no-repeat cursor-pointer mt-3 "
                               onClick={() => openPage8(item)}
                             >
                               <div className="w-[90%] h-[80%]">

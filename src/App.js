@@ -29,8 +29,8 @@ const App = () => {
     <DeviceOrientation lockOrientation={"landscape"}>
       {/* Will only be in DOM in landscape */}
       <Orientation orientation="landscape" alwaysRender={false}>
-        <div className="noSelect h-screen">
-          <div className="w-full h-full flex items-center relative">
+        <div className="noSelect h-screen w-full flex items-center bg-black justify-center">
+          <div className="w-[700px] h-full flex items-center relative overflow-hidden ">
             <UserContext.Provider value={providerValue}>
               <MainPage />
               <MusicOnly />

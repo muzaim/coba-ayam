@@ -55,9 +55,6 @@ const Page6 = ({
         <div className="h-[15%]">
           <Header
             Diamond={true}
-            // Pouch={true}
-            // Egg={true}
-            // Milk={true}
             LogOut={true}
             ActionLogout={goToMenu}
             harta={value}
