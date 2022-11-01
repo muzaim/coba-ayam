@@ -1,6 +1,7 @@
 import React, { useCallback } from "react";
 import PhoneRotate from "../../img/usage/rotate.gif";
 import { FullScreen, useFullScreenHandle } from "react-full-screen";
+import MainPage from "../MainPage";
 
 const Rotate = () => {
   const handle = useFullScreenHandle();
@@ -26,7 +27,9 @@ const Rotate = () => {
               Make sure you know how these changes affect you.
             </p>
             <button onClick={handle.enter}>Enter fullscreen</button>
-            <FullScreen handle={handle}>Any fullscreen content here</FullScreen>
+            <FullScreen handle={handle}>
+              <MainPage />
+            </FullScreen>
           </div>
         </div>
       </div>
