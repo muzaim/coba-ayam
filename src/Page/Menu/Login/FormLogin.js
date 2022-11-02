@@ -7,7 +7,6 @@ import Cookies from "js-cookie";
 
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
-import { useRef } from "react";
 const MySwal = withReactContent(Swal);
 
 const eye = <FontAwesomeIcon icon={faEye} />;
@@ -72,7 +71,8 @@ const FormLogin = ({
         formData
       );
       let data = res.data;
-      Cookies.set("user", data.token, { expires: 1 });
+      var inFifteenMinutes = new Date(new Date().getTime() + 0.1 * 60 * 1000);
+      Cookies.set("user", data.token, { expires: inFifteenMinutes });
       // is tutorial
       try {
         let userInfo = await axios.get(

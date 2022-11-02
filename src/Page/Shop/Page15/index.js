@@ -5,10 +5,10 @@ import { useState, useContext } from "react";
 import TopUpDiamond from "./TopUpDiamondPanel";
 import TopUpPakan from "./TopUpPakanPanel";
 import { UserContext } from "../../UserContext";
+import Header from "../../../Component/Diatom/Header";
 
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
-import Header from "../../../Component/Diatom/Header";
 const MySwal = withReactContent(Swal);
 
 const Page15 = ({
@@ -20,6 +20,7 @@ const Page15 = ({
   playSuccessSound,
   playGoBackSound,
   playWarningSound,
+  goToMenu,
 }) => {
   const { value, setValue } = useContext(UserContext);
   const [diamondPanel, setDiamondPanel] = useState(true);
@@ -66,6 +67,16 @@ const Page15 = ({
 
   const getDaftarHargaDimond = async () => {
     const userCookie = Cookies.get("user");
+    if (!userCookie) {
+      MySwal.fire({
+        position: "center",
+        icon: "warning",
+        text: "Sesi login kamu telah habis!",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      goToMenu();
+    }
     try {
       let userInfo = await axios.get(
         `${process.env.REACT_APP_BASE_URL}/harga-diamon`,

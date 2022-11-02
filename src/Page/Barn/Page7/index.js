@@ -15,7 +15,12 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
+
 import { useState } from "react";
+
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+const MySwal = withReactContent(Swal);
 
 SwiperCore.use([Navigation, Pagination, EffectCoverflow]);
 
@@ -28,6 +33,7 @@ const Page7 = ({
   playGoat,
   playRooster,
   playPop1,
+  goToMenu,
   playDoorOpen,
 }) => {
   const { value, setValue, setSelectedAnimalID } = useContext(UserContext);
@@ -60,6 +66,16 @@ const Page7 = ({
 
   const getUserTernak = async () => {
     const userCookie = Cookies.get("user");
+    if (!userCookie) {
+      MySwal.fire({
+        position: "center",
+        icon: "warning",
+        text: "Sesi login kamu telah habis!",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      goToMenu();
+    }
     try {
       let userInfo = await axios.get(
         `${process.env.REACT_APP_BASE_URL}/user-ternak`,

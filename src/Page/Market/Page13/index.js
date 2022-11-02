@@ -18,6 +18,7 @@ const Page13 = ({
   playSuccessSound,
   playNegativeSound,
   playPaperFlipSound,
+  goToMenu,
 }) => {
   const { value, setValue } = useContext(UserContext);
   const [index, setIndex] = useState(0);
@@ -81,6 +82,17 @@ const Page13 = ({
   };
 
   const getMarket = async () => {
+    const userCookie = Cookies.get("user");
+    if (!userCookie) {
+      MySwal.fire({
+        position: "center",
+        icon: "warning",
+        text: "Sesi login kamu telah habis!",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      goToMenu();
+    }
     try {
       let marketData = await axios.get(
         `${process.env.REACT_APP_BASE_URL}/request-market`

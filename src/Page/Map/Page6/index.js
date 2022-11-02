@@ -7,7 +7,9 @@ import { UserContext } from "../../UserContext";
 import axios from "axios";
 import Cookies from "js-cookie";
 import Header from "../../../Component/Diatom/Header";
-
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+const MySwal = withReactContent(Swal);
 const Page6 = ({
   goToPage7,
   goToPage13,
@@ -24,7 +26,16 @@ const Page6 = ({
 
   const getUserInfo2 = async () => {
     const userCookie = Cookies.get("user");
-
+    if (!userCookie) {
+      MySwal.fire({
+        position: "center",
+        icon: "warning",
+        text: "Sesi login kamu telah habis!",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      goToMenu();
+    }
     try {
       let userInfo = await axios.get(
         `${process.env.REACT_APP_BASE_URL}/user-info`,

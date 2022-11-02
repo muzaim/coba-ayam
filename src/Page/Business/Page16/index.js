@@ -12,7 +12,7 @@ const MySwal = withReactContent(Swal);
 
 const Copy = <FontAwesomeIcon icon={faClipboard} />;
 
-const Page16 = ({ goToPage6 }) => {
+const Page16 = ({ goToPage6, goToMenu }) => {
   const [aktMembPanel, setAktMembPanel] = useState(true);
   const [penKomPanel, setPenKomPanel] = useState(false);
   const [dataUserWallet, setDataUserWallet] = useState([]);
@@ -33,6 +33,26 @@ const Page16 = ({ goToPage6 }) => {
 
   const getUserInfo = async () => {
     const userCookie = Cookies.get("user");
+    if (!userCookie) {
+      MySwal.fire({
+        position: "center",
+        icon: "warning",
+        text: "Sesi login kamu telah habis!",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      goToMenu();
+    }
+    if (!userCookie) {
+      MySwal.fire({
+        position: "center",
+        icon: "warning",
+        text: "Sesi login kamu telah habis!",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      goToMenu();
+    }
     try {
       let userInfo = await axios.get(
         `${process.env.REACT_APP_BASE_URL}/user-info`,

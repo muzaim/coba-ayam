@@ -26,6 +26,7 @@ const Page12 = ({
   playSuccessSound,
   playNegativeSound,
   playGoBackSound,
+  goToMenu,
 }) => {
   const { value, setValue } = useContext(UserContext);
   const [ternakTersedia, setTernakTersedia] = useState([]);
@@ -73,6 +74,17 @@ const Page12 = ({
   }
 
   const getTernak = async () => {
+    const userCookie = Cookies.get("user");
+    if (!userCookie) {
+      MySwal.fire({
+        position: "center",
+        icon: "warning",
+        text: "Sesi login kamu telah habis!",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      goToMenu();
+    }
     try {
       let userInfo = await axios.get(
         `${process.env.REACT_APP_BASE_URL}/get-ternak`

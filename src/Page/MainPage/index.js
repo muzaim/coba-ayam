@@ -34,6 +34,9 @@ import warning from "../../music/warning.mp3";
 import paperFlipSound from "../../music/paperflip.mp3";
 import nextDialogSound from "../../music/ss.mp3";
 import yaySound from "../../music/yay.mp3";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+const MySwal = withReactContent(Swal);
 
 const MainPage = () => {
   const [playPop1] = useSound(pop1);
@@ -111,6 +114,16 @@ const MainPage = () => {
 
   const getUserInfo = async () => {
     const userCookie = Cookies.get("user");
+    if (!userCookie) {
+      MySwal.fire({
+        position: "center",
+        icon: "warning",
+        text: "Sesi login kamu telah habis!",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      goToMenu();
+    }
     try {
       let userInfo = await axios.get(
         `${process.env.REACT_APP_BASE_URL}/user-info`,
@@ -134,6 +147,16 @@ const MainPage = () => {
 
   const readCookie = () => {
     const userCookie = Cookies.get("user");
+    if (!userCookie) {
+      MySwal.fire({
+        position: "center",
+        icon: "warning",
+        text: "Sesi login kamu telah habis!",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      goToMenu();
+    }
     if (userCookie) {
       setStep("Page6");
     } else {
@@ -226,6 +249,7 @@ const MainPage = () => {
     case "Page7":
       return (
         <Page7
+          goToMenu={goToMenu}
           goToPage8={goToPage8}
           goToPage12={goToPage12}
           goToPage6={goToPage6}
@@ -240,6 +264,7 @@ const MainPage = () => {
     case "Page8":
       return (
         <Page8
+          goToMenu={goToMenu}
           goToPage7={goToPage7}
           getUserInfo={getUserInfo}
           playNegativeSound={playNegativeSound}
@@ -261,6 +286,7 @@ const MainPage = () => {
     case "Page12":
       return (
         <Page12
+          goToMenu={goToMenu}
           goToPage6={goToPage6}
           goToPage7={goToPage7}
           getUserInfo={getUserInfo}
@@ -273,6 +299,7 @@ const MainPage = () => {
     case "Page13":
       return (
         <Page13
+          goToMenu={goToMenu}
           goToPage6={goToPage6}
           getUserInfo={getUserInfo}
           playPop1={playPop1}
@@ -286,6 +313,7 @@ const MainPage = () => {
     case "Page15":
       return (
         <Page15
+          goToMenu={goToMenu}
           goToPage6={goToPage6}
           getUserInfo={getUserInfo}
           playSelectSound={playSelectSound}
@@ -297,7 +325,7 @@ const MainPage = () => {
         />
       );
     case "Page16":
-      return <Page16 goToPage6={goToPage6} />;
+      return <Page16 goToPage6={goToPage6} goToMenu={goToMenu} />;
     default:
       break;
   }

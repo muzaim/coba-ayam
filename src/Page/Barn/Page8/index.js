@@ -18,6 +18,7 @@ const Page8 = ({
   playSelectSound,
   playGoBackSound,
   playWarningSound,
+  goToMenu,
 }) => {
   const { value, setValue, selectedAnimalID } = useContext(UserContext);
   const [hewan, setHewan] = useState([]);
@@ -86,6 +87,17 @@ const Page8 = ({
   };
 
   const getPakanTernak = async () => {
+    const userCookie = Cookies.get("user");
+    if (!userCookie) {
+      MySwal.fire({
+        position: "center",
+        icon: "warning",
+        text: "Sesi login kamu telah habis!",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      goToMenu();
+    }
     try {
       let dataTernak = await axios.get(
         `${process.env.REACT_APP_BASE_URL}/get-pakan-ternak/${selectedAnimalID.ternak_id}`
