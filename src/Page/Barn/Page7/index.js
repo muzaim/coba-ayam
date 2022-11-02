@@ -137,6 +137,7 @@ const Page7 = ({
                         pakan_start,
                         pakan_end,
                         umur_end,
+                        pakan_status,
                       } = item;
                       // INI
                       // const hariIni = Math.round(new Date().getTime() / 1000);
@@ -179,16 +180,31 @@ const Page7 = ({
                               <img
                                 src={avatar}
                                 alt=""
-                                className="w-[3.5rem] h-[3.5rem]  lg:w-60 lg:h-64 animate-bounce"
+                                className={
+                                  pakan_status === 1
+                                    ? `w-[3.5rem] h-[3.5rem]  lg:w-60 lg:h-64  mb-1`
+                                    : `w-[3.5rem] h-[3.5rem]  lg:w-60 lg:h-64 animate-bounce`
+                                }
                               />
-                              <div className="w-24 bg-gray-200 h-2 rounded-full overflow-hidden lg:w-72 lg:h-10 mb-3">
-                                <div
-                                  className="bg-[#7fa65a] h-2 rounded-full lg:h-10"
-                                  style={{
-                                    width: `${Math.round(finalHasil)}%`,
-                                  }}
-                                ></div>
-                              </div>
+                              {pakan_status ? (
+                                <div className="w-24 bg-gray-200 h-2 rounded-full overflow-hidden lg:w-72 lg:h-10 mb-3">
+                                  <div
+                                    className="bg-[#7fa65a] h-2 rounded-full lg:h-10"
+                                    style={{
+                                      width: `${Math.round(finalHasil)}%`,
+                                    }}
+                                  ></div>
+                                </div>
+                              ) : (
+                                <div className="w-24  h-2 rounded-full overflow-hidden lg:w-72 lg:h-10 mb-3">
+                                  {/* <div
+                                        className="bg-[#7fa65a] h-2 rounded-full lg:h-10"
+                                        style={{
+                                          width: `${Math.round(finalHasil)}%`,
+                                        }}
+                                      ></div> */}
+                                </div>
+                              )}
                             </div>
                           </div>
                         </div>
@@ -249,7 +265,7 @@ const Page7 = ({
                         time_now,
                         pakan_start,
                         pakan_end,
-
+                        pakan_status,
                         umur_end,
                       } = item;
                       // INI
@@ -291,16 +307,31 @@ const Page7 = ({
                               <img
                                 src={avatar}
                                 alt=""
-                                className="w-[3.5rem] h-[3.5rem]  lg:w-60 lg:h-64 animate-bounce"
+                                className={
+                                  pakan_status === 1
+                                    ? `w-[3.5rem] h-[3.5rem]  lg:w-60 lg:h-64  mb-1`
+                                    : `w-[3.5rem] h-[3.5rem]  lg:w-60 lg:h-64 animate-bounce`
+                                }
                               />
-                              <div className="w-24 bg-gray-200 h-2 rounded-full overflow-hidden lg:w-72 lg:h-10 mb-3">
-                                <div
-                                  className="bg-[#7fa65a] h-2 rounded-full lg:h-10"
-                                  style={{
-                                    width: `${Math.round(finalHasil)}%`,
-                                  }}
-                                ></div>
-                              </div>
+                              {pakan_status ? (
+                                <div className="w-24 bg-gray-200 h-2 rounded-full overflow-hidden lg:w-72 lg:h-10 mb-3">
+                                  <div
+                                    className="bg-[#7fa65a] h-2 rounded-full lg:h-10"
+                                    style={{
+                                      width: `${Math.round(finalHasil)}%`,
+                                    }}
+                                  ></div>
+                                </div>
+                              ) : (
+                                <div className="w-24  h-2 rounded-full overflow-hidden lg:w-72 lg:h-10 mb-3">
+                                  {/* <div
+                                        className="bg-[#7fa65a] h-2 rounded-full lg:h-10"
+                                        style={{
+                                          width: `${Math.round(finalHasil)}%`,
+                                        }}
+                                      ></div> */}
+                                </div>
+                              )}
                             </div>
                           </div>
                         </div>
@@ -396,7 +427,7 @@ const Page7 = ({
                                     alt=""
                                     className={
                                       pakan_status === 1
-                                        ? `w-[3.5rem] h-[3.5rem]  lg:w-60 lg:h-64 `
+                                        ? `w-[3.5rem] h-[3.5rem]  lg:w-60 lg:h-64 mb-1`
                                         : `w-[3.5rem] h-[3.5rem]  lg:w-60 lg:h-64 animate-bounce`
                                     }
                                   />
