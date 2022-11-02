@@ -16,7 +16,7 @@ const TopUpDiamond = ({
           return (
             <button
               type="button"
-              className="w-52  py-2 bg-[#f0ecd8] rounded-full items-center flex justify-center border-transparent focus:outline-none focus:ring-sky-400 focus:bg-white focus:ring-2 "
+              className="w-[11.5rem]  py-2 bg-[#f0ecd8] rounded-full items-center flex justify-center border-transparent focus:outline-none focus:ring-sky-400 focus:bg-white focus:ring-2 "
               key={id}
               data-id={id}
               data-diamond={diamon}
@@ -25,13 +25,13 @@ const TopUpDiamond = ({
                 tangkapDiamondDipilih(e);
               }}
             >
-              <img src={Diamond} alt="" className="w-7" />
-              <span className="font-bold  text-sm text-sky-400">
+              <img src={Diamond} alt="" className="w-6" />
+              <span className="font-bold  text-xs text-sky-400">
                 {numberWithCommas(diamon)}
               </span>
               <span className="font-semibold mx-1">=</span>
               <span></span>
-              <span className="font-semibold text-sm">
+              <span className="font-semibold text-xs">
                 Rp {numberWithCommas(price)}
               </span>
             </button>

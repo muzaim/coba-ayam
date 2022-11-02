@@ -17,7 +17,7 @@ const TopUpPakan = ({
           const { id, pakan, diamon } = item;
           return (
             <button
-              className="w-52  py-2 bg-[#f0ecd8] rounded-full items-center flex justify-center border-transparent focus:outline-none focus:ring-[#E29A6C] focus:bg-white focus:ring-2"
+              className="w-44  py-2 bg-[#f0ecd8] rounded-full items-center flex justify-center border-transparent focus:outline-none focus:ring-[#E29A6C] focus:bg-white focus:ring-2"
               key={id}
               data-id={id}
               data-pakan={pakan}
@@ -26,13 +26,13 @@ const TopUpPakan = ({
                 tangkapPakanDipilih(e);
               }}
             >
-              <img src={Pouch} alt="" className="w-7" />
-              <span className="font-semibold  text-sm text-[#782443]">
+              <img src={Pouch} alt="" className="w-6" />
+              <span className="font-semibold  text-xs text-[#782443]">
                 {numberWithCommas(pakan)} Kg
               </span>
               <span className="font-semibold mx-1">=</span>
-              <img src={Diamond} alt="" className="w-7" />
-              <span className="font-semibold text-sky-400">
+              <img src={Diamond} alt="" className="w-6" />
+              <span className="font-semibold text-sky-400 text-xs">
                 {numberWithCommas(diamon)}
               </span>
             </button>

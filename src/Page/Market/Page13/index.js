@@ -209,7 +209,7 @@ const Page13 = ({
               <div className="h-[15%]">{/* BACK DIALOG */}</div>
 
               {/* GEROBAK */}
-              <div className="absolute z-10 -top-12">
+              <div className="absolute z-10">
                 <img src={Jualan} alt="" className="" />
               </div>
               {/* BUTTON */}
