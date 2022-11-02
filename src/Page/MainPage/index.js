@@ -136,10 +136,6 @@ const MainPage = () => {
       let dataUser = userInfo.data.Data;
       await setValue(dataUser.user_wallet);
       await setUserLogin(dataUser.user_active);
-
-      // console.log(`ini data user dari main page`, dataUser);
-      // console.log(`info`, info);
-      // console.log(`harta`, value);
     } catch (error) {
       console.log(error);
     }
