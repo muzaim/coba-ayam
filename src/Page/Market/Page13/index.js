@@ -187,7 +187,7 @@ const Page13 = ({
   }, []);
 
   return (
-    <div className="w-full h-screen overflow-hidden bg-caffe bg-cover mx-auto lg:max-w-6xl lg:h-[70%]">
+    <div className="w-full h-full overflow-hidden bg-caffe bg-cover mx-auto lg:max-w-6xl lg:h-[70%]">
       <div className="w-full h-full mx-auto">
         {/* HEADER */}
         <div className="w-[90%] h-[15%] mx-auto">
@@ -203,7 +203,7 @@ const Page13 = ({
         </div>
         {/* HEADER END */}
         {/* CONTENT */}
-        <div className="w-full h-full">
+        <div className="w-full h-[85%] bg-white">
           <div className="relative justify-start w-full h-full">
             {/* ORANG NPC */}
             <div className="absolute w-full h-32  bottom-[7rem] z-10">
