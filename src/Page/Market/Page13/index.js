@@ -224,7 +224,7 @@ const Page13 = ({
               </div>
             </div>
             {/* STAND JUALAN */}
-            <div className="absolute z-20">
+            <div className="absolute bottom-0 z-20">
               <img src={Jualan} alt="" className="" />
             </div>
             {/* BUTTON JUAL SKIP */}
