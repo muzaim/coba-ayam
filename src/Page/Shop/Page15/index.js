@@ -255,7 +255,7 @@ const Page15 = ({
   }, []);
 
   return (
-    <div className="w-full h-screen overflow-hidden bg-outFarm bg-cover mx-auto lg:max-w-6xl lg:h-[70%]">
+    <div className="w-full h-screen overflow-hidden bg-outFarm bg-cover mx-auto lg:max-w-6xl lg:h-[70%] z-30">
       <div className="w-[90%] h-full mx-auto">
         {/* HEADER */}
         <div className="h-[15%]">

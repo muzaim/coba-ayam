@@ -187,7 +187,7 @@ const Page13 = ({
   }, []);
 
   return (
-    <div className="w-full h-full overflow-hidden bg-caffe bg-cover mx-auto lg:max-w-6xl lg:h-[70%]">
+    <div className="w-full h-full overflow-hidden bg-caffe bg-cover mx-auto lg:max-w-6xl lg:h-[70%] z-30">
       <div className="w-full h-full mx-auto">
         {/* HEADER */}
         <div className="w-[90%] h-[15%] mx-auto">

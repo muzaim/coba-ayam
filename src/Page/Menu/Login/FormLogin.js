@@ -170,7 +170,7 @@ const FormLogin = ({
                   </i>
                 </div>
                 <div className="w-full h-full flex">
-                  <div className="block mx-auto h-14 w-36 bg-gradient-to-r from-pink-400 to-red-500 rounded-full uppercase tracking-[0.15rem] font-extrabold text-white font-openSans active:bg-[#ffffff] group">
+                  <div className="block mx-auto h-14 w-28 bg-gradient-to-r from-pink-400 to-red-500 rounded-full uppercase tracking-[0.15rem] font-extrabold text-white font-openSans active:bg-[#ffffff] group">
                     <button
                       className="group-active:text-[#5e17eb]  w-full h-full items-center tracking-widest"
                       type="button"
@@ -183,7 +183,7 @@ const FormLogin = ({
                     </button>
                   </div>
 
-                  <div className="block mx-auto h-14 w-36 bg-gradient-to-r from-green-400 to-blue-500 rounded-full uppercase tracking-[0.15rem] font-extrabold text-white font-openSans active:bg-[#ffffff] group">
+                  <div className="block mx-auto h-14 w-28 bg-gradient-to-r from-green-400 to-blue-500 rounded-full uppercase tracking-[0.15rem] font-extrabold text-white font-openSans active:bg-[#ffffff] group">
                     <button
                       className="group-active:text-[#5e17eb]  w-full h-full items-center tracking-widest"
                       type="submit"

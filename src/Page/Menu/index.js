@@ -25,16 +25,16 @@ const Menu = ({ goToFormLogin, goToFormRegister, playPop1 }) => {
   }, []);
 
   return (
-    <div className="w-full h-full overflow-hidden bg-farmBarn bg-cover mx-auto lg:max-w-6xl lg:h-[70%] z-50">
+    <div className="w-full h-full overflow-hidden bg-farmBarn bg-cover mx-auto lg:max-w-6xl lg:h-[70%] z-30">
       <div className="h-full">
         <div className="flex h-full items-end justify-center pb-5 ">
           <div className="grid gap-2 mt-44">
             <div className="block mx-auto py-4 px-16  rounded-3xl uppercase tracking-[0.15rem] font-extrabold text-white font-openSans  animate-running">
-              <img src={Tama} alt="" className="w-[26rem] " />
+              <img src={Tama} alt="" className="w-[23rem] " />
             </div>
 
             <div
-              className="block mx-auto py-4 px-16 bg-gradient-to-r from-green-400 to-blue-500 rounded-3xl uppercase tracking-[0.15rem] font-extrabold text-white font-openSans active:bg-[#ffffff] group "
+              className="block mx-auto py-4 px-12 bg-gradient-to-r from-green-400 to-blue-500 rounded-3xl uppercase tracking-[0.15rem] font-extrabold text-white font-openSans active:bg-[#ffffff] group "
               onClick={() => {
                 playPop1();
                 goToFormLogin();
@@ -45,15 +45,18 @@ const Menu = ({ goToFormLogin, goToFormRegister, playPop1 }) => {
               </span>
             </div>
 
-            <div
-              className="block mx-auto py-2 px-16 rounded-3xl uppercase tracking-[0.15rem] font-extrabold text-white font-openSans group"
-              onClick={() => {
-                playPop1();
-                goToFormRegister();
-              }}
-            >
-              <span className="group-active:text-[#5e17eb] uppercase">
-                Belum punya akun? buat akun
+            <div className="block mx-auto py-2 px-12 rounded-3xl uppercase tracking-[0.15rem]  text-white font-openSans ">
+              Belum punya akun?
+              <span className=" uppercase group">
+                <span
+                  onClick={() => {
+                    playPop1();
+                    goToFormRegister();
+                  }}
+                  className="ml-1 group-active:text-[#5e17eb] font-semibold"
+                >
+                  buat akun
+                </span>
               </span>
             </div>
           </div>

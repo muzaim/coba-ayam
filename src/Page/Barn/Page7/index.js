@@ -82,7 +82,7 @@ const Page7 = ({
     getUserTernak();
   }, []);
   return (
-    <div className="w-full h-screen overflow-hidden bg-barn bg-cover mx-auto lg:max-w-6xl lg:h-[70%] ">
+    <div className="w-full h-screen overflow-hidden bg-barn bg-cover mx-auto lg:max-w-6xl lg:h-[70%] z-30 ">
       <div className="w-[90%] h-full mx-auto">
         {/* HEADER */}
         <div className="h-[15%]">
@@ -121,7 +121,6 @@ const Page7 = ({
                         pakan_start,
                         pakan_end,
                         umur_end,
-                        umur_start,
                       } = item;
                       // INI
                       // const hariIni = Math.round(new Date().getTime() / 1000);
@@ -150,22 +149,25 @@ const Page7 = ({
                       return (
                         <div
                           key={id}
-                          className="flex justify-center items-center bg-papan1 bg-[length:200px_160px] bg-center bg-no-repeat cursor-pointer mt-3 w-full"
+                          className="flex justify-center items-center bg-papan1 bg-[length:170px_130px] bg-center bg-no-repeat cursor-pointer -mt-3 w-full"
                           onClick={() => openPage8(item)}
                         >
                           <div className="w-[90%] h-[80%]">
                             <div className="flex flex-col items-center my-5">
-                              <span className="text-sm  uppercase font-custom1 mb-2 text-center z-20">
-                                {name} - {Math.round(beda)} Hari
-                              </span>
+                              <p className="text-xs font-bold uppercase font-custom1 mt-2 text-center z-10">
+                                {name}
+                              </p>
+                              <p className="text-xs  uppercase font-custom1 mb-2 text-center z-10">
+                                {Math.round(beda)} Hari
+                              </p>
                               <img
                                 src={avatar}
                                 alt=""
-                                className="w-[5rem] h-[5rem]  lg:w-60 lg:h-64 animate-bounce"
+                                className="w-[3.5rem] h-[3.5rem]  lg:w-60 lg:h-64 animate-bounce"
                               />
-                              <div className="w-32 bg-gray-200 h-3 rounded-full overflow-hidden lg:w-72 lg:h-10 ">
+                              <div className="w-24 bg-gray-200 h-2 rounded-full overflow-hidden lg:w-72 lg:h-10 mb-3">
                                 <div
-                                  className="bg-[#7fa65a] h-3 rounded-full lg:h-10"
+                                  className="bg-[#7fa65a] h-2 rounded-full lg:h-10"
                                   style={{
                                     width: `${Math.round(finalHasil)}%`,
                                   }}
@@ -178,7 +180,7 @@ const Page7 = ({
                     })}
                     {/* POSISI 2 */}
                     <div
-                      className="flex justify-center items-center bg-papan1 bg-[length:200px_160px] bg-center bg-no-repeat cursor-pointer mt-3  w-full"
+                      className="flex justify-center items-center bg-papan1 bg-[length:170px_130px] bg-center bg-no-repeat cursor-pointer -mt-3  w-full"
                       // onClick={() => openPage8(item)}
                     >
                       <div
@@ -199,7 +201,7 @@ const Page7 = ({
                     </div>
                     {/* POSISI 3*/}
                     <div
-                      className="flex justify-center items-center bg-papan1 bg-[length:200px_160px] bg-center bg-no-repeat cursor-pointer mt-3  w-full"
+                      className="flex justify-center items-center bg-papan1 bg-[length:170px_130px] bg-center bg-no-repeat cursor-pointer -mt-3  w-full"
                       // onClick={() => openPage8(item)}
                     >
                       <div
@@ -259,22 +261,25 @@ const Page7 = ({
                       return (
                         <div
                           key={id}
-                          className="flex justify-center items-center bg-papan1 bg-[length:200px_160px] bg-center bg-no-repeat cursor-pointer mt-3 w-full"
+                          className="flex justify-center items-center bg-papan1 bg-[length:170px_130px] bg-center bg-no-repeat cursor-pointer -mt-3 w-full"
                           onClick={() => openPage8(item)}
                         >
                           <div className="w-[90%] h-[80%]">
-                            <div className="flex flex-col items-center justify-center h-full">
-                              <span className="text-sm  uppercase font-custom1 mb-2 text-center z-10">
-                                {name} - {Math.round(beda)} Hari
-                              </span>
+                            <div className="flex flex-col items-center my-5">
+                              <p className="text-xs font-bold uppercase font-custom1 mt-2 text-center z-10">
+                                {name}
+                              </p>
+                              <p className="text-xs  uppercase font-custom1 mb-2 text-center z-10">
+                                {Math.round(beda)} Hari
+                              </p>
                               <img
                                 src={avatar}
                                 alt=""
-                                className="w-[5rem] h-[5rem]  lg:w-60 lg:h-64 animate-bounce"
+                                className="w-[3.5rem] h-[3.5rem]  lg:w-60 lg:h-64 animate-bounce"
                               />
-                              <div className="w-32 bg-gray-200 h-3 rounded-full overflow-hidden lg:w-72 lg:h-10 mt-3">
+                              <div className="w-24 bg-gray-200 h-2 rounded-full overflow-hidden lg:w-72 lg:h-10 mb-3">
                                 <div
-                                  className="bg-[#7fa65a] h-3 rounded-full lg:h-10"
+                                  className="bg-[#7fa65a] h-2 rounded-full lg:h-10"
                                   style={{
                                     width: `${Math.round(finalHasil)}%`,
                                   }}
@@ -288,7 +293,7 @@ const Page7 = ({
 
                     {/* POSISI 3*/}
                     <div
-                      className="flex justify-center items-center bg-papan1 bg-[length:200px_160px] bg-center bg-no-repeat cursor-pointer mt-3  w-full"
+                      className="flex justify-center items-center bg-papan1 bg-[length:170px_130px] bg-center bg-no-repeat cursor-pointer -mt-3  w-full"
                       // onClick={() => openPage8(item)}
                     >
                       <div

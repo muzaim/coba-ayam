@@ -11,16 +11,45 @@ const Page5 = ({ goToPage6, playYaySound, playSelectSound }) => {
   const skip = () => {
     playSelectSound();
     setSkipDalog((current) => !current);
+    setNextButton(true);
+  };
+
+  const NextButtonDiv = () => {
+    return (
+      <div className="absolute bottom-[3rem] right-[5rem] w-40 h-12 z-10">
+        <div
+          className="flex rounded-full h-full w-full bg-[#f6f3e4] items-center justify-center ring-offset-2 ring-4 ring-[#782443]"
+          onClick={selesaiTutor}
+        >
+          <span className="text-[#782443] font-semibold">Masuk Agenda</span>
+        </div>
+      </div>
+    );
+  };
+
+  const selesaiTutor = async () => {
+    playYaySound();
+    const userCookie = Cookies.get("user");
+    try {
+      await axios.get(`${process.env.REACT_APP_BASE_URL}/tutor-update`, {
+        params: {
+          token: userCookie,
+        },
+      });
+      goToPage6();
+    } catch (error) {
+      console.log(`dari ketika getUsrInfo `, error);
+    }
   };
 
   const DialogComplete = () => {
     return (
       <div
-        className="w-[30rem] h-[12rem] px-5 py-5  bg-[#782443] overflow-auto rounded-xl ml-5 ring-offset-2 ring-4 ring-[#782443] relative"
-        onClick={setNextButton(true)}
+        className="w-[25rem] h-[12rem] px-5 py-5 bg-[#782443] -mt-5 overflow-auto rounded-xl ml-5 ring-offset-2 ring-4 ring-[#782443] relative"
+        // onClick={setNextButton(true)}
       >
         <div className="h-full grid gap-2 ">
-          <div className="text-white font-semibold text-justify text-xl font-openSans">
+          <div className="text-white font-semibold text-justify text-md font-openSans">
             <p>1 telur ayam = 1 diamond</p>
             <p>1 liter susu = 100 diamond</p>
             <p>1 kg pangan = 10 diamond</p>
@@ -44,37 +73,9 @@ const Page5 = ({ goToPage6, playYaySound, playSelectSound }) => {
     );
   };
 
-  const selesaiTutor = async () => {
-    playYaySound();
-    const userCookie = Cookies.get("user");
-    try {
-      await axios.get(`${process.env.REACT_APP_BASE_URL}/tutor-update`, {
-        params: {
-          token: userCookie,
-        },
-      });
-      goToPage6();
-    } catch (error) {
-      console.log(`dari ketika getUsrInfo `, error);
-    }
-  };
-
-  const NextButtonDiv = () => {
-    return (
-      <div className="absolute bottom-2 right-[2rem] w-40 h-12 z-10">
-        <div
-          className="flex rounded-full h-full w-full bg-[#f6f3e4] items-center justify-center ring-offset-2 ring-4 ring-[#782443]"
-          onClick={selesaiTutor}
-        >
-          <span className="text-[#782443] font-semibold">Masuk Agenda</span>
-        </div>
-      </div>
-    );
-  };
-
   return (
-    <div className="w-full h-screen overflow-hidden bg-page2 bg-cover mx-auto lg:max-w-6xl lg:h-[70%]">
-      <div clName="w-[90%] h-full mx-auto ">
+    <div className="w-full h-screen overflow-hidden bg-page2 bg-cover mx-auto lg:max-w-6xl lg:h-[70%] z-30">
+      <div className="w-[90%] h-full mx-auto ">
         {/* HEADER */}
         <div className="h-[15%]"></div>
         {/* HEADER END */}
@@ -91,11 +92,11 @@ const Page5 = ({ goToPage6, playYaySound, playSelectSound }) => {
               <DialogComplete />
             ) : (
               <div
-                className="w-[30rem] h-[12rem]  px-5 py-5 bg-[#782443] overflow-auto rounded-xl ml-5 ring-offset-2 ring-4 ring-[#782443] relative"
+                className="w-[25rem]  h-[12rem] px-5 pb-5 pt-10 bg-[#782443] -mt-5 rounded-xl overflow-y-scroll ml-5 ring-offset-2 ring-4 ring-[#782443] relative"
                 onClick={skip}
               >
-                <div className="h-full grid gap-2">
-                  <div className="text-white font-semibold text-justify text-xl font-openSans">
+                <div className="h-full grid gap-2 ">
+                  <span className="text-white font-semibold text-justify text-md font-openSans tracking-wider">
                     <Typewriter
                       options={{
                         delay: 30,
@@ -113,7 +114,7 @@ const Page5 = ({ goToPage6, playYaySound, playSelectSound }) => {
                           });
                       }}
                     />
-                  </div>
+                  </span>
                 </div>
               </div>
             )}
