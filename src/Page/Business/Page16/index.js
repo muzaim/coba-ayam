@@ -200,45 +200,46 @@ const Page16 = ({ goToPage6, goToMenu }) => {
   };
 
   return (
-    <div className="w-full h-screen overflow-hidden bg-outFarm bg-cover mx-auto lg:max-w-6xl lg:h-[70%] z-30">
-      <div className="w-[90%] h-full mx-auto">
-        {/* HEADER */}
-        <div className="h-[15%]">
-          <Header BackButton={true} Action2={goToPage6} />
-        </div>
-        {/* HEADER END */}
-        {/* CONTENT */}
-        <div className="w-full flex h-[80%]">
-          {/* kiri */}
-          <div className="w-[30%] h-full px-4 animate-fadeInKu flex items-center py-3 ">
-            <div className="mx-auto w-full h-[100%] flex flex-col items-center justify-center bg-transparent border rounded-lg px-1">
-              <img
-                src={dataUserActive.avatar}
-                alt="imag"
-                className="w-28 h-28   rounded-full -mt-10"
-              />
-              <span className="uppercase my-1 tracking-widest text-black">
-                {dataUserActive.username}
-              </span>
-              <div
-                className="flex bg-gradient-to-r from-green-400 to-blue-500 px-8 py-1 rounded-xl gap-3 items-center"
-                onClick={() => {
-                  navigator.clipboard.writeText(dataUserActive.user_ref);
-                  MySwal.fire({
-                    position: "center",
-                    icon: "success",
-                    text: "Referal code berhasil dicopy!",
-                    showConfirmButton: false,
-                    timer: 1500,
-                  });
-                }}
-              >
-                <span className="text-sm  text-white">
-                  {dataUserActive.user_ref}
+    <div className="w-full h-screen overflow-hidden  mx-auto lg:max-w-6xl lg:h-[70%] z-30">
+      <div className="w-full h-full bg-city bg-cover bg-center">
+        <div className="w-[90%] h-full mx-auto">
+          {/* HEADER */}
+          <div className="h-[15%]">
+            <Header BackButton={true} Action2={goToPage6} />
+          </div>
+          {/* HEADER END */}
+          {/* CONTENT */}
+          <div className="w-full flex h-[80%]">
+            {/* kiri */}
+            <div className="w-[30%] h-full px-4 animate-fadeInKu flex items-center py-3 ">
+              <div className="mx-auto w-full h-[100%] flex flex-col items-center justify-center bg-transparent border rounded-lg px-1">
+                <img
+                  src={dataUserActive.avatar}
+                  alt="imag"
+                  className="w-28 h-28   rounded-full -mt-10"
+                />
+                <span className="uppercase my-1 tracking-widest text-black">
+                  {dataUserActive.username}
                 </span>
-                {/* <span className="text-white">{Copy}</span> */}
-              </div>
-              {/* <div className="mt-5 w-full h-20 ">
+                <div
+                  className="flex bg-gradient-to-r from-green-400 to-blue-500 px-8 py-1 rounded-xl gap-3 items-center"
+                  onClick={() => {
+                    navigator.clipboard.writeText(dataUserActive.user_ref);
+                    MySwal.fire({
+                      position: "center",
+                      icon: "success",
+                      text: "Referal code berhasil dicopy!",
+                      showConfirmButton: false,
+                      timer: 1500,
+                    });
+                  }}
+                >
+                  <span className="text-sm  text-white">
+                    {dataUserActive.user_ref}
+                  </span>
+                  {/* <span className="text-white">{Copy}</span> */}
+                </div>
+                {/* <div className="mt-5 w-full h-20 ">
                 <div className="flex justify-between px-2 w-full border-b-2 ">
                   <span className="font-semibold">Diamond</span>
                   <span className="font-light">{dataUserWallet.diamon}</span>
@@ -260,58 +261,59 @@ const Page16 = ({ goToPage6, goToMenu }) => {
                   <span className="font-light">{daging}</span>
                 </div>
               </div> */}
+              </div>
             </div>
-          </div>
-          <div className="w-full h-full px-10 flex flex-col justify-center items-center py-3 ">
-            <div className="flex justify-around  w-full h-full  bg-transparent rounded-xl">
-              <div
-                className={`${
-                  aktMembPanel
-                    ? "border-x-[1px] border-t-[1px] border-black rounded-t-xl w-full h-[60%]  py-3 text-center"
-                    : "w-full h-[60%]  py-3 text-center border-b-[1px] border-black"
-                }`}
-              >
-                <span
+            <div className="w-full h-full px-10 flex flex-col justify-center items-center py-3 ">
+              <div className="flex justify-around  w-full h-full  bg-transparent rounded-xl">
+                <div
                   className={`${
                     aktMembPanel
-                      ? "font-bold text-slate-900 text-xl cursor-pointer"
-                      : "text-slate-900 text-xl cursor-pointer"
+                      ? "border-x-[1px] border-t-[1px] border-black rounded-t-xl w-full h-[60%]  py-3 text-center"
+                      : "w-full h-[60%]  py-3 text-center border-b-[1px] border-black"
                   }`}
-                  onClick={openAktMembPanel}
                 >
-                  Aktivitas member
-                </span>
-              </div>
-              <div
-                className={`${
-                  penKomPanel
-                    ? "border-x-[1px] border-t-[1px] border-black rounded-t-xl w-full  h-[60%]   py-3 text-center"
-                    : "w-full  h-[60%] py-3 text-center border-b-[1px] border-black"
-                }`}
-              >
-                <span
+                  <span
+                    className={`${
+                      aktMembPanel
+                        ? "font-bold text-slate-900 text-xl cursor-pointer"
+                        : "text-slate-900 text-xl cursor-pointer"
+                    }`}
+                    onClick={openAktMembPanel}
+                  >
+                    Aktivitas member
+                  </span>
+                </div>
+                <div
                   className={`${
                     penKomPanel
-                      ? "font-bold text-slate-900 text-xl cursor-pointer"
-                      : "text-slate-900 text-xl cursor-pointer"
+                      ? "border-x-[1px] border-t-[1px] border-black rounded-t-xl w-full  h-[60%]   py-3 text-center"
+                      : "w-full  h-[60%] py-3 text-center border-b-[1px] border-black"
                   }`}
-                  onClick={openPenKomPanel}
                 >
-                  Penarikan Komisi
-                </span>
+                  <span
+                    className={`${
+                      penKomPanel
+                        ? "font-bold text-slate-900 text-xl cursor-pointer"
+                        : "text-slate-900 text-xl cursor-pointer"
+                    }`}
+                    onClick={openPenKomPanel}
+                  >
+                    Penarikan Komisi
+                  </span>
+                </div>
+              </div>
+
+              <div className="w-full h-[70%]  pt-3 bg-transparent">
+                {aktMembPanel ? (
+                  <AktivasiMemberPanel />
+                ) : (
+                  <PenarikanKomisiPanel />
+                )}
               </div>
             </div>
-
-            <div className="w-full h-[70%]  pt-3 bg-transparent">
-              {aktMembPanel ? (
-                <AktivasiMemberPanel />
-              ) : (
-                <PenarikanKomisiPanel />
-              )}
-            </div>
           </div>
+          {/* KANAN */}
         </div>
-        {/* KANAN */}
       </div>
     </div>
   );

@@ -81,7 +81,7 @@ const Page6 = ({
             {/* TES MUSIC */}
             {/* KE Warung */}
             <div
-              className="top-[8rem] left-[12.5rem] absolute group animate-bounce"
+              className="top-[6rem] left-[11rem] absolute group animate-bounce"
               onClick={() => {
                 playPop1();
                 goToPage13();
@@ -100,7 +100,7 @@ const Page6 = ({
             </div>
             {/* KE BISNIS */}
             <div
-              className="-top-[1rem] left-[12rem] absolute group animate-bounce"
+              className="-top-[1rem] left-[11rem] absolute group animate-bounce"
               onClick={() => {
                 playPop1();
                 goToPage16();
@@ -138,7 +138,7 @@ const Page6 = ({
             </div>
             {/* KE TOP UP */}
             <div
-              className="top-[3rem] right-[6rem] absolute group animate-bounce"
+              className="top-[3rem] right-[7rem] absolute group animate-bounce"
               onClick={() => {
                 playPop1();
                 goToPage15();

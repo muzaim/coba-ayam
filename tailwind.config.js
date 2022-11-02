@@ -13,6 +13,7 @@ module.exports = {
         papan1: "url('./img/bg/papan.png')",
         papan2: "url('./img/bg/papan2.png')",
         jualan: "url('./img/bg/jualan.png')",
+        city: "url('./img/bg/city.jpg')",
       },
       animation: {
         running: "fill 1.5s linear",
