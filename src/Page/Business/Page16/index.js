@@ -80,7 +80,7 @@ const Page16 = ({ goToPage6, goToMenu }) => {
   const AktivasiMemberPanel = () => {
     return (
       <div className="w-full h-full  bg-transparent overflow-x-auto animate-fadeInKu -mt-8 ">
-        <table className="table-auto w-full border-collapse border text-center">
+        <table className="table-auto w-full border-collapse border text-center text-black">
           <thead className="bg-slate-700 sticky top-0 text-white">
             <tr className="">
               <th className="w-[40%] py-3">User</th>
@@ -200,8 +200,8 @@ const Page16 = ({ goToPage6, goToMenu }) => {
   };
 
   return (
-    <div className="w-full h-screen overflow-hidden  mx-auto lg:max-w-6xl lg:h-[70%] z-30">
-      <div className="w-full h-full bg-city bg-cover bg-center">
+    <div className="w-full h-screen overflow-hidden  mx-auto lg:max-w-6xl lg:h-[70%] z-30 text-white ">
+      <div className="w-full h-full bg-city bg-cover bg-center  before:opacity-10 ">
         <div className="w-[90%] h-full mx-auto">
           {/* HEADER */}
           <div className="h-[15%]">

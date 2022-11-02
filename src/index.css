@@ -39,3 +39,6 @@ code {
     margin: 0;
   }
 }
+.transpar {
+  background-color: theme(colors.black/60%);
+}
