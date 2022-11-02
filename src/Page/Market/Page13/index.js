@@ -203,10 +203,10 @@ const Page13 = ({
         </div>
         {/* HEADER END */}
         {/* CONTENT */}
-        <div className="w-full h-[85%] bg-white">
+        <div className="w-full h-[85%] ">
           <div className="relative justify-start w-full h-full">
             {/* ORANG NPC */}
-            <div className="absolute w-full h-32  bottom-[7rem] z-10">
+            <div className="absolute w-full h-32  bottom-[3.5rem] z-10">
               <div className="absolute">
                 <img src={avaArray[indexAvatar + 5]} alt="" className="w-24 " />
               </div>
@@ -261,7 +261,7 @@ const Page13 = ({
               </div>
             </div>
             {/* TUTUP TOKO */}
-            <div className="absolute z-30  left-16 bottom-20 ">
+            <div className="absolute z-30  left-16 bottom-5 ">
               <div
                 className="w-40 h-10 bg-[#329bd1] rounded-full items-center flex active:bg-[#51a9d5]"
                 onClick={openBackDialog}
