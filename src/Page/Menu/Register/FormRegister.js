@@ -17,6 +17,8 @@ const FormRegister = ({
   playPop1,
   playSuccessSound,
   playNegativeSound,
+  playSelectSound,
+  playWarningSound,
 }) => {
   const [dataRegister, setDataRegister] = useState({
     username: "",
@@ -26,8 +28,7 @@ const FormRegister = ({
     password: "",
     password_confirmation: "",
   });
-  const [wrongPassword, setWrongPassword] = useState(false);
-  const [empty, setEmpty] = useState(false);
+
   const [passwordShown, setPasswordShown] = useState(false);
   const [passwordConfirmShow, setPasswordConfirmShown] = useState(false);
 
@@ -42,11 +43,13 @@ const FormRegister = ({
   };
 
   const togglePasswordVisiblity = (e) => {
+    playPop1();
     e.preventDefault();
     setPasswordShown(passwordShown ? false : true);
   };
 
   const togglePasswordConfirmVisiblity = (e) => {
+    playPop1();
     e.preventDefault();
     setPasswordConfirmShown(passwordConfirmShow ? false : true);
   };
@@ -125,10 +128,7 @@ const FormRegister = ({
                   placeholder="Username"
                   onChange={changeHandler}
                   className="h-10 rounded-lg px-3 outline-pink-500 outline-offset-5 outline-5"
-                  onFocus={(e) => {
-                    setWrongPassword(false);
-                    setEmpty(false);
-                  }}
+                  onFocus={playSelectSound}
                 />
                 <input
                   value={dataRegister.phone}
@@ -137,16 +137,14 @@ const FormRegister = ({
                   placeholder="Phone"
                   onChange={changeHandler}
                   className="h-10 rounded-lg px-3 outline-pink-500 outline-offset-5 outline-5"
-                  onFocus={(e) => {
-                    setWrongPassword(false);
-                    setEmpty(false);
-                  }}
+                  onFocus={playSelectSound}
                 />
                 <div className="flex gap-2 w-full">
                   <div className="pass-wrapper bg-white rounded-lg w-[50%]">
                     <input
                       type={passwordShown ? "text" : "password"}
                       value={dataRegister.password}
+                      onFocus={playSelectSound}
                       onChange={changeHandler}
                       name="password"
                       placeholder="Password"
@@ -164,6 +162,7 @@ const FormRegister = ({
                     <input
                       type={passwordConfirmShow ? "text" : "password"}
                       value={dataRegister.password_confirmation}
+                      onFocus={playSelectSound}
                       onChange={changeHandler}
                       name="password_confirmation"
                       placeholder="Password confirm"
@@ -185,10 +184,7 @@ const FormRegister = ({
                   onChange={changeHandler}
                   placeholder="Referal Code"
                   className="h-10 rounded-lg px-3 outline-pink-500 outline-offset-5 outline-5"
-                  onFocus={(e) => {
-                    setWrongPassword(false);
-                    setEmpty(false);
-                  }}
+                  onFocus={playSelectSound}
                   onKeyPress={(e) => EnterHandler(e)}
                 />
 

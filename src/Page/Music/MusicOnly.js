@@ -49,12 +49,13 @@ const MusicOnly = () => {
   // const [play] = useSound(song);
 
   return (
-    <div className="absolute z-20 bottom-7 right-16">
+    <div className="absolute z-20 bottom-6 right-16">
       <AudioPlayer
-        autoPlay
+        // autoPlay
+        loop
         showJumpControls={false}
         showFilledProgress={false}
-        showSkipControl={true}
+        showSkipControl={false}
         volume={0.6}
         src={song}
       />

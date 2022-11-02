@@ -20,14 +20,15 @@ const FormLogin = ({
   playPop1,
   playSuccessSound,
   playNegativeSound,
+  playSelectSound,
+  playWarningSound,
 }) => {
   const { setUserLogin, setValue } = useContext(UserContext);
   const [dataLogin, setDataLogin] = useState({
     username: "",
     password: "",
   });
-  const [wrongPassword, setWrongPassword] = useState(false);
-  const [empty, setEmpty] = useState(false);
+
   const [passwordShown, setPasswordShown] = useState(false);
 
   const changeHandler = (e) => {
@@ -42,6 +43,7 @@ const FormLogin = ({
 
   const togglePasswordVisiblity = (e) => {
     e.preventDefault();
+    playPop1();
     setPasswordShown(passwordShown ? false : true);
   };
 
@@ -55,8 +57,14 @@ const FormLogin = ({
 
     //if empty
     if (dataLogin.username === "" || dataLogin.password === "") {
-      setEmpty(true);
-      setWrongPassword(false);
+      playNegativeSound();
+      MySwal.fire({
+        position: "center",
+        icon: "error",
+        text: "Username & Password tidak boleh kosong!",
+        showConfirmButton: false,
+        timer: 1500,
+      });
       setDataLogin({
         username: "",
         password: "",
@@ -71,8 +79,8 @@ const FormLogin = ({
         formData
       );
       let data = res.data;
-      var inFifteenMinutes = new Date(new Date().getTime() + 0.1 * 60 * 1000);
-      Cookies.set("user", data.token, { expires: inFifteenMinutes });
+      // var inFifteenMinutes = new Date(new Date().getTime() + 0.1 * 60 * 1000);
+      Cookies.set("user", data.token, { expires: 1 });
       // is tutorial
       try {
         let userInfo = await axios.get(
@@ -130,16 +138,6 @@ const FormLogin = ({
           <div className="w-full h-full  flex items-center animate-fadeInKu">
             <div className="w-[40%] h-52 mx-auto">
               <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
-                {wrongPassword ? (
-                  <span className="text-center text-red-600 text-lg font-semibold">
-                    Username atau password salah!
-                  </span>
-                ) : null}
-                {empty ? (
-                  <span className="text-center text-red-600 text-lg font-semibold">
-                    Masukkan username & password!
-                  </span>
-                ) : null}
                 <input
                   name="username"
                   type="text"
@@ -148,14 +146,14 @@ const FormLogin = ({
                   placeholder="Username"
                   className="h-10 rounded-lg px-3 outline-pink-500 outline-offset-5 outline-5"
                   onFocus={(e) => {
-                    setWrongPassword(false);
-                    setEmpty(false);
+                    playSelectSound();
                   }}
                 />
                 <div className="pass-wrapper bg-white rounded-lg">
                   <input
                     type={passwordShown ? "text" : "password"}
                     onChange={changeHandler}
+                    onFocus={playSelectSound}
                     value={dataLogin.password}
                     name="password"
                     placeholder="Password"

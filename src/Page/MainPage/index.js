@@ -147,16 +147,7 @@ const MainPage = () => {
 
   const readCookie = () => {
     const userCookie = Cookies.get("user");
-    if (!userCookie) {
-      MySwal.fire({
-        position: "center",
-        icon: "warning",
-        text: "Sesi login kamu telah habis!",
-        showConfirmButton: false,
-        timer: 1500,
-      });
-      goToMenu();
-    }
+
     if (userCookie) {
       setStep("Page6");
     } else {
@@ -180,6 +171,8 @@ const MainPage = () => {
     case "FormLogin":
       return (
         <FormLogin
+          playSelectSound={playSelectSound}
+          playWarningSound={playWarningSound}
           goToPage2={goToPage2}
           goToPage6={goToPage6}
           goToMenu={goToMenu}
@@ -198,6 +191,8 @@ const MainPage = () => {
           playGoBackSound={playGoBackSound}
           playSuccessSound={playSuccessSound}
           playNegativeSound={playNegativeSound}
+          playSelectSound={playSelectSound}
+          playWarningSound={playWarningSound}
         />
       );
     case "Page2":
