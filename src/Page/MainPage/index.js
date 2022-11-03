@@ -337,7 +337,15 @@ const MainPage = () => {
         />
       );
     case "Page16":
-      return <Page16 goToPage6={goToPage6} goToMenu={goToMenu} />;
+      return (
+        <Page16
+          goToPage6={goToPage6}
+          goToMenu={goToMenu}
+          playSuccessSound={playSuccessSound}
+          playSelectSound={playSelectSound}
+          playPop1={playPop1}
+        />
+      );
     default:
       break;
   }

@@ -12,7 +12,13 @@ const MySwal = withReactContent(Swal);
 
 const Copy = <FontAwesomeIcon icon={faClipboard} />;
 
-const Page16 = ({ goToPage6, goToMenu }) => {
+const Page16 = ({
+  goToPage6,
+  goToMenu,
+  playSuccessSound,
+  playSelectSound,
+  playPop1,
+}) => {
   const [aktMembPanel, setAktMembPanel] = useState(true);
   const [penKomPanel, setPenKomPanel] = useState(false);
   const [dataUserWallet, setDataUserWallet] = useState([]);
@@ -176,22 +182,40 @@ const Page16 = ({ goToPage6, goToMenu }) => {
     return (
       <div className="w-full h-[115%] overflow-x-auto bg-transparent animate-fadeInKu -mt-8">
         <div className="flex gap-2 flex-col justify-center items-center ">
-          <div className="w-[80%] py-2 bg-white rounded-full text-center">
+          <div
+            className="w-[80%] py-2 bg-white rounded-full text-center"
+            onClick={playPop1}
+          >
             <span className="text-black">Nama</span>
           </div>
-          <div className="w-[80%] py-2 bg-white rounded-full text-center">
+          <div
+            className="w-[80%] py-2 bg-white rounded-full text-center"
+            onClick={playPop1}
+          >
             <span className="text-black">Nama Bank</span>
           </div>
-          <div className="w-[80%] py-2 bg-white rounded-full text-center">
+          <div
+            className="w-[80%] py-2 bg-white rounded-full text-center"
+            onClick={playPop1}
+          >
             <span className="text-black">No Rekening</span>
           </div>
-          <div className="w-[80%] py-2 bg-white rounded-full text-center">
+          <div
+            className="w-[80%] py-2 bg-white rounded-full text-center"
+            onClick={playPop1}
+          >
             <span className="text-black">Jumlah diamond yang ditarik</span>
           </div>
-          <div className="w-[80%] py-2 bg-white rounded-full text-center">
+          <div
+            className="w-[80%] py-2 bg-white rounded-full text-center"
+            onClick={playPop1}
+          >
             <span className="text-black">Jumlah rupiah yang ditarik</span>
           </div>
-          <div className="w-[80%] py-2 bg-slate-500 rounded-full text-center tracking-widest">
+          <div
+            className="w-[80%] py-2 bg-slate-500 rounded-full text-center tracking-widest"
+            onClick={playPop1}
+          >
             <span
               className="text-white
              font-bold"
@@ -231,6 +255,7 @@ const Page16 = ({ goToPage6, goToMenu }) => {
                   className="flex bg-gradient-to-r from-green-400 to-blue-500 px-8 p-1 m-1 rounded-xl gap-3 items-center"
                   onClick={() => {
                     navigator.clipboard.writeText(dataUserActive.user_ref);
+                    playSuccessSound();
                     MySwal.fire({
                       position: "center",
                       icon: "success",
@@ -285,7 +310,10 @@ const Page16 = ({ goToPage6, goToMenu }) => {
                         ? "font-bold text-slate-900 text-xl cursor-pointer"
                         : "text-slate-900 text-xl cursor-pointer"
                     }`}
-                    onClick={openAktMembPanel}
+                    onClick={() => {
+                      playSelectSound();
+                      openAktMembPanel();
+                    }}
                   >
                     Aktivitas member
                   </span>
@@ -303,7 +331,10 @@ const Page16 = ({ goToPage6, goToMenu }) => {
                         ? "font-bold text-slate-900 text-xl cursor-pointer"
                         : "text-slate-900 text-xl cursor-pointer"
                     }`}
-                    onClick={openPenKomPanel}
+                    onClick={() => {
+                      playSelectSound();
+                      openPenKomPanel();
+                    }}
                   >
                     Penarikan Komisi
                   </span>
