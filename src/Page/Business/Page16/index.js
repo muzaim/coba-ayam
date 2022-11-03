@@ -79,7 +79,7 @@ const Page16 = ({ goToPage6, goToMenu }) => {
 
   const AktivasiMemberPanel = () => {
     return (
-      <div className="w-full h-full  bg-transparent overflow-x-auto animate-fadeInKu -mt-8 ">
+      <div className="w-full h-[115%]  overflow-x-auto animate-fadeInKu -mt-8 bg-transparent">
         <table className="table-auto w-full border-collapse border text-center text-black">
           <thead className="bg-slate-700 sticky top-0 text-white">
             <tr className="">
@@ -174,25 +174,30 @@ const Page16 = ({ goToPage6, goToMenu }) => {
 
   const PenarikanKomisiPanel = () => {
     return (
-      <div className="w-full h-full overflow-x-auto bg-transparent animate-fadeInKu -mt-8">
-        <div className="flex gap-2 flex-col justify-center items-center">
-          <div className="w-[80%] py-2 bg-slate-300 rounded-full text-center">
-            Nama
+      <div className="w-full h-[115%] overflow-x-auto bg-transparent animate-fadeInKu -mt-8">
+        <div className="flex gap-2 flex-col justify-center items-center ">
+          <div className="w-[80%] py-2 bg-white rounded-full text-center">
+            <span className="text-black">Nama</span>
           </div>
-          <div className="w-[80%] py-2 bg-slate-300 rounded-full text-center">
-            Nama Bank
+          <div className="w-[80%] py-2 bg-white rounded-full text-center">
+            <span className="text-black">Nama Bank</span>
           </div>
-          <div className="w-[80%] py-2 bg-slate-300 rounded-full text-center">
-            No Rekening
+          <div className="w-[80%] py-2 bg-white rounded-full text-center">
+            <span className="text-black">No Rekening</span>
           </div>
-          <div className="w-[80%] py-2 bg-slate-300 rounded-full text-center">
-            Jumlah diamond yang ditarik
+          <div className="w-[80%] py-2 bg-white rounded-full text-center">
+            <span className="text-black">Jumlah diamond yang ditarik</span>
           </div>
-          <div className="w-[80%] py-2 bg-slate-300 rounded-full text-center">
-            Jumlah rupiah yang ditarik
+          <div className="w-[80%] py-2 bg-white rounded-full text-center">
+            <span className="text-black">Jumlah rupiah yang ditarik</span>
           </div>
-          <div className="w-[80%] py-2 bg-red-600 rounded-full text-center">
-            <span className="text-white">Tarik</span>
+          <div className="w-[80%] py-2 bg-slate-500 rounded-full text-center tracking-widest">
+            <span
+              className="text-white
+             font-bold"
+            >
+              Tarik
+            </span>
           </div>
         </div>
       </div>
@@ -209,20 +214,20 @@ const Page16 = ({ goToPage6, goToMenu }) => {
           </div>
           {/* HEADER END */}
           {/* CONTENT */}
-          <div className="w-full flex h-[80%]">
+          <div className="w-full flex h-[80%] ">
             {/* kiri */}
             <div className="w-[30%] h-full px-4 animate-fadeInKu flex items-center py-3 ">
-              <div className="mx-auto w-full h-[100%] flex flex-col items-center justify-center bg-transparent border rounded-lg px-1">
+              <div className="mx-auto w-full h-[100%] flex flex-col items-center justify-center bg-transparent border rounded-lg px-1 ">
                 <img
                   src={dataUserActive.avatar}
                   alt="imag"
-                  className="w-28 h-28   rounded-full -mt-10"
+                  className="w-28 h-28   rounded-full -mt-10 p-2"
                 />
-                <span className="uppercase my-1 tracking-widest text-black">
+                <span className="uppercase my-1 tracking-widest text-black font-semibold">
                   {dataUserActive.username}
                 </span>
                 <div
-                  className="flex bg-gradient-to-r from-green-400 to-blue-500 px-8 py-1 rounded-xl gap-3 items-center"
+                  className="flex bg-gradient-to-r from-green-400 to-blue-500 px-8 p-1 m-1 rounded-xl gap-3 items-center"
                   onClick={() => {
                     navigator.clipboard.writeText(dataUserActive.user_ref);
                     MySwal.fire({
@@ -263,8 +268,9 @@ const Page16 = ({ goToPage6, goToMenu }) => {
               </div> */}
               </div>
             </div>
-            <div className="w-full h-full px-10 flex flex-col justify-center items-center py-3 ">
-              <div className="flex justify-around  w-full h-full  bg-transparent rounded-xl">
+            {/* kanan */}
+            <div className="w-full h-full px-5 flex flex-col justify-center items-center py-3 ">
+              <div className="flex justify-around  w-full h-full  bg-transparent rounded-xl  bg-white">
                 <div
                   className={`${
                     aktMembPanel
@@ -303,7 +309,7 @@ const Page16 = ({ goToPage6, goToMenu }) => {
                 </div>
               </div>
 
-              <div className="w-full h-[70%]  pt-3 bg-transparent">
+              <div className="w-full h-[70%]  pt-3 bg-transparent rounded-xl">
                 {aktMembPanel ? (
                   <AktivasiMemberPanel />
                 ) : (

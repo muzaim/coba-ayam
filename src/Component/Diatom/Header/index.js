@@ -138,7 +138,7 @@ const Header = ({
         </div>
         <div className="w-full text-start ">
           <span className="font-bold  text-xs  text-[#782443]">
-            {numberWithCommas(harta.hasil_ternak[3].qty)} Kilogram
+            {numberWithCommas(harta.hasil_ternak[3].qty)} Kg
           </span>
         </div>
       </div>

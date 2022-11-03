@@ -14,9 +14,10 @@ module.exports = {
         papan2: "url('./img/bg/papan2.png')",
         jualan: "url('./img/bg/jualan.png')",
         city: "url('./img/bg/city.jpg')",
+        loading: "url('./img/bg/loading.jpg')",
       },
       animation: {
-        running: "fill 1.5s linear",
+        running: "fill 3.5s linear",
         fadeInKu: "fadeInRight 0.3s ease-in-out",
       },
       keyframes: {
