@@ -262,7 +262,7 @@ const Page8 = ({
                             goToPage7();
                           }}
                         >
-                          Batal
+                          Kembali
                         </button>
                       </div>
                       <div className="block mx-auto w-[9rem] h-10 bg-gradient-to-r from-cyan-400 to-blue-600 rounded-full uppercase tracking-[0.15rem] font-extrabold text-white font-openSans active:bg-gradient-to-r active:from-blue-500 active:to-cyan-500 group">

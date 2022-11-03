@@ -12,7 +12,7 @@ const MySwal = withReactContent(Swal);
 const eye = <FontAwesomeIcon icon={faEye} />;
 const eyeSlash = <FontAwesomeIcon icon={faEyeSlash} />;
 
-const FormLogin = ({
+const FormForgotPassword = ({
   goToPage2,
   goToPage6,
   goToMenu,
@@ -22,7 +22,7 @@ const FormLogin = ({
   playNegativeSound,
   playSelectSound,
   playWarningSound,
-  goToFormForgotPassword,
+  goToFormLogin,
 }) => {
   const { setUserLogin, setValue } = useContext(UserContext);
   const [dataLogin, setDataLogin] = useState({
@@ -121,7 +121,7 @@ const FormLogin = ({
       MySwal.fire({
         position: "center",
         icon: "error",
-        text: "Wrong username or password!",
+        text: "Username or password not found!",
         showConfirmButton: false,
         timer: 1500,
       });
@@ -144,13 +144,13 @@ const FormLogin = ({
                   type="text"
                   value={dataLogin.username}
                   onChange={changeHandler}
-                  placeholder="Username"
+                  placeholder="Email"
                   className="h-10 rounded-lg px-3 outline-pink-500 outline-offset-5 outline-5"
                   onFocus={(e) => {
                     playSelectSound();
                   }}
                 />
-                <div className="pass-wrapper bg-white rounded-lg">
+                {/* <div className="pass-wrapper bg-white rounded-lg">
                   <input
                     type={passwordShown ? "text" : "password"}
                     onChange={changeHandler}
@@ -167,7 +167,7 @@ const FormLogin = ({
                   >
                     {passwordShown ? eyeSlash : eye}
                   </i>
-                </div>
+                </div> */}
                 <div className="w-full h-full flex">
                   <div className="block mx-auto h-14 w-28 bg-gradient-to-r from-pink-400 to-red-500 rounded-full uppercase tracking-[0.15rem] font-extrabold text-white font-openSans active:bg-[#ffffff] group">
                     <button
@@ -175,7 +175,7 @@ const FormLogin = ({
                       type="button"
                       onClick={() => {
                         playGoBackSound();
-                        goToMenu();
+                        goToFormLogin();
                       }}
                     >
                       Back
@@ -187,24 +187,8 @@ const FormLogin = ({
                       className="group-active:text-[#5e17eb]  w-full h-full items-center tracking-widest"
                       type="submit"
                     >
-                      Login
+                      Submit
                     </button>
-                  </div>
-                </div>
-                <div className="w-full h-full ">
-                  <div className="flex justify-center  tracking-[0.15rem]  text-white font-openSans">
-                    Lupa Password?
-                    <span className=" capitalize group">
-                      <span
-                        onClick={() => {
-                          playPop1();
-                          goToFormForgotPassword();
-                        }}
-                        className="ml-1 group-active:text-[#5e17eb] font-semibold"
-                      >
-                        Sini
-                      </span>
-                    </span>
                   </div>
                 </div>
               </form>
@@ -215,4 +199,4 @@ const FormLogin = ({
     </div>
   );
 };
-export default FormLogin;
+export default FormForgotPassword;

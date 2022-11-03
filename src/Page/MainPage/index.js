@@ -16,6 +16,7 @@ import {
 } from "../index";
 import FormLogin from "../Menu/Login/FormLogin";
 import FormRegister from "../Menu/Register/FormRegister";
+import FormForgotPassword from "../Menu/ForgotPassword/FormForgotPassword";
 import { UserContext } from "./../UserContext";
 import axios from "axios";
 import Cookies from "js-cookie";
@@ -63,6 +64,10 @@ const MainPage = () => {
 
   const goToFormLogin = () => {
     setStep("FormLogin");
+  };
+
+  const goToFormForgotPassword = () => {
+    setStep("FormForgotPassword");
   };
 
   const goToFormRegister = () => {
@@ -167,6 +172,22 @@ const MainPage = () => {
     case "FormLogin":
       return (
         <FormLogin
+          playSelectSound={playSelectSound}
+          playWarningSound={playWarningSound}
+          goToFormForgotPassword={goToFormForgotPassword}
+          goToPage2={goToPage2}
+          goToPage6={goToPage6}
+          goToMenu={goToMenu}
+          playPop1={playPop1}
+          playGoBackSound={playGoBackSound}
+          playSuccessSound={playSuccessSound}
+          playNegativeSound={playNegativeSound}
+        />
+      );
+    case "FormForgotPassword":
+      return (
+        <FormForgotPassword
+          goToFormLogin={goToFormLogin}
           playSelectSound={playSelectSound}
           playWarningSound={playWarningSound}
           goToPage2={goToPage2}

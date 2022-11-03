@@ -220,8 +220,9 @@ const Page16 = ({ goToPage6, goToMenu }) => {
               <div className="mx-auto w-full h-[100%] flex flex-col items-center justify-center bg-transparent border rounded-lg px-1 ">
                 <img
                   src={dataUserActive.avatar}
-                  alt="imag"
+                  alt=""
                   className="w-28 h-28   rounded-full -mt-10 p-2"
+                  loading="lazy"
                 />
                 <span className="uppercase my-1 tracking-widest text-black font-semibold">
                   {dataUserActive.username}

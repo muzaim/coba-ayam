@@ -171,21 +171,21 @@ const Page6 = ({
                 </div>
               </div>
               {/* KE RUMAH*/}
-              {/* <div
-            className="top-[6rem] right-[15.5rem] absolute group animate-bounce"
-            onClick={goToPage13}
-          >
-            <div className="flex flex-col justify-center items-center">
-              <span className="text-xl text-white tracking-wider font-custom1">
-                Rumah
-              </span>
-              <img
-                src={ArrowDown}
-                alt=""
-                className="w-10 group-active:opacity-80"
-              />
-            </div>
-          </div> */}
+              <div
+                className="top-[4.5rem] right-[13rem] absolute group animate-bounce"
+                onClick={goToPage16}
+              >
+                <div className="flex flex-col justify-center items-center">
+                  <span className="text-md text-white tracking-wider font-custom1">
+                    Rumah
+                  </span>
+                  <img
+                    src={ArrowDown}
+                    alt=""
+                    className="w-8 group-active:opacity-80"
+                  />
+                </div>
+              </div>
             </div>
             {/* CONTENT END*/}
             {/* FOOTER */}
