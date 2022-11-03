@@ -115,45 +115,65 @@ const Page8 = ({
     const pakanId = pakanDipilih.id;
     const ternakId = selectedAnimalID.id;
     try {
-      let hit = await axios.post(
-        `${process.env.REACT_APP_BASE_URL}/beri-pakan`,
-        {
-          token: userCookie,
-          pakan_id: pakanId,
-          user_ternak_id: ternakId,
+      const hit = await axios.get(
+        `${process.env.REACT_APP_BASE_URL}/user-ternak-detail/${ternakId}`
+      );
+      const isBolehMakan = hit.data.Data.pakan_status;
+      const jenis = hit.data.Data.name;
+
+      if (isBolehMakan === 1) {
+        playWarningSound();
+        MySwal.fire({
+          position: "center",
+          icon: "warning",
+          text: `${jenis} sudah makan nih, kamu bisa beri pakan lagi nanti!`,
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        return;
+      } else {
+        try {
+          let hit = await axios.post(
+            `${process.env.REACT_APP_BASE_URL}/beri-pakan`,
+            {
+              token: userCookie,
+              pakan_id: pakanId,
+              user_ternak_id: ternakId,
+            }
+          );
+          let res = hit.data.message;
+          playSuccessSound();
+          MySwal.fire({
+            position: "center",
+            icon: "success",
+            text: res,
+            showConfirmButton: false,
+            timer: 1500,
+          }).then(
+            setTimeout(() => {
+              getUserInfo();
+              goToPage7();
+            }, 1700)
+          );
+        } catch (error) {
+          playNegativeSound();
+          setPakanDipilih({
+            id: "",
+            ternakId: "",
+            pakan: "",
+            benefit: "",
+            text: "",
+          });
+          MySwal.fire({
+            position: "center",
+            icon: "error",
+            text: error.response.data.message,
+            showConfirmButton: false,
+            timer: 1500,
+          });
         }
-      );
-      let res = hit.data.message;
-      playSuccessSound();
-      MySwal.fire({
-        position: "center",
-        icon: "success",
-        text: res,
-        showConfirmButton: false,
-        timer: 1500,
-      }).then(
-        setTimeout(() => {
-          getUserInfo();
-          goToPage7();
-        }, 1700)
-      );
-    } catch (error) {
-      playNegativeSound();
-      setPakanDipilih({
-        id: "",
-        ternakId: "",
-        pakan: "",
-        benefit: "",
-        text: "",
-      });
-      MySwal.fire({
-        position: "center",
-        icon: "error",
-        text: error.response.data.message,
-        showConfirmButton: false,
-        timer: 1500,
-      });
-    }
+      }
+    } catch (error) {}
   };
 
   useEffect(() => {

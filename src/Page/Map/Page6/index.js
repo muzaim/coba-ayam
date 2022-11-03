@@ -65,113 +65,113 @@ const Page6 = ({
     getUserInfo2();
   }, []);
 
-  useEffect(() => {
-    setTimeout(() => {
-      setLoading(false);
-    }, 4500);
-  });
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     setLoading(false);
+  //   }, 1000);
+  // });
   return (
     <>
-      {loading ? (
+      {/* {loading ? (
         <Loading />
-      ) : (
-        <div className="w-full h-screen overflow-hidden bg-[#26B6AD]  mx-auto lg:max-w-6xl lg:h-[70%] ">
-          <div className="w-full h-full bg-farmCultivature bg-contain bg-no-repeat">
-            <div className="w-[90%] h-full mx-auto ">
-              {/* HEADER */}
-              <div className="h-[15%]">
-                <Header
-                  Diamond={true}
-                  LogOut={true}
-                  ActionLogout={goToMenu}
-                  harta={value}
-                  setHarta={setValue}
-                />
-              </div>
-              {/* HEADER END */}
-              {/* CONTENT */}
-              <div className="relative h-[50%] ">
-                {/* TES MUSIC */}
+      ) : ( */}
+      <div className="w-full h-screen overflow-hidden bg-[#26B6AD]  mx-auto lg:max-w-6xl lg:h-[70%] ">
+        <div className="w-full h-full bg-farmCultivature bg-contain bg-no-repeat">
+          <div className="w-[90%] h-full mx-auto ">
+            {/* HEADER */}
+            <div className="h-[15%]">
+              <Header
+                Diamond={true}
+                LogOut={true}
+                ActionLogout={goToMenu}
+                harta={value}
+                setHarta={setValue}
+              />
+            </div>
+            {/* HEADER END */}
+            {/* CONTENT */}
+            <div className="relative h-[50%] ">
+              {/* TES MUSIC */}
 
-                {/* TES MUSIC */}
-                {/* KE Warung */}
-                <div
-                  className="top-[6rem] left-[11rem] absolute group animate-bounce"
-                  onClick={() => {
-                    playPop1();
-                    goToPage13();
-                  }}
-                >
-                  <div className="flex flex-col justify-center items-center">
-                    <span className="text-md text-white tracking-wider font-custom1">
-                      Warung
-                    </span>
-                    <img
-                      src={ArrowDown}
-                      alt=""
-                      className="w-8 group-active:opacity-80"
-                    />
-                  </div>
+              {/* TES MUSIC */}
+              {/* KE Warung */}
+              <div
+                className="top-[6rem] left-[11rem] absolute group animate-bounce"
+                onClick={() => {
+                  playPop1();
+                  goToPage13();
+                }}
+              >
+                <div className="flex flex-col justify-center items-center">
+                  <span className="text-md text-white tracking-wider font-custom1">
+                    Warung
+                  </span>
+                  <img
+                    src={ArrowDown}
+                    alt=""
+                    className="w-8 group-active:opacity-80"
+                  />
                 </div>
-                {/* KE BISNIS */}
-                <div
-                  className="-top-[1rem] left-[11rem] absolute group animate-bounce"
-                  onClick={() => {
-                    playPop1();
-                    goToPage16();
-                  }}
-                >
-                  <div className="flex flex-col justify-center items-center">
-                    <span className="text-md text-white tracking-wider font-custom1">
-                      Bisnis
-                    </span>
-                    <img
-                      src={ArrowDown}
-                      alt=""
-                      className="w-8 group-active:opacity-80"
-                    />
-                  </div>
+              </div>
+              {/* KE BISNIS */}
+              <div
+                className="-top-[1rem] left-[11rem] absolute group animate-bounce"
+                onClick={() => {
+                  playPop1();
+                  goToPage16();
+                }}
+              >
+                <div className="flex flex-col justify-center items-center">
+                  <span className="text-md text-white tracking-wider font-custom1">
+                    Bisnis
+                  </span>
+                  <img
+                    src={ArrowDown}
+                    alt=""
+                    className="w-8 group-active:opacity-80"
+                  />
                 </div>
-                {/* KE KANDANGKU */}
-                <div
-                  className="top-[0rem] right-[13rem] absolute group animate-bounce"
-                  onClick={() => {
-                    playPop1();
-                    goToPage7();
-                  }}
-                >
-                  <div className="flex flex-col justify-center items-center">
-                    <span className="text-md text-white tracking-wider font-custom1">
-                      Kandangku
-                    </span>
-                    <img
-                      src={ArrowDown}
-                      alt=""
-                      className="w-8 group-active:opacity-80"
-                    />
-                  </div>
+              </div>
+              {/* KE KANDANGKU */}
+              <div
+                className="top-[0rem] right-[13rem] absolute group animate-bounce"
+                onClick={() => {
+                  playPop1();
+                  goToPage7();
+                }}
+              >
+                <div className="flex flex-col justify-center items-center">
+                  <span className="text-md text-white tracking-wider font-custom1">
+                    Kandangku
+                  </span>
+                  <img
+                    src={ArrowDown}
+                    alt=""
+                    className="w-8 group-active:opacity-80"
+                  />
                 </div>
-                {/* KE TOP UP */}
-                <div
-                  className="top-[3rem] right-[7rem] absolute group animate-bounce"
-                  onClick={() => {
-                    playPop1();
-                    goToPage15();
-                  }}
-                >
-                  <div className="flex flex-col justify-center items-center">
-                    <span className="text-md text-white tracking-wider font-custom1">
-                      Top Up
-                    </span>
-                    <img
-                      src={ArrowDown}
-                      alt=""
-                      className="w-8 group-active:opacity-80"
-                    />
-                  </div>
+              </div>
+              {/* KE TOP UP */}
+              <div
+                className="top-[3rem] right-[7rem] absolute group animate-bounce"
+                onClick={() => {
+                  playPop1();
+                  goToPage15();
+                }}
+              >
+                <div className="flex flex-col justify-center items-center">
+                  <span className="text-md text-white tracking-wider font-custom1">
+                    Top Up
+                  </span>
+                  <img
+                    src={ArrowDown}
+                    alt=""
+                    className="w-8 group-active:opacity-80"
+                  />
                 </div>
-                {/* KE RUMAH*/}
-                {/* <div
+              </div>
+              {/* KE RUMAH*/}
+              {/* <div
             className="top-[6rem] right-[15.5rem] absolute group animate-bounce"
             onClick={goToPage13}
           >
@@ -186,47 +186,47 @@ const Page6 = ({
               />
             </div>
           </div> */}
-              </div>
-              {/* CONTENT END*/}
-              {/* FOOTER */}
-              <div className="h-[10%]">
-                <div className="w-[25%] flex flex-col relative gap-2 py-3 -mt-10">
-                  <div className="w-40 h-10 bg-blue-600 rounded-full items-center flex justify-center gap-1">
-                    <div className="flex items-center justify-center ">
-                      <img src={MeatImg} alt="" className="w-8" />
-                    </div>
-                    <span className="font-normal tracking-wide  text-sm text-white">
-                      {numberWithCommas(daging)} Kg
-                    </span>
-                  </div>
-
-                  <div className="w-40 h-10 bg-blue-600 rounded-full items-center flex justify-center gap-1">
-                    <div className="flex items-center justify-center ">
-                      <img src={MilkImg} alt="" className="w-8" />
-                    </div>
-
-                    <span className="font-normal tracking-wide  text-sm text-white">
-                      {numberWithCommas(susu)} Liter
-                    </span>
-                  </div>
-
-                  <div className="w-40 h-10 bg-blue-600 rounded-full items-center flex justify-center gap-1">
-                    <div className="flex items-center justify-center ">
-                      <img src={EggImg} alt="" className="w-8" />
-                    </div>
-                    <span className="font-normal tracking-wide  text-sm text-white">
-                      {numberWithCommas(telur)} Butir
-                    </span>
-                  </div>
-
-                  <Header harta={value} setHarta={setValue} />
-                </div>
-              </div>
-              {/* FOOTER END*/}
             </div>
+            {/* CONTENT END*/}
+            {/* FOOTER */}
+            <div className="h-[10%]">
+              <div className="w-[25%] flex flex-col relative gap-2 py-3 -mt-10">
+                <div className="w-40 h-10 bg-blue-600 rounded-full items-center flex justify-center gap-1">
+                  <div className="flex items-center justify-center ">
+                    <img src={MeatImg} alt="" className="w-8" />
+                  </div>
+                  <span className="font-normal tracking-wide  text-sm text-white">
+                    {numberWithCommas(daging)} Kg
+                  </span>
+                </div>
+
+                <div className="w-40 h-10 bg-blue-600 rounded-full items-center flex justify-center gap-1">
+                  <div className="flex items-center justify-center ">
+                    <img src={MilkImg} alt="" className="w-8" />
+                  </div>
+
+                  <span className="font-normal tracking-wide  text-sm text-white">
+                    {numberWithCommas(susu)} Liter
+                  </span>
+                </div>
+
+                <div className="w-40 h-10 bg-blue-600 rounded-full items-center flex justify-center gap-1">
+                  <div className="flex items-center justify-center ">
+                    <img src={EggImg} alt="" className="w-8" />
+                  </div>
+                  <span className="font-normal tracking-wide  text-sm text-white">
+                    {numberWithCommas(telur)} Butir
+                  </span>
+                </div>
+
+                <Header harta={value} setHarta={setValue} />
+              </div>
+            </div>
+            {/* FOOTER END*/}
           </div>
         </div>
-      )}
+      </div>
+      {/* )} */}
     </>
   );
 };

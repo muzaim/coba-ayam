@@ -190,6 +190,21 @@ const FormLogin = ({
                     </button>
                   </div>
                 </div>
+                <div className="w-full h-full ">
+                  <div className="flex justify-center  tracking-[0.15rem]  text-white font-openSans">
+                    Lupa Password?
+                    <span className=" capitalize group">
+                      <span
+                        onClick={() => {
+                          playPop1();
+                        }}
+                        className="ml-1 group-active:text-[#5e17eb] font-semibold"
+                      >
+                        Sini
+                      </span>
+                    </span>
+                  </div>
+                </div>
               </form>
             </div>
           </div>{" "}
