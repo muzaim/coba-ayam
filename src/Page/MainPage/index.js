@@ -344,6 +344,7 @@ const MainPage = () => {
           playSuccessSound={playSuccessSound}
           playSelectSound={playSelectSound}
           playPop1={playPop1}
+          playPaperFlipSound={playPaperFlipSound}
         />
       );
     default:

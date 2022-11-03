@@ -4,7 +4,6 @@ import axios from "axios";
 import { useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClipboard } from "@fortawesome/free-solid-svg-icons";
-import Header from "../../../Component/Diatom/Header";
 
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
@@ -18,6 +17,7 @@ const Page16 = ({
   playSuccessSound,
   playSelectSound,
   playPop1,
+  playPaperFlipSound,
 }) => {
   const [aktMembPanel, setAktMembPanel] = useState(true);
   const [penKomPanel, setPenKomPanel] = useState(false);
@@ -86,15 +86,15 @@ const Page16 = ({
   const AktivasiMemberPanel = () => {
     return (
       <div className="w-full h-[115%]  overflow-x-auto animate-fadeInKu -mt-8 bg-transparent">
-        <table className="table-auto w-full border-collapse border text-center text-black">
-          <thead className="bg-slate-700 sticky top-0 text-white">
+        <table className="table-auto w-full border-collapse border text-center ">
+          <thead className="bg-slate-600 sticky top-0 text-white">
             <tr className="">
               <th className="w-[40%] py-3">User</th>
               <th className="w-[20%] ">Level</th>
               <th className="w-[40%]">Komisi</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className="text-white">
             <tr>
               <td className="w-[40%] border border-slate-300 py-2">dsadsa</td>
               <td className="w-[20%] border border-slate-300 py-2">L1</td>
@@ -133,7 +133,7 @@ const Page16 = ({
           </tbody>
         </table>
         {/* <table class="text-left w-full">
-          <thead class="bg-black flex text-white w-full">
+          <thead class="bg-white flex text-white w-full">
             <tr class="flex w-full mb-4">
               <th class=" w-1/4">One</th>
               <th class=" w-1/4">Two</th>
@@ -234,7 +234,24 @@ const Page16 = ({
         <div className="w-[90%] h-full mx-auto">
           {/* HEADER */}
           <div className="h-[15%]">
-            <Header BackButton={true} Action2={goToPage6} />
+            {/* <Header BackButton={true} Action2={goToPage6} /> */}
+            <div className="flex w-full h-full py-1 justify-end items-center z-10 ">
+              <div className="flex gap-2">
+                <div
+                  className="w-32 h-10 bg-gradient-to-r from-cyan-300 to-blue-700 rounded-full items-center flex active:bg-gradient-to-r active:from-blue-700 active:to-cyan-300"
+                  onClick={() => {
+                    playPaperFlipSound();
+                    goToPage6();
+                  }}
+                >
+                  <div className="w-full text-center ">
+                    <span className="font-bold  text-sm text-white tracking-widest">
+                      Back
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
           {/* HEADER END */}
           {/* CONTENT */}
@@ -245,10 +262,10 @@ const Page16 = ({
                 <img
                   src={dataUserActive.avatar}
                   alt=""
-                  className="w-28 h-28   rounded-full -mt-10 p-2"
+                  className="w-28 h-28  rounded-full -mt-10  border-2 border-cyan-500 object-cover"
                   loading="lazy"
                 />
-                <span className="uppercase my-1 tracking-widest text-black font-semibold">
+                <span className="uppercase my-1 tracking-widest text-white px-2 font-semibold">
                   {dataUserActive.username}
                 </span>
                 <div
@@ -300,15 +317,15 @@ const Page16 = ({
                 <div
                   className={`${
                     aktMembPanel
-                      ? "border-x-[1px] border-t-[1px] border-black rounded-t-xl w-full h-[60%]  py-3 text-center"
-                      : "w-full h-[60%]  py-3 text-center border-b-[1px] border-black"
+                      ? "border-x-[1px] border-t-[1px] border-white rounded-t-xl w-full h-[60%]  py-3 text-center"
+                      : "w-full h-[60%]  py-3 text-center border-b-[1px] border-white"
                   }`}
                 >
                   <span
                     className={`${
                       aktMembPanel
-                        ? "font-bold text-slate-900 text-xl cursor-pointer"
-                        : "text-slate-900 text-xl cursor-pointer"
+                        ? "font-bold text-white text-xl cursor-pointer"
+                        : "text-white text-xl cursor-pointer"
                     }`}
                     onClick={() => {
                       playSelectSound();
@@ -321,15 +338,15 @@ const Page16 = ({
                 <div
                   className={`${
                     penKomPanel
-                      ? "border-x-[1px] border-t-[1px] border-black rounded-t-xl w-full  h-[60%]   py-3 text-center"
-                      : "w-full  h-[60%] py-3 text-center border-b-[1px] border-black"
+                      ? "border-x-[1px] border-t-[1px] border-white rounded-t-xl w-full  h-[60%]   py-3 text-center"
+                      : "w-full  h-[60%] py-3 text-center border-b-[1px] border-white"
                   }`}
                 >
                   <span
                     className={`${
                       penKomPanel
-                        ? "font-bold text-slate-900 text-xl cursor-pointer"
-                        : "text-slate-900 text-xl cursor-pointer"
+                        ? "font-bold text-white text-xl cursor-pointer"
+                        : "text-white text-xl cursor-pointer"
                     }`}
                     onClick={() => {
                       playSelectSound();
