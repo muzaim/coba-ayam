@@ -126,9 +126,9 @@ const Page8 = ({
         MySwal.fire({
           position: "center",
           icon: "warning",
-          text: `${jenis} sudah makan nih, kamu bisa beri pakan lagi nanti!`,
-          showConfirmButton: false,
-          timer: 1500,
+          html: `${jenis} sudah makan nih. <p>Kamu bisa beri pakan lagi nanti!</p>`,
+          showConfirmButton: true,
+          // timer: 1500,
         });
         return;
       } else {
