@@ -23,7 +23,7 @@ const Loading = () => {
   }, []);
 
   return (
-    <div className="w-full h-full z-40 overflow-hidden bg-yellow-300">
+    <div className="w-full h-full z-40 overflow-hidden bg-black">
       <div className="w-full h-full z-40  bg-loading bg-cover relative">
         <div className="w-full h-28  bottom-0 absolute justify-center flex">
           <div className="flex flex-col h-full w-[80%] items-center justify-center ">

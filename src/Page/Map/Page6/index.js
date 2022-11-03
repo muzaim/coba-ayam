@@ -26,6 +26,10 @@ const Page6 = ({
   const [susu, setSusu] = useState(null);
   const [loading, setLoading] = useState(true);
 
+  function numberWithCommas(num) {
+    let newNum = parseInt(num);
+    return newNum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
   const getUserInfo2 = async () => {
     const userCookie = Cookies.get("user");
     if (!userCookie) {
@@ -191,8 +195,8 @@ const Page6 = ({
                     <div className="flex items-center justify-center ">
                       <img src={MeatImg} alt="" className="w-8" />
                     </div>
-                    <span className="font-bold  text-sm text-white">
-                      {daging} Kg
+                    <span className="font-normal tracking-wide  text-sm text-white">
+                      {numberWithCommas(daging)} Kg
                     </span>
                   </div>
 
@@ -201,8 +205,8 @@ const Page6 = ({
                       <img src={MilkImg} alt="" className="w-8" />
                     </div>
 
-                    <span className="font-bold  text-sm text-white">
-                      {susu} Liter
+                    <span className="font-normal tracking-wide  text-sm text-white">
+                      {numberWithCommas(susu)} Liter
                     </span>
                   </div>
 
@@ -210,8 +214,8 @@ const Page6 = ({
                     <div className="flex items-center justify-center ">
                       <img src={EggImg} alt="" className="w-8" />
                     </div>
-                    <span className="font-bold  text-sm text-white">
-                      {telur} Butir
+                    <span className="font-normal tracking-wide  text-sm text-white">
+                      {numberWithCommas(telur)} Butir
                     </span>
                   </div>
 
