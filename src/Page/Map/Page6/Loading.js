@@ -1,7 +1,27 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import AnimalLoading from "../../../img/common/loading.gif";
 
 const Loading = () => {
+  const [selectedTips, setSelectedTips] = useState("");
+  function get_random() {
+    var textArray = [
+      "Beri makan ternakmu supaya gemuk!",
+      "Hari yang cerah, ayo mencangkul sawah!",
+      "Ayam menghasilkan 20 telur perhari.",
+      "Sapi menghasilkan 30 Kg daging perhari.",
+      "Domba adalah ternak paling mahal!",
+      "Ternakmu lapar, ayo beri dia makan!",
+      "Daging sapi kamu siap dijual ke pasar!",
+      "Susu domba kamu siap dijual ke pasar!",
+      "Lihat penghasilanmu di bisnis.",
+    ];
+    var randomNumber = Math.floor(Math.random() * textArray.length);
+    return setSelectedTips(textArray[randomNumber]);
+  }
+  useEffect(() => {
+    get_random();
+  }, []);
+
   return (
     <div className="w-full h-full z-40 overflow-hidden bg-yellow-300">
       <div className="w-full h-full z-40  bg-loading bg-cover relative">
@@ -10,7 +30,7 @@ const Loading = () => {
             <div className="flex justify-center items-center  w-full ">
               <img src={AnimalLoading} alt="" className="w-20" />
               <div className=" text-white mt-1 font-semibold tracking-widest">
-                Beri makan ternakmu supaya gemuk!
+                {selectedTips}
               </div>
             </div>
             <div className="w-full  bg-white h-4 rounded-full overflow-hidden lg:w-72 lg:h-10 mb-3">
