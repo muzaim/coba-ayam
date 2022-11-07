@@ -146,7 +146,7 @@ const Page12 = ({
                             key={name}
                           >
                             <div className="flex flex-col h-full w-[70%] items-center ">
-                              <div className="flex mt-[4.2rem] -ml-2 ">
+                              <div className="flex mt-[3rem] -ml-2 ">
                                 <img src={DiamondImg} alt="" className="w-6" />
                                 <span className="text-white text-sm">
                                   {numberWithCommas(price)}

@@ -64,9 +64,10 @@ const Page13 = ({
   const openBackDialog = () => {
     playPop1();
     MySwal.fire({
-      icon: "question",
+      // icon: "question",
       position: "center",
-      text: "Apakah kamu yakin menutup toko?",
+      title: "Menutup toko?",
+      text: "Yah sayang sekali padahal kita membutuhkan banyak produk!",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       confirmButtonText: "Ya",
