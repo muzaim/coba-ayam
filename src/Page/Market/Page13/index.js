@@ -4,6 +4,7 @@ import Header from "../../../Component/Diatom/Header";
 import { UserContext } from "../../UserContext";
 import axios from "axios";
 import Cookies from "js-cookie";
+import Typewriter from "typewriter-effect";
 
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";

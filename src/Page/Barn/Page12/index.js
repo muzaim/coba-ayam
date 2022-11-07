@@ -145,8 +145,8 @@ const Page12 = ({
                             className="flex h-full w-full bg-papan2 bg-[length:170px_150px] bg-no-repeat bg-center  justify-center items-center"
                             key={name}
                           >
-                            <div className="flex flex-col h-full w-[70%] items-center">
-                              <div className="flex mt-[4rem] -ml-2">
+                            <div className="flex flex-col h-full w-[70%] items-center ">
+                              <div className="flex mt-[4.2rem] -ml-2 ">
                                 <img src={DiamondImg} alt="" className="w-6" />
                                 <span className="text-white text-sm">
                                   {numberWithCommas(price)}
