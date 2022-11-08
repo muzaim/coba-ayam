@@ -60,6 +60,7 @@ const Page7 = ({
     setSelectedAnimalID({
       id: item.id,
       ternak_id: item.ternak_id,
+      name: item.name,
     });
     goToPage8();
   };

@@ -22,6 +22,9 @@ const Page8 = ({
 }) => {
   const { value, setValue, selectedAnimalID } = useContext(UserContext);
   const [hewan, setHewan] = useState([]);
+  const [ternakDetail, setTernakDetail] = useState([{}]);
+  const [pakanStatus, setPakanStatus] = useState(1);
+  const [sisaHari, setSisaHari] = useState(0);
   const [pakanDipilih, setPakanDipilih] = useState({
     id: "",
     ternakId: "",
@@ -71,10 +74,68 @@ const Page8 = ({
     });
   };
 
+  const tanyaAmbilProduk = () => {
+    playPop1();
+    MySwal.fire({
+      title: "Ambil Produk",
+      position: "center",
+      text: `Apakah kamu ingin mengambil ${ternakDetail[0].remains} Kg telur?`,
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      confirmButtonText: "Ya",
+      cancelButtonText: "Tidak",
+      cancelButtonColor: "#d33",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        ambilProduk();
+      } else {
+        playGoBackSound();
+      }
+    });
+  };
   function numberWithCommas(num) {
     let newNum = parseInt(num);
     return newNum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   }
+
+  const ambilProduk = async () => {
+    const userCookie = Cookies.get("user");
+    const ternakId = selectedAnimalID.id;
+    try {
+      const request = await axios.post(
+        `${process.env.REACT_APP_BASE_URL}/ambil-produk`,
+        {
+          token: userCookie,
+          user_ternak_id: ternakId,
+        }
+      );
+      let res = request.data.message;
+      playSuccessSound();
+      MySwal.fire({
+        position: "center",
+        icon: "success",
+        text: res,
+        showConfirmButton: false,
+        timer: 1500,
+      }).then(
+        setTimeout(() => {
+          getUserInfo();
+          goToPage7();
+        }, 1700)
+      );
+    } catch (error) {
+      console.log(error);
+      playNegativeSound();
+      MySwal.fire({
+        position: "center",
+        icon: "error",
+        text: error.response.data.message,
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    }
+  };
+
   const tangkapPakanDipilih = (e) => {
     playSelectSound();
     setPakanDipilih({
@@ -105,6 +166,34 @@ const Page8 = ({
       let res = dataTernak.data.data;
       setPakanTernak(res.pakan);
       setHewan(res.ternak);
+    } catch (error) {
+      console.log(error.response.data.message);
+    }
+  };
+
+  const getTernakDetail = async () => {
+    try {
+      let dataTernak = await axios.get(
+        `${process.env.REACT_APP_BASE_URL}/user-ternak-detail/${selectedAnimalID.id}`
+      );
+      let res = dataTernak.data.Data;
+      setTernakDetail(res);
+      setPakanStatus(res[0].pakan_status);
+
+      console.log(`ini res`, res[0]);
+      const start = res[0].umur_start;
+      const end = res[0].umur_end;
+
+      // Durasi
+      const startDate = start;
+      const endDate = end;
+
+      const diffInMs = new Date(endDate) - new Date(startDate);
+      const beda = diffInMs / (1000 * 60 * 60 * 24);
+      // Durasi
+      // const startDate = time_now;
+      // const endDate = umur_end;
+      setSisaHari(beda);
     } catch (error) {
       console.log(error.response.data.message);
     }
@@ -178,6 +267,8 @@ const Page8 = ({
 
   useEffect(() => {
     getPakanTernak();
+    getTernakDetail();
+    console.log(selectedAnimalID);
   }, []);
 
   return (
@@ -190,6 +281,8 @@ const Page8 = ({
             Pouch={true}
             harta={value}
             setHarta={setValue}
+            Action2={goToPage7}
+            BackButton={true}
           />
         </div>
 
@@ -227,56 +320,147 @@ const Page8 = ({
                     </p>
                   </div>
                 </div>
-                <div className="flex flex-col h-full w-full items-center  justify-center ">
-                  <div className="w-full h-full grid grid-cols-2 gap-2 py-5  place-items-center ">
-                    {pakanTernak.map((item) => {
-                      const { id, ternak_id, pakan, benefit, text } = item;
-                      return (
-                        <button
-                          className="w-32  py-[0.40rem] bg-[#f0ecd8]  rounded-full items-center flex justify-center border-transparent focus:outline-none focus:ring-[#E29A6C] focus:bg-white focus:ring-2 "
-                          type="button"
-                          key={id}
-                          data-id={id}
-                          data-ternak-id={ternak_id}
-                          data-pakan={pakan}
-                          data-benefit={benefit}
-                          data-text={text}
-                          onClick={tangkapPakanDipilih}
-                        >
-                          <img src={Pouch} alt="" className="w-7" />
-                          <span className="font-semibold  text-sm text-[#782443]">
-                            {numberWithCommas(pakan)} Kg
-                          </span>
-                        </button>
-                      );
-                    })}
-                  </div>
-                  <div className="w-full h-full ">
-                    <div className="h-full flex justify-center items-center gap-2">
-                      <div className="block mx-auto w-36 h-10 bg-gradient-to-r from-pink-400 to-red-600 rounded-full uppercase tracking-[0.15rem] font-extrabold text-white font-openSans active:bg-gradient-to-r active:from-red-500 active:to-pink-500 group">
-                        <button
-                          className="w-full h-full items-center tracking-widest"
-                          type="button"
-                          onClick={() => {
-                            playGoBackSound();
-                            goToPage7();
-                          }}
-                        >
-                          Kembali
-                        </button>
+                {selectedAnimalID.name === "Domba" ? (
+                  <div className="flex flex-col h-full w-full items-center  justify-center ">
+                    {pakanStatus === 0 ? (
+                      <>
+                        <div className="w-full h-full grid grid-cols-2 gap-2 py-5  place-items-center ">
+                          {pakanTernak.map((item) => {
+                            const { id, ternak_id, pakan, benefit, text } =
+                              item;
+                            return (
+                              <button
+                                className="w-32  py-[0.40rem] bg-[#f0ecd8]  rounded-full items-center flex justify-center border-transparent focus:outline-none focus:ring-[#E29A6C] focus:bg-white focus:ring-2 "
+                                type="button"
+                                key={id}
+                                data-id={id}
+                                data-ternak-id={ternak_id}
+                                data-pakan={pakan}
+                                data-benefit={benefit}
+                                data-text={text}
+                                onClick={tangkapPakanDipilih}
+                              >
+                                <img src={Pouch} alt="" className="w-7" />
+                                <span className="font-semibold  text-sm text-[#782443]">
+                                  {numberWithCommas(pakan)} Kg
+                                </span>
+                              </button>
+                            );
+                          })}
+                        </div>
+                        <div className="w-full h-full ">
+                          <div className="h-full flex justify-center items-center gap-2">
+                            <div className="block mx-auto w-[80%] h-10 bg-gradient-to-r from-cyan-400 to-blue-600 rounded-full uppercase tracking-[0.15rem] font-extrabold text-white font-openSans active:bg-gradient-to-r active:from-blue-500 active:to-cyan-500 group">
+                              <button
+                                className=" w-full h-full items-center tracking-widest"
+                                type="button"
+                                onClick={tanyaBuyPakan}
+                              >
+                                Beri Pangan
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </>
+                    ) : (
+                      <div className="w-full h-[90%] bg-[#FCE7CA] rounded-2xl ring-offset-2 ring-4 ring-[#C5682A]">
+                        <div className="w-full h-full  flex items-center text-center px-5">
+                          <div className="flex flex-col gap-2 items-center">
+                            <span>
+                              <span className="font-bold">
+                                {ternakDetail[0].name}
+                              </span>{" "}
+                              kamu kenyang dan mungkin akan menghasilkan
+                              <span className="font-bold">
+                                {" "}
+                                {ternakDetail[0].remains} Kg daging
+                              </span>{" "}
+                              {} saat disembelih{" "}
+                              <span className="font-bold">{sisaHari}</span> hari
+                              lagi.
+                            </span>
+                            {sisaHari === 0 ? (
+                              <button
+                                className="w-28 h-10 bg-[#C5682A]  rounded-full text-white tracking-wider"
+                                onClick={tanyaAmbilProduk}
+                              >
+                                Sembelih
+                              </button>
+                            ) : null}
+                          </div>
+                        </div>
                       </div>
-                      <div className="block mx-auto w-[9rem] h-10 bg-gradient-to-r from-cyan-400 to-blue-600 rounded-full uppercase tracking-[0.15rem] font-extrabold text-white font-openSans active:bg-gradient-to-r active:from-blue-500 active:to-cyan-500 group">
-                        <button
-                          className=" w-full h-full items-center tracking-widest"
-                          type="button"
-                          onClick={tanyaBuyPakan}
-                        >
-                          Beri Pangan
-                        </button>
-                      </div>
-                    </div>
+                    )}
                   </div>
-                </div>
+                ) : (
+                  <div className="flex flex-col h-full w-full items-center  justify-center ">
+                    {pakanStatus === 0 ? (
+                      <>
+                        <div className="w-full h-full grid grid-cols-2 gap-2 py-5  place-items-center ">
+                          {pakanTernak.map((item) => {
+                            const { id, ternak_id, pakan, benefit, text } =
+                              item;
+                            return (
+                              <button
+                                className="w-32  py-[0.40rem] bg-[#f0ecd8]  rounded-full items-center flex justify-center border-transparent focus:outline-none focus:ring-[#E29A6C] focus:bg-white focus:ring-2 "
+                                type="button"
+                                key={id}
+                                data-id={id}
+                                data-ternak-id={ternak_id}
+                                data-pakan={pakan}
+                                data-benefit={benefit}
+                                data-text={text}
+                                onClick={tangkapPakanDipilih}
+                              >
+                                <img src={Pouch} alt="" className="w-7" />
+                                <span className="font-semibold  text-sm text-[#782443]">
+                                  {numberWithCommas(pakan)} Kg
+                                </span>
+                              </button>
+                            );
+                          })}
+                        </div>
+                        <div className="w-full h-full ">
+                          <div className="h-full flex justify-center items-center gap-2">
+                            <div className="block mx-auto w-[80%] h-10 bg-gradient-to-r from-cyan-400 to-blue-600 rounded-full uppercase tracking-[0.15rem] font-extrabold text-white font-openSans active:bg-gradient-to-r active:from-blue-500 active:to-cyan-500 group">
+                              <button
+                                className=" w-full h-full items-center tracking-widest"
+                                type="button"
+                                onClick={tanyaBuyPakan}
+                              >
+                                Beri Pangan
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </>
+                    ) : (
+                      <div className="w-full h-[90%] bg-[#FCE7CA] rounded-2xl ring-offset-2 ring-4 ring-[#C5682A]">
+                        <div className="w-full h-full  flex items-center text-center px-5">
+                          <div className="flex flex-col gap-2 items-center">
+                            <span>
+                              <span className="font-bold">
+                                {ternakDetail[0].name}
+                              </span>{" "}
+                              kamu kenyang dan sudah menghasilkan
+                              <span className="font-bold">
+                                {" "}
+                                {ternakDetail[0].remains}
+                              </span>{" "}
+                              {} sejak terakhir kamu beri pakan.
+                            </span>
+                            <button
+                              className="w-28 h-10 bg-[#C5682A]  rounded-full text-white tracking-wider"
+                              onClick={tanyaAmbilProduk}
+                            >
+                              Ambil
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                )}
               </div>
             </div>
           </div>

@@ -11,6 +11,7 @@ const App = () => {
   const [selectedAnimalID, setSelectedAnimalID] = useState({
     id: "",
     ternak_id: "",
+    name: "",
   });
 
   const providerValue = useMemo(
