@@ -16,6 +16,8 @@ import { Page16 } from "./Business";
 
 import Rotate from "./Rotate";
 
+import Page17 from "./Rumah/Page17";
+
 export {
   Menu,
   MainPage,
@@ -32,6 +34,7 @@ export {
   Page13,
   Page15,
   Page16,
+  Page17,
   Simple,
   Rotate,
 };

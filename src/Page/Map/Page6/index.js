@@ -18,6 +18,7 @@ const Page6 = ({
   getUserInfo,
   goToMenu,
   goToPage16,
+  goToPage17,
   playPop1,
 }) => {
   const { value, setValue } = useContext(UserContext);
@@ -173,7 +174,7 @@ const Page6 = ({
               {/* KE RUMAH*/}
               <div
                 className="top-[4.5rem] right-[13rem] absolute group animate-bounce"
-                onClick={goToPage16}
+                onClick={goToPage17}
               >
                 <div className="flex flex-col justify-center items-center">
                   <span className="text-md text-white tracking-wider font-custom1">

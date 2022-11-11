@@ -13,6 +13,7 @@ import {
   Page13,
   Page15,
   Page16,
+  Page17,
 } from "../index";
 import FormLogin from "../Menu/Login/FormLogin";
 import FormRegister from "../Menu/Register/FormRegister";
@@ -113,8 +114,12 @@ const MainPage = () => {
   const goToPage15 = () => {
     setStep("Page15");
   };
+
   const goToPage16 = () => {
     setStep("Page16");
+  };
+  const goToPage17 = () => {
+    setStep("Page17");
   };
 
   const getUserInfo = async () => {
@@ -253,6 +258,7 @@ const MainPage = () => {
           getUserInfo={getUserInfo}
           goToMenu={goToMenu}
           goToPage16={goToPage16}
+          goToPage17={goToPage17}
           playPop1={playPop1}
           playWarningSound={playWarningSound}
           playGoBackSound={playGoBackSound}
@@ -347,6 +353,8 @@ const MainPage = () => {
           playPaperFlipSound={playPaperFlipSound}
         />
       );
+    case "Page17":
+      return <Page17 goToPage6={goToPage6} />;
     default:
       break;
   }
