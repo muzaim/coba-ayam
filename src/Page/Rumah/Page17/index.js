@@ -38,9 +38,6 @@ const Page17 = ({
     setPenKomPanel(!penKomPanel);
     setAktMembPanel(false);
   };
-  useEffect(() => {
-    console.log(`masuk`);
-  });
 
   const getUserInfo = async () => {
     const userCookie = Cookies.get("user");
@@ -88,29 +85,283 @@ const Page17 = ({
     getUserInfo();
   }, []);
 
+  const TopUpPanel = () => {
+    return (
+      <div className="w-full h-[115%]  overflow-x-auto animate-fadeInKu -mt-8 bg-transparent">
+        <table className="table-auto w-full border-collapse border text-center ">
+          <thead className="bg-slate-600 sticky top-0 text-white">
+            <tr className="">
+              <th className="w-[40%] py-3">User</th>
+              <th className="w-[20%] ">Level</th>
+              <th className="w-[40%]">Komisi</th>
+            </tr>
+          </thead>
+          <tbody className="text-white">
+            <tr>
+              <td className="w-[40%] border border-slate-300 py-2">dsadsa</td>
+              <td className="w-[20%] border border-slate-300 py-2">L1</td>
+              <td className="w-[40%] border border-slate-300 py-2">135.000</td>
+            </tr>
+            <tr>
+              <td className="w-[40%] border border-slate-300 py-2">dsadsa</td>
+              <td className="w-[20%] border border-slate-300 py-2">L1</td>
+              <td className="w-[40%] border border-slate-300 py-2">135.000</td>
+            </tr>
+            <tr>
+              <td className="w-[40%] border border-slate-300 py-2">dsadsa</td>
+              <td className="w-[20%] border border-slate-300 py-2">L1</td>
+              <td className="w-[40%] border border-slate-300 py-2">135.000</td>
+            </tr>
+            <tr>
+              <td className="w-[40%] border border-slate-300 py-2">dsadsa</td>
+              <td className="w-[20%] border border-slate-300 py-2">L1</td>
+              <td className="w-[40%] border border-slate-300 py-2">135.000</td>
+            </tr>
+            <tr>
+              <td className="w-[40%] border border-slate-300 py-2">dsadsa</td>
+              <td className="w-[20%] border border-slate-300 py-2">L1</td>
+              <td className="w-[40%] border border-slate-300 py-2">135.000</td>
+            </tr>
+            <tr>
+              <td className="w-[40%] border border-slate-300 py-2">dsadsa</td>
+              <td className="w-[20%] border border-slate-300 py-2">L1</td>
+              <td className="w-[40%] border border-slate-300 py-2">135.000</td>
+            </tr>
+            <tr>
+              <td className="w-[40%] border border-slate-300 py-2">dsadsa</td>
+              <td className="w-[20%] border border-slate-300 py-2">L1</td>
+              <td className="w-[40%] border border-slate-300 py-2">135.000</td>
+            </tr>
+          </tbody>
+        </table>
+        {/* <table class="text-left w-full">
+          <thead class="bg-white flex text-white w-full">
+            <tr class="flex w-full mb-4">
+              <th class=" w-1/4">One</th>
+              <th class=" w-1/4">Two</th>
+              <th class=" w-1/4">Three</th>
+              <th class=" w-1/4">Four</th>
+            </tr>
+          </thead>
+          <tbody class="bg-grey-light flex flex-col items-center justify-between  w-full">
+            <tr class="flex w-full mb-4">
+              <td class="p-4 w-1/4">Dogs</td>
+              <td class="p-4 w-1/4">Cats</td>
+              <td class="p-4 w-1/4">Birds</td>
+              <td class="p-4 w-1/4">Fish</td>
+            </tr>
+            <tr class="flex w-full mb-4">
+              <td class="p-4 w-1/4">Dogs</td>
+              <td class="p-4 w-1/4">Cats</td>
+              <td class="p-4 w-1/4">Birds</td>
+              <td class="p-4 w-1/4">Fish</td>
+            </tr>
+            <tr class="flex w-full mb-4">
+              <td class="p-4 w-1/4">Dogs</td>
+              <td class="p-4 w-1/4">Cats</td>
+              <td class="p-4 w-1/4">Birds</td>
+              <td class="p-4 w-1/4">Fish</td>
+            </tr>
+            <tr class="flex w-full mb-4">
+              <td class="p-4 w-1/4">Dogs</td>
+              <td class="p-4 w-1/4">Cats</td>
+              <td class="p-4 w-1/4">Birds</td>
+              <td class="p-4 w-1/4">Fish</td>
+            </tr>
+            <tr class="flex w-full mb-4">
+              <td class="p-4 w-1/4">Dogs</td>
+              <td class="p-4 w-1/4">Cats</td>
+              <td class="p-4 w-1/4">Birds</td>
+              <td class="p-4 w-1/4">Fish</td>
+            </tr>
+          </tbody>
+        </table> */}
+      </div>
+    );
+  };
+
+  const WithDrawlPanel = () => {
+    return (
+      <div className="w-full h-[115%] overflow-x-auto bg-transparent animate-fadeInKu -mt-8">
+        <div className="flex gap-2 flex-col justify-center items-center ">
+          <div
+            className="w-[80%] py-2 bg-white rounded-full text-center"
+            onClick={playPop1}
+          >
+            <span className="text-black">Nama</span>
+          </div>
+          <div
+            className="w-[80%] py-2 bg-white rounded-full text-center"
+            onClick={playPop1}
+          >
+            <span className="text-black">Nama Bank</span>
+          </div>
+          <div
+            className="w-[80%] py-2 bg-white rounded-full text-center"
+            onClick={playPop1}
+          >
+            <span className="text-black">No Rekening</span>
+          </div>
+          <div
+            className="w-[80%] py-2 bg-white rounded-full text-center"
+            onClick={playPop1}
+          >
+            <span className="text-black">Jumlah diamond yang ditarik</span>
+          </div>
+          <div
+            className="w-[80%] py-2 bg-white rounded-full text-center"
+            onClick={playPop1}
+          >
+            <span className="text-black">Jumlah rupiah yang ditarik</span>
+          </div>
+          <div
+            className="w-[80%] py-2 bg-slate-500 rounded-full text-center tracking-widest"
+            onClick={playPop1}
+          >
+            <span
+              className="text-white
+             font-bold"
+            >
+              Tarik
+            </span>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
   return (
     <div className="w-full h-screen overflow-hidden  mx-auto lg:max-w-6xl lg:h-[70%] z-30 text-white ">
       <div className="w-full h-full bg-city bg-cover bg-center  before:opacity-10 ">
         <div className="w-[90%] h-full mx-auto">
           {/* HEADER */}
           <div className="h-[15%]">
-            <Header
-              Diamond={true}
-              BackButton={true}
-              Action2={goToPage6}
-              harta={value}
-              setHarta={setValue}
-            />
+            {/* <Header BackButton={true} Action2={goToPage6} /> */}
+            <div className="flex w-full h-full py-1 justify-end items-center z-10 ">
+              <div className="flex gap-2">
+                <div
+                  className="w-32 h-10 bg-gradient-to-r from-cyan-300 to-blue-700 rounded-full items-center flex active:bg-gradient-to-r active:from-blue-700 active:to-cyan-300"
+                  onClick={() => {
+                    playPaperFlipSound();
+                    goToPage6();
+                  }}
+                >
+                  <div className="w-full text-center ">
+                    <span className="font-bold  text-sm text-white tracking-widest">
+                      Back
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
           {/* HEADER END */}
           {/* CONTENT */}
           <div className="w-full flex h-[80%] ">
             {/* kiri */}
-            <div className="w-[30%] h-full px-4 animate-fadeInKu flex items-center py-3 "></div>
+            <div className="w-[30%] h-full px-4 animate-fadeInKu flex items-center py-3 ">
+              <div className="mx-auto w-full h-[100%] flex flex-col items-center justify-center bg-transparent border rounded-lg px-1 ">
+                <img
+                  src={dataUserActive.avatar}
+                  alt=""
+                  className="w-28 h-28  rounded-full -mt-10  border-2 border-cyan-500 object-cover"
+                  loading="lazy"
+                />
+                <span className="uppercase my-1 tracking-widest text-white px-2 font-semibold">
+                  {dataUserActive.username}
+                </span>
+                <div
+                  className="flex bg-gradient-to-r from-green-400 to-blue-500 px-8 p-1 m-1 rounded-xl gap-3 items-center"
+                  onClick={() => {
+                    navigator.clipboard.writeText(dataUserActive.user_ref);
+                    playSuccessSound();
+                    MySwal.fire({
+                      position: "center",
+                      icon: "success",
+                      text: "Referal code berhasil dicopy!",
+                      showConfirmButton: false,
+                      timer: 1500,
+                    });
+                  }}
+                >
+                  <span className="text-sm  text-white">
+                    {dataUserActive.user_ref}
+                  </span>
+                  {/* <span className="text-white">{Copy}</span> */}
+                </div>
+                {/* <div className="mt-5 w-full h-20 ">
+                <div className="flex justify-between px-2 w-full border-b-2 ">
+                  <span className="font-semibold">Diamond</span>
+                  <span className="font-light">{dataUserWallet.diamon}</span>
+                </div>
+                <div className="flex justify-between px-2 w-full border-b-2 ">
+                  <span className="font-semibold">Pakan</span>
+                  <span className="font-light">{dataUserWallet.pakan}</span>
+                </div>
+                <div className="flex justify-between px-2 w-full border-b-2 ">
+                  <span className="font-semibold">Telur</span>
+                  <span className="font-light">{telur}</span>
+                </div>
+                <div className="flex justify-between px-2 w-full border-b-2 ">
+                  <span className="font-semibold">Susu</span>
+                  <span className="font-light">{susu}</span>
+                </div>
+                <div className="flex justify-between px-2 w-full">
+                  <span className="font-semibold">Daging</span>
+                  <span className="font-light">{daging}</span>
+                </div>
+              </div> */}
+              </div>
+            </div>
             {/* kanan */}
             <div className="w-full h-full px-5 flex flex-col justify-center items-center py-3 ">
               <div className="flex justify-around  w-full h-full  bg-transparent rounded-xl  bg-white">
-                <h1>Hello from withdral page!</h1>
+                <div
+                  className={`${
+                    aktMembPanel
+                      ? "border-x-[1px] border-t-[1px] border-white rounded-t-xl w-full h-[60%]  py-3 text-center"
+                      : "w-full h-[60%]  py-3 text-center border-b-[1px] border-white"
+                  }`}
+                >
+                  <span
+                    className={`${
+                      aktMembPanel
+                        ? "font-bold text-white text-xl cursor-pointer"
+                        : "text-white text-xl cursor-pointer"
+                    }`}
+                    onClick={() => {
+                      playSelectSound();
+                      openAktMembPanel();
+                    }}
+                  >
+                    Top Up
+                  </span>
+                </div>
+                <div
+                  className={`${
+                    penKomPanel
+                      ? "border-x-[1px] border-t-[1px] border-white rounded-t-xl w-full  h-[60%]   py-3 text-center"
+                      : "w-full  h-[60%] py-3 text-center border-b-[1px] border-white"
+                  }`}
+                >
+                  <span
+                    className={`${
+                      penKomPanel
+                        ? "font-bold text-white text-xl cursor-pointer"
+                        : "text-white text-xl cursor-pointer"
+                    }`}
+                    onClick={() => {
+                      playSelectSound();
+                      openPenKomPanel();
+                    }}
+                  >
+                    Withdrawl
+                  </span>
+                </div>
+              </div>
+
+              <div className="w-full h-[70%]  pt-3 bg-transparent rounded-xl">
+                {aktMembPanel ? <TopUpPanel /> : <WithDrawlPanel />}
               </div>
             </div>
           </div>

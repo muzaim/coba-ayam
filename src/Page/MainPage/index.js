@@ -354,7 +354,14 @@ const MainPage = () => {
         />
       );
     case "Page17":
-      return <Page17 goToPage6={goToPage6} />;
+      return (
+        <Page17
+          goToPage6={goToPage6}
+          playSuccessSound={playSuccessSound}
+          playSelectSound={playSelectSound}
+          playPaperFlipSound={playPaperFlipSound}
+        />
+      );
     default:
       break;
   }

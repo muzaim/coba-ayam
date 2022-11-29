@@ -119,7 +119,7 @@ const Page6 = ({
                 className="-top-[1rem] left-[11rem] absolute group animate-bounce"
                 onClick={() => {
                   playPop1();
-                  goToPage16();
+                  goToPage17();
                 }}
               >
                 <div className="flex flex-col justify-center items-center">
@@ -174,7 +174,7 @@ const Page6 = ({
               {/* KE RUMAH*/}
               <div
                 className="top-[4.5rem] right-[13rem] absolute group animate-bounce"
-                onClick={goToPage17}
+                onClick={goToPage16}
               >
                 <div className="flex flex-col justify-center items-center">
                   <span className="text-md text-white tracking-wider font-custom1">
