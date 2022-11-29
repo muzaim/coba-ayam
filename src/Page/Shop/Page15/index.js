@@ -179,9 +179,9 @@ const Page15 = ({
       setDiamondDipilih("");
       console.log(res.url);
       // window.location.replace(`${res.url}`);
-      // window.location.href = res.url;
+      window.location.href = res.url;
 
-      window.open(res.url, "_blank");
+      // window.open(res.url, "_blank");
     } catch (error) {
       playNegativeSound();
       MySwal.fire({
