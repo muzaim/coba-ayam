@@ -5,6 +5,7 @@ import { useState, useContext } from "react";
 import TopUpDiamond from "./TopUpDiamondPanel";
 import TopUpPakan from "./TopUpPakanPanel";
 import { UserContext } from "../../UserContext";
+import { useNavigate } from "react-router-dom";
 import Header from "../../../Component/Diatom/Header";
 
 import Swal from "sweetalert2";
@@ -35,6 +36,8 @@ const Page15 = ({
     id: "",
     pakan: "",
   });
+
+  const Navigate = useNavigate();
 
   const openDiamondPanel = () => {
     playSelectSound();
@@ -168,27 +171,17 @@ const Page15 = ({
     const userCookie = Cookies.get("user");
 
     try {
-      let beli = await axios.post(
-        `${process.env.REACT_APP_BASE_URL}/buy-diamon`,
-        {
-          token: userCookie,
-          diamon_id: diamodDipilih.id,
-        }
-      );
-      let res = beli.data.message;
-      setDiamondDipilih("");
-
-      MySwal.fire({
-        position: "center",
-        icon: "success",
-        text: res,
-        showConfirmButton: false,
-        timer: 1500,
+      let beli = await axios.post(`https://tamakoci.com/api/v2/buy-diamon`, {
+        token: userCookie,
+        diamon_id: diamodDipilih.id,
       });
-      playSuccessSound();
-      setTimeout(() => {
-        getUserInfo();
-      }, 1650);
+      let res = beli.data.data;
+      setDiamondDipilih("");
+      console.log(res.url);
+      // window.location.replace(`${res.url}`);
+      // window.location.href = res.url;
+
+      window.open(res.url, "_blank");
     } catch (error) {
       playNegativeSound();
       MySwal.fire({
