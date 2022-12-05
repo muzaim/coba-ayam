@@ -28,6 +28,7 @@ const Page17 = ({
   const [telur, setTelur] = useState(null);
   const [daging, setDaging] = useState(null);
   const [susu, setSusu] = useState(null);
+  const [inquiryData, setInquiryData] = useState([]);
 
   const openAktMembPanel = () => {
     setAktMembPanel(!aktMembPanel);

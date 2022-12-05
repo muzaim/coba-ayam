@@ -10,6 +10,84 @@ import withReactContent from "sweetalert2-react-content";
 const MySwal = withReactContent(Swal);
 
 const Copy = <FontAwesomeIcon icon={faClipboard} />;
+const userCookie = Cookies.get("user");
+
+let addBankPanel = {
+  html: `
+  <form>
+  <div class="flex justify-between mb-6">
+  <label for="bank_code" class="block mb-2 text-sm font-medium text-gray-900 ">Bank : </label>
+  <select id="bank_code" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-72 p-2.5  dark:border-gray-600 dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500">
+    <option value="1">BRI</option>
+    <option value="2">Mandiri</option>
+    <option value="3">BNI</option>
+    <option value="4">BANK DANAMON</option>
+    <option value="5">BANK PERMATA</option>
+    <option value="6">BCA</option>
+    <option value="7">MAYBANK INDONESIA</option>
+    <option value="8">BANK PANIN</option>
+    <option value="9">CIMB NIAGA</option>
+    <option value="10">BANK UOB</option>
+    <option value="11">BANK OCBC NISP</option>
+    <option value="12">CITIBANK</option>
+    <option value="13">BANK BUKOPIN</option>
+  </select>
+  
+  </div>
+  <div class="flex justify-between mb-6">
+    <label for="account_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900">Account Name : </label>
+    <input type="text" id="account_name" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-72 p-2.5  dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-900 dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" required>
+  </div>
+  <div class="flex justify-between mb-6">
+    <label for="account_number" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900">Account Number : </label>
+    <input type="text" id="account_number" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-72 p-2.5  dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-900 dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" required>
+  </div>
+  <div class="flex justify-between mb-2">
+    <label for="bank_city" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900">Bank City : </label>
+    <input type="text" id="bank_city" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-72 p-2.5  dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-900 dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" required>
+  </div>
+  
+  </form>
+  `,
+  title: "Add New Bank",
+  inputAttributes: {
+    autocapitalize: "off",
+  },
+  showCancelButton: true,
+  confirmButtonText: "Submit",
+  showLoaderOnConfirm: true,
+  preConfirm: () => {
+    return fetch(`${process.env.REACT_APP_BASE_URL}/user-bank-post`, {
+      method: "POST", // or 'PUT'
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        token: userCookie,
+        bank_id: document.getElementById("bank_code").value,
+        account_name: document.getElementById("account_name").value,
+        account_number: document.getElementById("account_number").value,
+        bank_city: document.getElementById("bank_city").value,
+      }),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(response.statusText);
+        }
+        return MySwal.fire({
+          type: "success",
+          title: "Bank berhasil ditambahkan!",
+          icon: "success",
+        });
+      })
+      .catch((error) => {
+        // Swal.showValidationMessage(`Request failed: ${error}`);
+        Swal.showValidationMessage(`Data tidak boleh kosong!`);
+        // console.log(error);
+      });
+  },
+  allowOutsideClick: () => !Swal.isLoading(),
+};
 
 const Page16 = ({
   goToPage6,
@@ -19,24 +97,84 @@ const Page16 = ({
   playPop1,
   playPaperFlipSound,
 }) => {
-  const [aktMembPanel, setAktMembPanel] = useState(true);
-  const [penKomPanel, setPenKomPanel] = useState(false);
+  const [transactionLog, settransactionLog] = useState(true);
+  const [withdrawalPanel, setwithdrawalPanel] = useState(false);
   const [dataUserWallet, setDataUserWallet] = useState([]);
   const [dataUserActive, setDataUserActive] = useState([]);
   const [telur, setTelur] = useState(null);
   const [daging, setDaging] = useState(null);
   const [susu, setSusu] = useState(null);
+  const [inquiryData, setInquiryData] = useState([]);
+  const [userBankData, setUserBankData] = useState([]);
+  var myTrackingContent = userBankData
+    .map(function (item) {
+      return (
+        "<div class='col-md-2'><strong><span>" +
+        item.tracking_status +
+        "</span> </strong></div>"
+      );
+    })
+    .join("");
+  const opentransactionLog = () => {
+    settransactionLog(!transactionLog);
+    setwithdrawalPanel(false);
+  };
+  let takeWithdrawalPanel = {
+    // html: `
+    // <form>
+    // <div class="flex justify-between mb-6">
+    // <label for="bank_code" class="block mb-2 text-sm font-medium text-gray-900 ">Bank : </label>
+    // <select id="bank_code" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-72 p-2.5  dark:border-gray-600 dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500">
+    //   <option value="1">BRI</option>
+    //   <option value="2">Mandiri</option>
+    //   <option value="3">BNI</option>
+    //   <option value="4">BANK DANAMON</option>
+    //   <option value="5">BANK PERMATA</option>
+    //   <option value="6">BCA</option>
+    //   <option value="7">MAYBANK INDONESIA</option>
+    //   <option value="8">BANK PANIN</option>
+    //   <option value="9">CIMB NIAGA</option>
+    //   <option value="10">BANK UOB</option>
+    //   <option value="11">BANK OCBC NISP</option>
+    //   <option value="12">CITIBANK</option>
+    //   <option value="13">BANK BUKOPIN</option>
+    // </select>
 
-  const openAktMembPanel = () => {
-    setAktMembPanel(!aktMembPanel);
-    setPenKomPanel(false);
+    // </div>
+    // <div class="flex justify-between mb-6">
+    //   <label for="account_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900">Diamond : </label>
+    //   <input type="text" id="account_name" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-72 p-2.5  dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-900 dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" required>
+    // </div>
+
+    // </form>
+    // `,
+    title: "Test Dialog",
+    icon: "info",
+    // content: fetch("http://some.url"),
   };
 
-  const openPenKomPanel = () => {
-    setPenKomPanel(!penKomPanel);
-    setAktMembPanel(false);
+  const openwithdrawalPanel = () => {
+    setwithdrawalPanel(!withdrawalPanel);
+    settransactionLog(false);
   };
 
+  const getUserBank = async () => {
+    const userCookie = Cookies.get("user");
+    try {
+      let userInfo = await axios.get(
+        `${process.env.REACT_APP_BASE_URL}/user-bank-get`,
+        {
+          params: {
+            token: userCookie,
+          },
+        }
+      );
+      let res = userInfo.data.data;
+      setUserBankData(res);
+    } catch (error) {
+      console.log(`dari ketika getUsrInfo `, error);
+    }
+  };
   const getUserInfo = async () => {
     const userCookie = Cookies.get("user");
     if (!userCookie) {
@@ -79,11 +217,31 @@ const Page16 = ({
     }
   };
 
+  const getInquiryData = async () => {
+    const userCookie = Cookies.get("user");
+    try {
+      let userInfo = await axios.get(
+        `${process.env.REACT_APP_BASE_URL}/trx-inquiry`,
+        {
+          params: {
+            token: userCookie,
+          },
+        }
+      );
+      let res = userInfo.data.data;
+      console.log(res);
+    } catch (error) {
+      console.log(`dari ketika getUsrInfo `, error);
+    }
+  };
+
   useEffect(() => {
     getUserInfo();
+    getInquiryData();
+    getUserBank();
   }, []);
 
-  const AktivasiMemberPanel = () => {
+  const TransactionLogPanel = () => {
     return (
       <div className="w-full h-[115%]  overflow-x-auto animate-fadeInKu -mt-8 bg-transparent">
         <table className="table-auto w-full border-collapse border text-center ">
@@ -178,51 +336,67 @@ const Page16 = ({
     );
   };
 
-  const PenarikanKomisiPanel = () => {
+  const addNewBank = () => {
+    const panggilSwal = async () => {
+      await MySwal.fire(addBankPanel);
+    };
+    panggilSwal();
+  };
+
+  const takeWithdrawal = () => {
+    const panggilSwal = async () => {
+      await MySwal.fire(takeWithdrawalPanel);
+    };
+    panggilSwal();
+  };
+  const WithdrawalPanel = () => {
     return (
       <div className="w-full h-[115%] overflow-x-auto bg-transparent animate-fadeInKu -mt-8">
         <div className="flex gap-2 flex-col justify-center items-center ">
-          <div
-            className="w-[80%] py-2 bg-white rounded-full text-center"
-            onClick={playPop1}
-          >
-            <span className="text-black">Nama</span>
+          <div className="flex w-full px-6 justify-between">
+            <h1>Bank : </h1>
+            <div className="flex gap-2">
+              <button
+                className="px-5 py-1 bg-sky-600 rounded-lg"
+                onClick={() => takeWithdrawal()}
+              >
+                Withdrawal
+              </button>
+              <button
+                className="px-5 py-1 bg-green-600 rounded-lg"
+                onClick={() => addNewBank()}
+              >
+                + Add
+              </button>
+            </div>
           </div>
-          <div
-            className="w-[80%] py-2 bg-white rounded-full text-center"
-            onClick={playPop1}
-          >
-            <span className="text-black">Nama Bank</span>
-          </div>
-          <div
-            className="w-[80%] py-2 bg-white rounded-full text-center"
-            onClick={playPop1}
-          >
-            <span className="text-black">No Rekening</span>
-          </div>
-          <div
-            className="w-[80%] py-2 bg-white rounded-full text-center"
-            onClick={playPop1}
-          >
-            <span className="text-black">Jumlah diamond yang ditarik</span>
-          </div>
-          <div
-            className="w-[80%] py-2 bg-white rounded-full text-center"
-            onClick={playPop1}
-          >
-            <span className="text-black">Jumlah rupiah yang ditarik</span>
-          </div>
-          <div
-            className="w-[80%] py-2 bg-slate-500 rounded-full text-center tracking-widest"
-            onClick={playPop1}
-          >
-            <span
-              className="text-white
-             font-bold"
-            >
-              Tarik
-            </span>
-          </div>
+
+          <table className="table-auto w-full border-collapse border text-center  ">
+            <thead className="bg-slate-600 sticky top-0 text-white">
+              <tr className="">
+                <th className="w-[30%] py-3">Bank Name</th>
+                <th className="w-[30%] ">Account Name</th>
+                <th className="w-[40%]">Account Number</th>
+              </tr>
+            </thead>
+            <tbody className="text-white">
+              {userBankData.map((item) => {
+                return (
+                  <tr key={item.id}>
+                    <td className="w-[30%] border border-slate-300 py-2">
+                      {item.bank_name}
+                    </td>
+                    <td className="w-[30%] border border-slate-300 py-2">
+                      {item.account_name}
+                    </td>
+                    <td className="w-[40%] border border-slate-300 py-2">
+                      {item.account_number}
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
         </div>
       </div>
     );
@@ -316,54 +490,50 @@ const Page16 = ({
               <div className="flex justify-around  w-full h-full  bg-transparent rounded-xl  bg-white">
                 <div
                   className={`${
-                    aktMembPanel
+                    transactionLog
                       ? "border-x-[1px] border-t-[1px] border-white rounded-t-xl w-full h-[60%]  py-3 text-center"
                       : "w-full h-[60%]  py-3 text-center border-b-[1px] border-white"
                   }`}
                 >
                   <span
                     className={`${
-                      aktMembPanel
+                      transactionLog
                         ? "font-bold text-white text-xl cursor-pointer"
                         : "text-white text-xl cursor-pointer"
                     }`}
                     onClick={() => {
                       playSelectSound();
-                      openAktMembPanel();
+                      opentransactionLog();
                     }}
                   >
-                    Aktivitas member
+                    Transaction Log
                   </span>
                 </div>
                 <div
                   className={`${
-                    penKomPanel
+                    withdrawalPanel
                       ? "border-x-[1px] border-t-[1px] border-white rounded-t-xl w-full  h-[60%]   py-3 text-center"
                       : "w-full  h-[60%] py-3 text-center border-b-[1px] border-white"
                   }`}
                 >
                   <span
                     className={`${
-                      penKomPanel
+                      withdrawalPanel
                         ? "font-bold text-white text-xl cursor-pointer"
                         : "text-white text-xl cursor-pointer"
                     }`}
                     onClick={() => {
                       playSelectSound();
-                      openPenKomPanel();
+                      openwithdrawalPanel();
                     }}
                   >
-                    Penarikan Komisi
+                    Withdrawal
                   </span>
                 </div>
               </div>
 
               <div className="w-full h-[70%]  pt-3 bg-transparent rounded-xl">
-                {aktMembPanel ? (
-                  <AktivasiMemberPanel />
-                ) : (
-                  <PenarikanKomisiPanel />
-                )}
+                {transactionLog ? <TransactionLogPanel /> : <WithdrawalPanel />}
               </div>
             </div>
           </div>
