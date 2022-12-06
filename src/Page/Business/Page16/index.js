@@ -1,15 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
 import Cookies from "js-cookie";
 import axios from "axios";
 import { useEffect } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faClipboard } from "@fortawesome/free-solid-svg-icons";
+import DialogWithdrawal from "./DialogWithdrawal";
+
+import { useState } from "react";
 
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 const MySwal = withReactContent(Swal);
 
-const Copy = <FontAwesomeIcon icon={faClipboard} />;
 const userCookie = Cookies.get("user");
 
 let addBankPanel = {
@@ -56,6 +56,7 @@ let addBankPanel = {
   showCancelButton: true,
   confirmButtonText: "Submit",
   showLoaderOnConfirm: true,
+  allowOutsideClick: false,
   preConfirm: () => {
     return fetch(`${process.env.REACT_APP_BASE_URL}/user-bank-post`, {
       method: "POST", // or 'PUT'
@@ -106,58 +107,35 @@ const Page16 = ({
   const [susu, setSusu] = useState(null);
   const [inquiryData, setInquiryData] = useState([]);
   const [userBankData, setUserBankData] = useState([]);
-  var myTrackingContent = userBankData
-    .map(function (item) {
-      return (
-        "<div class='col-md-2'><strong><span>" +
-        item.tracking_status +
-        "</span> </strong></div>"
-      );
-    })
-    .join("");
+  const [isOpen, setIsOpen] = useState(true);
+  const [transactionInquiry, setTransactionInquiry] = useState([]);
+
   const opentransactionLog = () => {
     settransactionLog(!transactionLog);
     setwithdrawalPanel(false);
-  };
-  let takeWithdrawalPanel = {
-    // html: `
-    // <form>
-    // <div class="flex justify-between mb-6">
-    // <label for="bank_code" class="block mb-2 text-sm font-medium text-gray-900 ">Bank : </label>
-    // <select id="bank_code" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-72 p-2.5  dark:border-gray-600 dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500">
-    //   <option value="1">BRI</option>
-    //   <option value="2">Mandiri</option>
-    //   <option value="3">BNI</option>
-    //   <option value="4">BANK DANAMON</option>
-    //   <option value="5">BANK PERMATA</option>
-    //   <option value="6">BCA</option>
-    //   <option value="7">MAYBANK INDONESIA</option>
-    //   <option value="8">BANK PANIN</option>
-    //   <option value="9">CIMB NIAGA</option>
-    //   <option value="10">BANK UOB</option>
-    //   <option value="11">BANK OCBC NISP</option>
-    //   <option value="12">CITIBANK</option>
-    //   <option value="13">BANK BUKOPIN</option>
-    // </select>
-
-    // </div>
-    // <div class="flex justify-between mb-6">
-    //   <label for="account_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900">Diamond : </label>
-    //   <input type="text" id="account_name" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-72 p-2.5  dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-900 dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" required>
-    // </div>
-
-    // </form>
-    // `,
-    title: "Test Dialog",
-    icon: "info",
-    // content: fetch("http://some.url"),
   };
 
   const openwithdrawalPanel = () => {
     setwithdrawalPanel(!withdrawalPanel);
     settransactionLog(false);
   };
-
+  const getTransactionInquiry = async () => {
+    const userCookie = Cookies.get("user");
+    try {
+      let userInfo = await axios.get(
+        `${process.env.REACT_APP_BASE_URL}/trx-inquiry`,
+        {
+          params: {
+            token: userCookie,
+          },
+        }
+      );
+      let res = userInfo.data.data;
+      setTransactionInquiry(res);
+    } catch (error) {
+      console.log(`dari ketika getUsrInfo `, error);
+    }
+  };
   const getUserBank = async () => {
     const userCookie = Cookies.get("user");
     try {
@@ -175,6 +153,7 @@ const Page16 = ({
       console.log(`dari ketika getUsrInfo `, error);
     }
   };
+
   const getUserInfo = async () => {
     const userCookie = Cookies.get("user");
     if (!userCookie) {
@@ -239,6 +218,7 @@ const Page16 = ({
     getUserInfo();
     getInquiryData();
     getUserBank();
+    getTransactionInquiry();
   }, []);
 
   const TransactionLogPanel = () => {
@@ -247,91 +227,44 @@ const Page16 = ({
         <table className="table-auto w-full border-collapse border text-center ">
           <thead className="bg-slate-600 sticky top-0 text-white">
             <tr className="">
-              <th className="w-[40%] py-3">User</th>
-              <th className="w-[20%] ">Level</th>
-              <th className="w-[40%]">Komisi</th>
+              <th className="w-[10%] py-3">No</th>
+              <th className="w-[40%] py-3">Desc</th>
+              <th className="w-[20%] ">Status</th>
+              <th className="w-[40%]">Detail</th>
             </tr>
           </thead>
           <tbody className="text-white">
-            <tr>
-              <td className="w-[40%] border border-slate-300 py-2">dsadsa</td>
-              <td className="w-[20%] border border-slate-300 py-2">L1</td>
-              <td className="w-[40%] border border-slate-300 py-2">135.000</td>
-            </tr>
-            <tr>
-              <td className="w-[40%] border border-slate-300 py-2">dsadsa</td>
-              <td className="w-[20%] border border-slate-300 py-2">L1</td>
-              <td className="w-[40%] border border-slate-300 py-2">135.000</td>
-            </tr>
-            <tr>
-              <td className="w-[40%] border border-slate-300 py-2">dsadsa</td>
-              <td className="w-[20%] border border-slate-300 py-2">L1</td>
-              <td className="w-[40%] border border-slate-300 py-2">135.000</td>
-            </tr>
-            <tr>
-              <td className="w-[40%] border border-slate-300 py-2">dsadsa</td>
-              <td className="w-[20%] border border-slate-300 py-2">L1</td>
-              <td className="w-[40%] border border-slate-300 py-2">135.000</td>
-            </tr>
-            <tr>
-              <td className="w-[40%] border border-slate-300 py-2">dsadsa</td>
-              <td className="w-[20%] border border-slate-300 py-2">L1</td>
-              <td className="w-[40%] border border-slate-300 py-2">135.000</td>
-            </tr>
-            <tr>
-              <td className="w-[40%] border border-slate-300 py-2">dsadsa</td>
-              <td className="w-[20%] border border-slate-300 py-2">L1</td>
-              <td className="w-[40%] border border-slate-300 py-2">135.000</td>
-            </tr>
-            <tr>
-              <td className="w-[40%] border border-slate-300 py-2">dsadsa</td>
-              <td className="w-[20%] border border-slate-300 py-2">L1</td>
-              <td className="w-[40%] border border-slate-300 py-2">135.000</td>
-            </tr>
+            {transactionInquiry.map((item, idx) => {
+              return (
+                <tr>
+                  <td className="w-[10%] border border-slate-300 py-2">
+                    {idx + 1}
+                  </td>
+                  <td className="w-[40%] border border-slate-300 py-2">
+                    {item.desc}
+                  </td>
+                  <td className="w-[20%] border border-slate-300 py-2">
+                    {item.status}
+                  </td>
+                  <td className="w-[40%] border border-slate-300 py-2">
+                    <button
+                      type="button"
+                      onClick={openModal}
+                      className="px-5 py-1 bg-sky-600 rounded-lg"
+                    >
+                      Detail
+                    </button>
+                  </td>
+                </tr>
+              );
+            })}
           </tbody>
         </table>
-        {/* <table class="text-left w-full">
-          <thead class="bg-white flex text-white w-full">
-            <tr class="flex w-full mb-4">
-              <th class=" w-1/4">One</th>
-              <th class=" w-1/4">Two</th>
-              <th class=" w-1/4">Three</th>
-              <th class=" w-1/4">Four</th>
-            </tr>
-          </thead>
-          <tbody class="bg-grey-light flex flex-col items-center justify-between  w-full">
-            <tr class="flex w-full mb-4">
-              <td class="p-4 w-1/4">Dogs</td>
-              <td class="p-4 w-1/4">Cats</td>
-              <td class="p-4 w-1/4">Birds</td>
-              <td class="p-4 w-1/4">Fish</td>
-            </tr>
-            <tr class="flex w-full mb-4">
-              <td class="p-4 w-1/4">Dogs</td>
-              <td class="p-4 w-1/4">Cats</td>
-              <td class="p-4 w-1/4">Birds</td>
-              <td class="p-4 w-1/4">Fish</td>
-            </tr>
-            <tr class="flex w-full mb-4">
-              <td class="p-4 w-1/4">Dogs</td>
-              <td class="p-4 w-1/4">Cats</td>
-              <td class="p-4 w-1/4">Birds</td>
-              <td class="p-4 w-1/4">Fish</td>
-            </tr>
-            <tr class="flex w-full mb-4">
-              <td class="p-4 w-1/4">Dogs</td>
-              <td class="p-4 w-1/4">Cats</td>
-              <td class="p-4 w-1/4">Birds</td>
-              <td class="p-4 w-1/4">Fish</td>
-            </tr>
-            <tr class="flex w-full mb-4">
-              <td class="p-4 w-1/4">Dogs</td>
-              <td class="p-4 w-1/4">Cats</td>
-              <td class="p-4 w-1/4">Birds</td>
-              <td class="p-4 w-1/4">Fish</td>
-            </tr>
-          </tbody>
-        </table> */}
+        <DialogWithdrawal
+          isOpen={isOpen}
+          setIsOpen={setIsOpen}
+          userBankData={userBankData}
+        />
       </div>
     );
   };
@@ -343,12 +276,14 @@ const Page16 = ({
     panggilSwal();
   };
 
-  const takeWithdrawal = () => {
-    const panggilSwal = async () => {
-      await MySwal.fire(takeWithdrawalPanel);
-    };
-    panggilSwal();
-  };
+  function closeModal() {
+    setIsOpen(false);
+  }
+
+  function openModal() {
+    setIsOpen(true);
+  }
+
   const WithdrawalPanel = () => {
     return (
       <div className="w-full h-[115%] overflow-x-auto bg-transparent animate-fadeInKu -mt-8">
@@ -357,8 +292,9 @@ const Page16 = ({
             <h1>Bank : </h1>
             <div className="flex gap-2">
               <button
+                type="button"
+                onClick={openModal}
                 className="px-5 py-1 bg-sky-600 rounded-lg"
-                onClick={() => takeWithdrawal()}
               >
                 Withdrawal
               </button>
@@ -370,7 +306,13 @@ const Page16 = ({
               </button>
             </div>
           </div>
-
+          {/* DIALOG WITHDRAWAL */}
+          <DialogWithdrawal
+            isOpen={isOpen}
+            setIsOpen={setIsOpen}
+            userBankData={userBankData}
+          />
+          {/* DIALOG WITHDRAWAL */}
           <table className="table-auto w-full border-collapse border text-center  ">
             <thead className="bg-slate-600 sticky top-0 text-white">
               <tr className="">
