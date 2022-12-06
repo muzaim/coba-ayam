@@ -4,92 +4,12 @@ import axios from "axios";
 import { useEffect } from "react";
 import DialogWithdrawal from "./DialogWithdrawal";
 import DialogDetailTransaction from "./DialogDetailTransaction";
-
+import DialogAddBank from "./DialogAddBank";
 import { useState } from "react";
 
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 const MySwal = withReactContent(Swal);
-
-const userCookie = Cookies.get("user");
-
-let addBankPanel = {
-  html: `
-  <form>
-  <div class="flex justify-between mb-6">
-  <label for="bank_code" class="block mb-2 text-sm font-medium text-gray-900 ">Bank : </label>
-  <select id="bank_code" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-72 p-2.5  dark:border-gray-600 dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500">
-    <option value="1">BRI</option>
-    <option value="2">Mandiri</option>
-    <option value="3">BNI</option>
-    <option value="4">BANK DANAMON</option>
-    <option value="5">BANK PERMATA</option>
-    <option value="6">BCA</option>
-    <option value="7">MAYBANK INDONESIA</option>
-    <option value="8">BANK PANIN</option>
-    <option value="9">CIMB NIAGA</option>
-    <option value="10">BANK UOB</option>
-    <option value="11">BANK OCBC NISP</option>
-    <option value="12">CITIBANK</option>
-    <option value="13">BANK BUKOPIN</option>
-  </select>
-  
-  </div>
-  <div class="flex justify-between mb-6">
-    <label for="account_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900">Account Name : </label>
-    <input type="text" id="account_name" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-72 p-2.5  dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-900 dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" required>
-  </div>
-  <div class="flex justify-between mb-6">
-    <label for="account_number" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900">Account Number : </label>
-    <input type="text" id="account_number" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-72 p-2.5  dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-900 dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" required>
-  </div>
-  <div class="flex justify-between mb-2">
-    <label for="bank_city" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900">Bank City : </label>
-    <input type="text" id="bank_city" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-72 p-2.5  dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-900 dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" required>
-  </div>
-  
-  </form>
-  `,
-  title: "Add New Bank",
-  inputAttributes: {
-    autocapitalize: "off",
-  },
-  showCancelButton: true,
-  confirmButtonText: "Submit",
-  showLoaderOnConfirm: true,
-  allowOutsideClick: false,
-  preConfirm: () => {
-    return fetch(`${process.env.REACT_APP_BASE_URL}/user-bank-post`, {
-      method: "POST", // or 'PUT'
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        token: userCookie,
-        bank_id: document.getElementById("bank_code").value,
-        account_name: document.getElementById("account_name").value,
-        account_number: document.getElementById("account_number").value,
-        bank_city: document.getElementById("bank_city").value,
-      }),
-    })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error(response.statusText);
-        }
-        return MySwal.fire({
-          type: "success",
-          title: "Bank berhasil ditambahkan!",
-          icon: "success",
-        });
-      })
-      .catch((error) => {
-        // Swal.showValidationMessage(`Request failed: ${error}`);
-        Swal.showValidationMessage(`Data tidak boleh kosong!`);
-        // console.log(error);
-      });
-  },
-  allowOutsideClick: () => !Swal.isLoading(),
-};
 
 const Page16 = ({
   goToPage6,
@@ -110,6 +30,7 @@ const Page16 = ({
   const [userBankData, setUserBankData] = useState([]);
   const [isOpenWithdrawal, setIsOpenWithdrawal] = useState(false);
   const [isOpenDetailTransaction, setIsOpenDetailTransaction] = useState(false);
+  const [isOpenAddBank, setIsOpenAddBank] = useState(false);
   const [detailIdSelected, setDetailIdSelected] = useState(0);
   const [transactionInquiry, setTransactionInquiry] = useState([]);
 
@@ -122,6 +43,7 @@ const Page16 = ({
     setwithdrawalPanel(!withdrawalPanel);
     settransactionLog(false);
   };
+
   const getTransactionInquiry = async () => {
     const userCookie = Cookies.get("user");
     try {
@@ -139,6 +61,7 @@ const Page16 = ({
       console.log(`dari ketika getUsrInfo `, error);
     }
   };
+
   const getUserBank = async () => {
     const userCookie = Cookies.get("user");
     try {
@@ -223,6 +146,17 @@ const Page16 = ({
     getTransactionInquiry();
   }, []);
 
+  function openModalWithdrawal() {
+    setIsOpenWithdrawal(true);
+  }
+  function openAddBank() {
+    setIsOpenAddBank(true);
+  }
+  function openModalDetailTransaction(id) {
+    setIsOpenDetailTransaction(true);
+    setDetailIdSelected(id);
+  }
+
   const TransactionLogPanel = () => {
     return (
       <div className="w-full h-[115%]  overflow-x-auto animate-fadeInKu -mt-8 bg-transparent">
@@ -236,6 +170,13 @@ const Page16 = ({
             </tr>
           </thead>
           <tbody className="text-white">
+            {transactionInquiry.length === 0 ? (
+              <tr>
+                <td colSpan={4} className="border border-slate-300 py-2">
+                  No Data!
+                </td>
+              </tr>
+            ) : null}
             {transactionInquiry.map((item, idx) => {
               return (
                 <tr key={idx}>
@@ -274,22 +215,6 @@ const Page16 = ({
     );
   };
 
-  const addNewBank = () => {
-    const panggilSwal = async () => {
-      await MySwal.fire(addBankPanel);
-    };
-    panggilSwal();
-  };
-
-  function openModalWithdrawal() {
-    setIsOpenWithdrawal(true);
-  }
-
-  function openModalDetailTransaction(id) {
-    setIsOpenDetailTransaction(true);
-    setDetailIdSelected(id);
-  }
-
   const WithdrawalPanel = () => {
     return (
       <div className="w-full h-[115%] overflow-x-auto bg-transparent animate-fadeInKu -mt-8">
@@ -305,10 +230,11 @@ const Page16 = ({
                 Withdrawal
               </button>
               <button
+                type="button"
                 className="px-5 py-1 bg-green-600 rounded-lg"
-                onClick={() => addNewBank()}
+                onClick={openAddBank}
               >
-                + Add
+                Add
               </button>
             </div>
           </div>
@@ -319,6 +245,13 @@ const Page16 = ({
             userBankData={userBankData}
           />
           {/* DIALOG WITHDRAWAL */}
+          {/* DIALOG ADD BANK */}
+          <DialogAddBank
+            isOpen={isOpenAddBank}
+            setIsOpen={setIsOpenAddBank}
+            userBankData={userBankData}
+          />
+          {/* DIALOG ADD BANK */}
           <table className="table-auto w-full border-collapse border text-center  ">
             <thead className="bg-slate-600 sticky top-0 text-white">
               <tr className="">
@@ -328,6 +261,13 @@ const Page16 = ({
               </tr>
             </thead>
             <tbody className="text-white">
+              {userBankData.length === 0 ? (
+                <tr>
+                  <td colSpan={3} className=" border border-slate-300 py-2">
+                    No Data!
+                  </td>
+                </tr>
+              ) : null}
               {userBankData.map((item) => {
                 return (
                   <tr key={item.id}>
@@ -409,33 +349,11 @@ const Page16 = ({
                   </span>
                   {/* <span className="text-white">{Copy}</span> */}
                 </div>
-                {/* <div className="mt-5 w-full h-20 ">
-                <div className="flex justify-between px-2 w-full border-b-2 ">
-                  <span className="font-semibold">Diamond</span>
-                  <span className="font-light">{dataUserWallet.diamon}</span>
-                </div>
-                <div className="flex justify-between px-2 w-full border-b-2 ">
-                  <span className="font-semibold">Pakan</span>
-                  <span className="font-light">{dataUserWallet.pakan}</span>
-                </div>
-                <div className="flex justify-between px-2 w-full border-b-2 ">
-                  <span className="font-semibold">Telur</span>
-                  <span className="font-light">{telur}</span>
-                </div>
-                <div className="flex justify-between px-2 w-full border-b-2 ">
-                  <span className="font-semibold">Susu</span>
-                  <span className="font-light">{susu}</span>
-                </div>
-                <div className="flex justify-between px-2 w-full">
-                  <span className="font-semibold">Daging</span>
-                  <span className="font-light">{daging}</span>
-                </div>
-              </div> */}
               </div>
             </div>
             {/* kanan */}
             <div className="w-full h-full px-5 flex flex-col justify-center items-center py-3 ">
-              <div className="flex justify-around  w-full h-full  bg-transparent rounded-xl  bg-white">
+              <div className="flex justify-around  w-full h-[40%]  bg-transparent rounded-xl  ">
                 <div
                   className={`${
                     transactionLog
@@ -480,7 +398,7 @@ const Page16 = ({
                 </div>
               </div>
 
-              <div className="w-full h-[70%]  pt-3 bg-transparent rounded-xl">
+              <div className="w-full h-[70%]  pt-3 bg-transparent rounded-xl ">
                 {transactionLog ? <TransactionLogPanel /> : <WithdrawalPanel />}
               </div>
             </div>

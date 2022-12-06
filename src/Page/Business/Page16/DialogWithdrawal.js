@@ -16,7 +16,6 @@ const DialogWithdrawal = ({ isOpen, setIsOpen, userBankData }) => {
 
   const handleChange = (e) => {
     setDataPost({ ...dataPost, [e.target.name]: e.target.value });
-    console.log(dataPost);
   };
 
   const sumbitHandler = async (e) => {
@@ -24,7 +23,7 @@ const DialogWithdrawal = ({ isOpen, setIsOpen, userBankData }) => {
     const userCookie = Cookies.get("user");
 
     try {
-      let beli = await axios.post(
+      await axios.post(
         `${process.env.REACT_APP_BASE_URL}/withdraw`,
         {
           token: userCookie,
@@ -32,9 +31,8 @@ const DialogWithdrawal = ({ isOpen, setIsOpen, userBankData }) => {
           user_bank_id: dataPost.user_bank_id,
         }
       );
-      let res = beli.data.data;
       setDataPost("");
-      console.log(res.url);
+
 
       // window.open(res.url, "_blank");
     } catch (error) {
