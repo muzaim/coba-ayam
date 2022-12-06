@@ -4,6 +4,10 @@ import Cookies from "js-cookie";
 import { Dialog } from "@headlessui/react";
 import { useState } from "react";
 
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+const MySwal = withReactContent(Swal);
+
 const DialogWithdrawal = ({ isOpen, setIsOpen, userBankData }) => {
   const [dataPost, setDataPost] = useState({
     user_bank_id: 1,
@@ -23,26 +27,15 @@ const DialogWithdrawal = ({ isOpen, setIsOpen, userBankData }) => {
     const userCookie = Cookies.get("user");
 
     try {
-      await axios.post(
-        `${process.env.REACT_APP_BASE_URL}/withdraw`,
-        {
-          token: userCookie,
-          diamon: dataPost.diamond,
-          user_bank_id: dataPost.user_bank_id,
-        }
-      );
+      await axios.post(`${process.env.REACT_APP_BASE_URL}/withdraw`, {
+        token: userCookie,
+        diamon: dataPost.diamond,
+        user_bank_id: dataPost.user_bank_id,
+      });
       setDataPost("");
-
 
       // window.open(res.url, "_blank");
     } catch (error) {
-      //   MySwal.fire({
-      //     position: "center",
-      //     icon: "error",
-      //     text: error.response.data.message,
-      //     showConfirmButton: false,
-      //     timer: 1500,
-      //   });
       console.log(error);
     }
   };

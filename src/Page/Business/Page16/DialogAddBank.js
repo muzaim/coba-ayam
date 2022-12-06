@@ -19,7 +19,8 @@ const DialogAddBank = ({ isOpen, setIsOpen, userBankData }) => {
   });
   const [dataBank, setDataBank] = useState([]);
 
-  const getDataBank = async (e) => {
+  const getDataBank = async () => {
+    // setDataBank([]);
     try {
       let beli = await axios.get(`${process.env.REACT_APP_BASE_URL}/bank-list`);
       let res = beli.data.data;
@@ -58,14 +59,14 @@ const DialogAddBank = ({ isOpen, setIsOpen, userBankData }) => {
       });
       setIsOpen(!isOpen);
     } catch (error) {
-      //   MySwal.fire({
-      //     position: "center",
-      //     icon: "error",
-      //     text: error.response.data.message,
-      //     showConfirmButton: false,
-      //     timer: 1500,
-      //   });
-      console.log(error);
+      MySwal.fire({
+        position: "center",
+        icon: "error",
+        text: error.response.data.message,
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      //   console.log(error);
     }
   };
 
