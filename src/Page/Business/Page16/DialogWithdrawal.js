@@ -49,11 +49,7 @@ const DialogWithdrawal = ({ isOpen, setIsOpen, userBankData }) => {
     }
   };
   return (
-    <Dialog
-      open={isOpen}
-      onClose={() => setIsOpen(false)}
-      className="relative z-50"
-    >
+    <Dialog open={isOpen} onClose={() => null} className="relative z-50">
       <div className="fixed inset-0 flex items-center justify-center p-4">
         <div className="fixed inset-0 bg-black/30" aria-hidden="true" />
         <div className="fixed inset-0 overflow-y-auto">
@@ -62,19 +58,19 @@ const DialogWithdrawal = ({ isOpen, setIsOpen, userBankData }) => {
               <div className="px-8 py-5">
                 <Dialog.Title className="text-center">Withdrawal</Dialog.Title>
                 <div className="mt-2">
-                  <form class="w-full max-w-sm" onSubmit={sumbitHandler}>
-                    <div class="md:flex md:items-center mb-6">
-                      <div class="md:w-1/3">
+                  <form className="w-full max-w-sm" onSubmit={sumbitHandler}>
+                    <div className="md:flex md:items-center mb-6">
+                      <div className="md:w-1/3">
                         <label
-                          class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"
-                          for="inline-full-name"
+                          className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"
+                          htmlFor="inline-full-name"
                         >
                           Send to
                         </label>
                       </div>
-                      <div class="md:w-2/3">
+                      <div className="md:w-2/3">
                         <select
-                          class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                          className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                           id="user_bank_id"
                           onChange={handleChange}
                           //   value={dataPost.user_bank_id}
@@ -91,18 +87,18 @@ const DialogWithdrawal = ({ isOpen, setIsOpen, userBankData }) => {
                         </select>
                       </div>
                     </div>
-                    <div class="md:flex md:items-center mb-2">
-                      <div class="md:w-1/3">
+                    <div className="md:flex md:items-center mb-2">
+                      <div className="md:w-1/3">
                         <label
-                          class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"
-                          for="inline-password"
+                          className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"
+                          htmlFor="inline-password"
                         >
                           Diamond
                         </label>
                       </div>
-                      <div class="md:w-2/3">
+                      <div className="md:w-2/3">
                         <input
-                          class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
+                          className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
                           id="inline-password"
                           type="text"
                           onChange={handleChange}
@@ -111,28 +107,28 @@ const DialogWithdrawal = ({ isOpen, setIsOpen, userBankData }) => {
                         />
                       </div>
                       {dataPost.diamond ? (
-                        <span className="">
+                        <p className="">
                           Amount :{" "}
                           <span className="font-bold">
                             Rp.{numberWithCommas(dataPost.diamond * 100)}
                           </span>
-                        </span>
+                        </p>
                       ) : null}
                     </div>
-                    <div class="md:flex md:items-center mb-6">
-                      <div class="md:w-1/3"></div>
+                    <div className="md:flex md:items-center mb-6">
+                      <div className="md:w-1/3"></div>
                     </div>
-                    <div class="md:flex md:items-center">
-                      <div class="md:w-1/3"></div>
-                      <div class="md:w-2/3 flex items-center justify-center gap-2">
+                    <div className="md:flex md:items-center">
+                      <div className="md:w-1/3"></div>
+                      <div className="md:w-2/3 flex items-center justify-center gap-2">
                         <button
-                          class="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded "
+                          className="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded "
                           type="submit"
                         >
                           Submit
                         </button>
                         <button
-                          class="shadow bg-gray-500 hover:bg-gray-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded "
+                          className="shadow bg-gray-500 hover:bg-gray-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded "
                           type="button"
                           onClick={() => setIsOpen(!isOpen)}
                         >

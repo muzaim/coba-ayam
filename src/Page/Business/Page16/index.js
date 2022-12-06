@@ -3,6 +3,7 @@ import Cookies from "js-cookie";
 import axios from "axios";
 import { useEffect } from "react";
 import DialogWithdrawal from "./DialogWithdrawal";
+import DialogDetailTransaction from "./DialogDetailTransaction";
 
 import { useState } from "react";
 
@@ -107,7 +108,9 @@ const Page16 = ({
   const [susu, setSusu] = useState(null);
   const [inquiryData, setInquiryData] = useState([]);
   const [userBankData, setUserBankData] = useState([]);
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpenWithdrawal, setIsOpenWithdrawal] = useState(false);
+  const [isOpenDetailTransaction, setIsOpenDetailTransaction] = useState(false);
+  const [detailIdSelected, setDetailIdSelected] = useState(0);
   const [transactionInquiry, setTransactionInquiry] = useState([]);
 
   const opentransactionLog = () => {
@@ -208,7 +211,6 @@ const Page16 = ({
         }
       );
       let res = userInfo.data.data;
-      console.log(res);
     } catch (error) {
       console.log(`dari ketika getUsrInfo `, error);
     }
@@ -236,7 +238,7 @@ const Page16 = ({
           <tbody className="text-white">
             {transactionInquiry.map((item, idx) => {
               return (
-                <tr>
+                <tr key={idx}>
                   <td className="w-[10%] border border-slate-300 py-2">
                     {idx + 1}
                   </td>
@@ -249,7 +251,7 @@ const Page16 = ({
                   <td className="w-[40%] border border-slate-300 py-2">
                     <button
                       type="button"
-                      onClick={openModal}
+                      onClick={() => openModalDetailTransaction(item.id)}
                       className="px-5 py-1 bg-sky-600 rounded-lg"
                     >
                       Detail
@@ -260,11 +262,14 @@ const Page16 = ({
             })}
           </tbody>
         </table>
-        <DialogWithdrawal
-          isOpen={isOpen}
-          setIsOpen={setIsOpen}
-          userBankData={userBankData}
-        />
+        {detailIdSelected > 1 ? (
+          <DialogDetailTransaction
+            isOpen={isOpenDetailTransaction}
+            setIsOpen={setIsOpenDetailTransaction}
+            userBankData={userBankData}
+            detailIdSelected={detailIdSelected}
+          />
+        ) : null}
       </div>
     );
   };
@@ -276,12 +281,13 @@ const Page16 = ({
     panggilSwal();
   };
 
-  function closeModal() {
-    setIsOpen(false);
+  function openModalWithdrawal() {
+    setIsOpenWithdrawal(true);
   }
 
-  function openModal() {
-    setIsOpen(true);
+  function openModalDetailTransaction(id) {
+    setIsOpenDetailTransaction(true);
+    setDetailIdSelected(id);
   }
 
   const WithdrawalPanel = () => {
@@ -293,7 +299,7 @@ const Page16 = ({
             <div className="flex gap-2">
               <button
                 type="button"
-                onClick={openModal}
+                onClick={openModalWithdrawal}
                 className="px-5 py-1 bg-sky-600 rounded-lg"
               >
                 Withdrawal
@@ -308,8 +314,8 @@ const Page16 = ({
           </div>
           {/* DIALOG WITHDRAWAL */}
           <DialogWithdrawal
-            isOpen={isOpen}
-            setIsOpen={setIsOpen}
+            isOpen={isOpenWithdrawal}
+            setIsOpen={setIsOpenWithdrawal}
             userBankData={userBankData}
           />
           {/* DIALOG WITHDRAWAL */}
