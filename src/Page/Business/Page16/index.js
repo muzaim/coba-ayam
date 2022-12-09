@@ -134,6 +134,7 @@ const Page16 = ({
         }
       );
       let res = userInfo.data.data;
+      console.log(res);
     } catch (error) {
       console.log(`dari ketika getUsrInfo `, error);
     }
