@@ -21,23 +21,35 @@ const Page17 = ({
   playPaperFlipSound,
 }) => {
   const { value, setValue, setSelectedAnimalID } = useContext(UserContext);
-  const [aktMembPanel, setAktMembPanel] = useState(true);
-  const [penKomPanel, setPenKomPanel] = useState(false);
+  const [level1Panel, setlevel1Panel] = useState(true);
+  const [level2Panel, setlevel2Panel] = useState(false);
+  const [level3Panel, setlevel3Panel] = useState(false);
   const [dataUserWallet, setDataUserWallet] = useState([]);
   const [dataUserActive, setDataUserActive] = useState([]);
   const [telur, setTelur] = useState(null);
   const [daging, setDaging] = useState(null);
   const [susu, setSusu] = useState(null);
   const [inquiryData, setInquiryData] = useState([]);
+  const [dataRefLevel1, setDataRefLevel1] = useState([]);
+  const [dataRefLevel2, setDataRefLevel2] = useState([]);
+  const [dataRefLevel3, setDataRefLevel3] = useState([]);
 
-  const openAktMembPanel = () => {
-    setAktMembPanel(!aktMembPanel);
-    setPenKomPanel(false);
+  const openlevel1Panel = () => {
+    setlevel1Panel(!level1Panel);
+    setlevel2Panel(false);
+    setlevel3Panel(false);
   };
 
-  const openPenKomPanel = () => {
-    setPenKomPanel(!penKomPanel);
-    setAktMembPanel(false);
+  const openlevel2Panel = () => {
+    setlevel2Panel(!level2Panel);
+    setlevel1Panel(false);
+    setlevel3Panel(false);
+  };
+
+  const openlevel3Panel = () => {
+    setlevel3Panel(!level3Panel);
+    setlevel1Panel(false);
+    setlevel2Panel(false);
   };
 
   const getUserInfo = async () => {
@@ -82,154 +94,219 @@ const Page17 = ({
     }
   };
 
-  useEffect(() => {
-    getUserInfo();
-  }, []);
-
-  const TopUpPanel = () => {
+  const Level1Panel = () => {
     return (
       <div className="w-full h-[115%]  overflow-x-auto animate-fadeInKu -mt-8 bg-transparent">
         <table className="table-auto w-full border-collapse border text-center ">
           <thead className="bg-slate-600 sticky top-0 text-white">
             <tr className="">
-              <th className="w-[40%] py-3">User</th>
-              <th className="w-[20%] ">Level</th>
-              <th className="w-[40%]">Komisi</th>
+              <th className="w-[10%] py-3">No</th>
+              <th className="w-[20%] ">Avatar</th>
+              <th className="w-[30%] ">Username</th>
+              <th className="w-[15%]">DM Bonus</th>
+              <th className="w-[20%]">Take</th>
             </tr>
           </thead>
           <tbody className="text-white">
-            <tr>
-              <td className="w-[40%] border border-slate-300 py-2">dsadsa</td>
-              <td className="w-[20%] border border-slate-300 py-2">L1</td>
-              <td className="w-[40%] border border-slate-300 py-2">135.000</td>
-            </tr>
-            <tr>
-              <td className="w-[40%] border border-slate-300 py-2">dsadsa</td>
-              <td className="w-[20%] border border-slate-300 py-2">L1</td>
-              <td className="w-[40%] border border-slate-300 py-2">135.000</td>
-            </tr>
-            <tr>
-              <td className="w-[40%] border border-slate-300 py-2">dsadsa</td>
-              <td className="w-[20%] border border-slate-300 py-2">L1</td>
-              <td className="w-[40%] border border-slate-300 py-2">135.000</td>
-            </tr>
-            <tr>
-              <td className="w-[40%] border border-slate-300 py-2">dsadsa</td>
-              <td className="w-[20%] border border-slate-300 py-2">L1</td>
-              <td className="w-[40%] border border-slate-300 py-2">135.000</td>
-            </tr>
-            <tr>
-              <td className="w-[40%] border border-slate-300 py-2">dsadsa</td>
-              <td className="w-[20%] border border-slate-300 py-2">L1</td>
-              <td className="w-[40%] border border-slate-300 py-2">135.000</td>
-            </tr>
-            <tr>
-              <td className="w-[40%] border border-slate-300 py-2">dsadsa</td>
-              <td className="w-[20%] border border-slate-300 py-2">L1</td>
-              <td className="w-[40%] border border-slate-300 py-2">135.000</td>
-            </tr>
-            <tr>
-              <td className="w-[40%] border border-slate-300 py-2">dsadsa</td>
-              <td className="w-[20%] border border-slate-300 py-2">L1</td>
-              <td className="w-[40%] border border-slate-300 py-2">135.000</td>
-            </tr>
+            {dataRefLevel1.length === 0 ? (
+              <tr>
+                <td colSpan={5} className="border border-slate-300 py-2">
+                  No Data!
+                </td>
+              </tr>
+            ) : null}
+            {dataRefLevel1.map((item, idx) => {
+              return (
+                <tr key={idx}>
+                  <td className="w-[10%] border border-slate-300 py-2">
+                    {idx + 1}
+                  </td>
+                  <td className="w-[20%] border border-slate-300 py-2 ">
+                    <div className="w-full h-full flex items-center justify-center">
+                      <img
+                        src={item.avatar}
+                        alt=""
+                        className="w-10 h-10  rounded-full  border-2 border-cyan-500 object-cover "
+                        loading="lazy"
+                      />
+                    </div>
+                  </td>
+                  <td className="w-[30%] border border-slate-300 py-2">
+                    {item.username}
+                  </td>
+                  <td className="w-[15%] border border-slate-300 py-2">
+                    {item.dm_bonus}
+                  </td>
+                  <td className="w-[20%] border border-slate-300 py-2">
+                    {item.dm_bonus > 1 ? (
+                      <button
+                        type="button"
+                        className="px-5 py-1 bg-sky-600 rounded-lg "
+                      >
+                        Take
+                      </button>
+                    ) : (
+                      <button
+                        type="button"
+                        className="px-5 py-1 bg-gray-300 rounded-lg  text-gray-400"
+                        disabled
+                      >
+                        Take
+                      </button>
+                    )}
+                  </td>
+                </tr>
+              );
+            })}
           </tbody>
         </table>
-        {/* <table class="text-left w-full">
-          <thead class="bg-white flex text-white w-full">
-            <tr class="flex w-full mb-4">
-              <th class=" w-1/4">One</th>
-              <th class=" w-1/4">Two</th>
-              <th class=" w-1/4">Three</th>
-              <th class=" w-1/4">Four</th>
-            </tr>
-          </thead>
-          <tbody class="bg-grey-light flex flex-col items-center justify-between  w-full">
-            <tr class="flex w-full mb-4">
-              <td class="p-4 w-1/4">Dogs</td>
-              <td class="p-4 w-1/4">Cats</td>
-              <td class="p-4 w-1/4">Birds</td>
-              <td class="p-4 w-1/4">Fish</td>
-            </tr>
-            <tr class="flex w-full mb-4">
-              <td class="p-4 w-1/4">Dogs</td>
-              <td class="p-4 w-1/4">Cats</td>
-              <td class="p-4 w-1/4">Birds</td>
-              <td class="p-4 w-1/4">Fish</td>
-            </tr>
-            <tr class="flex w-full mb-4">
-              <td class="p-4 w-1/4">Dogs</td>
-              <td class="p-4 w-1/4">Cats</td>
-              <td class="p-4 w-1/4">Birds</td>
-              <td class="p-4 w-1/4">Fish</td>
-            </tr>
-            <tr class="flex w-full mb-4">
-              <td class="p-4 w-1/4">Dogs</td>
-              <td class="p-4 w-1/4">Cats</td>
-              <td class="p-4 w-1/4">Birds</td>
-              <td class="p-4 w-1/4">Fish</td>
-            </tr>
-            <tr class="flex w-full mb-4">
-              <td class="p-4 w-1/4">Dogs</td>
-              <td class="p-4 w-1/4">Cats</td>
-              <td class="p-4 w-1/4">Birds</td>
-              <td class="p-4 w-1/4">Fish</td>
-            </tr>
-          </tbody>
-        </table> */}
       </div>
     );
   };
 
-  const WithDrawlPanel = () => {
+  const Level2Panel = () => {
     return (
-      <div className="w-full h-[115%] overflow-x-auto bg-transparent animate-fadeInKu -mt-8">
-        <div className="flex gap-2 flex-col justify-center items-center ">
-          <div
-            className="w-[80%] py-2 bg-white rounded-full text-center"
-            onClick={playPop1}
-          >
-            <span className="text-black">Nama</span>
-          </div>
-          <div
-            className="w-[80%] py-2 bg-white rounded-full text-center"
-            onClick={playPop1}
-          >
-            <span className="text-black">Nama Bank</span>
-          </div>
-          <div
-            className="w-[80%] py-2 bg-white rounded-full text-center"
-            onClick={playPop1}
-          >
-            <span className="text-black">No Rekening</span>
-          </div>
-          <div
-            className="w-[80%] py-2 bg-white rounded-full text-center"
-            onClick={playPop1}
-          >
-            <span className="text-black">Jumlah diamond yang ditarik</span>
-          </div>
-          <div
-            className="w-[80%] py-2 bg-white rounded-full text-center"
-            onClick={playPop1}
-          >
-            <span className="text-black">Jumlah rupiah yang ditarik</span>
-          </div>
-          <div
-            className="w-[80%] py-2 bg-slate-500 rounded-full text-center tracking-widest"
-            onClick={playPop1}
-          >
-            <span
-              className="text-white
-             font-bold"
-            >
-              Tarik
-            </span>
-          </div>
-        </div>
+      <div className="w-full h-[115%]  overflow-x-auto animate-fadeInKu -mt-8 bg-transparent">
+        <table className="table-auto w-full border-collapse border text-center ">
+          <thead className="bg-slate-600 sticky top-0 text-white">
+            <tr className="">
+              <th className="w-[10%] py-3">No</th>
+              <th className="w-[20%] ">Avatar</th>
+              <th className="w-[30%] ">Username</th>
+              <th className="w-[15%]">DM Bonus</th>
+              <th className="w-[20%]">Take</th>
+            </tr>
+          </thead>
+          <tbody className="text-white">
+            {dataRefLevel2.length === 0 ? (
+              <tr>
+                <td colSpan={5} className="border border-slate-300 py-2">
+                  No Data!
+                </td>
+              </tr>
+            ) : null}
+            {dataRefLevel2.map((item, idx) => {
+              return (
+                <tr key={idx}>
+                  <td className="w-[10%] border border-slate-300 py-2">
+                    {idx + 1}
+                  </td>
+                  <td className="w-[20%] border border-slate-300 py-2 ">
+                    <div className="w-full h-full flex items-center justify-center">
+                      <img
+                        src={item.avatar}
+                        alt=""
+                        className="w-10 h-10  rounded-full  border-2 border-cyan-500 object-cover "
+                        loading="lazy"
+                      />
+                    </div>
+                  </td>
+                  <td className="w-[30%] border border-slate-300 py-2">
+                    {item.username}
+                  </td>
+                  <td className="w-[15%] border border-slate-300 py-2">
+                    {item.user_ref}
+                  </td>
+                  <td className="w-[20%] border border-slate-300 py-2">
+                    <button
+                      type="button"
+                      className="px-5 py-1 bg-sky-600 rounded-lg"
+                    >
+                      Take
+                    </button>
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
       </div>
     );
   };
+
+  const Level3Panel = () => {
+    return (
+      <div className="w-full h-[115%]  overflow-x-auto animate-fadeInKu -mt-8 bg-transparent">
+        <table className="table-auto w-full border-collapse border text-center ">
+          <thead className="bg-slate-600 sticky top-0 text-white">
+            <tr className="">
+              <th className="w-[10%] py-3">No</th>
+              <th className="w-[20%] ">Avatar</th>
+              <th className="w-[30%] ">Username</th>
+              <th className="w-[15%]">DM Bonus</th>
+              <th className="w-[20%]">Take</th>
+            </tr>
+          </thead>
+          <tbody className="text-white">
+            {dataRefLevel3.length === 0 ? (
+              <tr>
+                <td colSpan={5} className="border border-slate-300 py-2">
+                  No Data!
+                </td>
+              </tr>
+            ) : null}
+            {dataRefLevel3.map((item, idx) => {
+              return (
+                <tr key={idx}>
+                  <td className="w-[10%] border border-slate-300 py-2">
+                    {idx + 1}
+                  </td>
+                  <td className="w-[20%] border border-slate-300 py-2 ">
+                    <div className="w-full h-full flex items-center justify-center">
+                      <img
+                        src={item.avatar}
+                        alt=""
+                        className="w-10 h-10  rounded-full  border-2 border-cyan-500 object-cover "
+                        loading="lazy"
+                      />
+                    </div>
+                  </td>
+                  <td className="w-[30%] border border-slate-300 py-2">
+                    {item.username}
+                  </td>
+                  <td className="w-[15%] border border-slate-300 py-2">
+                    {item.user_ref}
+                  </td>
+                  <td className="w-[20%] border border-slate-300 py-2">
+                    <button
+                      type="button"
+                      className="px-5 py-1 bg-sky-600 rounded-lg"
+                    >
+                      Take
+                    </button>
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+    );
+  };
+
+  const getAllRefData = async () => {
+    const userCookie = Cookies.get("user");
+    try {
+      let userInfo = await axios.get(
+        `${process.env.REACT_APP_BASE_URL}/referals`,
+        {
+          params: {
+            token: userCookie,
+          },
+        }
+      );
+      let res = userInfo.data.data;
+      setDataRefLevel1(res["1"]);
+      setDataRefLevel2(res["2"]);
+      setDataRefLevel3(res["3"]);
+    } catch (error) {
+      console.log(`dari ketika getUsrInfo `, error);
+    }
+  };
+  useEffect(() => {
+    getUserInfo();
+    getAllRefData();
+  }, []);
 
   return (
     <div className="w-full h-screen overflow-hidden  mx-auto lg:max-w-6xl lg:h-[70%] z-30 text-white ">
@@ -290,79 +367,81 @@ const Page17 = ({
                   </span>
                   {/* <span className="text-white">{Copy}</span> */}
                 </div>
-                {/* <div className="mt-5 w-full h-20 ">
-                <div className="flex justify-between px-2 w-full border-b-2 ">
-                  <span className="font-semibold">Diamond</span>
-                  <span className="font-light">{dataUserWallet.diamon}</span>
-                </div>
-                <div className="flex justify-between px-2 w-full border-b-2 ">
-                  <span className="font-semibold">Pakan</span>
-                  <span className="font-light">{dataUserWallet.pakan}</span>
-                </div>
-                <div className="flex justify-between px-2 w-full border-b-2 ">
-                  <span className="font-semibold">Telur</span>
-                  <span className="font-light">{telur}</span>
-                </div>
-                <div className="flex justify-between px-2 w-full border-b-2 ">
-                  <span className="font-semibold">Susu</span>
-                  <span className="font-light">{susu}</span>
-                </div>
-                <div className="flex justify-between px-2 w-full">
-                  <span className="font-semibold">Daging</span>
-                  <span className="font-light">{daging}</span>
-                </div>
-              </div> */}
               </div>
             </div>
             {/* kanan */}
             <div className="w-full h-full px-5 flex flex-col justify-center items-center py-3 ">
-              <div className="flex justify-around  w-full h-full  bg-transparent rounded-xl  bg-white">
+              <div className="flex justify-around  w-full h-[40%]  bg-transparent rounded-xl  bg-white">
                 <div
                   className={`${
-                    aktMembPanel
+                    level1Panel
                       ? "border-x-[1px] border-t-[1px] border-white rounded-t-xl w-full h-[60%]  py-3 text-center"
                       : "w-full h-[60%]  py-3 text-center border-b-[1px] border-white"
                   }`}
                 >
                   <span
                     className={`${
-                      aktMembPanel
+                      level1Panel
                         ? "font-bold text-white text-xl cursor-pointer"
                         : "text-white text-xl cursor-pointer"
                     }`}
                     onClick={() => {
                       playSelectSound();
-                      openAktMembPanel();
+                      openlevel1Panel();
                     }}
                   >
-                    Top Up
+                    Level 1
                   </span>
                 </div>
                 <div
                   className={`${
-                    penKomPanel
+                    level2Panel
                       ? "border-x-[1px] border-t-[1px] border-white rounded-t-xl w-full  h-[60%]   py-3 text-center"
                       : "w-full  h-[60%] py-3 text-center border-b-[1px] border-white"
                   }`}
                 >
                   <span
                     className={`${
-                      penKomPanel
+                      level2Panel
                         ? "font-bold text-white text-xl cursor-pointer"
                         : "text-white text-xl cursor-pointer"
                     }`}
                     onClick={() => {
                       playSelectSound();
-                      openPenKomPanel();
+                      openlevel2Panel();
                     }}
                   >
-                    Withdrawl
+                    Level 2
+                  </span>
+                </div>
+                <div
+                  className={`${
+                    level3Panel
+                      ? "border-x-[1px] border-t-[1px] border-white rounded-t-xl w-full  h-[60%]   py-3 text-center"
+                      : "w-full  h-[60%] py-3 text-center border-b-[1px] border-white"
+                  }`}
+                >
+                  <span
+                    className={`${
+                      level3Panel
+                        ? "font-bold text-white text-xl cursor-pointer"
+                        : "text-white text-xl cursor-pointer"
+                    }`}
+                    onClick={() => {
+                      playSelectSound();
+                      openlevel3Panel();
+                    }}
+                  >
+                    Level 3
                   </span>
                 </div>
               </div>
 
               <div className="w-full h-[70%]  pt-3 bg-transparent rounded-xl">
-                {aktMembPanel ? <TopUpPanel /> : <WithDrawlPanel />}
+                {/* {level1Panel ? <Level1Panel /> : <Level2Panel />} */}
+                {(level1Panel && <Level1Panel />) ||
+                  (level2Panel && <Level2Panel />) ||
+                  (level3Panel && <Level3Panel />)}
               </div>
             </div>
           </div>

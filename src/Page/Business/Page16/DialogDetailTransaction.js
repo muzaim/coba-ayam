@@ -5,7 +5,12 @@ import { Dialog } from "@headlessui/react";
 import { useState } from "react";
 import { useEffect } from "react";
 
-const DialogDetailTransaction = ({ isOpen, setIsOpen, detailIdSelected }) => {
+const DialogDetailTransaction = ({
+  isOpen,
+  setIsOpen,
+  detailIdSelected,
+  setDetailIdSelected,
+}) => {
   const [detailInquiry, setDetailInquiry] = useState([]);
 
   function numberWithCommas(num) {

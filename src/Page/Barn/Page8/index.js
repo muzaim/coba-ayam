@@ -445,9 +445,10 @@ const Page8 = ({
                               kamu kenyang dan sudah menghasilkan
                               <span className="font-bold">
                                 {" "}
-                                {ternakDetail[0].remains}
+                                {numberWithCommas(ternakDetail[0].remains)}
                               </span>{" "}
-                              {} sejak terakhir kamu beri pakan.
+                              {ternakDetail[0].satuan} {ternakDetail[0].produk}
+                              {} sejak terakhir kamu beri pakan.{" "}
                             </span>
                             <button
                               className="w-28 h-10 bg-[#C5682A]  rounded-full text-white tracking-wider"
