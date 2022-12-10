@@ -38,14 +38,14 @@ const App = () => {
               <MainPage />
               {/* <MusicOnly /> */}
             </UserContext.Provider>
-            {/* <ReactAudioPlayer
+            <ReactAudioPlayer
               src={song}
               autoPlay
               controls
               // muted
               loop
               // className="hidden"
-            /> */}
+            />
           </div>
         </div>
       </Orientation>
