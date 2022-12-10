@@ -37,13 +37,6 @@ const App = () => {
               <MainPage />
               <MusicOnly />
             </UserContext.Provider>
-            {/* <AudioPlayer
-              autoPlay
-              src={song}
-              onPlay={(e) => console.log("onPlay")}
-              // other props here
-              className="hidden"
-            /> */}
           </div>
         </div>
       </Orientation>

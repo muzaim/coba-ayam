@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faVolumeHigh, faVolumeMute } from "@fortawesome/free-solid-svg-icons";
-import ReactAudioPlayer from "react-audio-player";
+// import ReactAudioPlayer from "react-audio-player";
 import "./style.css";
 import AudioPlayer from "react-h5-audio-player";
-// import "react-h5-audio-player/lib/styles.css";
+import "react-h5-audio-player/lib/styles.css";
 
 // Import your audio file
 import song from "../../music/buddy.mp3";
@@ -53,10 +53,13 @@ const MusicOnly = () => {
       <AudioPlayer
         autoPlay
         loop
-        showJumpControls={false}
-        showFilledProgress={false}
-        showSkipControl={false}
         volume={0.6}
+        showFilledVolume={false}
+        showSkipControls={false}
+        showJumpControls={false}
+        // showFilledProgress={false}
+        customIcons={MusicMute}
+        // showDownloadProgress={false}
         src={song}
       />
     </div>
