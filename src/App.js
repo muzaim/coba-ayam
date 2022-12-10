@@ -41,7 +41,7 @@ const App = () => {
             <ReactAudioPlayer
               src={song}
               autoPlay
-              controls
+              // controls
               // muted
               loop
               // className="hidden"
