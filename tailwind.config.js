@@ -4,17 +4,17 @@ module.exports = {
   theme: {
     extend: {
       backgroundImage: {
-        page2: "url('./img/bg/6.jpg')",
-        barn: "url('./img/bg/1.jpg')",
-        caffe: "url('./img/bg/shop.jpg')",
-        outFarm: "url('./img/bg/outfarm.jpg')",
-        farmBarn: "url('./img/bg/farmbarn.jpg')",
-        farmCultivature: "url('./img/bg/farmCultivature.jpg')",
-        papan1: "url('./img/bg/papan.png')",
-        papan2: "url('./img/bg/papan2.png')",
-        jualan: "url('./img/bg/jualan.png')",
-        city: "url('./img/bg/city.jpg')",
-        loading: "url('./img/bg/loading.jpg')",
+        page2: "url('../public/img/bg/6.webp')",
+        barn: "url('../public/img/bg/1.webp')",
+        caffe: "url('../public/img/bg/shop.webp')",
+        outFarm: "url('../public/img/bg/outfarm.webp')",
+        farmBarn: "url('../public/img/bg/farmbarn.webp')",
+        farmCultivature: "url('../public/img/bg/farmCultivature.webp')",
+        papan1: "url('../public/img/bg/papan.webp')",
+        papan2: "url('../public/img/bg/papan2.webp')",
+        jualan: "url('../public/img/bg/jualan.webp')",
+        city: "url('../public/img/bg/city.webp')",
+        loading: "url('../public/img/bg/loading.webp')",
       },
       animation: {
         running: "fill 3.5s linear",

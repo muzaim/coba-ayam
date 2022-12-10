@@ -4,10 +4,6 @@ import Cookies from "js-cookie";
 import { Dialog } from "@headlessui/react";
 import { useState } from "react";
 
-import Swal from "sweetalert2";
-import withReactContent from "sweetalert2-react-content";
-const MySwal = withReactContent(Swal);
-
 const DialogWithdrawal = ({ isOpen, setIsOpen, userBankData }) => {
   const [dataPost, setDataPost] = useState({
     user_bank_id: 1,

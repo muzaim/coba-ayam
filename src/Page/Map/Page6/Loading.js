@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import AnimalLoading from "../../../img/common/loading.gif";
+import AnimalLoading from "../../../../public/img/common/loading.webp";
 
 const Loading = () => {
   const [selectedTips, setSelectedTips] = useState("");

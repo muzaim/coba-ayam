@@ -1,5 +1,4 @@
 import React from "react";
-import PhoneRotate from "../../img/usage/rotate.gif";
 
 const Rotate = () => {
   return (
@@ -26,7 +25,7 @@ const Rotate = () => {
           </div>
         </div>
       </div>
-      <img src={PhoneRotate} alt="" />
+      <img src="/img/usage/rotate.webp" alt="" />
     </div>
   );
 };

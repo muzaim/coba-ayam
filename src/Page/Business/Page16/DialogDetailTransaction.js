@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import Cookies from "js-cookie";
+
 import { Dialog } from "@headlessui/react";
 import { useState } from "react";
 import { useEffect } from "react";
@@ -13,10 +13,6 @@ const DialogDetailTransaction = ({
 }) => {
   const [detailInquiry, setDetailInquiry] = useState([]);
 
-  function numberWithCommas(num) {
-    let newNum = parseInt(num);
-    return newNum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-  }
   function goToUrl() {
     window.location.href = checkout_url;
   }

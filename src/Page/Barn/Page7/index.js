@@ -1,6 +1,5 @@
 import React, { useContext, useEffect } from "react";
 import "./style.css";
-import Rumah from "../../../img/common/rumah.png";
 import Header from "../../../Component/Diatom/Header";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Navigation, Pagination, EffectCoverflow } from "swiper";
@@ -225,7 +224,7 @@ const Page7 = ({
                       >
                         <div className="flex flex-col items-center justify-center h-full">
                           <img
-                            src={Rumah}
+                            src="/img/common/rumah.webp"
                             alt=""
                             className="w-[5rem] h-[5rem]  lg:w-60 lg:h-64"
                           />
@@ -246,7 +245,7 @@ const Page7 = ({
                       >
                         <div className="flex flex-col items-center justify-center h-full">
                           <img
-                            src={Rumah}
+                            src="/img/common/rumah.webp"
                             alt=""
                             className="w-[5rem] h-[5rem]  lg:w-60 lg:h-64"
                           />
@@ -353,7 +352,7 @@ const Page7 = ({
                       >
                         <div className="flex flex-col items-center justify-center h-full">
                           <img
-                            src={Rumah}
+                            src="/img/common/rumah.webp"
                             alt=""
                             className="w-[5rem] h-[5rem]  lg:w-60 lg:h-64"
                           />

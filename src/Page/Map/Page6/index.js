@@ -1,15 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
-import EggImg from "../../../img/common/egg.png";
-import MeatImg from "../../../img/common/meat.png";
-import MilkImg from "../../../img/common/milk.png";
-import ArrowDown from "../../../img/usage/down.png";
 import { UserContext } from "../../UserContext";
 import axios from "axios";
 import Cookies from "js-cookie";
 import Header from "../../../Component/Diatom/Header";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
-import Loading from "./Loading";
+
 const MySwal = withReactContent(Swal);
 const Page6 = ({
   goToPage7,
@@ -25,7 +21,6 @@ const Page6 = ({
   const [telur, setTelur] = useState(null);
   const [daging, setDaging] = useState(null);
   const [susu, setSusu] = useState(null);
-  const [loading, setLoading] = useState(true);
 
   function numberWithCommas(num) {
     let newNum = parseInt(num);
@@ -108,7 +103,7 @@ const Page6 = ({
                     Warung
                   </span>
                   <img
-                    src={ArrowDown}
+                    src="/img/usage/down.webp"
                     alt=""
                     className="w-8 group-active:opacity-80"
                   />
@@ -127,7 +122,7 @@ const Page6 = ({
                     Bisnis
                   </span>
                   <img
-                    src={ArrowDown}
+                    src="/img/usage/down.webp"
                     alt=""
                     className="w-8 group-active:opacity-80"
                   />
@@ -146,7 +141,7 @@ const Page6 = ({
                     Kandangku
                   </span>
                   <img
-                    src={ArrowDown}
+                    src="/img/usage/down.webp"
                     alt=""
                     className="w-8 group-active:opacity-80"
                   />
@@ -165,7 +160,7 @@ const Page6 = ({
                     Top Up
                   </span>
                   <img
-                    src={ArrowDown}
+                    src="/img/usage/down.webp"
                     alt=""
                     className="w-8 group-active:opacity-80"
                   />
@@ -181,7 +176,7 @@ const Page6 = ({
                     Rumah
                   </span>
                   <img
-                    src={ArrowDown}
+                    src="/img/usage/down.webp"
                     alt=""
                     className="w-8 group-active:opacity-80"
                   />
@@ -194,7 +189,7 @@ const Page6 = ({
               <div className="w-[25%] flex flex-col relative gap-2 py-3 -mt-10">
                 <div className="w-40 h-10 bg-blue-600 rounded-full items-center flex justify-center gap-1">
                   <div className="flex items-center justify-center ">
-                    <img src={MeatImg} alt="" className="w-8" />
+                    <img src="/img/common/meat.webp" alt="" className="w-8" />
                   </div>
                   <span className="font-normal tracking-wide  text-sm text-white">
                     {numberWithCommas(daging)} Kg
@@ -203,7 +198,7 @@ const Page6 = ({
 
                 <div className="w-40 h-10 bg-blue-600 rounded-full items-center flex justify-center gap-1">
                   <div className="flex items-center justify-center ">
-                    <img src={MilkImg} alt="" className="w-8" />
+                    <img src="/img/common/milk.webp" alt="" className="w-8" />
                   </div>
 
                   <span className="font-normal tracking-wide  text-sm text-white">
@@ -213,7 +208,7 @@ const Page6 = ({
 
                 <div className="w-40 h-10 bg-blue-600 rounded-full items-center flex justify-center gap-1">
                   <div className="flex items-center justify-center ">
-                    <img src={EggImg} alt="" className="w-8" />
+                    <img src="/img/common/egg.webp" alt="" className="w-8" />
                   </div>
                   <span className="font-normal tracking-wide  text-sm text-white">
                     {numberWithCommas(telur)} Butir

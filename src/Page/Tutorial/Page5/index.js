@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Cewek from "../../../img/common/npcayam.png";
 import Typewriter from "typewriter-effect";
 import axios from "axios";
 import Cookies from "js-cookie";
@@ -83,7 +82,7 @@ const Page5 = ({ goToPage6, playYaySound, playSelectSound }) => {
         <div className="h-[85%] flex">
           <div className="w-[35%]">
             <div className="w-full h-full items-end flex">
-              <img src={Cewek} alt="" className="w-48" />
+              <img src="/img/common/npcayam.webp" alt="" className="w-48" />
             </div>
           </div>
           {nextButton ? <NextButtonDiv /> : null}

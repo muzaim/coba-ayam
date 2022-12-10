@@ -1,10 +1,8 @@
 import React, { useState, useContext, useEffect } from "react";
-import Jualan from "../../../img/common/jualan.png";
 import Header from "../../../Component/Diatom/Header";
 import { UserContext } from "../../UserContext";
 import axios from "axios";
 import Cookies from "js-cookie";
-import Typewriter from "typewriter-effect";
 
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
@@ -239,7 +237,7 @@ const Page13 = ({
             </div>
             {/* STAND JUALAN */}
             <div className="absolute bottom-0 z-20">
-              <img src={Jualan} alt="" className="" />
+              <img src="/img/common/jualan.webp" alt="" className="" />
             </div>
             {/* BUTTON JUAL SKIP */}
             <div className="absolute right-3 z-20 top-[6.5rem]">

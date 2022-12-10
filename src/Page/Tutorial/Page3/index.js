@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import Cewek from "../../../img/common/npcayam.png";
-import Next from "../../../img/usage/play.png";
 import Typewriter from "typewriter-effect";
 
 const Page3 = ({ goToPage4, playNextDialogSound, playSelectSound }) => {
@@ -23,7 +21,7 @@ const Page3 = ({ goToPage4, playNextDialogSound, playSelectSound }) => {
           </span>
           <div className="flex justify-end h-6">
             <img
-              src={Next}
+              src="/img/usage/play.webp"
               alt=""
               className="w-6 animate-pulse"
               onClick={() => {
@@ -47,7 +45,7 @@ const Page3 = ({ goToPage4, playNextDialogSound, playSelectSound }) => {
         <div className="h-[85%] flex">
           <div className="w-[35%]">
             <div className="w-full h-full items-end flex">
-              <img src={Cewek} alt="" className="w-48" />
+              <img src="/img/common/npcayam.webp" alt="" className="w-48" />
             </div>
           </div>
           <div className="w-full h-screen mt-3">
@@ -81,7 +79,11 @@ const Page3 = ({ goToPage4, playNextDialogSound, playSelectSound }) => {
 
                   <div className="flex justify-end h-6" onClick={goToPage4}>
                     {nextButton ? (
-                      <img src={Next} alt="" className="w-6 animate-pulse" />
+                      <img
+                        src="/img/usage/play.webp"
+                        alt=""
+                        className="w-6 animate-pulse"
+                      />
                     ) : null}
                   </div>
                 </div>

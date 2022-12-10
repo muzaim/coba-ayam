@@ -14,9 +14,7 @@ const MySwal = withReactContent(Swal);
 const Page16 = ({
   goToPage6,
   goToMenu,
-  playSuccessSound,
   playSelectSound,
-  playPop1,
   playPaperFlipSound,
 }) => {
   const [transactionLog, settransactionLog] = useState(true);
@@ -26,7 +24,6 @@ const Page16 = ({
   const [telur, setTelur] = useState(null);
   const [daging, setDaging] = useState(null);
   const [susu, setSusu] = useState(null);
-  const [inquiryData, setInquiryData] = useState([]);
   const [userBankData, setUserBankData] = useState([]);
   const [isOpenWithdrawal, setIsOpenWithdrawal] = useState(false);
   const [isOpenDetailTransaction, setIsOpenDetailTransaction] = useState(false);

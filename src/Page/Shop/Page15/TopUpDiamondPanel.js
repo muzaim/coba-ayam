@@ -1,4 +1,3 @@
-import Diamond from "../../../img/common/diamond.png";
 import useSound from "use-sound";
 import selectSound from "../../../music/selectItem.mp3";
 
@@ -25,7 +24,7 @@ const TopUpDiamond = ({
                 tangkapDiamondDipilih(e);
               }}
             >
-              <img src={Diamond} alt="" className="w-6" />
+              <img src="/img/common/diamond.webp" alt="" className="w-6" />
               <span className="font-bold  text-xs text-sky-400">
                 {numberWithCommas(diamon)}
               </span>

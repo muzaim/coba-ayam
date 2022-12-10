@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-import Pouch from "../../../img/common/pouch.png";
 import Button from "../../../Component/Atom/Button";
 import Header from "../../../Component/Diatom/Header";
 import { UserContext } from "../../UserContext";
@@ -66,7 +65,11 @@ const Page9 = ({ goToPage7, goToPage13, goToPage6 }) => {
                       <div className=" flex items-center justify-center">
                         <div className="w-44 h-10 bg-[#f6f3e4] rounded-full items-center flex active:bg-[#b6def2] lg:w-60 lg:h-14">
                           <div className="w-20 flex items-center justify-center ">
-                            <img src={Pouch} alt="" className="w-8 lg:w-10" />
+                            <img
+                              src="/img/common/pouch.webp"
+                              alt=""
+                              className="w-8 lg:w-10"
+                            />
                           </div>
                           <div className="w-full text-start ">
                             <span className="font-bold  text-sm text-[#782443] lg:text-lg">

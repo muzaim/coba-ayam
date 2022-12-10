@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from "react";
-import Pouch from "../../../img/common/pouch.png";
 import Header from "../../../Component/Diatom/Header";
 import { UserContext } from "../../UserContext";
 import axios from "axios";
@@ -340,7 +339,11 @@ const Page8 = ({
                                 data-text={text}
                                 onClick={tangkapPakanDipilih}
                               >
-                                <img src={Pouch} alt="" className="w-7" />
+                                <img
+                                  src="/img/common/pouch.webp"
+                                  alt=""
+                                  className="w-7"
+                                />
                                 <span className="font-semibold  text-sm text-[#782443]">
                                   {numberWithCommas(pakan)} Kg
                                 </span>
@@ -412,7 +415,11 @@ const Page8 = ({
                                 data-text={text}
                                 onClick={tangkapPakanDipilih}
                               >
-                                <img src={Pouch} alt="" className="w-7" />
+                                <img
+                                  src="/img/common/pouch.webp"
+                                  alt=""
+                                  className="w-7"
+                                />
                                 <span className="font-semibold  text-sm text-[#782443]">
                                   {numberWithCommas(pakan)} Kg
                                 </span>

@@ -1,8 +1,4 @@
 import React from "react";
-import Diamond from "../../../img/common/diamond.png";
-import Milk from "../../../img/common/milk.png";
-import Pouch from "../../../img/common/pouch.png";
-import QuestBook from "../../../img/common/questbook.png";
 import { useState } from "react";
 import { Page8 } from "../../index";
 
@@ -26,7 +22,11 @@ const Page11 = () => {
                 <div className="flex gap-2">
                   <div className="w-44 h-10 bg-[#f6f3e4] rounded-full items-center flex">
                     <div className="w-20 flex items-center justify-center ">
-                      <img src={Diamond} alt="" className="w-10" />
+                      <img
+                        src="/img/common/diamond.webp"
+                        alt=""
+                        className="w-10"
+                      />
                     </div>
                     <div className="w-full text-start ">
                       <span className="font-bold  text-sm text-[#782443]">
@@ -36,7 +36,7 @@ const Page11 = () => {
                   </div>
                   <div className="w-44 h-10 bg-[#f6f3e4] rounded-full items-center flex">
                     <div className="w-20 flex items-center justify-center ">
-                      <img src={Milk} alt="" className="w-8" />
+                      <img src="/img/common/milk.webp" alt="" className="w-8" />
                     </div>
                     <div className="w-full text-start ">
                       <span className="font-bold  text-sm text-[#782443]">
@@ -46,7 +46,11 @@ const Page11 = () => {
                   </div>
                   <div className="w-44 h-10 bg-[#f6f3e4] rounded-full items-center flex">
                     <div className="w-20 flex items-center justify-center ">
-                      <img src={Pouch} alt="" className="w-8" />
+                      <img
+                        src="/img/common/pouch.webp"
+                        alt=""
+                        className="w-8"
+                      />
                     </div>
                     <div className="w-full text-start ">
                       <span className="font-bold  text-sm text-[#782443]">
@@ -57,7 +61,11 @@ const Page11 = () => {
                 </div>
 
                 <div>
-                  <img src={QuestBook} alt="" className="w-16" />
+                  <img
+                    src="/img/common/questbook.webp"
+                    alt=""
+                    className="w-16"
+                  />
                 </div>
               </div>
             </div>
@@ -70,13 +78,21 @@ const Page11 = () => {
                 </h1>
               </div>
               <div className=" flex items-center justify-end">
-                <img src={Milk} alt="" className="w-20 mr-10" />
+                <img
+                  src="/img/common/milk.webp"
+                  alt=""
+                  className="w-20 mr-10"
+                />
               </div>
               <div className=" flex justify-center">
-                <img src={Milk} alt="" className="w-36" />
+                <img src="/img/common/milk.webp" alt="" className="w-36" />
               </div>
               <div className=" flex items-center ">
-                <img src={Milk} alt="" className="w-20 ml-10" />
+                <img
+                  src="/img/common/milk.webp"
+                  alt=""
+                  className="w-20 ml-10"
+                />
               </div>
             </div>
             {/* CONTENT END*/}

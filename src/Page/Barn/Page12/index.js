@@ -4,7 +4,6 @@ import SwiperCore, { Navigation, Pagination, EffectCoverflow } from "swiper";
 import "swiper/css";
 import Header from "../../../Component/Diatom/Header";
 import { UserContext } from "../../UserContext";
-import DiamondImg from "../../../img/common/diamond.png";
 import axios from "axios";
 import Cookies from "js-cookie";
 
@@ -147,7 +146,11 @@ const Page12 = ({
                           >
                             <div className="flex flex-col h-full w-[70%] items-center ">
                               <div className="flex mt-[3rem] -ml-2 ">
-                                <img src={DiamondImg} alt="" className="w-6" />
+                                <img
+                                  src="/img/common/diamond.webp"
+                                  alt=""
+                                  className="w-6"
+                                />
                                 <span className="text-white text-sm">
                                   {numberWithCommas(price)}
                                 </span>

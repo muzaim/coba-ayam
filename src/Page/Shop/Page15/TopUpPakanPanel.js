@@ -1,8 +1,5 @@
-import Diamond from "../../../img/common/diamond.png";
-import Pouch from "../../../img/common/pouch.png";
 import useSound from "use-sound";
 import selectSound from "../../../music/selectItem.mp3";
-
 const TopUpPakan = ({
   daftarHargaPakan,
   tangkapPakanDipilih,
@@ -26,12 +23,12 @@ const TopUpPakan = ({
                 tangkapPakanDipilih(e);
               }}
             >
-              <img src={Pouch} alt="" className="w-6" />
+              <img src="/img/common/pouch.webp" alt="" className="w-6" />
               <span className="font-semibold  text-xs text-[#782443]">
                 {numberWithCommas(pakan)} Kg
               </span>
               <span className="font-semibold mx-1">=</span>
-              <img src={Diamond} alt="" className="w-6" />
+              <img src="/img/common/diamond.webp" alt="" className="w-6" />
               <span className="font-semibold text-sky-400 text-xs">
                 {numberWithCommas(diamon)}
               </span>

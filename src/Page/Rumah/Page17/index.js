@@ -2,15 +2,11 @@ import React, { useState, useContext } from "react";
 import Cookies from "js-cookie";
 import axios from "axios";
 import { useEffect } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faClipboard } from "@fortawesome/free-solid-svg-icons";
-import Header from "../../../Component/Diatom/Header";
 import { UserContext } from "../../UserContext";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 const MySwal = withReactContent(Swal);
 
-const Copy = <FontAwesomeIcon icon={faClipboard} />;
 
 const Page17 = ({
   goToPage6,
