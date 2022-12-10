@@ -51,7 +51,7 @@ const MusicOnly = () => {
   return (
     <div className="absolute z-20 bottom-6 right-16">
       <AudioPlayer
-        // autoPlay
+        autoPlay
         loop
         showJumpControls={false}
         showFilledProgress={false}

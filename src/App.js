@@ -4,8 +4,7 @@ import React, { useMemo, useState } from "react";
 import DeviceOrientation, { Orientation } from "react-screen-orientation";
 import { UserContext } from "./Page/UserContext";
 import MusicOnly from "./Page/Music/MusicOnly";
-import ReactAudioPlayer from "react-audio-player";
-import song from "../src/music/buddy.mp3";
+import "react-h5-audio-player/lib/styles.css";
 
 const App = () => {
   const [value, setValue] = useState({});
@@ -36,16 +35,15 @@ const App = () => {
           <div className="w-[700px] h-full flex items-center relative overflow-hidden ">
             <UserContext.Provider value={providerValue}>
               <MainPage />
-              {/* <MusicOnly /> */}
+              <MusicOnly />
             </UserContext.Provider>
-            <ReactAudioPlayer
-              src={song}
+            {/* <AudioPlayer
               autoPlay
-              // controls
-              // muted
-              loop
-              // className="hidden"
-            />
+              src={song}
+              onPlay={(e) => console.log("onPlay")}
+              // other props here
+              className="hidden"
+            /> */}
           </div>
         </div>
       </Orientation>
