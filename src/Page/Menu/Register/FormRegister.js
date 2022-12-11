@@ -22,9 +22,9 @@ const FormRegister = ({
 }) => {
   const [dataRegister, setDataRegister] = useState({
     username: "",
+    email: "",
     phone: "",
     user_ref: "",
-    email: "",
     password: "",
     password_confirmation: "",
   });
@@ -60,6 +60,7 @@ const FormRegister = ({
     playPop1();
     const formData = new FormData();
     formData.append("username", dataRegister.username);
+    formData.append("email", dataRegister.email);
     formData.append("phone", dataRegister.phone);
     formData.append("user_ref", dataRegister.user_ref);
     formData.append("password", dataRegister.password);
@@ -80,9 +81,9 @@ const FormRegister = ({
       await axios.post(`${process.env.REACT_APP_BASE_URL}/register`, formData);
       setDataRegister({
         username: "",
+        email: "",
         phone: "",
         user_ref: "",
-        email: "",
         password: "",
         password_confirmation: "",
       });
@@ -130,15 +131,26 @@ const FormRegister = ({
                   className="h-10 rounded-lg px-3 outline-pink-500 outline-offset-5 outline-5"
                   onFocus={playSelectSound}
                 />
-                <input
-                  value={dataRegister.phone}
-                  name="phone"
-                  type="number"
-                  placeholder="Phone"
-                  onChange={changeHandler}
-                  className="h-10 rounded-lg px-3 outline-pink-500 outline-offset-5 outline-5"
-                  onFocus={playSelectSound}
-                />
+                <div className="flex gap-2 w-full">
+                  <input
+                    value={dataRegister.email}
+                    name="email"
+                    type="email"
+                    placeholder="Email"
+                    onChange={changeHandler}
+                    className="h-10 rounded-lg px-3 outline-pink-500 outline-offset-5 outline-5 w-[60%]"
+                    onFocus={playSelectSound}
+                  />
+                  <input
+                    value={dataRegister.phone}
+                    name="phone"
+                    type="number"
+                    placeholder="Phone"
+                    onChange={changeHandler}
+                    className="h-10 rounded-lg px-3 outline-pink-500 outline-offset-5 outline-5 w-[40%]"
+                    onFocus={playSelectSound}
+                  />
+                </div>
                 <div className="flex gap-2 w-full">
                   <div className="pass-wrapper bg-white rounded-lg w-[50%]">
                     <input
