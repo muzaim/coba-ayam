@@ -1,10 +1,10 @@
 import React from "react";
-import DiamondImg from "../../../img/common/diamond.png";
-import EggImg from "../../../img/common/egg.png";
-import PouchImg from "../../../img/common/pouch.png";
-import MeatImg from "../../../img/common/meat.png";
-import MilkImg from "../../../img/common/milk.png";
-import QuestBookImg from "../../../img/common/questbook.png";
+// import DiamondImg from "../../../img/common/diamond.png";
+// import EggImg from "../../../img/common/egg.png";
+// import PouchImg from "../../../img/common/pouch.png";
+// import MeatImg from "../../../img/common/meat.png";
+// import MilkImg from "../../../img/common/milk.png";
+// import QuestBookImg from "../../../img/common/questbook.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 import Cookies from "js-cookie";
@@ -74,7 +74,7 @@ const Header = ({
     return (
       <div className="w-32 h-10 bg-white rounded-full items-center flex">
         <div className="w-20 flex items-center justify-center ">
-          <img src={DiamondImg} alt="" className="w-10" />
+          <img src="/img/common/diamond.webp" alt="" className="w-10" />
         </div>
         <div className="w-full text-start ">
           <span className="font-bold  text-xs text-[#782443]">
@@ -89,7 +89,7 @@ const Header = ({
     return (
       <div className="w-32 h-10 bg-white rounded-full items-center flex">
         <div className="w-20 flex items-center justify-center ">
-          <img src={EggImg} alt="" className="w-8" />
+          <img src="/img/common/egg.webp" alt="" className="w-8" />
         </div>
         <div className="w-full text-start ">
           <span className="font-bold  text-xs text-[#782443]">
@@ -104,7 +104,7 @@ const Header = ({
     return (
       <div className="w-32 h-10 bg-white rounded-full items-center flex">
         <div className="w-20 flex items-center justify-center ">
-          <img src={PouchImg} alt="" className="w-8" />
+          <img src="/img/common/pouch.webp" alt="" className="w-8" />
         </div>
         <div className="w-full text-start ">
           <span className="font-bold  text-xs text-[#782443]">
@@ -119,7 +119,7 @@ const Header = ({
     return (
       <div className="w-32 h-10 bg-white rounded-full items-center flex">
         <div className="w-20 flex items-center justify-center ">
-          <img src={MilkImg} alt="" className="w-8" />
+          <img src="/img/common/milk.webp" alt="" className="w-8" />
         </div>
         <div className="w-full text-start ">
           <span className="font-bold  text-xs text-[#782443]">
@@ -134,7 +134,7 @@ const Header = ({
     return (
       <div className="w-32 h-10 bg-white rounded-full items-center flex">
         <div className="w-20 flex items-center justify-center ">
-          <img src={MeatImg} alt="" className="w-8" />
+          <img src="/img/common/meat.webp" alt="" className="w-8" />
         </div>
         <div className="w-full text-start ">
           <span className="font-bold  text-xs  text-[#782443]">
@@ -172,7 +172,7 @@ const Header = ({
           openPage6();
         }}
       >
-        <img src={QuestBookImg} alt="" className="w-14 mt-1" />
+        <img src="/img/common/questbook.webp" alt="" className="w-14 mt-1" />
       </div>
     );
   };

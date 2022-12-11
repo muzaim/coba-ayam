@@ -179,7 +179,6 @@ const Page8 = ({
       setTernakDetail(res);
       setPakanStatus(res[0].pakan_status);
 
-      console.log(`ini res`, res[0]);
       const start = res[0].umur_start;
       const end = res[0].umur_end;
 
@@ -267,7 +266,6 @@ const Page8 = ({
   useEffect(() => {
     getPakanTernak();
     getTernakDetail();
-    console.log(selectedAnimalID);
   }, []);
 
   return (

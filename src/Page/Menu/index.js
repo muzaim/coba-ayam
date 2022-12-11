@@ -1,7 +1,7 @@
 import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
-import Tama from "../../img/common/tamako.png";
+
 import "./style.css";
 
 const Menu = ({ goToFormLogin, goToFormRegister, playPop1 }) => {
@@ -30,7 +30,11 @@ const Menu = ({ goToFormLogin, goToFormRegister, playPop1 }) => {
         <div className="flex h-full items-end justify-center pb-5 ">
           <div className="grid gap-2 mt-44">
             <div className="block mx-auto py-4 px-16  rounded-3xl uppercase tracking-[0.15rem] font-extrabold text-white font-openSans  animate-running">
-              <img src={Tama} alt="" className="w-[23rem] " />
+              <img
+                src="/img/common/tamako.webp"
+                alt=""
+                className="w-[23rem] "
+              />
             </div>
 
             <div
