@@ -3,7 +3,7 @@ import React from "react";
 const Rotate = () => {
   return (
     <div className="w-full h-screen">
-      <div
+      {/* <div
         class="bg-teal-100 border-t-4 border-teal-500 rounded-b text-teal-900 px-4 py-3 shadow-md"
         role="alert"
       >
@@ -25,7 +25,8 @@ const Rotate = () => {
           </div>
         </div>
       </div>
-      <img src="/img/usage/rotate.webp" alt="" />
+      <img src="/img/usage/rotate.webp" alt="" /> */}
+      <img src="/img/bg/pumkin.webp" alt="" />
     </div>
   );
 };
