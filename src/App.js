@@ -36,6 +36,7 @@ const App = () => {
             <UserContext.Provider value={providerValue}>
               <MainPage />
               <MusicOnly />
+              {/* <Rotate /> */}
             </UserContext.Provider>
           </div>
         </div>

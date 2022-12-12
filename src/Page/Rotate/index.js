@@ -1,8 +1,8 @@
 import React from "react";
-
+import "./style.css";
 const Rotate = () => {
   return (
-    <div className="w-full h-screen">
+    <div className="w-full h-screen relative bg-pumkin object-cover">
       {/* <div
         class="bg-teal-100 border-t-4 border-teal-500 rounded-b text-teal-900 px-4 py-3 shadow-md"
         role="alert"
@@ -24,9 +24,16 @@ const Rotate = () => {
             </p>
           </div>
         </div>
+      </div>*/}
+      {/* <img src="/img/usage/rotate.webp" alt="" /> */}
+      <img
+        src="/img/bg/rotate.gif"
+        alt=""
+        className="translate-x-1 img-hor-vert "
+      />
+      <div className="absolute top-[50%] left-20">
+        <span>Rotate your phone</span>
       </div>
-      <img src="/img/usage/rotate.webp" alt="" /> */}
-      <img src="/img/bg/pumkin.webp" alt="" />
     </div>
   );
 };

@@ -5,6 +5,7 @@ module.exports = {
     extend: {
       backgroundImage: {
         page2: "url('../public/img/bg/6.webp')",
+        pumkin: "url('../public/img/bg/pumkin.webp')",
         barn: "url('../public/img/bg/1.webp')",
         caffe: "url('../public/img/bg/shop.webp')",
         outFarm: "url('../public/img/bg/outfarm.webp')",
