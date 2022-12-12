@@ -45,7 +45,7 @@ const Page16 = ({
     const userCookie = Cookies.get("user");
     try {
       let userInfo = await axios.get(
-        `${process.env.REACT_APP_BASE_URL}/trx-inquiry`,
+        `https://tamakoci.com/api/v2/trx-inquiry`,
         {
           params: {
             token: userCookie,

@@ -19,7 +19,7 @@ const DialogDetailTransaction = ({
   const getTransactionInquiryDetail = async () => {
     try {
       let userInfo = await axios.get(
-        `${process.env.REACT_APP_BASE_URL}/trx-details/${detailIdSelected}`
+        `https://tamakoci.com/api/v2/trx-details/${detailIdSelected}`
       );
       let res = userInfo.data.data;
       setDetailInquiry(res);
