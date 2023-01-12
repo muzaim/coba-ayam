@@ -4,9 +4,11 @@ import { useState, useContext } from "react";
 import { UserContext } from "../../UserContext";
 import axios from "axios";
 import Cookies from "js-cookie";
-
+import bg7 from "../../../img/loading.webp";
+import bg2 from "../../../img/farmCultivature.webp";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
+import { useEffect } from "react";
 const MySwal = withReactContent(Swal);
 
 const eye = <FontAwesomeIcon icon={faEye} />;
@@ -132,6 +134,12 @@ const FormLogin = ({
       });
     }
   };
+  useEffect(() => {
+    let imageList = [bg7, bg2];
+    imageList.forEach((image) => {
+      new Image().src = image;
+    });
+  });
   return (
     <div className="w-full h-full overflow-hidden bg-farmBarn bg-cover mx-auto lg:max-w-6xl lg:h-[70%] z-50">
       <div className="h-full">
