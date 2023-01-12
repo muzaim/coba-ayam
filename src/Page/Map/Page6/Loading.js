@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import AnimalLoading from "../../../../public/img/common/loading.webp";
 
 const Loading = () => {
   const [selectedTips, setSelectedTips] = useState("");
@@ -28,7 +27,12 @@ const Loading = () => {
         <div className="w-full h-28  bottom-0 absolute justify-center flex">
           <div className="flex flex-col h-full w-[80%] items-center justify-center ">
             <div className="flex justify-center items-center  w-full ">
-              <img src={AnimalLoading} alt="" className="w-20" loading="lazy" />
+              <img
+                src="/img/common/loading.webp"
+                alt=""
+                className="w-20"
+                loading="lazy"
+              />
               <div className=" text-white mt-1 font-semibold tracking-widest">
                 {selectedTips}
               </div>
