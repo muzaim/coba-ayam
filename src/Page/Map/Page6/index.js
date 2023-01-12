@@ -9,6 +9,11 @@ import Loading from "./Loading";
 import bg1 from "../../../img/farmbarn.webp";
 import bg2 from "../../../img/farmCultivature.webp";
 import bg3 from "../../../img/outfarm.webp";
+import bg4 from "../../../img/1.webp";
+import bg5 from "../../../img/6.webp";
+import bg6 from "../../../img/jualan.webp";
+import bg7 from "../../../img/loading.webp";
+import bg8 from "../../../img/shop.webp";
 
 const MySwal = withReactContent(Swal);
 const Page6 = ({
@@ -73,7 +78,7 @@ const Page6 = ({
   });
 
   useEffect(() => {
-    let imageList = [bg1, bg2, bg3];
+    let imageList = [bg1, bg2, bg3, bg4, bg5, bg6, bg7, bg8];
     imageList.forEach((image) => {
       new Image().src = image;
     });
