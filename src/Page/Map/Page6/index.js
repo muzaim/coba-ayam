@@ -6,6 +6,9 @@ import Header from "../../../Component/Diatom/Header";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import Loading from "./Loading";
+import bg1 from "../../../img/farmbarn.webp";
+import bg2 from "../../../img/farmCultivature.webp";
+import bg3 from "../../../img/outfarm.webp";
 
 const MySwal = withReactContent(Swal);
 const Page6 = ({
@@ -68,6 +71,14 @@ const Page6 = ({
       setLoading(false);
     }, 3000);
   });
+
+  useEffect(() => {
+    let imageList = [bg1, bg2, bg3];
+    imageList.forEach((image) => {
+      new Image().src = image;
+    });
+  });
+
   return (
     <>
       {loading ? (
