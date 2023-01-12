@@ -14,6 +14,7 @@ import bg5 from "../../../img/6.webp";
 import bg6 from "../../../img/jualan.webp";
 import bg7 from "../../../img/loading.webp";
 import bg8 from "../../../img/shop.webp";
+import bg9 from "../../../img/city.webp";
 
 const MySwal = withReactContent(Swal);
 const Page6 = ({
@@ -78,7 +79,7 @@ const Page6 = ({
   });
 
   useEffect(() => {
-    let imageList = [bg1, bg2, bg3, bg4, bg5, bg6, bg7, bg8];
+    let imageList = [bg1, bg2, bg3, bg4, bg5, bg6, bg7, bg8, bg9];
     imageList.forEach((image) => {
       new Image().src = image;
     });
